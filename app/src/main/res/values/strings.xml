@@ -2,4 +2,11 @@
   <string name="app_name">Penny Quick</string>
   <string name="splash_message">Recharges &amp; Money Transfer</string>
   <string name="fast_secure">Fast &amp; Secure</string>
+  <string name="fast_secure_message">It is Fast and Secure</string>
+  <string name="easy_to_use">Easy To Use</string>
+  <string name="easy_to_use_message">Manage your financial transaction. Its all easy like never before</string>
+  <string name="encrypted">Encrypted</string>
+  <string name="encrypted_message">Our new encrypted process makes it more secure</string>
+  <string name="continue_text">Continue</string>
+  <string name="skip">Skip</string>
 </resources>

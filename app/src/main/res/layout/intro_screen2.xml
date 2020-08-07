@@ -1,23 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/colorAccent">
+  android:layout_height="match_parent">
   <ImageView
-    android:layout_width="150dp"
-    android:layout_height="150dp"
-    android:src="@android:drawable/ic_dialog_alert"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/imageView" />
-  <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="CAMERA"
-    android:textColor="@android:color/white"
-    android:textSize="50dp"
-    android:textStyle="bold"
-    android:layout_below="@+id/imageView"
+    android:src="@drawable/shield_icon"
+    android:layout_above="@+id/label1"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="32dp" />
+    android:contentDescription="@string/fast_secure"
+    android:layout_marginBottom="@dimen/distance_50"
+    android:id="@+id/imageView" />
+  <TextView
+    android:id="@+id/label1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/easy_to_use"
+    android:textColor="@android:color/black"
+    android:textSize="@dimen/textSize_35"
+    android:layout_centerInParent="true"/>
+
+  <TextView
+    android:id="@+id/label2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/easy_to_use_message"
+    android:textColor="@android:color/black"
+    android:layout_marginTop="@dimen/distance_20"
+    android:layout_marginEnd="@dimen/distance_50"
+    android:layout_marginStart="@dimen/distance_50"
+    android:textAlignment="center"
+    android:textSize="@dimen/textSize_18"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/label1"/>
+
+  <Button
+    android:id="@+id/bt_continue"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/label2"
+    android:background="@color/colorPrimary"
+    android:layout_marginTop="@dimen/distance_50"
+    android:layout_marginEnd="@dimen/distance_50"
+    android:layout_marginStart="@dimen/distance_50"
+    android:text="@string/continue_text"
+    android:textSize="@dimen/textSize_18"
+    android:layout_centerHorizontal="true"
+    android:textColor="@android:color/white"/>
+
+  <TextView
+    android:id="@+id/skip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/skip"
+    android:textSize="@dimen/textSize_17"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/bt_continue"
+    android:textColor="@android:color/black"
+    android:layout_marginTop="@dimen/distance_50"/>
 </RelativeLayout>

@@ -4,18 +4,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import com.penny.quick.R;
+import com.penny.quick.ui.listeners.IntroScreenListeners;
 import java.util.List;
 
 public class IntroScreenAdapter extends PagerAdapter {
 
-  List<Integer> screens;
-  Context mContext;
+  private List<Integer> screens;
+  private Context mContext;
+  private IntroScreenListeners introScreenListeners;
 
-  public IntroScreenAdapter(List<Integer> screens, Context mContext) {
+  public IntroScreenAdapter(
+      List<Integer> screens, Context mContext, IntroScreenListeners introScreenListeners) {
     this.screens = screens;
     this.mContext = mContext;
+    this.introScreenListeners = introScreenListeners;
   }
 
   @NonNull
@@ -23,6 +30,10 @@ public class IntroScreenAdapter extends PagerAdapter {
   public Object instantiateItem(@NonNull ViewGroup container, int position) {
     LayoutInflater inflater = LayoutInflater.from(mContext);
     View view = (ViewGroup) inflater.inflate(screens.get(position), container, false);
+    ((Button) view.findViewById(R.id.bt_continue))
+        .setOnClickListener(view1 -> introScreenListeners.onNextClick(position));
+    ((TextView) view.findViewById(R.id.skip))
+        .setOnClickListener(view1 -> introScreenListeners.onSkipClick());
     container.addView(view);
     return view;
   }
