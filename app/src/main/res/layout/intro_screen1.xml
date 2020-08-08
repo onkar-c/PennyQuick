@@ -39,12 +39,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@id/label2"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/button_background"
     android:layout_marginTop="@dimen/distance_50"
-    android:layout_marginEnd="@dimen/distance_50"
-    android:layout_marginStart="@dimen/distance_50"
-    android:text="@string/continue_text"
-    android:textSize="@dimen/textSize_18"
+    android:layout_marginEnd="@dimen/distance_30"
+    android:layout_marginStart="@dimen/distance_30"
+    android:padding="@dimen/distance_10"
+    android:textAllCaps="false"
+    android:text="@string/next"
+    android:textSize="@dimen/textSize_16"
     android:layout_centerHorizontal="true"
     android:textColor="@android:color/white"/>
 
@@ -55,11 +57,12 @@
     android:text="@string/skip"
     android:textSize="@dimen/textSize_17"
     android:layout_centerHorizontal="true"
-    android:layout_below="@+id/bt_continue"
+    android:layout_above="@+id/v_bar"
     android:textColor="@android:color/black"
-    android:layout_marginTop="@dimen/distance_50"/>
+    android:layout_marginBottom="@dimen/distance_30"/>
 
   <View
+    android:id="@+id/v_bar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/distance_5"
     android:background="@drawable/bottom_bar_background"

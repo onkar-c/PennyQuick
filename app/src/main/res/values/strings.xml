@@ -9,4 +9,15 @@
   <string name="encrypted_message">Our new encrypted process makes it more secure</string>
   <string name="continue_text">Continue</string>
   <string name="skip">Skip</string>
+  <string name="sign_in">Sign in</string>
+  <string name="sign_in_info">Sign with User ID and password to use your account</string>
+  <string name="user_id">User ID</string>
+  <string name="password">Password</string>
+  <string name="remember_password">Remember Password</string>
+  <string name="forgot_pwd">Forgot Password</string>
+  <string name="power_by">Powered by: Bhawani Multi Serive Pvt. Ltd.</string>
+  <string name="success">success</string>
+  <string name="success_login">Successfully Login</string>
+  <string name="success_sub">Dear user your account has been successfully login</string>
+  <string name="next">Next</string>
 </resources>
