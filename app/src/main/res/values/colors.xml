@@ -8,6 +8,7 @@
   <color name="button_end_color">#00D3FE</color>
   <color name="button_start_color">#554FE4</color>
   <color name="text_color_1">#29304D</color>
+  <color name="text_color_2">#4FE0FE</color>
   <color name="edit_text_bg_color">#EDFBFC</color>
   <color name="edit_text_border_color">#A5E8F0</color>
   <color name="hint_color">#323232</color>
