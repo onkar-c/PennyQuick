@@ -1,5 +1,7 @@
 package com.penny.quick.di;
 
+import com.penny.quick.ui.activities.login.SignInActivity;
+import com.penny.quick.ui.activities.login.SignInActivityModel;
 import com.penny.quick.ui.activities.main.MainActivity;
 import com.penny.quick.ui.activities.main.MainActivityModel;
 import com.penny.quick.ui.activities.splash.SplashActivity;
@@ -15,4 +17,7 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = SplashActivityModel.class)
   abstract SplashActivity getSplashActivity();
+
+  @ContributesAndroidInjector(modules = SignInActivityModel.class)
+  abstract SignInActivity getSignInActivity();
 }
