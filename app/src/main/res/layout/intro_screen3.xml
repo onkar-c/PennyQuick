@@ -58,4 +58,14 @@
     android:layout_below="@+id/bt_continue"
     android:textColor="@android:color/black"
     android:layout_marginTop="@dimen/distance_50"/>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/distance_5"
+    android:background="@drawable/bottom_bar_background"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="@dimen/distance_30"
+    android:layout_marginStart="@dimen/distance_100"
+    android:layout_marginEnd="@dimen/distance_100"/>
 </RelativeLayout>
