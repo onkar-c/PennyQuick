@@ -36,8 +36,10 @@
     </activity>
 
     <activity android:name=".ui.activities.main.MainActivity"/>
-    <activity android:name=".ui.activities.login.SignInActivity"/>
-    <activity android:name=".ui.activities.login.SuccessLoginActivity"/>
+    <activity android:name=".ui.activities.login.SignInActivity"
+      android:theme="@style/AppTheme.NoTitleBar"/>
+    <activity android:name=".ui.activities.login.SuccessLoginActivity"
+      android:theme="@style/AppTheme.NoTitleBar"/>
 
 
   </application>
