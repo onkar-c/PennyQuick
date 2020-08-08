@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:id="@+id/iv_success_login"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_marginTop="@dimen/distance_50"
+    android:background="@drawable/login_successful"
+    android:contentDescription="@string/success"
+    android:layout_centerHorizontal="true"/>
+
+  <TextView
+    android:id="@+id/tx_success_heading"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_15"
+    android:gravity="center"
+    android:text="@string/success_login"
+    android:textColor="@color/text_color_1"
+    android:textSize="@dimen/textSize_25"
+    android:layout_below="@id/iv_success_login"
+    android:layout_centerHorizontal="true"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_15"
+    android:layout_marginEnd="@dimen/margin_15"
+    android:text="@string/success_sub"
+    android:textColor="@color/hint_color"
+    android:textSize="@dimen/textSize_16"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:layout_below="@id/tx_success_heading"/>
+
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/bt_sign_in"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/distance_50"
+    android:layout_marginStart="@dimen/distance_30"
+    android:layout_marginEnd="@dimen/distance_30"
+    android:layout_gravity="bottom"
+    android:padding="@dimen/distance_10"
+    android:background="@drawable/button_background"
+    android:text="@string/continue_text"
+    android:textAllCaps="false"
+    android:textColor="@android:color/white"
+    android:textSize="@dimen/textSize_17"
+    android:layout_above="@id/v_bar"/>
+
+  <View
+    android:id="@+id/v_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/distance_5"
+    android:background="@drawable/bottom_bar_background"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="@dimen/distance_30"
+    android:layout_marginStart="@dimen/distance_100"
+    android:layout_marginEnd="@dimen/distance_100"/>
+
+</RelativeLayout>
