@@ -5,7 +5,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.penny.quick.R;
-import com.penny.quick.ui.activities.main.MainActivity;
+import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
+import com.penny.quick.ui.activities.login.SignInActivity;
 import com.penny.quick.ui.adapters.IntroScreenAdapter;
 import com.penny.quick.ui.listeners.IntroScreenListeners;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class IntroScreen extends AppCompatActivity implements IntroScreenListene
   @Override
   public void onNextClick(int position) {
     if (position == screens.size() - 1) {
-      startMainActivity();
+      startActivity(new Intent(this, SignInActivity.class));
     } else {
       vp.setCurrentItem(position + 1);
     }
@@ -56,7 +57,7 @@ public class IntroScreen extends AppCompatActivity implements IntroScreenListene
   }
 
   private void startMainActivity() {
-    startActivity(new Intent(this, MainActivity.class));
+    startActivity(new Intent(this, DashBoardActivity.class));
     finish();
   }
 }
