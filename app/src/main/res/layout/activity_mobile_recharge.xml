@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+  android:focusableInTouchMode="true" >
+
+  <include android:id="@+id/commonToolBar"
+    layout="@layout/common_tool_bar"/>
 
   <RadioGroup
     android:id="@+id/rg_bill_type"
@@ -10,7 +17,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_marginTop="@dimen/distance_10"
-    android:weightSum="2">
+    android:weightSum="2"
+    android:layout_below="@+id/commonToolBar">
 
     <LinearLayout
       android:layout_width="0dp"
@@ -92,7 +100,9 @@
       android:textColorHint="@color/hint_color"
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_mob_no"
-      android:importantForAutofill="no" />
+      android:importantForAutofill="no"
+      android:editable="false"
+      android:focusable="false"/>
 
     <EditText
       android:id="@+id/et_state"
@@ -114,7 +124,8 @@
       android:textColorHint="@color/hint_color"
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_operator"
-      android:importantForAutofill="no" />
+      android:importantForAutofill="no"
+      android:editable="false"/>
 
   <RelativeLayout
     android:id="@+id/rl_amnt"
@@ -144,7 +155,8 @@
       android:background="@android:color/transparent"
       android:layout_centerVertical="true"
       android:layout_toStartOf="@id/bt_view_plans"
-      android:layout_alignParentStart="true"/>
+      android:layout_alignParentStart="true"
+      android:focusableInTouchMode="false" />
 
     <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/bt_view_plans"
@@ -179,3 +191,6 @@
     android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
+  <include layout="@layout/bottom_sheet"
+    />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

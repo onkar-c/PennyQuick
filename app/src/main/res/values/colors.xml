@@ -14,4 +14,6 @@
   <color name="hint_color">#323232</color>
   <color name="radio_btn_bg_color">#4FE0FE</color>
   <color name="text_color_3">#323232B3</color>
+  <color name="text_color_4">#212121</color>
+  <color name="text_color_5">#070707</color>
 </resources>
