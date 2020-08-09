@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.forgot_pwd_otp.ForgotPasswordOtpActivity;
+import com.penny.quick.utils.ToolBarUtils;
 
 public class ForgotPasswordMobRegActivity extends AppCompatActivity {
 
@@ -14,6 +15,8 @@ public class ForgotPasswordMobRegActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_forgot_pwd_mob_no);
+    ToolBarUtils.setUpToolBar(this);
+    ToolBarUtils.setTitle(this, getString(R.string.forgot_pwd));
 
     findViewById(R.id.bt_next)
         .setOnClickListener(onNextClick);

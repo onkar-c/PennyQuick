@@ -44,20 +44,16 @@
       android:name=".ui.activities.login.SuccessLoginActivity"
       android:theme="@style/AppTheme.NoTitleBar" />
     <activity
-      android:label="Forgot Password"
       android:name=".ui.activities.forgot_pwd_mob.ForgotPasswordMobRegActivity"
-      android:theme="@style/AppTheme"
-      android:parentActivityName=".ui.activities.login.SignInActivity"/>
+      android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
       android:name=".ui.activities.forgot_pwd_otp.ForgotPasswordOtpActivity"
-      android:theme="@style/AppTheme"
-      android:parentActivityName=".ui.activities.forgot_pwd_mob.ForgotPasswordMobRegActivity"/>
+      android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
       android:name=".ui.activities.forgot_pwd_new_pwd.ForgotPasswordNewPwdActivity"
-      android:theme="@style/AppTheme"
-      android:parentActivityName=".ui.activities.forgot_pwd_new_pwd.ForgotPasswordNewPwdActivity"/>
+      android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
       android:name=".ui.activities.mobile_recharge.MobileRechargeActivity"

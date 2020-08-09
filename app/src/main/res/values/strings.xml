@@ -64,10 +64,20 @@
   <string name="dish_tv">Dish TV</string>
   <string name="sun_direct">Sun Direct</string>
   <string name="tata_sky">Tata Sky</string>
+  <string name="airtel">Airtel</string>
+  <string name="bsnl">BSNL Landline Corporate</string>
+  <string name="tata_gsm">Tata DoCoMo  \u0020\u0020\u0020\u0020\u0020\u0020\u0020 GSM</string>
+  <string name="tata_postpaid">Tata DoCoMo CDMA Postpaid</string>
+  <string name="mtnl_delhi">MTNL Delhi</string>
+  <string name="mtnl_mumbai">MTNL Mumbai</string>
+  <string name="reliance">Reliance</string>
+
+
   <string name="d2h">D2H</string>
 
   <string name="enter_mob_no">Enter Mobile Number</string>
   <string name="select_operator">Select Operator</string>
+  <string name="select_provider">Select Provider</string>
   <string name="select_state">Select State</string>
   <string name="enter_amnt">Enter Amount</string>
   <string name="view_plans">View Plans</string>

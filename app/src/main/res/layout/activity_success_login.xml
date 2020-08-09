@@ -38,10 +38,10 @@
     android:layout_below="@id/tx_success_heading"/>
 
   <androidx.appcompat.widget.AppCompatButton
-    android:id="@+id/bt_sign_in"
+    android:id="@+id/bt_sign_in_continue"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/distance_80"
+    android:layout_marginBottom="@dimen/distance_100"
     android:layout_marginStart="@dimen/distance_30"
     android:layout_marginEnd="@dimen/distance_30"
     android:layout_gravity="bottom"

@@ -45,7 +45,7 @@ public class IntroScreen extends AppCompatActivity implements IntroScreenListene
   @Override
   public void onNextClick(int position) {
     if (position == screens.size() - 1) {
-      startActivity(new Intent(this, SignInActivity.class));
+      startSignInActivity();
     } else {
       vp.setCurrentItem(position + 1);
     }
@@ -53,11 +53,11 @@ public class IntroScreen extends AppCompatActivity implements IntroScreenListene
 
   @Override
   public void onSkipClick() {
-    startMainActivity();
+    startSignInActivity();
   }
 
-  private void startMainActivity() {
-    startActivity(new Intent(this, DashBoardActivity.class));
+  private void startSignInActivity() {
+    startActivity(new Intent(this, SignInActivity.class));
     finish();
   }
 }

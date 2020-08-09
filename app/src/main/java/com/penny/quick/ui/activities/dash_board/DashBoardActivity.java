@@ -63,12 +63,14 @@ public class DashBoardActivity extends AppCompatActivity {
     }
     if (intent != null) {
       startActivity(intent);
+    } else {
+      Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show();
     }
   }
 
   private OnNavigationItemSelectedListener getNavigationItemClickListener() {
     return item -> {
-      Toast.makeText(DashBoardActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+      Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
       drawer.close();
       return true;
     };
