@@ -4,6 +4,8 @@ import com.penny.quick.ui.activities.login.SignInActivity;
 import com.penny.quick.ui.activities.login.SignInActivityModel;
 import com.penny.quick.ui.activities.main.MainActivity;
 import com.penny.quick.ui.activities.main.MainActivityModel;
+import com.penny.quick.ui.activities.providersList.ProviderListActivityModel;
+import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.splash.SplashActivity;
 import com.penny.quick.ui.activities.splash.SplashActivityModel;
 import dagger.Module;
@@ -20,4 +22,7 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = SignInActivityModel.class)
   abstract SignInActivity getSignInActivity();
+
+  @ContributesAndroidInjector(modules = ProviderListActivityModel.class)
+  abstract ProvidersListActivity getProviderListActivity();
 }
