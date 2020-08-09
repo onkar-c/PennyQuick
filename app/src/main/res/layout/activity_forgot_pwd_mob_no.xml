@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:gravity="center">
+
+  <ImageView
+    android:id="@+id/iv_forgot_pwd"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_marginTop="@dimen/distance_30"
+    android:background="@drawable/ic_forgot"
+    android:contentDescription="@string/success" />
+
+  <TextView
+    android:id="@+id/tx_forgot_info"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distance_30"
+    android:layout_marginStart="@dimen/distance_10"
+    android:layout_marginEnd="@dimen/distance_10"
+    android:gravity="center"
+    android:text="@string/enter_mob_no_info"
+    android:textColor="@color/text_color_1"
+    android:textSize="@dimen/textSize_17"
+    android:textStyle="bold"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distance_10"
+    android:layout_marginStart="@dimen/margin_15"
+    android:layout_marginEnd="@dimen/margin_15"
+    android:text="@string/mob_reg_sub"
+    android:textColor="@color/hint_color"
+    android:textSize="@dimen/textSize_15"
+    android:gravity="center" />
+
+  <EditText
+    android:id="@+id/et_mob_no"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distance_50"
+    android:layout_marginStart="@dimen/margin_15"
+    android:layout_marginEnd="@dimen/margin_15"
+    android:paddingTop="@dimen/distance_10"
+    android:paddingBottom="@dimen/distance_10"
+    android:paddingStart="@dimen/padding_20"
+    android:paddingEnd="@dimen/distance_10"
+    android:autofillHints="@string/user_id"
+    android:background="@drawable/edit_text_background"
+    android:drawableStart="@drawable/ic_phone"
+    android:drawablePadding="@dimen/distance_5"
+    android:hint="@string/mobile_no"
+    android:inputType="number"
+    android:textColor="@color/hint_color"
+    android:textColorHint="@color/hint_color"
+    android:textSize="@dimen/textSize_16" />
+
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/bt_next"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distance_30"
+    android:layout_marginBottom="@dimen/distance_50"
+    android:layout_marginStart="@dimen/distance_30"
+    android:layout_marginEnd="@dimen/distance_30"
+    android:padding="@dimen/distance_10"
+    android:background="@drawable/button_background"
+    android:text="@string/next"
+    android:textAllCaps="false"
+    android:textColor="@android:color/white"
+    android:textSize="@dimen/textSize_17" />
+
+  <View
+    android:id="@+id/v_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/distance_5"
+    android:background="@drawable/bottom_bar_background"
+    android:layout_marginStart="@dimen/distance_100"
+    android:layout_marginEnd="@dimen/distance_100"/>
+
+</LinearLayout>

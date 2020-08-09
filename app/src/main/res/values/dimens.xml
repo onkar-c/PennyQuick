@@ -12,6 +12,7 @@
   <dimen name="textSize_30">30sp</dimen>
   <dimen name="textSize_35">35sp</dimen>
 
+  <dimen name="distance_3">3dp</dimen>
   <dimen name="distance_5">5dp</dimen>
   <dimen name="distance_7">7dp</dimen>
   <dimen name="distance_10">10dp</dimen>
@@ -19,6 +20,7 @@
   <dimen name="distance_20">20dp</dimen>
   <dimen name="distance_30">30dp</dimen>
   <dimen name="distance_50">50dp</dimen>
+  <dimen name="distance_60">60dp</dimen>
   <dimen name="distance_80">80dp</dimen>
   <dimen name="distance_75">75dp</dimen>
   <dimen name="distance_100">100dp</dimen>
@@ -31,6 +33,7 @@
 
   <dimen name="button_radius">15dp</dimen>
   <dimen name="edit_text_radius">30dp</dimen>
+  <dimen name="otp_text_radius">15dp</dimen>
 
   <dimen name="padding_5">5dp</dimen>
   <dimen name="padding_15">15dp</dimen>
