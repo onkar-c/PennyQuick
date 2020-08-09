@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
+import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 
 public class DashBoardActivity extends AppCompatActivity {
@@ -57,6 +58,8 @@ public class DashBoardActivity extends AppCompatActivity {
     } else if (view.getId() == R.id.bt_landLine) {
       intent = new Intent(DashBoardActivity.this, ProvidersListActivity.class);
       intent.putExtra(ProjectConstants.IS_DTH, false);
+    } else if(view.getId() == R.id.bt_prepaid || view.getId() == R.id.bt_postPaid ) {
+      intent = new Intent(DashBoardActivity.this, MobileRechargeActivity.class);
     }
     if (intent != null) {
       startActivity(intent);

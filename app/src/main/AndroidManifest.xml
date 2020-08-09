@@ -61,8 +61,7 @@
 
     <activity
       android:name=".ui.activities.mobile_recharge.MobileRechargeActivity"
-      android:theme="@style/AppTheme"
-      android:parentActivityName=".ui.activities.dash_board.DashBoardActivity"/>
+      android:theme="@style/AppTheme"/>
 
 
   </application>
