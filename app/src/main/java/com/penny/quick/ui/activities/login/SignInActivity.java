@@ -6,6 +6,7 @@ import android.view.View.OnClickListener;
 import androidx.annotation.Nullable;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
+import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordMobRegActivity;
 import javax.inject.Inject;
 
 public class SignInActivity extends BaseActivity {
