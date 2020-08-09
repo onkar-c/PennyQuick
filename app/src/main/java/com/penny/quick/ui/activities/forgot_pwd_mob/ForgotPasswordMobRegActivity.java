@@ -1,4 +1,4 @@
-package com.penny.quick.ui.activities.login;
+package com.penny.quick.ui.activities.forgot_pwd_mob;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View.OnClickListener;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.penny.quick.R;
+import com.penny.quick.ui.activities.forgot_pwd_otp.ForgotPasswordOtpActivity;
 
 public class ForgotPasswordMobRegActivity extends AppCompatActivity {
 

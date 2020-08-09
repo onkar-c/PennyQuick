@@ -66,5 +66,13 @@
   <string name="tata_sky">Tata Sky</string>
   <string name="d2h">D2H</string>
 
+  <string name="enter_mob_no">Enter Mobile Number</string>
+  <string name="select_operator">Select Operator</string>
+  <string name="select_state">Select State</string>
+  <string name="enter_amnt">Enter Amount</string>
+  <string name="view_plans">View Plans</string>
+  <string name="recharge">Recharge</string>
+
+
 
 </resources>
