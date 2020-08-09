@@ -3,8 +3,6 @@ package com.penny.quick.ui.activities.dash_board;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,11 +14,16 @@ import com.penny.quick.R;
 public class DashBoardActivity extends AppCompatActivity {
 
   private DrawerLayout drawer;
-  @SuppressLint("RtlHardcoded")
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_dash_board);
+    setToolBarAndNavigationDrawer();
+  }
+
+  @SuppressLint("RtlHardcoded")
+  private void setToolBarAndNavigationDrawer() {
     Toolbar toolbar = findViewById(R.id.toolbar);
     drawer = findViewById(R.id.drawer_layout);
     NavigationView navigationView = findViewById(R.id.nav_view);
@@ -40,5 +43,4 @@ public class DashBoardActivity extends AppCompatActivity {
       return true;
     };
   }
-
 }

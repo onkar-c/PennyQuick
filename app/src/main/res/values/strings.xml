@@ -23,6 +23,7 @@
   <string name="next">Next</string>
 
   <string name="dummy_user_name">Sanket Rangire</string>
+  <string name="dummy_number">\u20B9 1,79,4000.00</string>
   <string name="nav_header_desc">User Photo</string>
   <string name="action_settings">Settings</string>
 
@@ -48,7 +49,17 @@
   <string name="new_password">New Password</string>
   <string name="re_enter_password">Re-Enter Password</string>
   <string name="done">Done</string>
+  <string name="hello">Hello</string>
+  <string name="wallet_balance">Wallet Balance</string>
   <string name="prepaid">Prepaid</string>
-  <string name="postpaid">postpaid</string>
+  <string name="postpaid">Postpaid</string>
+  <string name="dth">DTH Recharge</string>
+  <string name="land_line">Land Line</string>
+  <string name="money_transfer">Money Transfer</string>
+  <string name="recent_recharge">Recent Recharge</string>
+  <string name="reports">Reports</string>
+  <string name="user_profile">User Profile</string>
+  <string name="contact_support">Contact support</string>
+
 
 </resources>
