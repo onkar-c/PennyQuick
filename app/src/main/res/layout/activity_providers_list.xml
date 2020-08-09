@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.activities.providersList.ProvidersListActivity">
+
+  <include android:id="@+id/commonToolBar"
+    layout="@layout/common_tool_bar"/>
+  <GridLayout
+    android:id= "@+id/dthGrid"
+    android:layout_width= "match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distance_20"
+    android:paddingBottom="@dimen/distance_10"
+    android:layout_marginStart="@dimen/distance_10"
+    android:layout_below="@+id/commonToolBar"
+    android:layout_marginEnd="@dimen/distance_10"
+    android:useDefaultMargins="true"
+    android:columnCount="2"
+    android:rowCount="2">
+
+    <androidx.cardview.widget.CardView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      app:cardCornerRadius="8dp"
+      android:layout_margin="@dimen/distance_20"
+      app:cardElevation="15dp"
+      app:cardPreventCornerOverlap="false">
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/airtel_dth"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/textSize_18"
+        android:padding="@dimen/distance_10"
+        android:textAlignment="center"
+        app:drawableTopCompat="@drawable/airtel"
+        android:drawablePadding="@dimen/distance_10"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      app:cardCornerRadius="8dp"
+
+      app:cardElevation="7dp">
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/dish_tv"
+        android:layout_margin="@dimen/distance_20"
+        android:background="@android:color/white"
+        android:contentDescription="@string/dish_tv"/>
+
+    </androidx.cardview.widget.CardView>
+
+  </GridLayout>
+
+
+  <GridLayout
+    android:id= "@+id/landLineGrid"
+    android:layout_width= "match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distance_20"
+    android:paddingBottom="@dimen/distance_10"
+    android:layout_marginStart="@dimen/distance_10"
+    android:layout_marginEnd="@dimen/distance_10"
+    android:useDefaultMargins="true"
+    android:layout_below="@id/dthGrid"
+    android:columnCount="2"
+    android:rowCount="2">
+
+
+    <androidx.cardview.widget.CardView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="7dp">
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/dish_tv"
+        android:layout_margin="@dimen/distance_20"
+        android:background="@android:color/white"
+        android:contentDescription="@string/dish_tv"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:layout_margin="@dimen/distance_20"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="7dp"
+      app:cardPreventCornerOverlap="false">
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/dth"
+        android:textSize="@dimen/textSize_14"
+        android:textColor="@android:color/black"
+        android:padding="@dimen/distance_10"
+        android:textAlignment="center"
+        app:drawableTopCompat="@drawable/sun_direct"
+        android:drawablePadding="@dimen/distance_10"/>
+    </androidx.cardview.widget.CardView>
+
+  </GridLayout>
+</RelativeLayout>

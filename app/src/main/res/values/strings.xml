@@ -60,6 +60,11 @@
   <string name="reports">Reports</string>
   <string name="user_profile">User Profile</string>
   <string name="contact_support">Contact support</string>
+  <string name="airtel_dth">Airtel Digital TV</string>
+  <string name="dish_tv">Dish TV</string>
+  <string name="sun_direct">Sun Direct</string>
+  <string name="tata_sky">Tata Sky</string>
+  <string name="d2h">D2H</string>
 
 
 </resources>
