@@ -95,13 +95,12 @@
       android:drawableEnd="@drawable/ic_down_arrow"
       android:drawablePadding="@dimen/distance_5"
       android:hint="@string/select_operator"
-      android:inputType="number"
+      android:inputType="none"
       android:textColor="@color/hint_color"
       android:textColorHint="@color/hint_color"
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_mob_no"
       android:importantForAutofill="no"
-      android:editable="false"
       android:focusable="false"/>
 
     <EditText
@@ -119,13 +118,13 @@
       android:drawableEnd="@drawable/ic_down_arrow"
       android:drawablePadding="@dimen/distance_15"
       android:hint="@string/select_state"
-      android:inputType="number"
+      android:inputType="none"
       android:textColor="@color/hint_color"
       android:textColorHint="@color/hint_color"
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_operator"
       android:importantForAutofill="no"
-      android:editable="false"/>
+      android:focusable="false"/>
 
   <RelativeLayout
     android:id="@+id/rl_amnt"
