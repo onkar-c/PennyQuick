@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/v_bar"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/distance_30"
+        android:padding="@dimen/distance_20"
+        android:layout_marginBottom="@dimen/distance_50"
         android:text="@string/skip"
         android:textColor="@android:color/black"
         android:textSize="@dimen/textSize_17" />

@@ -4,10 +4,20 @@
   tools:showIn="navigation_view">
 
   <group>
+
+    <item
+      android:id="@+id/home"
+      android:icon="@drawable/ic_home"
+      android:title="@string/menu_home"/>
     <item
       android:id="@+id/profile"
       android:icon="@drawable/ic_profile"
       android:title="@string/my_profile"/>
+
+    <item
+      android:id="@+id/add_money"
+      android:icon="@drawable/ic_add"
+      android:title="@string/add_money"/>
 
     <item
       android:id="@+id/recentTransaction"

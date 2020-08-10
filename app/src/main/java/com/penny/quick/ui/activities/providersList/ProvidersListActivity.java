@@ -14,7 +14,7 @@ public class ProvidersListActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_providers_list);
     setUpToolBar();
-    setTitle("abc");
+    setTitle(getString(R.string.select_provider));
     GridLayout dthGrid = (GridLayout) findViewById(R.id.dthGrid);
     GridLayout landLineGrid = (GridLayout) findViewById(R.id.landLineGrid);
     boolean isDth = getIntent().getBooleanExtra(ProjectConstants.IS_DTH, true);
