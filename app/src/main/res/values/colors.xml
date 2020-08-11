@@ -16,4 +16,8 @@
   <color name="text_color_3">#323232B3</color>
   <color name="text_color_4">#212121</color>
   <color name="text_color_5">#070707</color>
+  <color name="transaction_success">#5EAA46</color>
+  <color name="transaction_pending">#F5A625</color>
+  <color name="transaction_failed">#EC5645</color>
+
 </resources>
