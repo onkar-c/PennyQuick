@@ -15,6 +15,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
+import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
+import com.penny.quick.ui.activities.contact_us.ContactUsActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 
@@ -70,7 +72,22 @@ public class DashBoardActivity extends AppCompatActivity {
 
   private OnNavigationItemSelectedListener getNavigationItemClickListener() {
     return item -> {
-      Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
+      Intent intent = null;
+      switch (item.getItemId()) {
+        case R.id.contactUs:
+          intent = new Intent(DashBoardActivity.this, ContactUsActivity.class);
+          break;
+        case R.id.profile:
+          intent = new Intent(DashBoardActivity.this, ChangePasswordActivity.class);
+          break;
+        default:
+          Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
+          break;
+      }
+      if(intent != null) {
+        startActivity(intent);
+      }
+
       drawer.close();
       return true;
     };

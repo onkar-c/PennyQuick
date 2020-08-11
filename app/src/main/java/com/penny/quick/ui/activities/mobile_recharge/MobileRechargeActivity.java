@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.penny.quick.R;
+import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
 import com.penny.quick.utils.BottomSheetUtils;
@@ -46,11 +47,11 @@ public class MobileRechargeActivity extends BaseActivity implements
     bottomSheetBehavior = bottomSheetUtils.setUpBottomSheet(this);
     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-//    etOperator.setOnClickListener(
-//        view -> {
-//          bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//          bottomSheetUtils.setList(BottomSheetListObject.getObjectList(), MobileRechargeActivity.this);
-//        });
+    etOperator.setOnClickListener(
+        view -> {
+          bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+          bottomSheetUtils.setList(BottomSheetListObject.getObjectList(), MobileRechargeActivity.this);
+        });
   }
 
   @Override

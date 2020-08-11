@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.activities.change_password.ChangePasswordActivity">
+
+  <include android:id="@+id/commonToolBar"
+    layout="@layout/common_tool_bar"/>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/distance_30"
+      android:layout_below="@+id/commonToolBar">
+      <LinearLayout
+        android:id="@+id/currentPasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/distance_20"
+        android:layout_marginEnd="@dimen/distance_20">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/current_pwd"
+          android:layout_gravity="start"
+          android:textSize="@dimen/textSize_18"
+          android:textColor="@android:color/black"
+          android:layout_marginStart="@dimen/distance_15" />
+
+        <EditText
+          android:id="@+id/et_current_password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/distance_10"
+          android:paddingTop="@dimen/distance_10"
+          android:paddingBottom="@dimen/distance_10"
+          android:paddingStart="@dimen/padding_20"
+          android:paddingEnd="@dimen/distance_10"
+          android:hint="@string/enter_pwd"
+          android:autofillHints="@string/password"
+          android:background="@drawable/edit_text_background"
+          android:drawableEnd="@drawable/ic_password"
+          android:inputType="textPassword"
+          android:textColor="@color/hint_color"
+          android:textSize="@dimen/textSize_16" />
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/newPasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/distance_20"
+        android:layout_marginStart="@dimen/distance_20"
+        android:layout_marginEnd="@dimen/distance_20">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/new_password"
+          android:layout_gravity="start"
+          android:textSize="@dimen/textSize_18"
+          android:textColor="@android:color/black"
+          android:layout_marginStart="@dimen/distance_15" />
+
+        <EditText
+          android:id="@+id/et_new_password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/distance_10"
+          android:paddingTop="@dimen/distance_10"
+          android:paddingBottom="@dimen/distance_10"
+          android:paddingStart="@dimen/padding_20"
+          android:paddingEnd="@dimen/distance_10"
+          android:autofillHints="@string/password"
+          android:hint="@string/enter_pwd"
+          android:background="@drawable/edit_text_background"
+          android:drawableEnd="@drawable/ic_password"
+          android:inputType="textPassword"
+          android:textColor="@color/hint_color"
+          android:textSize="@dimen/textSize_16" />
+
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/reEnterPasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/distance_20"
+        android:layout_marginStart="@dimen/distance_20"
+        android:layout_marginEnd="@dimen/distance_20">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/re_enter_password"
+          android:layout_gravity="start"
+          android:textSize="@dimen/textSize_18"
+          android:textColor="@android:color/black"
+          android:layout_marginStart="@dimen/distance_15" />
+
+        <EditText
+          android:id="@+id/et_re_enter_password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/distance_10"
+          android:paddingTop="@dimen/distance_10"
+          android:paddingBottom="@dimen/distance_10"
+          android:paddingStart="@dimen/padding_20"
+          android:paddingEnd="@dimen/distance_10"
+          android:autofillHints="@string/password"
+          android:background="@drawable/edit_text_background"
+          android:drawableEnd="@drawable/ic_password"
+          android:inputType="textPassword"
+          android:textColor="@color/hint_color"
+          android:hint="@string/enter_pwd"
+          android:textSize="@dimen/textSize_16" />
+      </LinearLayout>
+
+    </LinearLayout>
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/bt_change_pwd"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/distance_100"
+    android:layout_marginStart="@dimen/distance_30"
+    android:layout_marginEnd="@dimen/distance_30"
+    android:padding="@dimen/distance_10"
+    android:background="@drawable/button_background"
+    android:text="@string/change_pwd"
+    android:layout_alignParentBottom="true"
+    android:textAllCaps="false"
+    android:textColor="@android:color/white"
+    android:textSize="@dimen/textSize_17" />
+</RelativeLayout>

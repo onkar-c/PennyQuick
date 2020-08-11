@@ -31,7 +31,7 @@
   <string name="my_profile">My Profile</string>
   <string name="add_money">Add Money</string>
   <string name="recent_transaction">Recent Transaction</string>
-  <string name="contact_us">Contact us</string>
+  <string name="contact_us">Contact Us</string>
   <string name="faq">FAQs</string>
   <string name="terms_and_conditions">Terms &amp; Conditions</string>
   <string name="privacy_policy">Privacy policy</string>
@@ -44,8 +44,16 @@
   <string name="enter_verification_code">Please Enter The Verification Code</string>
   <string name="verification_code_sub">We have sent a verification code to your registered Mobile Number</string>
   <string name="resend">Resend Again</string>
-  <string name="enter_new_pwd">Please Enter a New Password</string>
+  <string name="enter_new_pwd">Please Enter A New Password</string>
+  <string name="enter_pwd">Please Enter A Password</string>
+  <string name="enter_name">Please Enter A Name</string>
+  <string name="enter_mobile">Please Enter A Mobile Number</string>
+  <string name="enter_subject">Please Enter A Subject</string>
+  <string name="enter_message_hint">Please Enter A Message</string>
+  <string name="send">Send</string>
+
   <string name="change_pwd">Change Password</string>
+  <string name="current_pwd">Current Password</string>
   <string name="new_password">New Password</string>
   <string name="re_enter_password">Re-Enter Password</string>
   <string name="done">Done</string>
@@ -82,6 +90,11 @@
   <string name="enter_amnt">Enter Amount</string>
   <string name="view_plans">View Plans</string>
   <string name="recharge">Recharge</string>
+  <string name="customer_name">Customer Name</string>
+  <string name="mobile_number">Mobile Number</string>
+  <string name="subject">Subject</string>
+  <string name="enter_message">Enter Message</string>
+
 
   <string name="operator">Operator</string>
 

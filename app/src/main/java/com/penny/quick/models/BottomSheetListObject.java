@@ -52,9 +52,7 @@ public class BottomSheetListObject {
   }
 
   public static List<BottomSheetListObject> getObjectList(){
-    List<BottomSheetListObject> operatorList = Arrays.asList(new BottomSheetListObject(1, 1,R.drawable.airtel,"Airtel"),
+    return Arrays.asList(new BottomSheetListObject(1, 1,R.drawable.airtel,"Airtel"),
         new BottomSheetListObject(2, 2,R.drawable.airtel,"Idea") );
-
-    return operatorList;
   }
 }
