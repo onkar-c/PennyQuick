@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationView.OnNavigationItemSel
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
-import com.penny.quick.ui.activities.contact_us.ContactUsActivity;
+import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 
@@ -75,7 +75,7 @@ public class DashBoardActivity extends AppCompatActivity {
       Intent intent = null;
       switch (item.getItemId()) {
         case R.id.contactUs:
-          intent = new Intent(DashBoardActivity.this, ContactUsActivity.class);
+          intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
           break;
         case R.id.profile:
           intent = new Intent(DashBoardActivity.this, ChangePasswordActivity.class);

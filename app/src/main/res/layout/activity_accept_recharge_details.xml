@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.activities.accept_details.AcceptRechargeDetails">
+  <include android:id="@+id/commonToolBar"
+    layout="@layout/common_tool_bar"/>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_below="@id/commonToolBar">
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_margin="@dimen/distance_30">
+      <TextView
+        android:id="@+id/provider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/airtel_dth"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:lines="1"
+        android:textSize="@dimen/textSize_20"
+        android:layout_toStartOf="@+id/providerImage"
+        />
+      <ImageView
+        android:id="@+id/providerImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/airtel_medium"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/select_provider"
+        />
+    </RelativeLayout>
+
+    <LinearLayout
+      android:id="@+id/customer_id_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginStart="@dimen/distance_15"
+      android:layout_marginEnd="@dimen/distance_15">
+
+      <EditText
+        android:id="@+id/customer_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_10"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_10"
+        android:hint="@string/customer_id"
+        android:autofillHints="@string/password"
+        android:background="@drawable/edit_text_background"
+        android:inputType="text"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/textSize_16" />
+
+      <TextView
+        android:id="@+id/customer_id_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recharge_detail_message_1"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/textSize_13"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/distance_7"
+        android:layout_marginStart="@dimen/distance_20"
+        android:layout_marginEnd="@dimen/distance_20"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/account_number_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginStart="@dimen/distance_15"
+      android:layout_marginEnd="@dimen/distance_15"
+      android:visibility="gone">
+
+      <EditText
+        android:id="@+id/account_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_10"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_10"
+        android:hint="@string/account_number"
+        android:autofillHints="@string/password"
+        android:background="@drawable/edit_text_background"
+        android:inputType="number"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/textSize_16" />
+
+      <TextView
+        android:id="@+id/account_number_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recharge_detail_message_1"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/textSize_13"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/distance_7"
+        android:layout_marginStart="@dimen/distance_20"
+        android:layout_marginEnd="@dimen/distance_20"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/amountLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginStart="@dimen/distance_15"
+      android:layout_marginEnd="@dimen/distance_15">
+
+      <EditText
+        android:id="@+id/recharge_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_rupee"
+        android:drawablePadding="@dimen/distance_15"
+        android:hint="@string/enter_amount"
+        android:inputType="number"
+        android:textColor="@color/hint_color"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/textSize_16"
+        android:layout_marginTop="@dimen/distance_20"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_10"
+        android:textStyle="bold"
+        android:background="@drawable/edit_text_background"
+        android:focusableInTouchMode="false"
+        android:importantForAutofill="no" />
+
+      <TextView
+        android:id="@+id/amount_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recharge_detail_message_2"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/textSize_13"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/distance_7"
+        android:layout_marginStart="@dimen/distance_20"
+        android:layout_marginEnd="@dimen/distance_20"/>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/bt_recharge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/distance_50"
+    android:layout_marginStart="@dimen/distance_30"
+    android:layout_marginEnd="@dimen/distance_30"
+    android:layout_alignParentBottom="true"
+    android:padding="@dimen/distance_10"
+    android:background="@drawable/button_background"
+    android:text="@string/recharge"
+    android:textAllCaps="false"
+    android:textColor="@android:color/white"
+    android:textSize="@dimen/textSize_17" />
+
+</RelativeLayout>

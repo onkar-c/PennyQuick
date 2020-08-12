@@ -60,6 +60,7 @@
   <string name="hello">Hello</string>
   <string name="wallet_balance">Wallet Balance</string>
   <string name="prepaid">Prepaid</string>
+  <string name="provider">Provider</string>
   <string name="postpaid">Postpaid</string>
   <string name="dth">DTH Recharge</string>
   <string name="land_line">Land Line</string>
@@ -75,6 +76,7 @@
   <string name="airtel">Airtel</string>
   <string name="bsnl">BSNL Landline Corporate</string>
   <string name="tata_gsm">Tata DoCoMo  \u0020\u0020\u0020\u0020\u0020\u0020\u0020 GSM</string>
+  <string name="tata_gsm1">Tata DoCoMo GSM</string>
   <string name="tata_postpaid">Tata DoCoMo CDMA Postpaid</string>
   <string name="mtnl_delhi">MTNL Delhi</string>
   <string name="mtnl_mumbai">MTNL Mumbai</string>
@@ -87,10 +89,16 @@
   <string name="select_operator">Select Operator</string>
   <string name="select_provider">Select Provider</string>
   <string name="select_state">Select State</string>
-  <string name="enter_amnt">Enter Amount</string>
+  <string name="enter_amount">Enter Amount</string>
   <string name="view_plans">View Plans</string>
   <string name="recharge">Recharge</string>
   <string name="customer_name">Customer Name</string>
+  <string name="customer_id">Customer ID</string>
+  <string name="telephone_number">Telephone Number</string>
+  <string name="dish_hint">Registered Mobile No/Viewing Card No</string>
+  <string name="sun_direct_hint">Smart Card No</string>
+  <string name="tata_sky_hint">Registered Mobile No/Subscriber ID</string>
+  <string name="account_number">Account Number</string>
   <string name="mobile_number">Mobile Number</string>
   <string name="subject">Subject</string>
   <string name="enter_message">Enter Message</string>
@@ -100,9 +108,12 @@
   <string name="mobile_recharge">Mobile Recharge</string>
 
   <string name="transaction_success">Transaction Successful</string>
+  <string name="transaction_pending">Transaction Pending</string>
+  <string name="transaction_failed">Transaction Failed</string>
   <string name="transaction_dummy_date">02:23 PM on 23rd july 2020</string>
   <string name="status">Status</string>
   <string name="transaction_status">Status:</string>
+  <string name="transaction_id">Transaction ID</string>
   <string name="txn_id">TXN ID:</string>
   <string name="dummy_trans_id">2565412345246542</string>
   <string name="dummy_company_type">Airtel Prepaid</string>
@@ -110,6 +121,13 @@
   <string name="dispute_caps">DISPUTE</string>
   <string name="cost">cost</string>
   <string name="dummy_amount">\u20B9 401.00</string>
+  <string name="pending">Pending</string>
+  <string name="failed">Failed</string>
 
+  <string name="recharge_detail_message_1">Customer ID starts with 3 and is 10 digit long. To locate it, press the MENU button on remote.</string>
+  <string name="recharge_detail_message_2">To know your monthly rental and best offer, give miss call on 81302–81302 from your registered mobile number.</string>
+  <string name="recharge_detail_message_3">Please enter a value between Rs.50 and Rs.49000</string>
+  <string name="recharge_detail_message_4">Please enter your Number</string>
+  <string name="recharge_detail_message_5">Please enter Account Number</string>
 
 </resources>

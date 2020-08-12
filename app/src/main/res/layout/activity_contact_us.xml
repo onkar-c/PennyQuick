@@ -3,7 +3,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".ui.activities.contact_us.ContactUsActivity">
+  tools:context=".ui.activities.contact_us_dispute.ContactUsDisputeActivity">
 
   <include android:id="@+id/commonToolBar"
     layout="@layout/common_tool_bar"/>
@@ -95,6 +95,7 @@
       android:layout_marginEnd="@dimen/distance_20">
 
       <TextView
+        android:id="@+id/subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/subject"
