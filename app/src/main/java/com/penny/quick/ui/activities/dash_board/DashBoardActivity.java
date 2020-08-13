@@ -18,6 +18,7 @@ import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
+import com.penny.quick.ui.activities.report.ReportActivity;
 import com.penny.quick.ui.activities.web_view.WebViewActivity;
 
 public class DashBoardActivity extends AppCompatActivity {
@@ -33,6 +34,11 @@ public class DashBoardActivity extends AppCompatActivity {
     GridLayout grid = findViewById(R.id.rechargeGridLayout);
     for (int i = 0; i < grid.getChildCount(); i++) {
       grid.getChildAt(i).setOnClickListener(this::handelRechargeGridClick);
+    }
+
+    GridLayout commonGrid = findViewById(R.id.commonGrid);
+    for (int i = 0; i < commonGrid.getChildCount(); i++) {
+      commonGrid.getChildAt(i).setOnClickListener(this::handelCommonGridClick);
     }
   }
 
@@ -70,10 +76,30 @@ public class DashBoardActivity extends AppCompatActivity {
     }
   }
 
+  private void handelCommonGridClick(View view) {
+    Intent intent = null;
+    switch (view.getId()) {
+      case R.id.reports:
+        intent = new Intent(DashBoardActivity.this, ReportActivity.class);
+        break;
+      case R.id.contact_support:
+        intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
+        break;
+    }
+    if (intent != null) {
+      startActivity(intent);
+    } else {
+      Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show();
+    }
+  }
+
   private OnNavigationItemSelectedListener getNavigationItemClickListener() {
     return item -> {
       Intent intent = null;
       switch (item.getItemId()) {
+        case R.id.home:
+          intent = null;
+          break;
         case R.id.contactUs:
           intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
           break;

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.activities.report.ReportActivity">
+
+  <include android:id="@+id/commonToolBar"
+    layout="@layout/common_tool_bar"/>
+  <RelativeLayout
+    android:id="@+id/filter_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/commonToolBar"
+    android:layout_marginEnd="@dimen/distance_15"
+    android:layout_marginStart="@dimen/distance_15"
+    android:layout_marginTop="@dimen/distance_10"
+    android:layout_marginBottom="@dimen/distance_10"
+    android:orientation="horizontal">
+    <EditText
+      android:id="@+id/month"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/distance_10"
+      android:paddingBottom="@dimen/distance_10"
+      android:paddingStart="@dimen/padding_20"
+      android:paddingEnd="@dimen/distance_20"
+      android:background="@drawable/edit_text_background"
+      android:drawableEnd="@drawable/ic_down_arrow"
+      android:drawablePadding="@dimen/distance_5"
+      android:hint="@string/month"
+      android:inputType="none"
+      android:textColor="@color/hint_color"
+      android:textColorHint="@color/hint_color"
+      android:textSize="@dimen/textSize_13"
+      android:layout_alignParentStart="true"
+      android:importantForAutofill="no"
+      android:focusable="false"/>
+
+    <EditText
+    android:id="@+id/category"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/distance_10"
+    android:paddingBottom="@dimen/distance_10"
+    android:paddingStart="@dimen/padding_20"
+    android:paddingEnd="@dimen/distance_20"
+    android:background="@drawable/edit_text_background"
+    android:drawableEnd="@drawable/ic_down_arrow"
+    android:drawablePadding="@dimen/distance_5"
+    android:hint="@string/month"
+    android:inputType="none"
+    android:textColor="@color/hint_color"
+    android:layout_marginStart="@dimen/distance_10"
+    android:textColorHint="@color/hint_color"
+    android:textSize="@dimen/textSize_13"
+    android:layout_toEndOf="@+id/month"
+    android:importantForAutofill="no"
+    android:focusable="false"/>
+
+    <EditText
+      android:id="@+id/filters"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/distance_10"
+      android:paddingBottom="@dimen/distance_10"
+      android:paddingStart="@dimen/padding_20"
+      android:paddingEnd="@dimen/distance_20"
+      android:background="@drawable/edit_text_background"
+      android:drawableEnd="@drawable/ic_down_arrow"
+      android:drawablePadding="@dimen/distance_5"
+      android:hint="@string/filter"
+      android:inputType="none"
+      android:textColor="@color/hint_color"
+      android:textColorHint="@color/hint_color"
+      android:textSize="@dimen/textSize_13"
+      android:layout_alignParentEnd="true"
+      android:importantForAutofill="no"
+      android:focusable="false"
+      tools:ignore="RelativeOverlap" />
+
+  </RelativeLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/reports_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/filter_layout" />
+
+</RelativeLayout>

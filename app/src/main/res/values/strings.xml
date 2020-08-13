@@ -102,6 +102,15 @@
   <string name="mobile_number">Mobile Number</string>
   <string name="subject">Subject</string>
   <string name="enter_message">Enter Message</string>
+  <string name="month">Month</string>
+  <string name="categories">Categories</string>
+  <string name="filter">Filters</string>
+  <string name="ledger_report">Ledger Report</string>
+  <string name="dispute_report">Dispute Report</string>
+  <string name="debit">DEBIT</string>
+  <string name="credit">Credit</string>
+  <string name="description">Description : </string>
+  <string name="balance">Balance</string>
 
 
   <string name="operator">Operator</string>
@@ -123,6 +132,8 @@
   <string name="dummy_amount">\u20B9 401.00</string>
   <string name="pending">Pending</string>
   <string name="failed">Failed</string>
+  <string name="rupees_sign">\u20B9</string>
+  <string name="colon">:</string>
 
   <string name="recharge_detail_message_1">Customer ID starts with 3 and is 10 digit long. To locate it, press the MENU button on remote.</string>
   <string name="recharge_detail_message_2">To know your monthly rental and best offer, give miss call on 81302–81302 from your registered mobile number.</string>
