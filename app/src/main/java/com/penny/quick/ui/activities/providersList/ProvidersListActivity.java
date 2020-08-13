@@ -52,7 +52,7 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.dth_dish_tv:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.dish_tv));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.dish_tv_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.dish_hint));
         intent.putExtra(ProjectConstants.AMOUNT_MESSAGE,
             getString(R.string.recharge_detail_message_2));
@@ -60,13 +60,13 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.dth_sun_direct:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.sun_direct));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.sun_direct_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.sun_direct_hint));
         break;
 
       case R.id.dth_tata_sky:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.tata_sky));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.tata_sky_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_1));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.tata_sky_hint));
@@ -76,7 +76,7 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.dth_d2h:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.d2h));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.d2h_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.tata_sky_hint));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_1));
@@ -96,7 +96,7 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.land_line_bsnl:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.bsnl));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.bsnl_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.telephone_number));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_4));
@@ -104,14 +104,14 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.land_line_docomo_gsm:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.tata_gsm1));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.tata_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.telephone_number));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_4));
         break;
       case R.id.land_line_docomo_postpaid:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.tata_postpaid));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.tata_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.telephone_number));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_4));
@@ -119,7 +119,7 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.land_line_reliance:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.reliance));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.reliance_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.telephone_number));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_4));
@@ -127,7 +127,7 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.land_line_mtnl_delhi:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.mtnl_delhi));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.mtnl_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.telephone_number));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_4));
@@ -138,7 +138,7 @@ public class ProvidersListActivity extends BaseActivity {
 
       case R.id.land_line_mtnl_mumbai:
         intent.putExtra(ProjectConstants.PROVIDER, getString(R.string.mtnl_mumbai));
-        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.airtel_medium);
+        intent.putExtra(ProjectConstants.PROVIDER_IMAGE, R.drawable.mtnl_medium);
         intent.putExtra(ProjectConstants.CUSTOMER_ID_HINT, getString(R.string.telephone_number));
         intent.putExtra(ProjectConstants.CUSTOMER_ID_MESSAGE,
             getString(R.string.recharge_detail_message_4));

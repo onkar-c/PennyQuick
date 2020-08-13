@@ -5,14 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
-import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
 import com.penny.quick.utils.ToolBarUtils;
 
@@ -28,7 +25,7 @@ public class AcceptRechargeDetails extends AppCompatActivity {
     ToolBarUtils.setUpToolBar(this);
     intent = getIntent();
     intiUI();
-    ((AppCompatButton) findViewById(R.id.bt_recharge))
+    findViewById(R.id.bt_recharge)
         .setOnClickListener(view -> startActivity(new Intent(AcceptRechargeDetails.this,
             TransactionStatusActivity.class)));
 
@@ -37,10 +34,10 @@ public class AcceptRechargeDetails extends AppCompatActivity {
   private void intiUI() {
     customerId = findViewById(R.id.customer_id);
     String providerName = intent.getStringExtra(ProjectConstants.PROVIDER);
-    if(providerName != null) {
-        ToolBarUtils.setTitle(this, providerName);
-        ((TextView) findViewById(R.id.provider))
-            .setText(providerName);
+    if (providerName != null) {
+      ToolBarUtils.setTitle(this, providerName);
+      ((TextView) findViewById(R.id.provider))
+          .setText(providerName);
     }
 
     int imageId = intent.getIntExtra(ProjectConstants.PROVIDER_IMAGE, 0);
@@ -69,7 +66,7 @@ public class AcceptRechargeDetails extends AppCompatActivity {
     }
 
     if (intent.getBooleanExtra(ProjectConstants.ACCEPT_ACCOUNT_ID, false)) {
-      ((LinearLayout) findViewById(R.id.account_number_layout)).setVisibility(View.VISIBLE);
+      findViewById(R.id.account_number_layout).setVisibility(View.VISIBLE);
       String accountMessage = intent.getStringExtra(ProjectConstants.ACCOUNT_MESSAGE);
       TextView accountMessageView = findViewById(R.id.account_number_message);
       if (accountMessage != null) {
