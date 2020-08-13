@@ -9,14 +9,13 @@ import android.widget.GridLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
-import com.penny.quick.ui.activities.contact_us.ContactUsActivity;
+import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 
@@ -30,9 +29,9 @@ public class DashBoardActivity extends AppCompatActivity {
     setContentView(R.layout.activity_dash_board);
     setToolBarAndNavigationDrawer();
 
-    GridLayout grid = (GridLayout) findViewById(R.id.rechargeGridLayout);
+    GridLayout grid = findViewById(R.id.rechargeGridLayout);
     for (int i = 0; i < grid.getChildCount(); i++) {
-      ((CardView) grid.getChildAt(i)).setOnClickListener(this::handelRechargeGridClick);
+      grid.getChildAt(i).setOnClickListener(this::handelRechargeGridClick);
     }
   }
 
@@ -60,7 +59,7 @@ public class DashBoardActivity extends AppCompatActivity {
     } else if (view.getId() == R.id.bt_landLine) {
       intent = new Intent(DashBoardActivity.this, ProvidersListActivity.class);
       intent.putExtra(ProjectConstants.IS_DTH, false);
-    } else if(view.getId() == R.id.bt_prepaid || view.getId() == R.id.bt_postPaid ) {
+    } else if (view.getId() == R.id.bt_prepaid || view.getId() == R.id.bt_postPaid) {
       intent = new Intent(DashBoardActivity.this, MobileRechargeActivity.class);
     }
     if (intent != null) {
@@ -75,7 +74,7 @@ public class DashBoardActivity extends AppCompatActivity {
       Intent intent = null;
       switch (item.getItemId()) {
         case R.id.contactUs:
-          intent = new Intent(DashBoardActivity.this, ContactUsActivity.class);
+          intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
           break;
         case R.id.profile:
           intent = new Intent(DashBoardActivity.this, ChangePasswordActivity.class);
@@ -84,7 +83,7 @@ public class DashBoardActivity extends AppCompatActivity {
           Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
           break;
       }
-      if(intent != null) {
+      if (intent != null) {
         startActivity(intent);
       }
 

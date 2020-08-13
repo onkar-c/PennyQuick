@@ -145,7 +145,7 @@
       android:layout_height="wrap_content"
       android:drawableStart="@drawable/ic_rupee"
       android:drawablePadding="@dimen/distance_15"
-      android:hint="@string/enter_amnt"
+      android:hint="@string/enter_amount"
       android:inputType="number"
       android:textColor="@color/hint_color"
       android:textColorHint="@color/hint_color"

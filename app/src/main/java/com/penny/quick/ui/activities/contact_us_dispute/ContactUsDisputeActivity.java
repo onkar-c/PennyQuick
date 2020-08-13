@@ -1,11 +1,13 @@
-package com.penny.quick.ui.activities.contact_us;
+package com.penny.quick.ui.activities.contact_us_dispute;
 
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.utils.ToolBarUtils;
 
-public class ContactUsActivity extends AppCompatActivity {
+public class ContactUsDisputeActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -13,5 +15,8 @@ public class ContactUsActivity extends AppCompatActivity {
     setContentView(R.layout.activity_contact_us);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.contact_us));
+    if(getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false)) {
+      ((TextView)findViewById(R.id.subject)).setText(R.string.transaction_id);
+    }
   }
 }
