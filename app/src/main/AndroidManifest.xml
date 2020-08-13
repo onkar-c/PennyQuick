@@ -14,9 +14,13 @@
     android:theme="@style/AppTheme"
     android:usesCleartextTraffic="true"
     tools:ignore="AllowBackup">
-    <activity android:name=".ui.activities.report.ReportActivity"
+    <activity android:name=".ui.activities.recent_recharge.RecentRechargeActivity"
       android:screenOrientation="portrait"
-      android:theme="@style/AppTheme.NoActionBar"/>
+      android:theme="@style/AppTheme.NoActionBar" />
+    <activity
+      android:name=".ui.activities.report.ReportActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar" />
     <activity
       android:name=".ui.activities.web_view.WebViewActivity"
       android:screenOrientation="portrait"
@@ -88,10 +92,10 @@
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
   </application>
-  <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
   <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+  <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
