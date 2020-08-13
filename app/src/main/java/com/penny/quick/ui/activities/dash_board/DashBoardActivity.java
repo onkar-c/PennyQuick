@@ -18,6 +18,7 @@ import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
+import com.penny.quick.ui.activities.web_view.WebViewActivity;
 
 public class DashBoardActivity extends AppCompatActivity {
 
@@ -78,6 +79,12 @@ public class DashBoardActivity extends AppCompatActivity {
           break;
         case R.id.profile:
           intent = new Intent(DashBoardActivity.this, ChangePasswordActivity.class);
+          break;
+        case R.id.faq:
+        case R.id.termsCondition:
+        case R.id.privacyPolicy:
+          intent = new Intent(DashBoardActivity.this, WebViewActivity.class);
+          intent.putExtra(ProjectConstants.TITLE, item.getTitle());
           break;
         default:
           Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
