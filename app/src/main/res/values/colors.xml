@@ -20,4 +20,8 @@
   <color name="transaction_pending">#F5A625</color>
   <color name="transaction_failed">#EC5645</color>
 
+  <color name="text_color_6">#010101</color>
+  <color name="profile_end_color">#03CFFD</color>03CFFD
+  <color name="profile_start_color">#564EE3</color>
+  <color name="red_text_color">#E12D3B</color>
 </resources>

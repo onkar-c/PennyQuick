@@ -3,24 +3,22 @@ package com.penny.quick.ui.activities.mobile_recharge;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.penny.quick.R;
-import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
-import com.penny.quick.utils.BottomSheetUtils;
+import com.penny.quick.utils.RechargeCommonBottomSheet;
 
 public class MobileRechargeActivity extends BaseActivity implements
     BottomSheetListItemClickListener {
 
   private RadioButton rbPrepaid, rbPostpaid;
-  private BottomSheetBehavior bottomSheetBehavior;
-  private EditText etOperator, etState;
+  private TextView etOperator, etState;
+  RechargeCommonBottomSheet bottomSheetDialog;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,20 +47,23 @@ public class MobileRechargeActivity extends BaseActivity implements
 
     etOperator = findViewById(R.id.et_operator);
     etState = findViewById(R.id.et_state);
-    BottomSheetUtils bottomSheetUtils = new BottomSheetUtils();
-    bottomSheetBehavior = bottomSheetUtils.setUpBottomSheet(this);
-    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
     etOperator.setOnClickListener(
         view -> {
-          bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-          bottomSheetUtils
-              .setList(BottomSheetListObject.getObjectList(), MobileRechargeActivity.this);
+          bottomSheetDialog= new RechargeCommonBottomSheet();
+          bottomSheetDialog.show(getSupportFragmentManager(),"OperatorBottomSheet");
+        });
+
+    etState.setOnClickListener(
+        view -> {
+          bottomSheetDialog= new RechargeCommonBottomSheet();
+          bottomSheetDialog.show(getSupportFragmentManager(),"StateBottomSheet");
         });
   }
 
   @Override
   public void onBottomSheetListItemClick(int id) {
+    bottomSheetDialog.dismiss();
     Log.e("Operator Selected ", "Id" + id);
   }
 }

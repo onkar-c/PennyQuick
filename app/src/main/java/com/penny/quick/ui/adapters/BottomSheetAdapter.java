@@ -1,6 +1,5 @@
 package com.penny.quick.ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +14,17 @@ import java.util.List;
 
 public class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapter.BottomSheetListItemVH> {
   private List<BottomSheetListObject> objectList;
-  private Context context;
   private BottomSheetListItemClickListener clickListener;
 
-  public BottomSheetAdapter(Context context,List<BottomSheetListObject> objectList,BottomSheetListItemClickListener clickListener) {
+  public BottomSheetAdapter(List<BottomSheetListObject> objectList,BottomSheetListItemClickListener clickListener) {
     this.objectList = objectList;
-    this.context = context;
     this.clickListener = clickListener;
   }
 
   @NonNull
   @Override
   public BottomSheetListItemVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(context).inflate(R.layout.mobile_operator_list_item,parent,false);
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mobile_operator_list_item,parent,false);
     return new BottomSheetListItemVH(view);
   }
 

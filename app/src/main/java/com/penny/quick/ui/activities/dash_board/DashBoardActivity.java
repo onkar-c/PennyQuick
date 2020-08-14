@@ -17,6 +17,7 @@ import com.penny.quick.R;
 import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
+import com.penny.quick.ui.activities.profile.ProfileActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
 import com.penny.quick.ui.activities.report.ReportActivity;
@@ -108,7 +109,7 @@ public class DashBoardActivity extends AppCompatActivity {
           intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
           break;
         case R.id.profile:
-          intent = new Intent(DashBoardActivity.this, ChangePasswordActivity.class);
+          intent = new Intent(DashBoardActivity.this, ProfileActivity.class);
           break;
         case R.id.faq:
         case R.id.termsCondition:
