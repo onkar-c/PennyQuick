@@ -1,17 +1,19 @@
 package com.penny.quick.ui.activities.recent_recharge;
 
 import android.os.Bundle;
+import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.penny.database.dao.RecentRecharge;
 import com.penny.quick.R;
 import com.penny.quick.adapters.RecentRechargeAdapter;
+import com.penny.quick.ui.activities.recent_recharge.MonthBottomSheetDialog.BottomSheetListener;
 import com.penny.quick.utils.ToolBarUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecentRechargeActivity extends AppCompatActivity {
+public class RecentRechargeActivity extends AppCompatActivity implements BottomSheetListener {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,10 @@ public class RecentRechargeActivity extends AppCompatActivity {
         generateRecentRechargeList(),
         this);
     recentRechargeList.setAdapter(recentRechargeAdapter);
+    findViewById(R.id.month).setOnClickListener(view -> {
+      MonthBottomSheetDialog monthBottomSheetDialog = new MonthBottomSheetDialog();
+      monthBottomSheetDialog.show(getSupportFragmentManager(), "Month");
+    });
   }
 
   private List<RecentRecharge> generateRecentRechargeList() {
@@ -43,5 +49,10 @@ public class RecentRechargeActivity extends AppCompatActivity {
       recentRecharges.add(recentRecharge);
     }
     return recentRecharges;
+  }
+
+  @Override
+  public void onButtonClick(String text) {
+    ((EditText)findViewById(R.id.month)).setText(text);
   }
 }
