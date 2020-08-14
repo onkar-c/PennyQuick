@@ -98,7 +98,6 @@
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_mob_no"
       android:importantForAutofill="no"
-      android:focusable="false"
       app:drawableEndCompat="@drawable/ic_down_arrow" />
 
     <TextView
@@ -121,7 +120,6 @@
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_operator"
       android:importantForAutofill="no"
-      android:focusable="false"
       app:drawableEndCompat="@drawable/ic_down_arrow" />
 
   <RelativeLayout
@@ -131,8 +129,8 @@
     android:layout_marginTop="@dimen/distance_20"
     android:layout_marginStart="@dimen/distance_10"
     android:layout_marginEnd="@dimen/distance_10"
-    android:paddingTop="@dimen/distance_10"
-    android:paddingBottom="@dimen/distance_10"
+    android:paddingTop="@dimen/distance_15"
+    android:paddingBottom="@dimen/distance_15"
     android:paddingStart="@dimen/padding_20"
     android:paddingEnd="@dimen/distance_20"
     android:background="@drawable/edit_text_background"
@@ -153,7 +151,8 @@
       android:layout_centerVertical="true"
       android:layout_toStartOf="@id/bt_view_plans"
       android:layout_alignParentStart="true"
-      android:focusableInTouchMode="false" />
+      android:focusableInTouchMode="false"
+      android:importantForAutofill="no" />
 
     <TextView
       android:id="@+id/bt_view_plans"

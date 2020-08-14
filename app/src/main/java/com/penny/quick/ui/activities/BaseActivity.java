@@ -25,6 +25,7 @@ import java.util.Set;
 public class BaseActivity extends DaggerAppCompatActivity {
 
   protected ProgressUtil mApiLoadingDialog;
+  protected Toolbar toolbar;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
   }
 
   public void setUpToolBar() {
-    Toolbar toolbar = findViewById(R.id.toolBar);
+    toolbar = findViewById(R.id.toolBar);
     setSupportActionBar(toolbar);
     if (getSupportActionBar() != null) {
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);

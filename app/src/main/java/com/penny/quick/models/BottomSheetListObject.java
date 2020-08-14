@@ -1,7 +1,6 @@
 package com.penny.quick.models;
 
 import com.penny.quick.R;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,8 +50,12 @@ public class BottomSheetListObject {
     this.name = name;
   }
 
-  public static List<BottomSheetListObject> getObjectList(){
+  public static List<BottomSheetListObject> getOperatorList(){
     return Arrays.asList(new BottomSheetListObject(1, 1,R.drawable.airtel,"Airtel"),
         new BottomSheetListObject(2, 2,R.drawable.airtel,"Idea") );
+  }
+  public static List<BottomSheetListObject> getStateList(){
+    return Arrays.asList(new BottomSheetListObject(1, 1,R.drawable.airtel,"Maharashtra"),
+        new BottomSheetListObject(2, 2,R.drawable.airtel,"Uttarakhand") );
   }
 }
