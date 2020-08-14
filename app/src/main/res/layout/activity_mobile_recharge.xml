@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
 <RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:focusableInTouchMode="true" >
@@ -80,7 +78,7 @@
     android:textSize="@dimen/textSize_16"
     android:layout_below="@+id/rg_bill_type" />
 
-    <EditText
+    <TextView
       android:id="@+id/et_operator"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -92,7 +90,6 @@
       android:layout_marginStart="@dimen/distance_10"
       android:layout_marginEnd="@dimen/distance_10"
       android:background="@drawable/edit_text_background"
-      android:drawableEnd="@drawable/ic_down_arrow"
       android:drawablePadding="@dimen/distance_5"
       android:hint="@string/select_operator"
       android:inputType="none"
@@ -101,9 +98,10 @@
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_mob_no"
       android:importantForAutofill="no"
-      android:focusable="false"/>
+      android:focusable="false"
+      app:drawableEndCompat="@drawable/ic_down_arrow" />
 
-    <EditText
+    <TextView
       android:id="@+id/et_state"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -115,7 +113,6 @@
       android:layout_marginStart="@dimen/distance_10"
       android:layout_marginEnd="@dimen/distance_10"
       android:background="@drawable/edit_text_background"
-      android:drawableEnd="@drawable/ic_down_arrow"
       android:drawablePadding="@dimen/distance_15"
       android:hint="@string/select_state"
       android:inputType="none"
@@ -124,7 +121,8 @@
       android:textSize="@dimen/textSize_16"
       android:layout_below="@id/et_operator"
       android:importantForAutofill="no"
-      android:focusable="false"/>
+      android:focusable="false"
+      app:drawableEndCompat="@drawable/ic_down_arrow" />
 
   <RelativeLayout
     android:id="@+id/rl_amnt"
@@ -157,14 +155,13 @@
       android:layout_alignParentStart="true"
       android:focusableInTouchMode="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <TextView
       android:id="@+id/bt_view_plans"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentEnd="true"
       android:layout_centerVertical="true"
-      android:paddingStart="@dimen/distance_3"
-      android:paddingEnd="@dimen/distance_3"
+      android:padding="@dimen/distance_5"
       android:background="@drawable/small_btn_background"
       android:text="@string/view_plans"
       android:textAllCaps="false"
@@ -190,6 +187,3 @@
     android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
-  <include layout="@layout/bottom_sheet"
-    />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
