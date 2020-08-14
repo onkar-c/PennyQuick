@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.penny.database.dao.RecentRecharge;
 import com.penny.quick.R;
 import com.penny.quick.adapters.RecentRechargeAdapter;
-import com.penny.quick.ui.activities.recent_recharge.MonthBottomSheetDialog.BottomSheetListener;
+import com.penny.quick.models.BottomSheetCheckBox;
+import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog.BottomSheetListener;
 import com.penny.quick.utils.ToolBarUtils;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +31,21 @@ public class RecentRechargeActivity extends AppCompatActivity implements BottomS
         this);
     recentRechargeList.setAdapter(recentRechargeAdapter);
     findViewById(R.id.month).setOnClickListener(view -> {
-      MonthBottomSheetDialog monthBottomSheetDialog = new MonthBottomSheetDialog();
-      monthBottomSheetDialog.show(getSupportFragmentManager(), "Month");
+      RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(generateMonthList());
+      recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
     });
+  }
+
+  private List<BottomSheetCheckBox> generateMonthList() {
+    DateFormatSymbols dfs = new DateFormatSymbols();
+    List<BottomSheetCheckBox> bottomSheetCheckBoxes = new ArrayList<>();
+    String[] months = dfs.getMonths();
+    for (String month : months) {
+      BottomSheetCheckBox bottomSheetCheckBox = new BottomSheetCheckBox();
+      bottomSheetCheckBox.setTitle(month);
+      bottomSheetCheckBoxes.add(bottomSheetCheckBox);
+    }
+    return bottomSheetCheckBoxes;
   }
 
   private List<RecentRecharge> generateRecentRechargeList() {
