@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.penny.database.dao.RecentRecharge;
 import com.penny.quick.R;
-import com.penny.quick.adapters.RecentRechargeAdapter;
+import com.penny.quick.ui.adapters.RecentRechargeAdapter;
 import com.penny.quick.ui.activities.recent_recharge.MonthBottomSheetDialog.BottomSheetListener;
 import com.penny.quick.utils.ToolBarUtils;
 import java.util.ArrayList;

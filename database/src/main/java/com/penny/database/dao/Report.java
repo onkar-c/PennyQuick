@@ -4,6 +4,7 @@ public class Report {
 
   private String reportType;
   private String transactionType;
+  private String transaction_id;
   private float transactionAmount;
   private String date;
   private String description;
@@ -55,5 +56,13 @@ public class Report {
 
   public void setTransactionAmount(float transactionAmount) {
     this.transactionAmount = transactionAmount;
+  }
+
+  public String getTransaction_id() {
+    return transaction_id;
+  }
+
+  public void setTransaction_id(String transaction_id) {
+    this.transaction_id = transaction_id;
   }
 }

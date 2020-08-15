@@ -6,12 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.penny.database.dao.Report;
 import com.penny.quick.R;
-import com.penny.quick.adapters.ReportsAdapter;
+import com.penny.quick.ui.adapters.ReportsAdapter;
+import com.penny.quick.models.BottomSheetCheckBox;
+import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog;
+import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog.BottomSheetListener;
 import com.penny.quick.utils.ToolBarUtils;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity implements BottomSheetListener {
 
 
   @Override
@@ -24,7 +28,74 @@ public class ReportActivity extends AppCompatActivity {
     reportList.setLayoutManager(new LinearLayoutManager(this));
     ReportsAdapter reportsAdapter = new ReportsAdapter(generateReportList(), this);
     reportList.setAdapter(reportsAdapter);
+
+    findViewById(R.id.month).setOnClickListener(view -> {
+      RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(
+          generateMonthList(), getString(R.string.choose_month));
+      recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
+    });
+
+    findViewById(R.id.category).setOnClickListener(view -> {
+      RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(
+          getCategoriesFilter(), getString(R.string.categories));
+      recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
+    });
+
+    findViewById(R.id.filters).setOnClickListener(view -> {
+      RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(
+          getFilter(), getString(R.string.filter));
+      recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
+    });
   }
+
+  private List<BottomSheetCheckBox> generateMonthList() {
+    DateFormatSymbols dfs = new DateFormatSymbols();
+    List<BottomSheetCheckBox> bottomSheetCheckBoxes = new ArrayList<>();
+    String[] months = dfs.getMonths();
+    for (String month : months) {
+      BottomSheetCheckBox bottomSheetCheckBox = new BottomSheetCheckBox();
+      bottomSheetCheckBox.setTitle(month);
+      bottomSheetCheckBoxes.add(bottomSheetCheckBox);
+    }
+    return bottomSheetCheckBoxes;
+  }
+
+  private List<BottomSheetCheckBox> getCategoriesFilter() {
+
+    List<BottomSheetCheckBox> bottomSheetCheckBoxes = new ArrayList<>();
+    BottomSheetCheckBox bottomSheetCheckBox1 = new BottomSheetCheckBox();
+    bottomSheetCheckBox1.setTitle(getString(R.string.mobile_recharge));
+    bottomSheetCheckBoxes.add(bottomSheetCheckBox1);
+
+    BottomSheetCheckBox bottomSheetCheckBox2 = new BottomSheetCheckBox();
+    bottomSheetCheckBox2.setTitle(getString(R.string.dth));
+    bottomSheetCheckBoxes.add(bottomSheetCheckBox2);
+
+    BottomSheetCheckBox bottomSheetCheckBox3 = new BottomSheetCheckBox();
+    bottomSheetCheckBox3.setTitle(getString(R.string.money_transfer));
+    bottomSheetCheckBoxes.add(bottomSheetCheckBox3);
+
+    return bottomSheetCheckBoxes;
+  }
+
+  private List<BottomSheetCheckBox> getFilter() {
+
+    List<BottomSheetCheckBox> bottomSheetCheckBoxes = new ArrayList<>();
+    BottomSheetCheckBox bottomSheetCheckBox1 = new BottomSheetCheckBox();
+    bottomSheetCheckBox1.setTitle(getString(R.string.pending));
+    bottomSheetCheckBoxes.add(bottomSheetCheckBox1);
+
+    BottomSheetCheckBox bottomSheetCheckBox2 = new BottomSheetCheckBox();
+    bottomSheetCheckBox2.setTitle(getString(R.string.failed));
+    bottomSheetCheckBoxes.add(bottomSheetCheckBox2);
+
+    BottomSheetCheckBox bottomSheetCheckBox3 = new BottomSheetCheckBox();
+    bottomSheetCheckBox3.setTitle(getString(R.string.success));
+    bottomSheetCheckBoxes.add(bottomSheetCheckBox3);
+
+    return bottomSheetCheckBoxes;
+  }
+
 
   private List<Report> generateReportList() {
     List<Report> reports = new ArrayList<>();
@@ -41,5 +112,10 @@ public class ReportActivity extends AppCompatActivity {
       reports.add(report);
     }
     return reports;
+  }
+
+  @Override
+  public void onButtonClick(String text) {
+
   }
 }

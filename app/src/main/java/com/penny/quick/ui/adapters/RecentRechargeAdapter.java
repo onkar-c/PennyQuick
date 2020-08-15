@@ -1,4 +1,4 @@
-package com.penny.quick.adapters;
+package com.penny.quick.ui.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
