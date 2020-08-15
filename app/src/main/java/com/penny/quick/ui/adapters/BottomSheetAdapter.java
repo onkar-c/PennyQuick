@@ -15,10 +15,14 @@ import java.util.List;
 public class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapter.BottomSheetListItemVH> {
   private List<BottomSheetListObject> objectList;
   private BottomSheetListItemClickListener clickListener;
+  public static final String OPERATOR_TYPE = "operator";
+  public static final String STATE_TYPE = "state";
+  private String type;
 
-  public BottomSheetAdapter(List<BottomSheetListObject> objectList,BottomSheetListItemClickListener clickListener) {
+  public BottomSheetAdapter(List<BottomSheetListObject> objectList,BottomSheetListItemClickListener clickListener,String type) {
     this.objectList = objectList;
     this.clickListener = clickListener;
+    this.type = type;
   }
 
   @NonNull
@@ -32,7 +36,7 @@ public class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapter.
   public void onBindViewHolder(@NonNull BottomSheetListItemVH holder, int position) {
     BottomSheetListObject object = objectList.get(position);
     holder.txtItemName.setText(object.getName());
-//    holder.txtItemName.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(context,R.drawable.airtel),null,null,null);
+//    holder.imgIcon.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.airtel));
     holder.setDetails(object,clickListener);
   }
 
@@ -53,11 +57,11 @@ public class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapter.
     }
 
     public void setDetails(BottomSheetListObject object,BottomSheetListItemClickListener clickListener) {
-      itemView.setOnClickListener(view -> clickListener.onBottomSheetListItemClick(object.getId()));
+      itemView.setOnClickListener(view -> clickListener.onBottomSheetListItemClick(object,type));
     }
   }
 
   public interface BottomSheetListItemClickListener{
-    void onBottomSheetListItemClick(int id);
+    void onBottomSheetListItemClick(BottomSheetListObject obj,String type);
   }
 }

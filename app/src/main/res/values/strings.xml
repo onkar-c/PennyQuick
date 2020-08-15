@@ -117,7 +117,8 @@
 
 
   <string name="operator">Operator</string>
-  <string name="recent_changes">Recent Changes</string>
+  <string name="state">State</string>
+  <string name="recent_recharges">Recent Recharges</string>
   <string name="mobile_recharge">Mobile Recharge</string>
 
   <string name="transaction_success">Transaction Successful</string>
@@ -131,6 +132,8 @@
   <string name="dummy_trans_id">2565412345246542</string>
   <string name="dummy_company_type">Airtel Prepaid</string>
   <string name="dummy_mob_no">9587815463</string>
+  <string name="dummy_email">sanket@gmail.com</string>
+  <string name="dummy_address">Katraj,Pune 411039</string>
   <string name="dispute_caps">DISPUTE</string>
   <string name="cost">cost</string>
   <string name="dummy_amount">\u20B9 401.00</string>
