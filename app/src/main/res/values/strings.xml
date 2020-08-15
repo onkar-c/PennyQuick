@@ -93,6 +93,7 @@
   <string name="enter_amount">Enter Amount</string>
   <string name="view_plans">View Plans</string>
   <string name="recharge">Recharge</string>
+  <string name="apply">Apply</string>
   <string name="customer_name">Customer Name</string>
   <string name="customer_id">Customer ID</string>
   <string name="telephone_number">Telephone Number</string>
@@ -106,6 +107,8 @@
   <string name="message">Message</string>
   <string name="message_display">Message :</string>
   <string name="month">Month</string>
+  <string name="choose_month">Choose Month</string>
+  <string name="clear">CLEAR</string>
   <string name="categories">Categories</string>
   <string name="filter">Filters</string>
   <string name="ledger_report">Ledger Report</string>
@@ -117,7 +120,8 @@
 
 
   <string name="operator">Operator</string>
-  <string name="recent_changes">Recent Changes</string>
+  <string name="state">State</string>
+  <string name="recent_recharges">Recent Recharges</string>
   <string name="mobile_recharge">Mobile Recharge</string>
 
   <string name="transaction_success">Transaction Successful</string>
@@ -132,6 +136,8 @@
   <string name="dummy_trans_id">2565412345246542</string>
   <string name="dummy_company_type">Airtel Prepaid</string>
   <string name="dummy_mob_no">9587815463</string>
+  <string name="dummy_email">sanket@gmail.com</string>
+  <string name="dummy_address">Katraj,Pune 411039</string>
   <string name="dispute_caps">DISPUTE</string>
   <string name="cost">cost</string>
   <string name="dummy_amount">\u20B9 401.00</string>

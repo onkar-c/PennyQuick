@@ -6,20 +6,22 @@ import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
 import com.penny.quick.R;
+import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
+import com.penny.quick.ui.adapters.BottomSheetAdapter;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
-import com.penny.quick.utils.RechargeCommonBottomSheet;
+import com.penny.quick.utils.OperatorBottomSheetDialog;
+import com.penny.quick.utils.StateBottomSheetDialog;
 
 public class MobileRechargeActivity extends BaseActivity implements
     BottomSheetListItemClickListener {
 
   private RadioButton rbPrepaid, rbPostpaid;
-  private TextView etOperator, etState;
-  RechargeCommonBottomSheet bottomSheetDialog;
-
+  private OperatorBottomSheetDialog operatorSheetDialog;
+  private StateBottomSheetDialog stateBottomSheetDialog;
+  TextView tvOperator,tvState;
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -29,41 +31,51 @@ public class MobileRechargeActivity extends BaseActivity implements
 
     rbPrepaid = findViewById(R.id.rb_prepaid);
     rbPostpaid = findViewById(R.id.rb_postpaid);
-    ((AppCompatButton) findViewById(R.id.bt_recharge))
+    findViewById(R.id.bt_recharge)
         .setOnClickListener(view -> startActivity(new Intent(MobileRechargeActivity.this,
             TransactionStatusActivity.class)));
 
-    rbPrepaid.setOnCheckedChangeListener((compoundButton, isCheked) -> {
-      if (isCheked) {
+    rbPrepaid.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+      if (isChecked) {
         rbPostpaid.setChecked(false);
       }
     });
 
-    rbPostpaid.setOnCheckedChangeListener((compoundButton, isCheked) -> {
-      if (isCheked) {
+    rbPostpaid.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+      if (isChecked) {
         rbPrepaid.setChecked(false);
       }
     });
 
-    etOperator = findViewById(R.id.et_operator);
-    etState = findViewById(R.id.et_state);
+    tvOperator = findViewById(R.id.et_operator);
+    tvState = findViewById(R.id.et_state);
 
-    etOperator.setOnClickListener(
+    tvOperator.setOnClickListener(
         view -> {
-          bottomSheetDialog= new RechargeCommonBottomSheet();
-          bottomSheetDialog.show(getSupportFragmentManager(),"OperatorBottomSheet");
+          operatorSheetDialog = new OperatorBottomSheetDialog();
+          operatorSheetDialog.show(getSupportFragmentManager(), BottomSheetAdapter.OPERATOR_TYPE);
         });
 
-    etState.setOnClickListener(
+    tvState.setOnClickListener(
         view -> {
-          bottomSheetDialog= new RechargeCommonBottomSheet();
-          bottomSheetDialog.show(getSupportFragmentManager(),"StateBottomSheet");
+          stateBottomSheetDialog = new StateBottomSheetDialog();
+          stateBottomSheetDialog.show(getSupportFragmentManager(), BottomSheetAdapter.STATE_TYPE);
         });
   }
 
   @Override
-  public void onBottomSheetListItemClick(int id) {
-    bottomSheetDialog.dismiss();
-    Log.e("Operator Selected ", "Id" + id);
+  public void onBottomSheetListItemClick(BottomSheetListObject obj,String type) {
+    if (operatorSheetDialog != null && operatorSheetDialog.isVisible()) {
+      operatorSheetDialog.dismiss();
+    }
+    if (stateBottomSheetDialog != null && stateBottomSheetDialog.isVisible()) {
+      stateBottomSheetDialog.dismiss();
+    }
+    if(type.equalsIgnoreCase(BottomSheetAdapter.OPERATOR_TYPE)){
+      tvOperator.setText(obj.getName());
+    }else if(type.equalsIgnoreCase(BottomSheetAdapter.STATE_TYPE)){
+      tvState.setText(obj.getName());
+    }
+    Log.e("Operator Selected ", "Id" + obj.getId());
   }
 }

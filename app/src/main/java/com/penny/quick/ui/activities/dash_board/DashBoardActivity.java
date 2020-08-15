@@ -14,7 +14,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
-import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivity;
@@ -89,6 +88,9 @@ public class DashBoardActivity extends AppCompatActivity {
         break;
       case R.id.recent_recharge:
         intent = new Intent(DashBoardActivity.this, RecentRechargeActivity.class);
+        break;
+      case R.id.user_profile:
+        intent = new Intent(DashBoardActivity.this, ProfileActivity.class);
         break;
     }
     if (intent != null) {
