@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.penny.quick.R;
 import com.penny.quick.adapters.RecentRechargeBottomSheetAdapter;
@@ -17,13 +19,16 @@ import java.util.List;
 
 public class RecentRechargeBottomSheetDialog extends BottomSheetDialogFragment {
 
+  BottomSheetBehavior bottomSheetBehavior;
   private List<BottomSheetCheckBox> bottomSheetCheckBoxes;
   private BottomSheetListener bottomSheetListener;
   private Context context;
+  private String Header;
 
   public RecentRechargeBottomSheetDialog(
-      List<BottomSheetCheckBox> bottomSheetCheckBoxes) {
+      List<BottomSheetCheckBox> bottomSheetCheckBoxes, String header) {
     this.bottomSheetCheckBoxes = bottomSheetCheckBoxes;
+    Header = header;
   }
 
   @Nullable
@@ -32,6 +37,7 @@ public class RecentRechargeBottomSheetDialog extends BottomSheetDialogFragment {
       @Nullable Bundle savedInstanceState) {
     View v = inflater.inflate(R.layout.recent_recharge_month_bottom_sheet, container, false);
     RecyclerView valuesRv = v.findViewById(R.id.rv_month_list);
+    ((TextView)v.findViewById(R.id.tx_sheet_header)).setText(Header);
     valuesRv.setLayoutManager(new LinearLayoutManager(context));
     RecentRechargeBottomSheetAdapter bottomSheetValuesAdapter = new RecentRechargeBottomSheetAdapter(
         bottomSheetCheckBoxes, context);
@@ -41,6 +47,7 @@ public class RecentRechargeBottomSheetDialog extends BottomSheetDialogFragment {
     return v;
   }
 
+
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
@@ -48,6 +55,7 @@ public class RecentRechargeBottomSheetDialog extends BottomSheetDialogFragment {
 //    this.context = context;
 
   }
+
 
   public interface BottomSheetListener {
 
