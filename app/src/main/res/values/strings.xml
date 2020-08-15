@@ -92,6 +92,7 @@
   <string name="enter_amount">Enter Amount</string>
   <string name="view_plans">View Plans</string>
   <string name="recharge">Recharge</string>
+  <string name="apply">Apply</string>
   <string name="customer_name">Customer Name</string>
   <string name="customer_id">Customer ID</string>
   <string name="telephone_number">Telephone Number</string>
@@ -103,6 +104,8 @@
   <string name="subject">Subject</string>
   <string name="enter_message">Enter Message</string>
   <string name="month">Month</string>
+  <string name="choose_month">Choose Month</string>
+  <string name="clear">CLEAR</string>
   <string name="categories">Categories</string>
   <string name="filter">Filters</string>
   <string name="ledger_report">Ledger Report</string>

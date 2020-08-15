@@ -57,7 +57,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
         break;
       case R.id.tv_privacy_policy:
         intent = new Intent(ProfileActivity.this, WebViewActivity.class);
-        intent.putExtra(ProjectConstants.TITLE, R.string.privacy_policy);
+        intent.putExtra(ProjectConstants.TITLE, getString(R.string.privacy_policy));
         break;
       case R.id.tv_logout:
         break;
