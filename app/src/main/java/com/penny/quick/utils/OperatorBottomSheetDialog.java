@@ -25,7 +25,7 @@ public class OperatorBottomSheetDialog extends BottomSheetDialogFragment {
     View bottomSheetView = inflater.inflate(R.layout.bottom_sheet, container, false);
     bottomSheetView.findViewById(R.id.bt_close)
         .setOnClickListener(onCloseClick);
-    ((TextView) bottomSheetView.findViewById(R.id.tx_sheet_header)).setText(R.string.operator);
+    ((TextView) bottomSheetView.findViewById(R.id.tx_sheet_header)).setText(R.string.operators);
     RecyclerView bottomSheetRV = bottomSheetView.findViewById(R.id.rv_bottom_sheet_list);
     bottomSheetRV.setLayoutManager(new LinearLayoutManager(getContext()));
     BottomSheetAdapter bottomSheetAdapter = new BottomSheetAdapter(

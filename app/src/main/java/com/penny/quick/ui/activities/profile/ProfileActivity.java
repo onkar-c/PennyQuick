@@ -25,7 +25,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     setToolBarDesign();
 
     findViewById(R.id.tv_change_pwd).setOnClickListener(this);
-    findViewById(R.id.tv_recent_rechanges).setOnClickListener(this);
+    findViewById(R.id.tv_recent_recharges).setOnClickListener(this);
     findViewById(R.id.tv_reports).setOnClickListener(this);
     findViewById(R.id.tv_privacy_policy).setOnClickListener(this);
     findViewById(R.id.tv_logout).setOnClickListener(this);
@@ -49,7 +49,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
       case R.id.tv_change_pwd:
         intent = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
         break;
-      case R.id.tv_recent_rechanges:
+      case R.id.tv_recent_recharges:
         intent = new Intent(ProfileActivity.this, RecentRechargeActivity.class);
         break;
       case R.id.tv_reports:
