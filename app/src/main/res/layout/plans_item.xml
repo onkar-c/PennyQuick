@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_columnWeight="1"
+  app:cardCornerRadius="2dp"
+  android:layout_marginTop="@dimen/distance_5"
+  android:layout_marginBottom="@dimen/distance_5"
+  android:layout_marginStart="@dimen/distance_10"
+  android:layout_marginEnd="@dimen/distance_10"
+  app:cardElevation="5dp"
+  app:cardPreventCornerOverlap="false">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  android:layout_margin="@dimen/distance_10"
+    android:orientation="vertical">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    android:baselineAligned="false">
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_weight="2.5">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/talk_time"
+        android:textSize="@dimen/textSize_12"
+        android:textColor="@color/semi_text"
+        android:layout_marginTop="@dimen/distance_5"/>
+
+      <TextView
+        android:id="@+id/tv_talk_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_amount"
+        android:textSize="@dimen/textSize_11"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/distance_5"
+        android:layout_marginStart="@dimen/distance_5"/>
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_weight="2.5">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:textSize="@dimen/textSize_12"
+        android:textColor="@color/semi_text"
+        android:layout_marginTop="@dimen/distance_5"/>
+
+      <TextView
+        android:id="@+id/tv_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_data_string"
+        android:textSize="@dimen/textSize_11"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/distance_5"/>
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_weight="2.5">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/validity"
+        android:textSize="@dimen/textSize_12"
+        android:textColor="@color/semi_text"
+        android:layout_marginTop="@dimen/distance_5"/>
+
+      <TextView
+        android:id="@+id/tv_validity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_validity"
+        android:textSize="@dimen/textSize_11"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/distance_5"/>
+    </LinearLayout>
+
+    <RelativeLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="2.5">
+      <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/button_start_color"
+        android:background="@drawable/amount_background"
+        android:padding="@dimen/distance_5"
+        android:textSize="@dimen/textSize_15"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="@string/dummy_amount"/>
+    </RelativeLayout>
+
+
+  </LinearLayout>
+    <TextView
+      android:id="@+id/message_1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/dummy_message_1"
+      android:textSize="@dimen/textSize_12"
+      android:textColor="@android:color/black"
+      android:layout_marginTop="@dimen/distance_15"/>
+    <TextView
+      android:id="@+id/message_2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/dummy_message_2"
+      android:textSize="@dimen/textSize_12"
+      android:textColor="@android:color/black"
+      android:layout_marginTop="@dimen/distance_5"/>
+    <TextView
+      android:id="@+id/message_3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/dummy_message_3"
+      android:textSize="@dimen/textSize_12"
+      android:textColor="@android:color/black"
+      android:layout_marginTop="@dimen/distance_5"/>
+
+  </LinearLayout>
+
+</androidx.cardview.widget.CardView>

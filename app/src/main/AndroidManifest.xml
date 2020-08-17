@@ -29,6 +29,11 @@
       android:name=".ui.activities.web_view.WebViewActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
+
+    <activity
+      android:name=".ui.activities.view_plans.ViewPlansActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar" />
     <activity
       android:name=".ui.activities.accept_details.AcceptRechargeDetails"
       android:screenOrientation="portrait"

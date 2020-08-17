@@ -10,6 +10,7 @@ import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
+import com.penny.quick.ui.activities.view_plans.ViewPlansActivity;
 import com.penny.quick.ui.adapters.BottomSheetAdapter;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
 import com.penny.quick.utils.OperatorBottomSheetDialog;
@@ -18,10 +19,11 @@ import com.penny.quick.utils.StateBottomSheetDialog;
 public class MobileRechargeActivity extends BaseActivity implements
     BottomSheetListItemClickListener {
 
+  TextView tvOperator, tvState;
   private RadioButton rbPrepaid, rbPostpaid;
   private OperatorBottomSheetDialog operatorSheetDialog;
   private StateBottomSheetDialog stateBottomSheetDialog;
-  TextView tvOperator,tvState;
+
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -61,19 +63,23 @@ public class MobileRechargeActivity extends BaseActivity implements
           stateBottomSheetDialog = new StateBottomSheetDialog();
           stateBottomSheetDialog.show(getSupportFragmentManager(), BottomSheetAdapter.STATE_TYPE);
         });
+
+    findViewById(R.id.bt_view_plans)
+        .setOnClickListener(view -> startActivity(new Intent(MobileRechargeActivity.this,
+            ViewPlansActivity.class)));
   }
 
   @Override
-  public void onBottomSheetListItemClick(BottomSheetListObject obj,String type) {
+  public void onBottomSheetListItemClick(BottomSheetListObject obj, String type) {
     if (operatorSheetDialog != null && operatorSheetDialog.isVisible()) {
       operatorSheetDialog.dismiss();
     }
     if (stateBottomSheetDialog != null && stateBottomSheetDialog.isVisible()) {
       stateBottomSheetDialog.dismiss();
     }
-    if(type.equalsIgnoreCase(BottomSheetAdapter.OPERATOR_TYPE)){
+    if (type.equalsIgnoreCase(BottomSheetAdapter.OPERATOR_TYPE)) {
       tvOperator.setText(obj.getName());
-    }else if(type.equalsIgnoreCase(BottomSheetAdapter.STATE_TYPE)){
+    } else if (type.equalsIgnoreCase(BottomSheetAdapter.STATE_TYPE)) {
       tvState.setText(obj.getName());
     }
     Log.e("Operator Selected ", "Id" + obj.getId());

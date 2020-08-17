@@ -92,6 +92,7 @@
   <string name="select_state">Select State</string>
   <string name="enter_amount">Enter Amount</string>
   <string name="view_plans">View Plans</string>
+  <string name="plans">Plans</string>
   <string name="recharge">Recharge</string>
   <string name="apply">Apply</string>
   <string name="customer_name">Customer Name</string>
@@ -117,6 +118,14 @@
   <string name="credit">Credit</string>
   <string name="description">Description : </string>
   <string name="balance">Balance</string>
+  <string name="talk_time">Talktime :</string>
+  <string name="data">Data :</string>
+  <string name="validity">Validity :</string>
+  <string name="dummy_validity">28 days</string>
+  <string name="dummy_message_1">Data : 3GB/day + 6GB</string>
+  <string name="dummy_message_2">Voice : Unlimited Calls(Jio to non-jio FUP)</string>
+  <string name="dummy_message_3">Disney + Hotstar Annual Subscription</string>
+
 
 
   <string name="operators">Operators</string>
@@ -146,6 +155,7 @@
   <string name="rupees_sign">\u20B9</string>
   <string name="solve">Solve</string>
   <string name="colon">:</string>
+  <string name="dummy_data_string">3GB/day + 6GB</string>
 
   <string name="recharge_detail_message_1">Customer ID starts with 3 and is 10 digit long. To locate it, press the MENU button on remote.</string>
   <string name="recharge_detail_message_2">To know your monthly rental and best offer, give miss call on 81302–81302 from your registered mobile number.</string>
