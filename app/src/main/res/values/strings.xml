@@ -119,7 +119,7 @@
   <string name="balance">Balance</string>
 
 
-  <string name="operator">Operator</string>
+  <string name="operators">Operators</string>
   <string name="state">State</string>
   <string name="recent_recharges">Recent Recharges</string>
   <string name="mobile_recharge">Mobile Recharge</string>
@@ -152,5 +152,6 @@
   <string name="recharge_detail_message_3">Please enter a value between Rs.50 and Rs.49000</string>
   <string name="recharge_detail_message_4">Please enter your Number</string>
   <string name="recharge_detail_message_5">Please enter Account Number</string>
+  <string name="disclaimer">Disclaimer:We support most types of recharges, but please check with your operator before you proceed.</string>
 
 </resources>

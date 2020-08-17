@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical">
+  
+  <include
+    android:id="@+id/toolBar"
+    layout="@layout/common_tool_bar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_alignParentTop="true"/>
+  
+  <com.google.android.material.tabs.TabLayout
+    android:id="@+id/tl_plans"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/toolBar"
+    android:minHeight="?actionBarSize"
+    app:tabGravity="fill"
+    app:tabIndicatorHeight="4dp"
+    app:tabBackground="@android:color/white"
+    app:tabIndicatorColor="@color/colorPrimary"
+    app:tabTextColor="@color/colorPrimary"/>
+  
+  <androidx.viewpager2.widget.ViewPager2
+    android:id="@+id/vp_plans"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/tl_plans"
+    android:layout_above="@id/tv_disclaimer"/>
+  <TextView
+    android:id="@+id/tv_disclaimer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bottom_txt_bg"
+    android:padding="@dimen/distance_10"
+    android:textColor="@color/text_color_7"
+    android:textSize="@dimen/textSize_12"
+    android:text="@string/disclaimer"
+   android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

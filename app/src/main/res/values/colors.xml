@@ -6,7 +6,7 @@
   <color name="dark_blue">#00449C</color>
   <color name="bottom_bar_end_color">#5849E2</color>
   <color name="button_end_color">#00D3FE</color>
-  <color name="divider">#BDBDBD</color>
+  <color name="divider">#D3D1D1</color>
   <color name="button_start_color">#554FE4</color>
   <color name="text_color_1">#29304D</color>
   <color name="text_color_2">#4FE0FE</color>
@@ -25,4 +25,6 @@
   <color name="profile_end_color">#03CFFD</color>03CFFD
   <color name="profile_start_color">#564EE3</color>
   <color name="red_text_color">#E12D3B</color>
+  <color name="bottom_txt_bg">#BDBDBD</color>
+  <color name="text_color_7">#646464</color>
 </resources>

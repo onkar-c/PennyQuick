@@ -12,6 +12,8 @@ import com.penny.quick.ui.activities.providersList.ProviderListActivityModel;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.splash.SplashActivity;
 import com.penny.quick.ui.activities.splash.SplashActivityModel;
+import com.penny.quick.ui.activities.view_plans.ViewPlanActivityModel;
+import com.penny.quick.ui.activities.view_plans.ViewPlansActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -35,4 +37,7 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = ProfileActivityModel.class)
   abstract ProfileActivity getProfileActivity();
+
+  @ContributesAndroidInjector(modules = ViewPlanActivityModel.class)
+  abstract ViewPlansActivity getViewPlansActivity();
 }
