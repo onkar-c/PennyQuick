@@ -5,13 +5,15 @@ import android.os.Bundle;
 import com.penny.database.CoreSharedHelper;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
+import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
 import com.penny.quick.ui.activities.intro_screen.IntroScreen;
 import com.penny.quick.ui.activities.login.SignInActivity;
 import javax.inject.Inject;
 
 public class SplashActivity extends BaseActivity {
 
-  @Inject SplashActivityViewModel splashActivityViewModel;
+  @Inject
+  SplashActivityViewModel splashActivityViewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +26,11 @@ public class SplashActivity extends BaseActivity {
             try {
               sleep(1200);
               Intent intent;
-              if(CoreSharedHelper.getInstance().isFirstInstall()) {
+              if (CoreSharedHelper.getInstance().isFirstInstall()) {
                 intent = new Intent(getApplicationContext(), IntroScreen.class);
+              } else if (CoreSharedHelper.getInstance().isLogin() && CoreSharedHelper.getInstance()
+                  .isRememberPassword()) {
+                intent = new Intent(getApplicationContext(), DashBoardActivity.class);
               } else {
                 intent = new Intent(getApplicationContext(), SignInActivity.class);
               }

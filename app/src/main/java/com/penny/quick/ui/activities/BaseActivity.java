@@ -149,6 +149,8 @@ public class BaseActivity extends DaggerAppCompatActivity {
 
   protected void performLogout() {
     CoreSharedHelper.getInstance().saveToken("");
+    CoreSharedHelper.getInstance().setIsLogin(false);
+    CoreSharedHelper.getInstance().setRememberPassword(false);
     startActivity(new Intent(this, SignInActivity.class));
     finish();
   }

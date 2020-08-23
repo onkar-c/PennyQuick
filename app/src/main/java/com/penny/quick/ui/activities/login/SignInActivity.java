@@ -61,7 +61,8 @@ public class SignInActivity extends BaseActivity {
   }
 
   private void loginSuccess() {
-    CoreSharedHelper.getInstance().setRememberPassword(compatCheckBox.isSelected());
+    CoreSharedHelper.getInstance().setIsLogin(true);
+    CoreSharedHelper.getInstance().setRememberPassword(compatCheckBox.isChecked());
     startActivity(new Intent(SignInActivity.this, SuccessLoginActivity.class));
     finish();
   }

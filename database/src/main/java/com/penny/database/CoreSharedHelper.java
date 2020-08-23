@@ -37,13 +37,20 @@ public class CoreSharedHelper {
     sharedPreferencesEditor.apply();
   }
 
-
   public boolean isFirstInstall() {
     return sharedPreferences.getBoolean(Constants.IS_FIRST_INSTALL, true);
   }
 
   public void setIsFirstInstall(boolean isFirstInstall) {
     savePref(Constants.IS_FIRST_INSTALL, isFirstInstall);
+  }
+
+  public boolean isLogin() {
+    return sharedPreferences.getBoolean(Constants.IS_LOGIN, false);
+  }
+
+  public void setIsLogin(boolean isLogin) {
+    savePref(Constants.IS_LOGIN, isLogin);
   }
 
   public boolean isRememberPassword() {
@@ -78,6 +85,7 @@ public class CoreSharedHelper {
     static final String APP_BASE_URL = "base url";
     static final String IS_FIRST_INSTALL = "is_first_install";
     static final String REMEMBER_PASSWORD = "remember_password";
+    static final String IS_LOGIN = "is_login";
   }
 
 
