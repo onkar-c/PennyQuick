@@ -46,6 +46,14 @@ public class CoreSharedHelper {
     savePref(Constants.IS_FIRST_INSTALL, isFirstInstall);
   }
 
+  public boolean isRememberPassword() {
+    return sharedPreferences.getBoolean(Constants.REMEMBER_PASSWORD, false);
+  }
+
+  public void setRememberPassword(boolean rememberPassword) {
+    savePref(Constants.REMEMBER_PASSWORD, rememberPassword);
+  }
+
   public void saveBaseURL(String url) {
     savePref(Constants.APP_BASE_URL, url);
   }
@@ -69,6 +77,7 @@ public class CoreSharedHelper {
     static final String NAME = "pennyQuick";
     static final String APP_BASE_URL = "base url";
     static final String IS_FIRST_INSTALL = "is_first_install";
+    static final String REMEMBER_PASSWORD = "remember_password";
   }
 
 

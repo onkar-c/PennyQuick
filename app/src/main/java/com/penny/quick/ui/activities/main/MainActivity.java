@@ -19,16 +19,16 @@ public class MainActivity extends BaseActivity {
   }
 
   private void login(String userName, String password) {
-    mainActivityViewModel.performLogin(userName, password).observe(this, this::observeAPIStatus);
+//    mainActivityViewModel.performLogin(userName, password).observe(this, this::observeAPIStatus);
   }
 
-  private void observeAPIStatus(WorkInfo workInfo) {
-    if (workInfo != null) {
-      State state = workInfo.getState();
-      apiResponseHandler(workInfo);
-      if (state == State.SUCCEEDED) {}
-    }
-  }
+//  private void observeAPIStatus(WorkInfo workInfo) {
+//    if (workInfo != null) {
+//      State state = workInfo.getState();
+//      apiResponseHandler(workInfo);
+//      if (state == State.SUCCEEDED) {}
+//    }
+//  }
 
   @Override
   public void responseErrorHandling(int apiId, String error) {

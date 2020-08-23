@@ -15,9 +15,10 @@ import androidx.work.WorkInfo.State;
 import androidx.work.WorkManager;
 import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
-import com.penny.core.util.NetworkUtil;
+import com.penny.database.CoreSharedHelper;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.login.SignInActivity;
+import com.penny.core.util.NetworkUtils;
 import com.penny.quick.utils.ProgressUtil;
 import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
@@ -122,7 +123,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
   }
 
   private String handleOfflineException(String error) {
-    return error.equals(ERROR_WHILE_CONNECTING_TO_SERVER) && !NetworkUtil.isConnected(this)
+    return error.equals(ERROR_WHILE_CONNECTING_TO_SERVER) && !NetworkUtils.isConnected(this)
         ? DEVICE_IS_OFFLINE
         : error;
   }
@@ -147,7 +148,9 @@ public class BaseActivity extends DaggerAppCompatActivity {
   }
 
   protected void performLogout() {
+    CoreSharedHelper.getInstance().saveToken("");
     startActivity(new Intent(this, SignInActivity.class));
+    finish();
   }
 
 }

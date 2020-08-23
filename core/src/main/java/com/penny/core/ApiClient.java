@@ -11,10 +11,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
   private static Retrofit retrofit;
+  private static final String BASE_URL = "https://www.google.com";
 
   public static Retrofit getClient() {
-    if (retrofit == null
-        || !retrofit.baseUrl().toString().equals(CoreSharedHelper.getInstance().getBaseURL())) {
+    if (retrofit == null) {
       HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 
       // Log okHttp
@@ -44,7 +44,7 @@ public class ApiClient {
       OkHttpClient client = httpClient.addInterceptor(interceptor).build();
       retrofit =
           new Retrofit.Builder()
-              .baseUrl(CoreSharedHelper.getInstance().getBaseURL())
+              .baseUrl(BASE_URL)
               .client(client)
               .addConverterFactory(
                   GsonConverterFactory.create(GSONUtil.acceptGSONWithoutExposeAnnotationFields()))

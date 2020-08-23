@@ -80,7 +80,7 @@
       android:layout_marginTop="@dimen/distance_20"
       android:layout_gravity="bottom|center_horizontal"
       android:visibility="gone"
-      android:textColor="@color/hint_color"
+      android:textColor="@color/red_text_color"
       android:textSize="@dimen/textSize_12" />
 
     <androidx.appcompat.widget.AppCompatCheckBox

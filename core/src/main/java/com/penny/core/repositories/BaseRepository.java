@@ -1,7 +1,9 @@
 package com.penny.core.repositories;
 
 import androidx.lifecycle.LiveData;
+import androidx.work.Constraints;
 import androidx.work.Data;
+import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
@@ -21,5 +23,11 @@ public class BaseRepository {
     WorkManager mWorkManager = WorkManager.getInstance(APP.getContext());
     mWorkManager.enqueue(pRequest);
     return mWorkManager.getWorkInfoByIdLiveData(pRequest.getId());
+  }
+
+  protected Constraints getNetworkConstraint() {
+    return new Constraints.Builder()
+        .setRequiredNetworkType(NetworkType.CONNECTED)
+        .build();
   }
 }

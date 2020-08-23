@@ -11,8 +11,4 @@ class MainActivityViewModel extends ViewModel {
   MainActivityViewModel() {
     super();
   }
-
-  LiveData<WorkInfo> performLogin(String pUserName, String pPassword) {
-    return new UserRepository().getLoginWorkManager(pUserName, pPassword);
-  }
 }
