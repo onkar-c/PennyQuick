@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.penny.database.ProjectConstants;
+import com.penny.database.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordViewModel;
@@ -21,6 +23,7 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
   @Inject
   ForgotPasswordViewModel forgotPasswordViewModel;
   private TextView tv_error;
+  private EditText otp1TV,otp2TV,otp3TV,otp4TV;
   OnClickListener resendOTP = view -> {
     tv_error.setVisibility(View.GONE);
     requestOTP();
@@ -44,6 +47,10 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
         .setOnClickListener(onDoneClick);
     findViewById(R.id.resend_otp).setOnClickListener(resendOTP);
     tv_error = findViewById(R.id.tv_error);
+    otp1TV = findViewById(R.id.et_otp1);
+    otp2TV = findViewById(R.id.et_otp2);
+    otp3TV = findViewById(R.id.et_otp3);
+    otp4TV = findViewById(R.id.et_otp4);
   }
 
   private void requestOTP() {
@@ -68,9 +75,14 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
   }
 
   private void verifyOtpSuccess() {
-    tv_error.setVisibility(View.GONE);
-    startActivity(new Intent(ForgotPasswordOtpActivity.this, ForgotPasswordNewPwdActivity.class));
-    finish();
+    if(StringUtils.isOtpValid(otp1TV.getText().toString(),otp2TV.getText().toString(),
+        otp3TV.getText().toString(),otp4TV.getText().toString())) {
+      tv_error.setVisibility(View.GONE);
+      startActivity(new Intent(ForgotPasswordOtpActivity.this, ForgotPasswordNewPwdActivity.class));
+      finish();
+    }else{
+      showError(getString(R.string.otp_error));
+    }
   }
 
   private void observeRequestOtpApi(WorkInfo workInfo) {

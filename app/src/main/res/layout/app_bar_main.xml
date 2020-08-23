@@ -6,12 +6,6 @@
   android:layout_height="match_parent"
   tools:context=".ui.activities.dash_board.DashBoardActivity">
 
-<com.google.android.material.appbar.AppBarLayout
-  android:id="@+id/appBar"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:theme="@style/AppTheme.AppBarOverlay">
-
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/dashBoardToolBar"
     android:layout_width="match_parent"
@@ -19,19 +13,20 @@
     android:background="@android:color/white"
     app:contentInsetStartWithNavigation="0dp"
     app:titleTextColor="@color/colorPrimary"
-    app:popupTheme="@style/AppTheme.PopupOverlay"
-    app:navigationIcon="@drawable/hamburger_icon"/>
+    app:popupTheme="@style/AppTheme.NoTitleBar"
+    app:navigationIcon="@drawable/hamburger_icon"
+    app:title=" "
+   />
 
-</com.google.android.material.appbar.AppBarLayout>
 <ScrollView
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:layout_below="@+id/appBar">
+  android:layout_below="@+id/dashBoardToolBar"
+  android:background="@drawable/dashboard_background">
 
 <RelativeLayout
   android:layout_width="match_parent"
   android:layout_height="wrap_content">
-
 
   <LinearLayout
     android:id="@+id/userInfoLayout"
@@ -40,7 +35,7 @@
     android:layout_alignParentTop="true"
     android:orientation="horizontal"
     android:weightSum="4"
-    android:layout_marginTop="@dimen/distance_30"
+    android:layout_marginTop="@dimen/distance_20"
     android:layout_marginStart="@dimen/distance_20"
     android:layout_marginEnd="@dimen/distance_20">
     <LinearLayout
@@ -138,6 +133,18 @@
         android:maxLines="2"
         android:textSize="@dimen/textSize_25"/>
     </LinearLayout>
+
+    <ImageView
+      android:id="@+id/iv_sync"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:contentDescription="@string/sync"
+      android:src="@drawable/ic_refresh_small"
+      android:background="@drawable/radio_button_background_2"
+      android:layout_alignParentEnd="true"
+      android:layout_margin="@dimen/distance_10"
+      android:padding="@dimen/distance_3"
+     />
 
   </RelativeLayout>
 
@@ -336,7 +343,7 @@
       android:padding="@dimen/distance_10"
       android:gravity="center_vertical"
       android:drawablePadding="@dimen/distance_10"
-      app:drawableStartCompat="@drawable/report" />
+      app:drawableStartCompat="@drawable/ic_recent" />
   </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

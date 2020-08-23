@@ -125,6 +125,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/distance_20"
       android:layout_gravity="bottom|center_horizontal"
+      android:gravity="center"
       android:text="@string/power_by"
       android:textColor="@color/hint_color"
       android:textSize="@dimen/textSize_12" />

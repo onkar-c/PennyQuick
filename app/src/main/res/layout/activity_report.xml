@@ -48,7 +48,7 @@
     android:background="@drawable/edit_text_background"
     android:drawableEnd="@drawable/ic_down_arrow"
     android:drawablePadding="@dimen/distance_5"
-    android:hint="@string/month"
+    android:hint="@string/categories"
     android:inputType="none"
     android:textColor="@color/hint_color"
     android:layout_marginStart="@dimen/distance_10"

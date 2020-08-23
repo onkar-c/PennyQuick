@@ -28,4 +28,5 @@
   <color name="red_text_color">#E12D3B</color>
   <color name="bottom_txt_bg">#BDBDBD</color>
   <color name="text_color_7">#646464</color>
+  <color name="checkbox_uncheck">#707070</color>
 </resources>
