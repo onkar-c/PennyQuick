@@ -66,8 +66,7 @@ public class ForgotPasswordNewPwdActivity extends BaseActivity {
   }
 
   private void changePasswordSuccess() {
-    startActivity(new Intent(ForgotPasswordNewPwdActivity.this, SignInActivity.class));
-    finish();
+    onBackPressed();
   }
 
   @Override

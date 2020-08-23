@@ -6,22 +6,22 @@ import androidx.work.WorkerParameters;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
-import com.penny.database.ProjectConstants;
+import com.penny.core.repositories.UserRepository;
 
-public class ChangePasswordWorker extends BaseWorker {
+public class UserInfoWorker extends BaseWorker {
 
-  public ChangePasswordWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+  public UserInfoWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
   }
 
   @Override
   protected Result executeApi() {
-    return execute(ApiClient.getClient().create(ApiInterface.class)
-        .changePassword(getInputData().getString(ProjectConstants.PASSWORD)));
+    return execute(ApiClient.getClient().create(ApiInterface.class).getUserInfo());
   }
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
+    new UserRepository().upsertUser(jsonResponse.getUser());
     return sendSuccess();
   }
 }

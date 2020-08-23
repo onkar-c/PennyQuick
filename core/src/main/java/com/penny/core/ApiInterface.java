@@ -20,4 +20,7 @@ public interface ApiInterface {
 
   @POST("user/changePassword")
   Call<JsonResponse> changePassword(@Query("nob_number") String password);
+
+  @POST("user/userInfo")
+  Call<JsonResponse> getUserInfo();
 }

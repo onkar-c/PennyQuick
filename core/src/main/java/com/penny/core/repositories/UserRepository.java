@@ -9,6 +9,7 @@ import com.penny.core.APITags.APIEnums;
 import com.penny.core.worker.ChangePasswordWorker;
 import com.penny.core.worker.LoginWorker;
 import com.penny.core.worker.RequestOTPWorker;
+import com.penny.core.worker.UserInfoWorker;
 import com.penny.core.worker.VerifyOTPWorker;
 import com.penny.database.AppDatabase;
 import com.penny.database.ProjectConstants;
@@ -61,6 +62,16 @@ public class UserRepository extends BaseRepository{
     return getOneTimeRequestLiveDate(mRequest);
   }
 
+  public LiveData<WorkInfo> getUserInfoWorkManager() {
+    Data.Builder data = getDataBuilderForApi(APITags.API_USER_INFO);
+    OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(UserInfoWorker.class)
+        .setInputData(data.build())
+        .setConstraints(getNetworkConstraint())
+        .addTag(APIEnums.API_USER_INFO.name())
+        .build();
+    return getOneTimeRequestLiveDate(mRequest);
+  }
+
 
   public void upsertUser(User user) {
     if(AppDatabase.getInstance().getUserEntityDao().getUserByUserId(user.getUserId()).size() == 0) {
@@ -71,6 +82,10 @@ public class UserRepository extends BaseRepository{
   }
   public void deleteAllUsers() {
     AppDatabase.getInstance().getUserEntityDao().deleteAll();
+  }
+
+  public LiveData<User> getUser() {
+    return AppDatabase.getInstance().getUserEntityDao().getUser();
   }
 
 }

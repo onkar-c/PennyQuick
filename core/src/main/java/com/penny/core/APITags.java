@@ -21,13 +21,14 @@ public class APITags {
   private static final String API_VERIFY_OTP_TITTLE = "OTP";
   private static final String API_VERIFY_OTP_MESSAGE = "Verifying OTP..";
 
-  public static final int API_CHANGE_PASSWORD = 3;
+  public static final int API_CHANGE_PASSWORD = 4;
   private static final String API_CHANGE_PASSWORD_TITTLE = "OTP";
   private static final String API_CHANGE_PASSWORD_MESSAGE = "Verifying OTP..";
 
-  public static final int API_CREATE_PLANT = 4;
-  private static final String API_CREATE_PLANT_TITTLE = "Create Plant";
-  private static final String API_CREATE_PLANT_MESSAGE = "Creating plant";
+  public static final int API_USER_INFO = 5;
+  private static final String API_USER_INFO_TITTLE = "User info";
+  private static final String API_USER_INFO_MESSAGE = "Fetching User info..";
+
 
 
   public static final int API_CREATE_CUSTOMER = 5;
@@ -101,7 +102,7 @@ public class APITags {
     API_REQUEST_OTP(API_REQUEST_OTP_TITTLE, API_REQUEST_OTP_MESSAGE),
     API_VERIFY_OTP(API_VERIFY_OTP_TITTLE, API_VERIFY_OTP_MESSAGE),
     API_CHANGE_PASSWORD(API_CHANGE_PASSWORD_TITTLE, API_CHANGE_PASSWORD_MESSAGE),
-    API_CREATE_PLANT(API_CREATE_PLANT_TITTLE, API_CREATE_PLANT_MESSAGE),
+    API_USER_INFO(API_USER_INFO_TITTLE, API_USER_INFO_MESSAGE),
     API_CREATE_CUSTOMER(API_CREATE_CUSTOMER_TITTLE, API_CREATE_CUSTOMER_MESSAGE),
     API_UPDATE_CUSTOMER(API_UPDATE_CUSTOMER_TITTLE, API_UPDATE_CUSTOMER_MESSAGE),
     API_PULL_CUSTOMER_DATA(API_PULL_CUSTOMER_DATA_TITTLE, API_PULL_CUSTOMER_DATA_MESSAGE),

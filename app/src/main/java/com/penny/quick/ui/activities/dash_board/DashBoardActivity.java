@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.penny.database.ProjectConstants;
+import com.penny.database.entities.User;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
@@ -28,12 +30,14 @@ public class DashBoardActivity extends BaseActivity {
   @Inject
   DashBoardActivityViewModel dashBoardActivityViewModel;
   private DrawerLayout drawer;
+  private TextView walletBalance;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_dash_board);
     setToolBarAndNavigationDrawer();
+    initUi();
 
     GridLayout grid = findViewById(R.id.rechargeGridLayout);
     for (int i = 0; i < grid.getChildCount(); i++) {
@@ -43,6 +47,22 @@ public class DashBoardActivity extends BaseActivity {
     GridLayout commonGrid = findViewById(R.id.commonGrid);
     for (int i = 0; i < commonGrid.getChildCount(); i++) {
       commonGrid.getChildAt(i).setOnClickListener(this::handelCommonGridClick);
+    }
+    setObservers();
+  }
+
+  private void initUi() {
+    walletBalance = findViewById(R.id.walletBalance);
+  }
+
+  private void setObservers() {
+    dashBoardActivityViewModel.getUser().observe(this, this::setUserDetails);
+  }
+
+  private void setUserDetails(User user) {
+    if (user != null) {
+      walletBalance.setText(
+          String.format("%s %s", getString(R.string.rupees_sign), user.getTotalBalance()));
     }
   }
 
