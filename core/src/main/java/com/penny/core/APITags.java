@@ -12,9 +12,9 @@ public class APITags {
   public static final int API_LOGIN = 1;
   private static final String API_LOGIN_TITLE = "Login";
 
-  public static final int API_CREATE_USER = 2;
-  private static final String API_CREATE_USER_TITTLE = "Create User";
-  private static final String API_CREATE_USER_MESSAGE = "Creating user..";
+  public static final int API_REQUEST_OTP = 2;
+  private static final String API_REQUEST_OTP_TITTLE = "OTP";
+  private static final String API_REQUEST_OTP_MESSAGE = "Requesting OTP..";
 
 
   public static final int API_RESET_USER_PASSWORD = 3;
@@ -94,7 +94,7 @@ public class APITags {
 
   public enum APIEnums {
     API_LOGIN(API_LOGIN_TITLE, API_LOADING_MESSAGE),
-    API_CREATE_USER(API_CREATE_USER_TITTLE, API_CREATE_USER_MESSAGE),
+    API_REQUEST_OTP(API_REQUEST_OTP_TITTLE, API_REQUEST_OTP_MESSAGE),
     API_RESET_USER_PASSWORD(API_USER_PASSWORD_REST_TITTLE, API_PLEASE_WAIT_MESSAGE),
     API_CREATE_PLANT(API_CREATE_PLANT_TITTLE, API_CREATE_PLANT_MESSAGE),
     API_CREATE_CUSTOMER(API_CREATE_CUSTOMER_TITTLE, API_CREATE_CUSTOMER_MESSAGE),

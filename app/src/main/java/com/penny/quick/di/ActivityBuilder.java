@@ -2,6 +2,9 @@ package com.penny.quick.di;
 
 import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivityModel;
+import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordActivityModel;
+import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordMobRegActivity;
+import com.penny.quick.ui.activities.forgot_pwd_otp.ForgotPasswordOtpActivity;
 import com.penny.quick.ui.activities.login.SignInActivity;
 import com.penny.quick.ui.activities.login.SignInActivityModel;
 import com.penny.quick.ui.activities.main.MainActivity;
@@ -30,6 +33,12 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = SignInActivityModel.class)
   abstract SignInActivity getSignInActivity();
+
+  @ContributesAndroidInjector(modules = ForgotPasswordActivityModel.class)
+  abstract ForgotPasswordMobRegActivity getForgotPasswordMobRegActivity();
+
+  @ContributesAndroidInjector(modules = ForgotPasswordActivityModel.class)
+  abstract ForgotPasswordOtpActivity ForgotPasswordOtpActivity();
 
   @ContributesAndroidInjector(modules = DashBoardActivityModel.class)
   abstract DashBoardActivity getDashBoardActivity();

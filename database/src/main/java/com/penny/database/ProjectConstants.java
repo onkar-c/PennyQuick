@@ -14,5 +14,6 @@ public class ProjectConstants {
   public static final String AMOUNT_MESSAGE = "data_view_3_message";
   public static final String USER_NAME = "user name";
   public static final String PASSWORD = "password";
+  public static final String MOBILE_NUMBER = "mobile_number";
 
 }

@@ -32,8 +32,8 @@ public class SignInActivity extends BaseActivity {
   OnClickListener onSignClick = view -> {
     if (validateFields()) {
       if(NetworkUtils.isConnected(this)) {
-//        login();
-        loginSuccess();
+        login();
+//        loginSuccess();
       } else {
         showError(APITags.DEVICE_IS_OFFLINE);
       }

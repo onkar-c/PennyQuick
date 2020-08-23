@@ -116,6 +116,15 @@
       android:gravity="center"
       android:maxLength="1"/>
   </LinearLayout>
+  <TextView
+    android:id="@+id/tv_error"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distance_20"
+    android:layout_gravity="bottom|center_horizontal"
+    android:visibility="gone"
+    android:textColor="@color/red_text_color"
+    android:textSize="@dimen/textSize_12" />
 
   <LinearLayout
     android:layout_width="match_parent"
@@ -135,6 +144,7 @@
     android:background="@drawable/bottom_bar_background"/>
 
     <TextView
+      android:id="@+id/resend_otp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="@dimen/margin_15"

@@ -66,7 +66,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
     Set<String> tags = workInfo.getTags();
     if (!tags.isEmpty()) {
       for (String tag : tags) {
-        if (!tag.contains("com.rps.core")) {
+        if (!tag.contains("com.penny.core")) {
           return tag;
         }
       }
