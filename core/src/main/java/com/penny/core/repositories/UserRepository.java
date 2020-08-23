@@ -10,7 +10,9 @@ import com.penny.core.worker.ChangePasswordWorker;
 import com.penny.core.worker.LoginWorker;
 import com.penny.core.worker.RequestOTPWorker;
 import com.penny.core.worker.VerifyOTPWorker;
+import com.penny.database.AppDatabase;
 import com.penny.database.ProjectConstants;
+import com.penny.database.entities.User;
 
 public class UserRepository extends BaseRepository{
 
@@ -57,6 +59,18 @@ public class UserRepository extends BaseRepository{
         .addTag(APIEnums.API_CHANGE_PASSWORD.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
+  }
+
+
+  public void upsertUser(User user) {
+    if(AppDatabase.getInstance().getUserEntityDao().getUserByUserId(user.getUserId()).size() == 0) {
+      AppDatabase.getInstance().getUserEntityDao().insert(user);
+    }else {
+      AppDatabase.getInstance().getUserEntityDao().update(user);
+    }
+  }
+  public void deleteAllUsers() {
+    AppDatabase.getInstance().getUserEntityDao().deleteAll();
   }
 
 }

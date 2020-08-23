@@ -50,7 +50,6 @@ public abstract class AbstractBaseDao<T> {
    * Delete all rows from table
    */
   public int deleteAll() {
-    clearSequence();
     return doDeleteAll(new SimpleSQLiteQuery("DELETE from " + getTableName()));
   }
 

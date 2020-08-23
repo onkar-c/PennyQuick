@@ -4,11 +4,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import com.penny.database.dao.UserEntityDao;
-import com.penny.database.entities.UserEntity;
+import com.penny.database.entities.User;
 
 @Database(
     entities = {
-      UserEntity.class,
+        User.class,
     },
     version = 1,
     exportSchema = false)

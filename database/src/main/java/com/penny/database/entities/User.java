@@ -1,24 +1,46 @@
 package com.penny.database.entities;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "User")
 public class User {
 
+  @PrimaryKey
   @SerializedName("user_id")
+  @ColumnInfo(name = "userId")
+  @NonNull
   private String userId;
+
   @SerializedName("mobile_no")
+  @ColumnInfo(name = "mobileNumber")
   private String mobileNumber;
+
   @SerializedName("business_name")
+  @ColumnInfo(name = "businessName")
   private String businessName;
+
   @SerializedName("contact_person")
+  @ColumnInfo(name = "contactPerson")
   private String contactPerson;
+
   @SerializedName("usertype_name")
+  @ColumnInfo(name = "userTypeName")
   private String userTypeName;
+
   @SerializedName("img")
+  @ColumnInfo(name = "imageUrl")
   private String imageUrl;
+
   @SerializedName("authkey")
+  @ColumnInfo(name = "authKey")
   private String authKey;
+
   @SerializedName("total_balance")
+  @ColumnInfo(name = "totalBalance")
   private String totalBalance;
 
   public String getUserId() {

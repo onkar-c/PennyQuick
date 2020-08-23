@@ -7,6 +7,7 @@ import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
+import com.penny.core.repositories.UserRepository;
 import com.penny.database.CoreSharedHelper;
 import com.penny.database.ProjectConstants;
 
@@ -27,8 +28,9 @@ public class LoginWorker extends BaseWorker {
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
+    new UserRepository().deleteAllUsers();
     CoreSharedHelper.getInstance().saveToken(jsonResponse.getUser().getAuthKey());
-    CoreSharedHelper.getInstance().saveUser(jsonResponse.getUser());
+    new UserRepository().upsertUser(jsonResponse.getUser());
     return sendSuccess();
   }
 }
