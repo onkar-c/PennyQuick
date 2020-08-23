@@ -2,6 +2,8 @@ package com.penny.database;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import com.google.gson.Gson;
+import com.penny.database.entities.User;
 
 public class CoreSharedHelper {
 
@@ -77,6 +79,13 @@ public class CoreSharedHelper {
     return sharedPreferences.getString(Constants.JWT_TOKEN, null);
   }
 
+  public void saveUser(User user) {
+    savePref(Constants.USER, new Gson().toJson(user));
+  }
+
+  public User getUser() {
+    return new Gson().fromJson(sharedPreferences.getString(Constants.USER, ""), User.class);
+  }
 
   static class Constants {
 
@@ -86,6 +95,7 @@ public class CoreSharedHelper {
     static final String IS_FIRST_INSTALL = "is_first_install";
     static final String REMEMBER_PASSWORD = "remember_password";
     static final String IS_LOGIN = "is_login";
+    static final String USER = "user";
   }
 
 

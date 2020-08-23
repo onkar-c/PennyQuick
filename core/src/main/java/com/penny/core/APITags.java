@@ -8,6 +8,7 @@ public class APITags {
   public static final String API_ID = "worker_id";
   private static final String API_LOADING_MESSAGE = "Loading..";
   private static final String API_PLEASE_WAIT_MESSAGE = "Please Wait";
+  public static final String SUCCESS = "success";
 
   public static final int API_LOGIN = 1;
   private static final String API_LOGIN_TITLE = "Login";

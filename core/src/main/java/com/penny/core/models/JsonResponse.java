@@ -1,6 +1,7 @@
 package com.penny.core.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.penny.database.entities.User;
 import java.io.Serializable;
 
 public class JsonResponse implements Serializable {
@@ -11,10 +12,10 @@ public class JsonResponse implements Serializable {
 
   @SerializedName("status")
   private
-  boolean status;
+  String status;
 
-  @SerializedName("token")
-  private String jwtToken;
+  @SerializedName("user")
+  private User user;
 
 
   public String getMessage() {
@@ -25,19 +26,23 @@ public class JsonResponse implements Serializable {
     this.message = message;
   }
 
-  public boolean isStatus() {
+  public String isStatus() {
     return status;
   }
 
-  public void setStatus(boolean status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 
-  public String getJwtToken() {
-    return jwtToken;
+  public String getStatus() {
+    return status;
   }
 
-  public void setJwtToken(String jwtToken) {
-    this.jwtToken = jwtToken;
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
   }
 }

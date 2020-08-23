@@ -90,7 +90,7 @@ abstract class BaseWorker extends Worker {
 
   private Result onResponse(Response<JsonResponse> response) {
     if (response.isSuccessful() && response.body() != null) {
-      if (response.body().isStatus()) {
+      if (response.body().isStatus().equals(APITags.SUCCESS)) {
         return onSuccessResponse(response.body());
       } else {
         putErrorString(response.body().getMessage());

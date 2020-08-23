@@ -1,8 +1,12 @@
 package com.penny.core.models;
 
-public class LoginModel {
+import com.google.gson.annotations.SerializedName;
 
+public class LoginRequestModel {
+
+  @SerializedName("username")
   private String userName;
+  @SerializedName("password")
   private String password;
 
   public String getUserName() {
