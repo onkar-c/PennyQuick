@@ -26,9 +26,8 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
     requestOTP();
   };
   OnClickListener onDoneClick = view -> {
-    tv_error.setVisibility(View.GONE);
-    startActivity(new Intent(ForgotPasswordOtpActivity.this, ForgotPasswordNewPwdActivity.class));
-    finish();
+//    verifyOtp();
+    verifyOtpSuccess();
   };
 
   @Override
@@ -53,6 +52,27 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
             this::observeRequestOtpApi);
   }
 
+  private void verifyOtp() {
+    forgotPasswordViewModel.verifyOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER)).observe(this,
+        this::observeVerifyOtpApi);
+  }
+
+  private void observeVerifyOtpApi(WorkInfo workInfo) {
+    if (workInfo != null) {
+      State state = workInfo.getState();
+      apiResponseHandler(workInfo);
+      if (state == State.SUCCEEDED) {
+        verifyOtpSuccess();
+      }
+    }
+  }
+
+  private void verifyOtpSuccess() {
+    tv_error.setVisibility(View.GONE);
+    startActivity(new Intent(ForgotPasswordOtpActivity.this, ForgotPasswordNewPwdActivity.class));
+    finish();
+  }
+
   private void observeRequestOtpApi(WorkInfo workInfo) {
     if (workInfo != null) {
       State state = workInfo.getState();
@@ -64,8 +84,7 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
   }
 
   private void requestOtpSuccess() {
-    startActivity(new Intent(ForgotPasswordOtpActivity.this, ForgotPasswordOtpActivity.class));
-    finish();
+
   }
 
   @Override

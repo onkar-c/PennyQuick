@@ -17,10 +17,13 @@ public class APITags {
   private static final String API_REQUEST_OTP_TITTLE = "OTP";
   private static final String API_REQUEST_OTP_MESSAGE = "Requesting OTP..";
 
+  public static final int API_VERIFY_OTP = 3;
+  private static final String API_VERIFY_OTP_TITTLE = "OTP";
+  private static final String API_VERIFY_OTP_MESSAGE = "Verifying OTP..";
 
-  public static final int API_RESET_USER_PASSWORD = 3;
-  private static final String API_USER_PASSWORD_REST_TITTLE = "Changing User password";
-
+  public static final int API_CHANGE_PASSWORD = 3;
+  private static final String API_CHANGE_PASSWORD_TITTLE = "OTP";
+  private static final String API_CHANGE_PASSWORD_MESSAGE = "Verifying OTP..";
 
   public static final int API_CREATE_PLANT = 4;
   private static final String API_CREATE_PLANT_TITTLE = "Create Plant";
@@ -96,7 +99,8 @@ public class APITags {
   public enum APIEnums {
     API_LOGIN(API_LOGIN_TITLE, API_LOADING_MESSAGE),
     API_REQUEST_OTP(API_REQUEST_OTP_TITTLE, API_REQUEST_OTP_MESSAGE),
-    API_RESET_USER_PASSWORD(API_USER_PASSWORD_REST_TITTLE, API_PLEASE_WAIT_MESSAGE),
+    API_VERIFY_OTP(API_VERIFY_OTP_TITTLE, API_VERIFY_OTP_MESSAGE),
+    API_CHANGE_PASSWORD(API_CHANGE_PASSWORD_TITTLE, API_CHANGE_PASSWORD_MESSAGE),
     API_CREATE_PLANT(API_CREATE_PLANT_TITTLE, API_CREATE_PLANT_MESSAGE),
     API_CREATE_CUSTOMER(API_CREATE_CUSTOMER_TITTLE, API_CREATE_CUSTOMER_MESSAGE),
     API_UPDATE_CUSTOMER(API_UPDATE_CUSTOMER_TITTLE, API_UPDATE_CUSTOMER_MESSAGE),

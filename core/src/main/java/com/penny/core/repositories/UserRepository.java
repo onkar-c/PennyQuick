@@ -6,8 +6,10 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
+import com.penny.core.worker.ChangePasswordWorker;
 import com.penny.core.worker.LoginWorker;
 import com.penny.core.worker.RequestOTPWorker;
+import com.penny.core.worker.VerifyOTPWorker;
 import com.penny.database.ProjectConstants;
 
 public class UserRepository extends BaseRepository{
@@ -31,6 +33,28 @@ public class UserRepository extends BaseRepository{
         .setInputData(data.build())
         .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_REQUEST_OTP.name())
+        .build();
+    return getOneTimeRequestLiveDate(mRequest);
+  }
+
+  public LiveData<WorkInfo> getVerifyOTPWorkManager(String otp) {
+    Data.Builder data = getDataBuilderForApi(APITags.API_VERIFY_OTP);
+    data.putString(ProjectConstants.OTP, otp);
+    OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(VerifyOTPWorker.class)
+        .setInputData(data.build())
+        .setConstraints(getNetworkConstraint())
+        .addTag(APIEnums.API_VERIFY_OTP.name())
+        .build();
+    return getOneTimeRequestLiveDate(mRequest);
+  }
+
+  public LiveData<WorkInfo> getChangePasswordWorkManager(String password) {
+    Data.Builder data = getDataBuilderForApi(APITags.API_CHANGE_PASSWORD);
+    data.putString(ProjectConstants.PASSWORD, password);
+    OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(ChangePasswordWorker.class)
+        .setInputData(data.build())
+        .setConstraints(getNetworkConstraint())
+        .addTag(APIEnums.API_CHANGE_PASSWORD.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
   }

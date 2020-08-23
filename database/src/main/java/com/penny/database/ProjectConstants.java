@@ -15,5 +15,6 @@ public class ProjectConstants {
   public static final String USER_NAME = "user name";
   public static final String PASSWORD = "password";
   public static final String MOBILE_NUMBER = "mobile_number";
+  public static final String OTP = "otp";
 
 }

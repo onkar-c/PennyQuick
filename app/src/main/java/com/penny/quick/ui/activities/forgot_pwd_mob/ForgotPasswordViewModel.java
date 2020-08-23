@@ -12,4 +12,12 @@ public class ForgotPasswordViewModel extends ViewModel {
   public LiveData<WorkInfo> requestOTP(String mobileNumber) {
     return new UserRepository().getRequestOTPWorkManager(mobileNumber);
   }
+
+  public LiveData<WorkInfo> verifyOTP(String otp) {
+    return new UserRepository().getVerifyOTPWorkManager(otp);
+  }
+
+  public LiveData<WorkInfo> changePassword(String password) {
+    return new UserRepository().getChangePasswordWorkManager(password);
+  }
 }
