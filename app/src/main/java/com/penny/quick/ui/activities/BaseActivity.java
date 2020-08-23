@@ -4,6 +4,7 @@ import static com.penny.core.APITags.DEVICE_IS_OFFLINE;
 import static com.penny.core.APITags.ERROR_WHILE_CONNECTING_TO_SERVER;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
 import com.penny.core.util.NetworkUtil;
 import com.penny.quick.R;
+import com.penny.quick.ui.activities.login.SignInActivity;
 import com.penny.quick.utils.ProgressUtil;
 import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
@@ -142,6 +144,10 @@ public class BaseActivity extends DaggerAppCompatActivity {
 
   public void responseErrorHandling(int pApiId, String error) {
     toast(error);
+  }
+
+  protected void performLogout() {
+    startActivity(new Intent(this, SignInActivity.class));
   }
 
 }

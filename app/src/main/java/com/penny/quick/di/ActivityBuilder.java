@@ -1,5 +1,7 @@
 package com.penny.quick.di;
 
+import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
+import com.penny.quick.ui.activities.dash_board.DashBoardActivityModel;
 import com.penny.quick.ui.activities.login.SignInActivity;
 import com.penny.quick.ui.activities.login.SignInActivityModel;
 import com.penny.quick.ui.activities.main.MainActivity;
@@ -28,6 +30,9 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = SignInActivityModel.class)
   abstract SignInActivity getSignInActivity();
+
+  @ContributesAndroidInjector(modules = DashBoardActivityModel.class)
+  abstract DashBoardActivity getDashBoardActivity();
 
   @ContributesAndroidInjector(modules = ProviderListActivityModel.class)
   abstract ProvidersListActivity getProviderListActivity();

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+import com.penny.database.CoreSharedHelper;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
 import com.penny.quick.ui.activities.login.SignInActivity;
@@ -58,6 +59,7 @@ public class IntroScreen extends AppCompatActivity implements IntroScreenListene
 
   private void startSignInActivity() {
     startActivity(new Intent(this, SignInActivity.class));
+    CoreSharedHelper.getInstance().setIsFirstInstall(false);
     finish();
   }
 }

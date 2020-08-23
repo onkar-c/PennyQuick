@@ -7,13 +7,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
+import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivity;
@@ -21,9 +21,12 @@ import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
 import com.penny.quick.ui.activities.report.ReportActivity;
 import com.penny.quick.ui.activities.web_view.WebViewActivity;
+import javax.inject.Inject;
 
-public class DashBoardActivity extends AppCompatActivity {
+public class DashBoardActivity extends BaseActivity {
 
+  @Inject
+  DashBoardActivityViewModel dashBoardActivityViewModel;
   private DrawerLayout drawer;
 
   @Override
@@ -121,6 +124,9 @@ public class DashBoardActivity extends AppCompatActivity {
           break;
         case R.id.recentTransaction:
           intent = new Intent(DashBoardActivity.this, RecentRechargeActivity.class);
+          break;
+        case R.id.logout:
+          performLogout();
           break;
         default:
           Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();

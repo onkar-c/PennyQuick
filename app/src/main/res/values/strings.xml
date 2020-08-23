@@ -21,6 +21,8 @@
   <string name="success_login">Successfully Login</string>
   <string name="success_sub">Dear user your account has been successfully login</string>
   <string name="next">Next</string>
+  <string name="user_id_blank_error">User id cannot be blank</string>
+  <string name="password_blank_error">Password cannot be blank</string>
 
   <string name="dummy_user_name">Sanket Rangire</string>
   <string name="dummy_number">\u20B9 1,79,4000.00</string>

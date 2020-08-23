@@ -37,12 +37,13 @@ public class CoreSharedHelper {
     sharedPreferencesEditor.apply();
   }
 
-  public void savePlant(String name) {
-    savePref(Constants.PLANT_NAME, name);
+
+  public boolean isFirstInstall() {
+    return sharedPreferences.getBoolean(Constants.IS_FIRST_INSTALL, true);
   }
 
-  public String getCurrentPlant() {
-    return sharedPreferences.getString(Constants.PLANT_NAME, null);
+  public void setIsFirstInstall(boolean isFirstInstall) {
+    savePref(Constants.IS_FIRST_INSTALL, isFirstInstall);
   }
 
   public void saveBaseURL(String url) {
@@ -66,9 +67,8 @@ public class CoreSharedHelper {
 
     static final String JWT_TOKEN = "jwt token";
     static final String NAME = "pennyQuick";
-    static final String PLANT_SERVER_ID = "plant server id";
-    static final String PLANT_NAME = "plant name";
     static final String APP_BASE_URL = "base url";
+    static final String IS_FIRST_INSTALL = "is_first_install";
   }
 
 
