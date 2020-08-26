@@ -7,17 +7,19 @@ import com.penny.core.repositories.UserRepository;
 
 public class ForgotPasswordViewModel extends ViewModel {
 
-  ForgotPasswordViewModel(){super();}
+  ForgotPasswordViewModel() {
+    super();
+  }
 
   public LiveData<WorkInfo> requestOTP(String mobileNumber) {
     return new UserRepository().getRequestOTPWorkManager(mobileNumber);
   }
 
-  public LiveData<WorkInfo> verifyOTP(String otp) {
-    return new UserRepository().getVerifyOTPWorkManager(otp);
+  public LiveData<WorkInfo> verifyOTP(String mobileNumber, String otp) {
+    return new UserRepository().getVerifyOTPWorkManager(mobileNumber, otp);
   }
 
-  public LiveData<WorkInfo> changePassword(String password) {
-    return new UserRepository().getChangePasswordWorkManager(password);
+  public LiveData<WorkInfo> changePassword(String mobileNumber, String otp, String oldPassword, String password, boolean isForgotPassword) {
+    return new UserRepository().getChangePasswordWorkManager(mobileNumber, otp, oldPassword, password, isForgotPassword);
   }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.work.WorkInfo;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.penny.database.ProjectConstants;
@@ -63,6 +64,18 @@ public class DashBoardActivity extends BaseActivity {
     if (user != null) {
       walletBalance.setText(
           String.format("%s %s", getString(R.string.rupees_sign), user.getTotalBalance()));
+    }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    dashBoardActivityViewModel.getUserInfo().observe(this, this::userInfoObserver);
+  }
+
+  private void userInfoObserver(WorkInfo workInfo) {
+    if (workInfo != null) {
+      apiResponseHandler(workInfo);
     }
   }
 

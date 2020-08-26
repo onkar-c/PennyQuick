@@ -1,6 +1,5 @@
 package com.penny.quick.ui.activities.forgot_pwd_new_pwd;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,11 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.penny.database.ProjectConstants;
 import com.penny.database.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordViewModel;
-import com.penny.quick.ui.activities.login.SignInActivity;
 import com.penny.quick.utils.ToolBarUtils;
 import com.penny.quick.utils.UiUtils;
 import javax.inject.Inject;
@@ -26,8 +25,7 @@ public class ForgotPasswordNewPwdActivity extends BaseActivity {
   private TextView tv_error;
   OnClickListener onDoneClick = view -> {
     if (validateFields()) {
-//      changePassword();
-      changePasswordSuccess();
+      changePassword();
     }
   };
 
@@ -51,8 +49,11 @@ public class ForgotPasswordNewPwdActivity extends BaseActivity {
   }
 
   private void changePassword() {
-    forgotPasswordViewModel.changePassword(password.getText().toString()).observe(this,
-        this::observeChangePasswordApi);
+    forgotPasswordViewModel
+        .changePassword(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER),
+            getIntent().getStringExtra(ProjectConstants.OTP),null,  password.getText().toString(), true)
+        .observe(this,
+            this::observeChangePasswordApi);
   }
 
   private void observeChangePasswordApi(WorkInfo workInfo) {

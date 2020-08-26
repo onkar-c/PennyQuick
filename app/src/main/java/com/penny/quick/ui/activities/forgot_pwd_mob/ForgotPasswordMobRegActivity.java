@@ -26,8 +26,7 @@ public class ForgotPasswordMobRegActivity extends BaseActivity {
   private EditText mobileNumber;
   private OnClickListener onNextClick = view -> {
     if (validateFields()) {
-//      requestOTP();
-      requestOtpSuccess();
+      requestOTP();
     }
   };
 

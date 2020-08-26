@@ -34,7 +34,7 @@ public class ApiClient {
             Request.Builder requestBuilder = original.newBuilder();
             if (CoreSharedHelper.getInstance().getToken() != null) {
               requestBuilder.header(
-                  "Authorization", "Bearer " + CoreSharedHelper.getInstance().getToken());
+                  "Auth", CoreSharedHelper.getInstance().getToken());
             }
             requestBuilder.header("Accept", "application/json");
             Request request = requestBuilder.method(original.method(), original.body()).build();

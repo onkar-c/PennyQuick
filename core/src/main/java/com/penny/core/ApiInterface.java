@@ -1,9 +1,14 @@
 package com.penny.core;
 
+import com.penny.core.models.ChangePasswordRequestModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
+import com.penny.core.models.RequestOTPModel;
+import com.penny.core.models.VerifyOTPRequestModel;
+import com.penny.core.worker.RequestOTPWorker;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -12,15 +17,18 @@ public interface ApiInterface {
   @POST("user/login")
   Call<JsonResponse> login(@Body LoginRequestModel loginRequestModel);
 
-  @POST("user/requestOtp")
-  Call<JsonResponse> requestOtp(@Query("nob_number") String mobileNumber);
+  @POST("forgot_password/request_otp")
+  Call<JsonResponse> requestOtp(@Body RequestOTPModel requestOTPModel);
 
-  @POST("user/verifyOtp")
-  Call<JsonResponse> verifyOtp(@Query("nob_number") String otp);
+  @POST("forgot_password/verify_otp")
+  Call<JsonResponse> verifyOtp(@Body VerifyOTPRequestModel verifyOTPRequestModel);
 
-  @POST("user/changePassword")
-  Call<JsonResponse> changePassword(@Query("nob_number") String password);
+  @POST("forgot_password/updatePassword")
+  Call<JsonResponse> changePasswordWithOTP(@Body ChangePasswordRequestModel changePasswordRequestModel);
 
-  @POST("user/userInfo")
+  @POST("user/updatepassword")
+  Call<JsonResponse> changePassword(@Body ChangePasswordRequestModel changePasswordRequestModel);
+
+  @GET("user")
   Call<JsonResponse> getUserInfo();
 }

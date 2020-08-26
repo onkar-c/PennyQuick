@@ -6,6 +6,7 @@ import androidx.work.WorkerParameters;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
+import com.penny.core.models.VerifyOTPRequestModel;
 import com.penny.database.ProjectConstants;
 
 public class VerifyOTPWorker extends BaseWorker {
@@ -16,8 +17,11 @@ public class VerifyOTPWorker extends BaseWorker {
 
   @Override
   protected Result executeApi() {
+    VerifyOTPRequestModel verifyOTPRequestModel = new VerifyOTPRequestModel();
+    verifyOTPRequestModel.setMobile(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
+    verifyOTPRequestModel.setOtp(getInputData().getString(ProjectConstants.OTP));
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .verifyOtp(getInputData().getString(ProjectConstants.OTP)));
+        .verifyOtp(verifyOTPRequestModel));
   }
 
   @Override

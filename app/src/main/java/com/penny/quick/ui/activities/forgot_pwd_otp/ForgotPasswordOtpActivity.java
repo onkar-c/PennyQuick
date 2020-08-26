@@ -23,15 +23,12 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
   @Inject
   ForgotPasswordViewModel forgotPasswordViewModel;
   private TextView tv_error;
-  private EditText otp1TV,otp2TV,otp3TV,otp4TV;
   OnClickListener resendOTP = view -> {
     tv_error.setVisibility(View.GONE);
     requestOTP();
   };
-  OnClickListener onDoneClick = view -> {
-//    verifyOtp();
-    verifyOtpSuccess();
-  };
+  private EditText otp1TV, otp2TV, otp3TV, otp4TV;
+  OnClickListener onDoneClick = view -> verifyOtp();
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +57,12 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
   }
 
   private void verifyOtp() {
-    forgotPasswordViewModel.verifyOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER)).observe(this,
+    String otp =
+        otp1TV.getText().toString().trim() + otp2TV.getText().toString().trim() + otp3TV.getText()
+            .toString().trim()
+            + otp4TV.getText().toString().trim();
+    forgotPasswordViewModel
+        .verifyOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER), otp).observe(this,
         this::observeVerifyOtpApi);
   }
 
@@ -75,12 +77,21 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
   }
 
   private void verifyOtpSuccess() {
-    if(StringUtils.isOtpValid(otp1TV.getText().toString(),otp2TV.getText().toString(),
-        otp3TV.getText().toString(),otp4TV.getText().toString())) {
+    if (StringUtils.isOtpValid(otp1TV.getText().toString(), otp2TV.getText().toString(),
+        otp3TV.getText().toString(), otp4TV.getText().toString())) {
       tv_error.setVisibility(View.GONE);
-      startActivity(new Intent(ForgotPasswordOtpActivity.this, ForgotPasswordNewPwdActivity.class));
+      Intent intent = new Intent(ForgotPasswordOtpActivity.this,
+          ForgotPasswordNewPwdActivity.class);
+      String otp =
+          otp1TV.getText().toString().trim() + otp2TV.getText().toString().trim() + otp3TV.getText()
+              .toString().trim()
+              + otp4TV.getText().toString().trim();
+      intent.putExtra(ProjectConstants.OTP, otp);
+      intent.putExtra(ProjectConstants.MOBILE_NUMBER,
+          getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER));
+      startActivity(intent);
       finish();
-    }else{
+    } else {
       showError(getString(R.string.otp_error));
     }
   }

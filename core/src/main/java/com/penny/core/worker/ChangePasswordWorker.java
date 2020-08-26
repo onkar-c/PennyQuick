@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.work.WorkerParameters;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
+import com.penny.core.models.ChangePasswordRequestModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.database.ProjectConstants;
 
@@ -16,8 +17,19 @@ public class ChangePasswordWorker extends BaseWorker {
 
   @Override
   protected Result executeApi() {
-    return execute(ApiClient.getClient().create(ApiInterface.class)
-        .changePassword(getInputData().getString(ProjectConstants.PASSWORD)));
+    ChangePasswordRequestModel changePasswordRequestModel = new ChangePasswordRequestModel();
+    changePasswordRequestModel.setPassword(getInputData().getString(ProjectConstants.PASSWORD));
+    changePasswordRequestModel
+        .setOld_password(getInputData().getString(ProjectConstants.OLD_PASSWORD));
+    changePasswordRequestModel.setMobile(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
+    changePasswordRequestModel.setOtp(getInputData().getString(ProjectConstants.OTP));
+    if (getInputData().getBoolean(ProjectConstants.IS_FORGOT_PASSWORD, false)) {
+      return execute(ApiClient.getClient().create(ApiInterface.class)
+          .changePasswordWithOTP(changePasswordRequestModel));
+    } else {
+      return execute(ApiClient.getClient().create(ApiInterface.class)
+          .changePassword(changePasswordRequestModel));
+    }
   }
 
   @Override

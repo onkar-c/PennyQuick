@@ -15,7 +15,7 @@ import com.penny.database.AppDatabase;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.User;
 
-public class UserRepository extends BaseRepository{
+public class UserRepository extends BaseRepository {
 
   public LiveData<WorkInfo> getLoginWorkManager(String pUserName, String pPassword) {
     Data.Builder data = getDataBuilderForApi(APITags.API_LOGIN);
@@ -40,8 +40,9 @@ public class UserRepository extends BaseRepository{
     return getOneTimeRequestLiveDate(mRequest);
   }
 
-  public LiveData<WorkInfo> getVerifyOTPWorkManager(String otp) {
+  public LiveData<WorkInfo> getVerifyOTPWorkManager(String mobileNumber, String otp) {
     Data.Builder data = getDataBuilderForApi(APITags.API_VERIFY_OTP);
+    data.putString(ProjectConstants.MOBILE_NUMBER, mobileNumber);
     data.putString(ProjectConstants.OTP, otp);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(VerifyOTPWorker.class)
         .setInputData(data.build())
@@ -51,9 +52,14 @@ public class UserRepository extends BaseRepository{
     return getOneTimeRequestLiveDate(mRequest);
   }
 
-  public LiveData<WorkInfo> getChangePasswordWorkManager(String password) {
+  public LiveData<WorkInfo> getChangePasswordWorkManager(String mobileNumber, String otp,
+      String oldPassword, String password, boolean isForgotPassword) {
     Data.Builder data = getDataBuilderForApi(APITags.API_CHANGE_PASSWORD);
+    data.putString(ProjectConstants.MOBILE_NUMBER, mobileNumber);
+    data.putString(ProjectConstants.OTP, otp);
+    data.putString(ProjectConstants.OLD_PASSWORD, oldPassword);
     data.putString(ProjectConstants.PASSWORD, password);
+    data.putBoolean(ProjectConstants.IS_FORGOT_PASSWORD, isForgotPassword);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(ChangePasswordWorker.class)
         .setInputData(data.build())
         .setConstraints(getNetworkConstraint())
@@ -74,12 +80,14 @@ public class UserRepository extends BaseRepository{
 
 
   public void upsertUser(User user) {
-    if(AppDatabase.getInstance().getUserEntityDao().getUserByUserId(user.getUserId()).size() == 0) {
+    if (AppDatabase.getInstance().getUserEntityDao().getUserByUserId(user.getUserId()).size()
+        == 0) {
       AppDatabase.getInstance().getUserEntityDao().insert(user);
-    }else {
+    } else {
       AppDatabase.getInstance().getUserEntityDao().update(user);
     }
   }
+
   public void deleteAllUsers() {
     AppDatabase.getInstance().getUserEntityDao().deleteAll();
   }
