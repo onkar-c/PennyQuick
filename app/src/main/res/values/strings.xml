@@ -16,13 +16,14 @@
   <string name="password">Password</string>
   <string name="remember_password">Remember Password</string>
   <string name="forgot_pwd">Forgot Password</string>
-  <string name="power_by">Powered by: Bhawani Multi Services Pvt. Ltd.</string>
+  <string name="power_by">Powered by: \n Bhawani Multi Services Pvt. Ltd.</string>
   <string name="success">success</string>
   <string name="success_login">Successfully Login</string>
   <string name="success_sub">Dear user your account has been successfully login</string>
   <string name="next">Next</string>
   <string name="user_id_blank_error">User id cannot be blank</string>
   <string name="mobile_number_blank_error">Mobile Number cannot be blank</string>
+  <string name="mobile_number_incorrect">Incorrect Mobile Number</string>
   <string name="password_blank_error">Password cannot be blank</string>
   <string name="new_password_blank_error">New password cannot be blank</string>
   <string name="re_enter_password_blank_error">Please re-enter same password</string>
@@ -169,5 +170,7 @@
   <string name="recharge_detail_message_4">Please enter your Number</string>
   <string name="recharge_detail_message_5">Please enter Account Number</string>
   <string name="disclaimer">Disclaimer:We support most types of recharges, but please check with your operator before you proceed.</string>
+  <string name="sync">sync</string>
+  <string name="otp_error">Invalid OTP</string>
 
 </resources>

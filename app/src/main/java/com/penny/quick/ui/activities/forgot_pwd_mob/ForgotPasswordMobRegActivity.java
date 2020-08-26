@@ -76,8 +76,8 @@ public class ForgotPasswordMobRegActivity extends BaseActivity {
   }
 
   private boolean validateFields() {
-    if (StringUtils.isEmptyString(mobileNumber.getText())) {
-      showError(getString(R.string.mobile_number_blank_error));
+    if (!StringUtils.isMobileNoValid(mobileNumber.getText().toString())) {
+      showError(getString(R.string.mobile_number_incorrect));
       return false;
     }
 
@@ -86,6 +86,7 @@ public class ForgotPasswordMobRegActivity extends BaseActivity {
   }
 
   private void showError(String error) {
+    tv_error.invalidate();
     tv_error.setVisibility(View.VISIBLE);
     tv_error.setText(error);
   }
