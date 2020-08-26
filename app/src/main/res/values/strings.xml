@@ -172,5 +172,10 @@
   <string name="disclaimer">Disclaimer:We support most types of recharges, but please check with your operator before you proceed.</string>
   <string name="sync">sync</string>
   <string name="otp_error">Invalid OTP</string>
+  <string name="cnt_pwd_error">Please enter correct Current Password</string>
+  <string name="new_pwd_error">Please enter correct New Password</string>
+  <string name="re_pwd_error">Please enter correct Re-enter Password</string>
+  <string name="pwd_not_match_error">Password is not matching</string>
+  <string name="pwd_valid">Passwords are valid</string>
 
 </resources>

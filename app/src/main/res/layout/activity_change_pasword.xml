@@ -84,7 +84,6 @@
           android:textColor="@color/hint_color"
           android:textSize="@dimen/textSize_16" />
 
-
       </LinearLayout>
 
       <LinearLayout
@@ -121,9 +120,20 @@
           android:textColor="@color/hint_color"
           android:hint="@string/enter_pwd"
           android:textSize="@dimen/textSize_16" />
+
       </LinearLayout>
 
+      <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_20"
+        android:layout_gravity="bottom|center_horizontal"
+        android:textColor="@color/red_text_color"
+        android:textSize="@dimen/textSize_12" />
+
     </LinearLayout>
+
   <androidx.appcompat.widget.AppCompatButton
     android:id="@+id/bt_change_pwd"
     android:layout_width="match_parent"
