@@ -34,6 +34,15 @@ public class StringUtils {
     }
   }
 
+  public static boolean isPasswordValid(String pwdStr) {
+    if (isEmptyString(pwdStr)) {
+      return false;
+    } /*else if (pwdStr.length() != 10 ){
+      return  false;
+    } */
+    return true;
+  }
+
   public static boolean isOtpValid(String otp1,String otp2,String otp3,String otp4) {
     return !isEmptyString(otp1) && !isEmptyString(otp2) && !isEmptyString(otp3) && !isEmptyString(
         otp4);

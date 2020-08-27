@@ -2,6 +2,8 @@ package com.penny.quick.ui.activities.forgot_pwd_otp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -18,7 +20,7 @@ import com.penny.quick.ui.activities.forgot_pwd_new_pwd.ForgotPasswordNewPwdActi
 import com.penny.quick.utils.ToolBarUtils;
 import javax.inject.Inject;
 
-public class ForgotPasswordOtpActivity extends BaseActivity {
+public class ForgotPasswordOtpActivity extends BaseActivity implements TextWatcher {
 
   @Inject
   ForgotPasswordViewModel forgotPasswordViewModel;
@@ -45,9 +47,13 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
     findViewById(R.id.resend_otp).setOnClickListener(resendOTP);
     tv_error = findViewById(R.id.tv_error);
     otp1TV = findViewById(R.id.et_otp1);
+    otp1TV.addTextChangedListener(this);
     otp2TV = findViewById(R.id.et_otp2);
+    otp2TV.addTextChangedListener(this);
     otp3TV = findViewById(R.id.et_otp3);
+    otp3TV.addTextChangedListener(this);
     otp4TV = findViewById(R.id.et_otp4);
+    otp4TV.addTextChangedListener(this);
   }
 
   private void requestOTP() {
@@ -120,4 +126,38 @@ public class ForgotPasswordOtpActivity extends BaseActivity {
     tv_error.setText(error);
   }
 
+  @Override
+  public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+  }
+
+  @Override
+  public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+  }
+
+  @Override
+  public void afterTextChanged(Editable editable) {
+    if (editable.length() == 1) {
+      if (otp1TV.length() == 1) {
+        otp2TV.requestFocus();
+      }
+      if (otp2TV.length() == 1) {
+        otp3TV.requestFocus();
+      }
+      if (otp3TV.length() == 1) {
+        otp4TV.requestFocus();
+      }
+    } else if (editable.length() == 0) {
+      if (otp4TV.length() == 0) {
+        otp3TV.requestFocus();
+      }
+      if (otp3TV.length() == 0) {
+        otp2TV.requestFocus();
+      }
+      if (otp2TV.length() == 0) {
+        otp1TV.requestFocus();
+      }
+    }
+  }
 }
