@@ -3,14 +3,13 @@ package com.penny.core;
 import com.penny.core.models.ChangePasswordRequestModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
+import com.penny.core.models.MobileRechargeRequestModel;
 import com.penny.core.models.RequestOTPModel;
 import com.penny.core.models.VerifyOTPRequestModel;
-import com.penny.core.worker.RequestOTPWorker;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -24,11 +23,15 @@ public interface ApiInterface {
   Call<JsonResponse> verifyOtp(@Body VerifyOTPRequestModel verifyOTPRequestModel);
 
   @POST("forgot_password/updatePassword")
-  Call<JsonResponse> changePasswordWithOTP(@Body ChangePasswordRequestModel changePasswordRequestModel);
+  Call<JsonResponse> changePasswordWithOTP(
+      @Body ChangePasswordRequestModel changePasswordRequestModel);
 
   @POST("user/updatepassword")
   Call<JsonResponse> changePassword(@Body ChangePasswordRequestModel changePasswordRequestModel);
 
   @GET("user")
   Call<JsonResponse> getUserInfo();
+
+  @POST("mobileRecharge")
+  Call<JsonResponse> mobileRecharge(@Body MobileRechargeRequestModel mobileRechargeRequestModel);
 }

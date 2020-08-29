@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.penny.database.StringUtils;
@@ -21,11 +20,11 @@ public class ChangePasswordActivity extends BaseActivity {
   @Inject
   ForgotPasswordViewModel forgotPasswordViewModel;
 
-  private EditText cntPwdET,newPwdET,rePwdET;
+  private EditText cntPwdET, newPwdET, rePwdET;
   private TextView errorTV;
   private OnClickListener onChangePwdClick = view -> {
-    if(validatePasswords()){
-      Toast.makeText(ChangePasswordActivity.this, getString(R.string.pwd_valid), Toast.LENGTH_SHORT).show();
+    if (validatePasswords()) {
+      changePassword(cntPwdET.getText().toString(), newPwdET.getText().toString());
     }
   };
 
@@ -38,7 +37,7 @@ public class ChangePasswordActivity extends BaseActivity {
     initUi();
   }
 
-  private void initUi(){
+  private void initUi() {
     cntPwdET = findViewById(R.id.et_current_password);
     UiUtils.setDisplayPasswordListener(cntPwdET);
     newPwdET = findViewById(R.id.et_new_password);
@@ -49,23 +48,24 @@ public class ChangePasswordActivity extends BaseActivity {
     findViewById(R.id.bt_change_pwd).setOnClickListener(onChangePwdClick);
   }
 
-  private boolean validatePasswords(){
-    if(!StringUtils.isPasswordValid(cntPwdET.getText().toString())){
+  private boolean validatePasswords() {
+    if (!StringUtils.isPasswordValid(cntPwdET.getText().toString())) {
       showError(getString(R.string.cnt_pwd_error));
       return false;
-    }else if(!StringUtils.isPasswordValid(newPwdET.getText().toString())){
+    } else if (!StringUtils.isPasswordValid(newPwdET.getText().toString())) {
       showError(getString(R.string.new_pwd_error));
       return false;
-    }else if(!StringUtils.isPasswordValid(rePwdET.getText().toString())){
+    } else if (!StringUtils.isPasswordValid(rePwdET.getText().toString())) {
       showError(getString(R.string.re_pwd_error));
       return false;
-    }else if(!newPwdET.getText().toString().equals(rePwdET.getText().toString())){
+    } else if (!newPwdET.getText().toString().equals(rePwdET.getText().toString())) {
       showError(getString(R.string.pwd_not_match_error));
       return false;
     }
     errorTV.setVisibility(View.GONE);
     return true;
   }
+
   private void showError(String error) {
     errorTV.setVisibility(View.VISIBLE);
     errorTV.setText(error);

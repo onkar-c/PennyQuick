@@ -7,7 +7,7 @@ import dagger.Provides;
 public class MobileRechargeActivityModel {
 
   @Provides
-  MobileRechargeActivityViewModel MobileRechargeActivityModel() {
+  MobileRechargeActivityViewModel getMobileRechargeActivityModel() {
     return new MobileRechargeActivityViewModel();
   }
 }

@@ -6,6 +6,8 @@ import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
+import androidx.work.WorkInfo;
+import androidx.work.WorkInfo.State;
 import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -15,10 +17,13 @@ import com.penny.quick.ui.adapters.BottomSheetAdapter;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
 import com.penny.quick.utils.OperatorBottomSheetDialog;
 import com.penny.quick.utils.StateBottomSheetDialog;
+import javax.inject.Inject;
 
 public class MobileRechargeActivity extends BaseActivity implements
     BottomSheetListItemClickListener {
 
+  @Inject
+  MobileRechargeActivityViewModel mobileRechargeActivityViewModel;
   TextView tvOperator, tvState;
   private RadioButton rbPrepaid, rbPostpaid;
   private OperatorBottomSheetDialog operatorSheetDialog;
@@ -34,8 +39,10 @@ public class MobileRechargeActivity extends BaseActivity implements
     rbPrepaid = findViewById(R.id.rb_prepaid);
     rbPostpaid = findViewById(R.id.rb_postpaid);
     findViewById(R.id.bt_recharge)
-        .setOnClickListener(view -> startActivity(new Intent(MobileRechargeActivity.this,
-            TransactionStatusActivity.class)));
+        .setOnClickListener(view -> {
+//          recharge();
+          rechargeApiSuccess();
+        });
 
     rbPrepaid.setOnCheckedChangeListener((compoundButton, isChecked) -> {
       if (isChecked) {
@@ -67,6 +74,25 @@ public class MobileRechargeActivity extends BaseActivity implements
     findViewById(R.id.bt_view_plans)
         .setOnClickListener(view -> startActivity(new Intent(MobileRechargeActivity.this,
             ViewPlansActivity.class)));
+  }
+
+  private void recharge() {
+    mobileRechargeActivityViewModel.recharge("", 0).observe(this, this::mobileRechargeApiObserver);
+  }
+
+  private void mobileRechargeApiObserver(WorkInfo workInfo) {
+    if (workInfo != null) {
+      State state = workInfo.getState();
+      apiResponseHandler(workInfo);
+      if (state == State.SUCCEEDED) {
+        rechargeApiSuccess();
+      }
+    }
+  }
+
+  private void rechargeApiSuccess() {
+    startActivity(new Intent(MobileRechargeActivity.this,
+        TransactionStatusActivity.class));
   }
 
   @Override
