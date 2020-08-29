@@ -29,4 +29,5 @@
   <color name="bottom_txt_bg">#BDBDBD</color>
   <color name="text_color_7">#646464</color>
   <color name="checkbox_uncheck">#707070</color>
+  <color name="view_plans_bg">#F8F7FB</color>
 </resources>

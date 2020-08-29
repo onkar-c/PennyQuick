@@ -2,14 +2,22 @@ package com.penny.quick.ui.activities.mobile_recharge;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.penny.database.ProjectConstants;
+import com.penny.database.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetListObject;
+import com.penny.quick.models.PlanModel;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
 import com.penny.quick.ui.activities.view_plans.ViewPlansActivity;
@@ -24,40 +32,68 @@ public class MobileRechargeActivity extends BaseActivity implements
 
   @Inject
   MobileRechargeActivityViewModel mobileRechargeActivityViewModel;
-  TextView tvOperator, tvState;
+  private TextView tvOperator, tvState,tvError;
   private RadioButton rbPrepaid, rbPostpaid;
+  private LinearLayout llPrepaid,llPostpaid,llPlanDetails;
   private OperatorBottomSheetDialog operatorSheetDialog;
   private StateBottomSheetDialog stateBottomSheetDialog;
+  private EditText etMobileNo,etAmnt;
+  private static int VIEW_PLANS_REQ_CODE = 1;
+  private TextView tvTalktime,tvData,tvValidity,tvValidityDetails;
+  private PlanModel selectedPlan;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_mobile_recharge);
     setUpToolBar();
-    setTitle("Mobile Recharge");
+    initUI();
+  }
 
+  private void initUI(){
+    setTitle("Mobile Recharge");
     rbPrepaid = findViewById(R.id.rb_prepaid);
     rbPostpaid = findViewById(R.id.rb_postpaid);
+    llPrepaid = findViewById(R.id.ll_prepaid);
+    llPrepaid.setSelected(false);
+    llPostpaid = findViewById(R.id.ll_postpaid);
+    llPostpaid.setSelected(false);
+    llPlanDetails = findViewById(R.id.ll_plan_details);
+    tvOperator = findViewById(R.id.et_operator);
+    tvState = findViewById(R.id.et_state);
+    tvError = findViewById(R.id.tv_error);
+    etMobileNo = findViewById(R.id.et_mob_no);
+    etAmnt = findViewById(R.id.et_amnt);
+
+    tvTalktime = findViewById(R.id.tv_talkime);
+    tvData = findViewById(R.id.tv_data);
+    tvValidity = findViewById(R.id.tv_validity);
+    tvValidityDetails = findViewById(R.id.tv_talktime_details);
+
+    findViewById(R.id.bt_view_plans)
+        .setOnClickListener(view -> startActivityForResult(new Intent(MobileRechargeActivity.this,
+            ViewPlansActivity.class),VIEW_PLANS_REQ_CODE));
+
     findViewById(R.id.bt_recharge)
         .setOnClickListener(view -> {
 //          recharge();
-          rechargeApiSuccess();
+          if(validateFields()) {
+            rechargeApiSuccess();
+          }
         });
 
-    rbPrepaid.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-      if (isChecked) {
-        rbPostpaid.setChecked(false);
-      }
-    });
+    rbPrepaid.setOnCheckedChangeListener((compoundButton, isChecked) -> setPrepaidSelected(isChecked));
 
-    rbPostpaid.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-      if (isChecked) {
-        rbPrepaid.setChecked(false);
-      }
-    });
+    rbPostpaid.setOnCheckedChangeListener((compoundButton, isChecked) -> setPostpaidSelected(isChecked));
 
-    tvOperator = findViewById(R.id.et_operator);
-    tvState = findViewById(R.id.et_state);
+    llPrepaid.setOnClickListener(view -> {
+      rbPrepaid.setChecked(true);
+      setPrepaidSelected(rbPrepaid.isChecked());
+    });
+    llPostpaid.setOnClickListener(view -> {
+      rbPostpaid.setChecked(true);
+      setPostpaidSelected(rbPostpaid.isChecked());
+    });
 
     tvOperator.setOnClickListener(
         view -> {
@@ -70,10 +106,69 @@ public class MobileRechargeActivity extends BaseActivity implements
           stateBottomSheetDialog = new StateBottomSheetDialog();
           stateBottomSheetDialog.show(getSupportFragmentManager(), BottomSheetAdapter.STATE_TYPE);
         });
+    etAmnt.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+      }
 
-    findViewById(R.id.bt_view_plans)
-        .setOnClickListener(view -> startActivity(new Intent(MobileRechargeActivity.this,
-            ViewPlansActivity.class)));
+      @Override
+      public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        if(!String.valueOf(selectedPlan.getAmount()).equalsIgnoreCase(String.valueOf(charSequence))){
+          llPlanDetails.setVisibility(View.GONE);
+        }
+      }
+
+      @Override
+      public void afterTextChanged(Editable editable) {
+      }
+    });
+  }
+
+  private boolean validateFields() {
+    if(!rbPostpaid.isChecked() && !rbPrepaid.isChecked()){
+      showError(getString(R.string.recharge_type_error));
+      return false;
+    }else if(!StringUtils.isMobileNoValid(etMobileNo.getText().toString())){
+      showError(getString(R.string.mobile_number_incorrect));
+      return false;
+    }else if(StringUtils.isEmptyString(tvOperator.getText().toString())){
+      showError(getString(R.string.operator_error));
+      return false;
+    }else if(StringUtils.isEmptyString(tvState.getText().toString())){
+      showError(getString(R.string.state_error));
+      return false;
+    }else if(StringUtils.isEmptyString(etAmnt.getText().toString())){
+      showError(getString(R.string.amnt_error));
+      return false;
+    }
+    tvError.setVisibility(View.GONE);
+    return true;
+  }
+
+  private void showError(String error) {
+    tvError.invalidate();
+    tvError.setVisibility(View.VISIBLE);
+    tvError.setText(error);
+  }
+
+  private void setPrepaidSelected(boolean isChecked){
+    if (isChecked) {
+      rbPostpaid.setChecked(false);
+      llPostpaid.setSelected(false);
+      llPrepaid.setSelected(true);
+    }else{
+      llPrepaid.setSelected(false);
+    }
+  }
+
+  private void setPostpaidSelected(boolean isChecked){
+    if (isChecked) {
+      rbPrepaid.setChecked(false);
+      llPrepaid.setSelected(false);
+      llPostpaid.setSelected(true);
+    }else{
+      llPostpaid.setSelected(false);
+    }
   }
 
   private void recharge() {
@@ -109,5 +204,26 @@ public class MobileRechargeActivity extends BaseActivity implements
       tvState.setText(obj.getName());
     }
     Log.e("Operator Selected ", "Id" + obj.getId());
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if(requestCode == VIEW_PLANS_REQ_CODE){
+      if(resultCode == RESULT_OK){
+        if (data != null) {
+          selectedPlan= data.getParcelableExtra(ProjectConstants.PLAN);
+          if(selectedPlan!=null) {
+            llPlanDetails.setVisibility(View.VISIBLE);
+            etAmnt.setText(String.valueOf(selectedPlan.getAmount()));
+            tvTalktime.setText(String.format("$ %s", selectedPlan.getTalktime()));
+            tvValidity.setText(selectedPlan.getValidity());
+            tvData.setText(selectedPlan.getData());
+            tvValidityDetails.setText(
+                String.format("%s%s", getString(R.string.talktime_of), selectedPlan.getAmount()));
+          }
+        }
+      }
+    }
   }
 }

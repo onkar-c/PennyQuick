@@ -20,4 +20,5 @@ public class ProjectConstants {
   public static final String OTP = "otp";
   public static final String RECHARGE_AMOUNT = "recharge_amount";
   public static final String MOBILE_REGEX = "^[+]?[0-9]{10,13}$";
+  public static final String PLAN = "plan";
 }

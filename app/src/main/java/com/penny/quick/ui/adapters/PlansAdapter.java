@@ -10,16 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.penny.quick.R;
 import com.penny.quick.models.PlanModel;
+import com.penny.quick.ui.activities.view_plans.ViewPlansActivity;
 import java.util.List;
 
 public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder> {
 
   private List<PlanModel> planModels;
   private Context context;
+  private PlanClickListener planClickListener;
 
   public PlansAdapter(List<PlanModel> planModels, Context context) {
     this.planModels = planModels;
     this.context = context;
+    this.planClickListener = (ViewPlansActivity) context;
   }
 
   @NonNull
@@ -33,6 +36,7 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
   @Override
   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
     PlanModel plan = planModels.get(position);
+    holder.bindClickListener(plan,planClickListener);
     holder.talktime.setText(String
         .format("%s%s", context.getString(R.string.rupees_sign), plan.getTalktime()));
     holder.data.setText(plan.getData());
@@ -63,5 +67,13 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
       message2 = itemView.findViewById(R.id.message_2);
       message3 = itemView.findViewById(R.id.message_3);
     }
+
+    public void bindClickListener(PlanModel plan,PlanClickListener planClickListener) {
+      itemView.setOnClickListener(view -> planClickListener.onPlanClick(plan));
+    }
+  }
+
+  public interface PlanClickListener {
+     void onPlanClick(PlanModel plan);
   }
 }

@@ -163,6 +163,8 @@
   <string name="solve">Solve</string>
   <string name="colon">:</string>
   <string name="dummy_data_string">3GB/day + 6GB</string>
+  <string name="talktime_of">Talktime of Rs:</string>
+  <string name="talktime">Talktime:</string>
 
   <string name="recharge_detail_message_1">Customer ID starts with 3 and is 10 digit long. To locate it, press the MENU button on remote.</string>
   <string name="recharge_detail_message_2">To know your monthly rental and best offer, give miss call on 81302–81302 from your registered mobile number.</string>
@@ -177,5 +179,9 @@
   <string name="re_pwd_error">Please enter correct Re-enter Password</string>
   <string name="pwd_not_match_error">Password is not matching</string>
   <string name="pwd_valid">Passwords are valid</string>
+  <string name="recharge_type_error">Please select recharge type</string>
+  <string name="operator_error">Please select Operator</string>
+  <string name="state_error">Please select State</string>
+  <string name="amnt_error">Please select Plan or enter amount</string>
 
 </resources>

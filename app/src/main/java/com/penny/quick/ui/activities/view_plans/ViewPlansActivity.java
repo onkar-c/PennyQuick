@@ -1,20 +1,24 @@
 package com.penny.quick.ui.activities.view_plans;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.adapters.TabLayoutViewPager;
 import com.penny.quick.models.PlanModel;
 import com.penny.quick.models.TabModel;
 import com.penny.quick.ui.activities.BaseActivity;
+import com.penny.quick.ui.adapters.PlansAdapter.PlanClickListener;
 import com.penny.quick.utils.ToolBarUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPlansActivity extends BaseActivity {
+public class ViewPlansActivity extends BaseActivity implements PlanClickListener {
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,5 +79,14 @@ public class ViewPlansActivity extends BaseActivity {
       planModels.add(planModel);
     }
     return planModels;
+  }
+
+  @Override
+  public void onPlanClick(PlanModel plan) {
+    Log.e("Plan",plan.getMessage1());
+    Intent intent = new Intent();
+    intent.putExtra(ProjectConstants.PLAN,plan);
+    setResult(RESULT_OK,intent);
+    finish();
   }
 }
