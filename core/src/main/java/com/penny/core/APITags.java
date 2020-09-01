@@ -36,14 +36,14 @@ public class APITags {
   private static final String API_MOBILE_RECHARGE_MESSAGE = "Please wait";
 
 
-  public static final int API_UPDATE_CUSTOMER = 6;
-  private static final String API_UPDATE_CUSTOMER_TITTLE = "Update customer";
-  private static final String API_UPDATE_CUSTOMER_MESSAGE = "Updating Customer details";
+  public static final int API_RECHARGE_STATUS = 7;
+  private static final String API_RECHARGE_STATUS_TITTLE = "Update customer";
+  private static final String API_RECHARGE_STATUS_MESSAGE = "Updating Customer details";
 
 
-  public static final int API_PULL_CUSTOMER_DATA = 7;
-  private static final String API_PULL_CUSTOMER_DATA_TITTLE = "Pull Setup";
-  private static final String API_PULL_CUSTOMER_DATA_MESSAGE = "Pulling customer data from Server.";
+  public static final int API_RECENT_RECHARGES = 8;
+  private static final String API_RECENT_RECHARGES_TITTLE = "Fetching details";
+  private static final String API_RECENT_RECHARGES_MESSAGE = "Please wait.";
 
 
   public static final int API_PULL_PLANTS = 8;
@@ -95,6 +95,7 @@ public class APITags {
   public static final String ERROR_WHILE_CONNECTING_TO_SERVER = "Error while connecting to server";
   public static final String DATA_CHANGE_MESSAGE = "change_message";
   public static final String DEVICE_IS_OFFLINE = "Device is offline";
+  public static final String INVALID_AUTH = "Invalid Auth";
 
 
   public enum APIEnums {
@@ -104,8 +105,8 @@ public class APITags {
     API_CHANGE_PASSWORD(API_CHANGE_PASSWORD_TITTLE, API_CHANGE_PASSWORD_MESSAGE),
     API_USER_INFO(API_USER_INFO_TITTLE, API_USER_INFO_MESSAGE),
     API_MOBILE_RECHARGE(API_MOBILE_RECHARGE_TITTLE, API_MOBILE_RECHARGE_MESSAGE),
-    API_UPDATE_CUSTOMER(API_UPDATE_CUSTOMER_TITTLE, API_UPDATE_CUSTOMER_MESSAGE),
-    API_PULL_CUSTOMER_DATA(API_PULL_CUSTOMER_DATA_TITTLE, API_PULL_CUSTOMER_DATA_MESSAGE),
+    API_RECHARGE_STATUS(API_RECHARGE_STATUS_TITTLE, API_RECHARGE_STATUS_MESSAGE),
+    API_RECENT_RECHARGES(API_RECENT_RECHARGES_TITTLE, API_RECENT_RECHARGES_MESSAGE),
     API_PULL_PLANTS(API_PULL_PLANTS_TITTLE, API_PULL_PLANTS_MESSAGE),
     API_USER_STATE_DE_ACTIVE(API_USER_STATE_TITTLE, API_DEACTIVATE_USER_MESSAGE),
     API_USER_STATE_ACTIVE(API_USER_STATE_TITTLE, API_ACTIVATE_USER_MESSAGE),

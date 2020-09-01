@@ -17,6 +17,7 @@ public class ProjectConstants {
   public static final String PASSWORD = "password";
   public static final String IS_FORGOT_PASSWORD = "is_forgot_password";
   public static final String MOBILE_NUMBER = "mobile_number";
+  public static final String TRANSACTION_ID = "transaction id";
   public static final String OTP = "otp";
   public static final String RECHARGE_AMOUNT = "recharge_amount";
   public static final String MOBILE_REGEX = "^[+]?[0-9]{10,13}$";

@@ -2,20 +2,24 @@ package com.penny.quick.ui.activities.recent_recharge;
 
 import android.os.Bundle;
 import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.penny.database.dao.RecentRecharge;
 import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetCheckBox;
+import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog.BottomSheetListener;
 import com.penny.quick.ui.adapters.RecentRechargeAdapter;
 import com.penny.quick.utils.ToolBarUtils;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 
-public class RecentRechargeActivity extends AppCompatActivity implements BottomSheetListener {
+public class RecentRechargeActivity extends BaseActivity implements BottomSheetListener {
+
+  @Inject
+  RecentRechargesActivityViewModel recentRechargesActivityViewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

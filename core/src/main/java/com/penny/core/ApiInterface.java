@@ -4,6 +4,8 @@ import com.penny.core.models.ChangePasswordRequestModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
 import com.penny.core.models.MobileRechargeRequestModel;
+import com.penny.core.models.RecentRechargesRequestModel;
+import com.penny.core.models.RechargeStatusRequestModel;
 import com.penny.core.models.RequestOTPModel;
 import com.penny.core.models.VerifyOTPRequestModel;
 import retrofit2.Call;
@@ -34,4 +36,10 @@ public interface ApiInterface {
 
   @POST("mobileRecharge")
   Call<JsonResponse> mobileRecharge(@Body MobileRechargeRequestModel mobileRechargeRequestModel);
+
+  @POST("rechargeStatus")
+  Call<JsonResponse> rechargeStatus(@Body RechargeStatusRequestModel rechargeStatusRequestModel);
+
+  @POST("rechargeStatus")
+  Call<JsonResponse> recentRecharges(@Body RecentRechargesRequestModel recentRechargesRequestModel);
 }

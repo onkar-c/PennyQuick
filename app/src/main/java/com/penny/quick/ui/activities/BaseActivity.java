@@ -15,11 +15,10 @@ import androidx.work.WorkInfo.State;
 import androidx.work.WorkManager;
 import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
-import com.penny.core.repositories.UserRepository;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.CoreSharedHelper;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.login.SignInActivity;
-import com.penny.core.util.NetworkUtils;
 import com.penny.quick.utils.ProgressUtil;
 import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
@@ -108,11 +107,16 @@ public class BaseActivity extends DaggerAppCompatActivity {
       hideApiLoadingDialog();
       if (error != null) {
         error = handleOfflineException(error);
-        int apiId = workInfo.getOutputData().getInt(APITags.API_ID, 0);
-        if (apiId == 0) {
+        if (error.equals(APITags.INVALID_AUTH)) {
           toast(error);
+          performLogout();
         } else {
-          responseErrorHandling(apiId, error);
+          int apiId = workInfo.getOutputData().getInt(APITags.API_ID, 0);
+          if (apiId == 0) {
+            toast(error);
+          } else {
+            responseErrorHandling(apiId, error);
+          }
         }
       }
     } else if (state == State.RUNNING) {

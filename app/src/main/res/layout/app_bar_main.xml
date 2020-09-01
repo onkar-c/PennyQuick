@@ -112,6 +112,7 @@
       android:orientation="vertical"
       android:layout_centerVertical="true"
       android:layout_toEndOf="@+id/walletIcon"
+      android:layout_toStartOf="@+id/iv_sync"
       android:layout_marginTop="@dimen/distance_10"
       android:layout_marginEnd="@dimen/distance_15"
       android:layout_marginStart="@dimen/distance_20">
