@@ -11,7 +11,9 @@ public class MobileRechargeActivityViewModel extends ViewModel {
     super();
   }
 
-  LiveData<WorkInfo> recharge(String mobile, float amount) {
-    return new RechargeRepository().getMobileRechargeWorkManager(mobile, amount);
+  LiveData<WorkInfo> recharge(String mobile, float amount, String operator, String circle,
+      String service) {
+    return new RechargeRepository()
+        .getMobileRechargeWorkManager(mobile, amount, operator, circle, service);
   }
 }

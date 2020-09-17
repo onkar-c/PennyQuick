@@ -30,16 +30,16 @@ import javax.inject.Inject;
 public class MobileRechargeActivity extends BaseActivity implements
     BottomSheetListItemClickListener {
 
+  private static int VIEW_PLANS_REQ_CODE = 1;
   @Inject
   MobileRechargeActivityViewModel mobileRechargeActivityViewModel;
-  private TextView tvOperator, tvState,tvError;
+  private TextView tvOperator, tvState, tvError;
   private RadioButton rbPrepaid, rbPostpaid;
-  private LinearLayout llPrepaid,llPostpaid,llPlanDetails;
+  private LinearLayout llPrepaid, llPostpaid, llPlanDetails;
   private OperatorBottomSheetDialog operatorSheetDialog;
   private StateBottomSheetDialog stateBottomSheetDialog;
-  private EditText etMobileNo,etAmnt;
-  private static int VIEW_PLANS_REQ_CODE = 1;
-  private TextView tvTalktime,tvData,tvValidity,tvValidityDetails;
+  private EditText etMobileNo, etAmnt;
+  private TextView tvTalktime, tvData, tvValidity, tvValidityDetails;
   private PlanModel selectedPlan;
 
   @Override
@@ -50,7 +50,7 @@ public class MobileRechargeActivity extends BaseActivity implements
     initUI();
   }
 
-  private void initUI(){
+  private void initUI() {
     setTitle("Mobile Recharge");
     rbPrepaid = findViewById(R.id.rb_prepaid);
     rbPostpaid = findViewById(R.id.rb_postpaid);
@@ -72,19 +72,20 @@ public class MobileRechargeActivity extends BaseActivity implements
 
     findViewById(R.id.bt_view_plans)
         .setOnClickListener(view -> startActivityForResult(new Intent(MobileRechargeActivity.this,
-            ViewPlansActivity.class),VIEW_PLANS_REQ_CODE));
+            ViewPlansActivity.class), VIEW_PLANS_REQ_CODE));
 
     findViewById(R.id.bt_recharge)
         .setOnClickListener(view -> {
-//          recharge();
-          if(validateFields()) {
-            rechargeApiSuccess();
+          if (validateFields()) {
+            recharge();
           }
         });
 
-    rbPrepaid.setOnCheckedChangeListener((compoundButton, isChecked) -> setPrepaidSelected(isChecked));
+    rbPrepaid
+        .setOnCheckedChangeListener((compoundButton, isChecked) -> setPrepaidSelected(isChecked));
 
-    rbPostpaid.setOnCheckedChangeListener((compoundButton, isChecked) -> setPostpaidSelected(isChecked));
+    rbPostpaid
+        .setOnCheckedChangeListener((compoundButton, isChecked) -> setPostpaidSelected(isChecked));
 
     llPrepaid.setOnClickListener(view -> {
       rbPrepaid.setChecked(true);
@@ -113,7 +114,8 @@ public class MobileRechargeActivity extends BaseActivity implements
 
       @Override
       public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        if(!String.valueOf(selectedPlan.getAmount()).equalsIgnoreCase(String.valueOf(charSequence))){
+        if (!String.valueOf(selectedPlan.getAmount())
+            .equalsIgnoreCase(String.valueOf(charSequence))) {
           llPlanDetails.setVisibility(View.GONE);
         }
       }
@@ -125,19 +127,19 @@ public class MobileRechargeActivity extends BaseActivity implements
   }
 
   private boolean validateFields() {
-    if(!rbPostpaid.isChecked() && !rbPrepaid.isChecked()){
+    if (!rbPostpaid.isChecked() && !rbPrepaid.isChecked()) {
       showError(getString(R.string.recharge_type_error));
       return false;
-    }else if(!StringUtils.isMobileNoValid(etMobileNo.getText().toString())){
+    } else if (!StringUtils.isMobileNoValid(etMobileNo.getText().toString())) {
       showError(getString(R.string.mobile_number_incorrect));
       return false;
-    }else if(StringUtils.isEmptyString(tvOperator.getText().toString())){
+    } else if (StringUtils.isEmptyString(tvOperator.getText().toString())) {
       showError(getString(R.string.operator_error));
       return false;
-    }else if(StringUtils.isEmptyString(tvState.getText().toString())){
+    } else if (StringUtils.isEmptyString(tvState.getText().toString())) {
       showError(getString(R.string.state_error));
       return false;
-    }else if(StringUtils.isEmptyString(etAmnt.getText().toString())){
+    } else if (StringUtils.isEmptyString(etAmnt.getText().toString())) {
       showError(getString(R.string.amnt_error));
       return false;
     }
@@ -151,28 +153,32 @@ public class MobileRechargeActivity extends BaseActivity implements
     tvError.setText(error);
   }
 
-  private void setPrepaidSelected(boolean isChecked){
+  private void setPrepaidSelected(boolean isChecked) {
     if (isChecked) {
       rbPostpaid.setChecked(false);
       llPostpaid.setSelected(false);
       llPrepaid.setSelected(true);
-    }else{
+    } else {
       llPrepaid.setSelected(false);
     }
   }
 
-  private void setPostpaidSelected(boolean isChecked){
+  private void setPostpaidSelected(boolean isChecked) {
     if (isChecked) {
       rbPrepaid.setChecked(false);
       llPrepaid.setSelected(false);
       llPostpaid.setSelected(true);
-    }else{
+    } else {
       llPostpaid.setSelected(false);
     }
   }
 
   private void recharge() {
-    mobileRechargeActivityViewModel.recharge("", 0).observe(this, this::mobileRechargeApiObserver);
+    mobileRechargeActivityViewModel
+        .recharge(etMobileNo.getText().toString(), Float.parseFloat(etAmnt.getText().toString()),
+            "", "", rbPrepaid.isChecked() ? ProjectConstants.SERVICE_PREPAID_MOBILE
+                : ProjectConstants.SERVICE_POSTPAID_MOBILE)
+        .observe(this, this::mobileRechargeApiObserver);
   }
 
   private void mobileRechargeApiObserver(WorkInfo workInfo) {
@@ -209,11 +215,11 @@ public class MobileRechargeActivity extends BaseActivity implements
   @Override
   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if(requestCode == VIEW_PLANS_REQ_CODE){
-      if(resultCode == RESULT_OK){
+    if (requestCode == VIEW_PLANS_REQ_CODE) {
+      if (resultCode == RESULT_OK) {
         if (data != null) {
-          selectedPlan= data.getParcelableExtra(ProjectConstants.PLAN);
-          if(selectedPlan!=null) {
+          selectedPlan = data.getParcelableExtra(ProjectConstants.PLAN);
+          if (selectedPlan != null) {
             llPlanDetails.setVisibility(View.VISIBLE);
             etAmnt.setText(String.valueOf(selectedPlan.getAmount()));
             tvTalktime.setText(String.format("$ %s", selectedPlan.getTalktime()));

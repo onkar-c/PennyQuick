@@ -1,16 +1,13 @@
 package com.penny.quick.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import com.penny.database.dao.RecentRecharge;
 import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetCheckBox;
 import java.util.List;

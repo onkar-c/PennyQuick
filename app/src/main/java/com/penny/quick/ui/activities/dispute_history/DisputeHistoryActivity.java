@@ -4,7 +4,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.penny.database.dao.Report;
+import com.penny.database.entities.Report;
 import com.penny.quick.R;
 import com.penny.quick.ui.adapters.DisputeReportsAdapter;
 import com.penny.quick.utils.ToolBarUtils;

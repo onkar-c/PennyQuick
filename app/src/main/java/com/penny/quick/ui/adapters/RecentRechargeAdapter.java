@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import com.penny.database.dao.RecentRecharge;
+import com.penny.database.ProjectConstants;
+import com.penny.database.entities.RecentRecharge;
 import com.penny.quick.R;
 import java.util.List;
 
@@ -43,10 +44,16 @@ public class RecentRechargeAdapter extends
     holder.amount.setText(
         String.format("%s%s", context.getString(R.string.rupees_sign), recentRecharge.getAmount()));
     Drawable img = ContextCompat.getDrawable(context,
-        (recentRecharge.getStatus() == 0) ? R.drawable.pending_small
-            : (recentRecharge.getStatus() == 1) ? R.drawable.success_small
-                : R.drawable.failed_small);
+        (recentRecharge.getStatus().equals(ProjectConstants.FAILURE)) ? R.drawable.failed_small
+            : (recentRecharge.getStatus().equals(ProjectConstants.PENDING)) ? R.drawable.pending_small
+                : R.drawable.success_small);
     holder.amount.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img);
+  }
+
+  public void setList(List<RecentRecharge> pRecentRecharges) {
+    recentRecharges.clear();
+    recentRecharges.addAll(pRecentRecharges);
+    notifyDataSetChanged();
   }
 
   @Override

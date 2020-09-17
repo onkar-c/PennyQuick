@@ -9,14 +9,21 @@ import com.penny.core.APITags.APIEnums;
 import com.penny.core.worker.MobileRechargeWorker;
 import com.penny.core.worker.RecentRechargesWorker;
 import com.penny.core.worker.RechargeStatusWorker;
+import com.penny.database.AppDatabase;
 import com.penny.database.ProjectConstants;
+import com.penny.database.entities.RecentRecharge;
+import java.util.List;
 
 public class RechargeRepository extends BaseRepository {
 
-  public LiveData<WorkInfo> getMobileRechargeWorkManager(String mobileNumber, float amount) {
+  public LiveData<WorkInfo> getMobileRechargeWorkManager(String mobileNumber, float amount,
+      String operator, String circle, String service) {
     Data.Builder data = getDataBuilderForApi(APITags.API_MOBILE_RECHARGE);
-    data.putString(ProjectConstants.MOBILE_NUMBER, mobileNumber);
+    data.putString(ProjectConstants.NUMBER, mobileNumber);
     data.putFloat(ProjectConstants.RECHARGE_AMOUNT, amount);
+    data.putString(ProjectConstants.OPERATOR, operator);
+    data.putString(ProjectConstants.CIRCLE, circle);
+    data.putString(ProjectConstants.SERVICE, service);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(MobileRechargeWorker.class)
         .setInputData(data.build())
         .setConstraints(getNetworkConstraint())
@@ -45,5 +52,9 @@ public class RechargeRepository extends BaseRepository {
         .addTag(APIEnums.API_RECENT_RECHARGES.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
+  }
+
+  public LiveData<List<RecentRecharge>> getRecentRecharges() {
+    return AppDatabase.getInstance().getRecentRechargeEntityDao().getRecentRecharges();
   }
 }

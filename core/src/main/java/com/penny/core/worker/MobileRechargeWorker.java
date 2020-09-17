@@ -6,7 +6,7 @@ import androidx.work.WorkerParameters;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
-import com.penny.core.models.MobileRechargeRequestModel;
+import com.penny.core.models.rechargeRequestModel;
 import com.penny.database.ProjectConstants;
 
 public class MobileRechargeWorker extends BaseWorker {
@@ -17,13 +17,16 @@ public class MobileRechargeWorker extends BaseWorker {
 
   @Override
   protected Result executeApi() {
-    MobileRechargeRequestModel mobileRechargeRequestModel = new MobileRechargeRequestModel();
-    mobileRechargeRequestModel
-        .setMobileNumber(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
-    mobileRechargeRequestModel
+    rechargeRequestModel rechargeRequestModel = new rechargeRequestModel();
+    rechargeRequestModel
+        .setNumber(getInputData().getString(ProjectConstants.NUMBER));
+    rechargeRequestModel
         .setAmount(getInputData().getFloat(ProjectConstants.RECHARGE_AMOUNT, 0));
+    rechargeRequestModel.setCircle(getInputData().getString(ProjectConstants.CIRCLE));
+    rechargeRequestModel.setOperator(getInputData().getString(ProjectConstants.OPERATOR));
+    rechargeRequestModel.setService(getInputData().getString(ProjectConstants.SERVICE));
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .mobileRecharge(mobileRechargeRequestModel));
+        .recharge(rechargeRequestModel));
   }
 
   @Override

@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import com.penny.database.dao.Report;
+import com.penny.database.entities.Report;
 import com.penny.quick.R;
 import java.util.List;
 

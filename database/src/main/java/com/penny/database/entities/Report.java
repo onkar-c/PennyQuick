@@ -1,4 +1,4 @@
-package com.penny.database.dao;
+package com.penny.database.entities;
 
 public class Report {
 

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.penny.database.dao.RecentRecharge;
+import androidx.work.WorkInfo;
 import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetCheckBox;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -20,6 +20,7 @@ public class RecentRechargeActivity extends BaseActivity implements BottomSheetL
 
   @Inject
   RecentRechargesActivityViewModel recentRechargesActivityViewModel;
+  private RecentRechargeAdapter recentRechargeAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +28,26 @@ public class RecentRechargeActivity extends BaseActivity implements BottomSheetL
     setContentView(R.layout.activity_recent_recharge);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.recent_recharge));
+    initUi();
+    setListeners();
+    setData();
+  }
 
+  private void setData() {
+    recentRechargesActivityViewModel.getRecentRecharges()
+        .observe(this, recentRecharges -> recentRechargeAdapter.setList(recentRecharges));
+  }
+
+  private void initUi() {
     RecyclerView recentRechargeList = findViewById(R.id.recent_recharges);
     recentRechargeList.setLayoutManager(new LinearLayoutManager(this));
-    RecentRechargeAdapter recentRechargeAdapter = new RecentRechargeAdapter(
-        generateRecentRechargeList(),
+    recentRechargeAdapter = new RecentRechargeAdapter(
+        new ArrayList<>(),
         this);
     recentRechargeList.setAdapter(recentRechargeAdapter);
+  }
+
+  private void setListeners() {
     findViewById(R.id.month).setOnClickListener(view -> {
       RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(
           generateMonthList(), getString(R.string.choose_month));
@@ -101,22 +115,21 @@ public class RecentRechargeActivity extends BaseActivity implements BottomSheetL
     return bottomSheetCheckBoxes;
   }
 
+  private void getRecentRechargesFromServer() {
+    recentRechargesActivityViewModel.getRecentRechargesFromServer().observe(this,
+        this::recentRechargeApiSuccess);
+  }
 
-  private List<RecentRecharge> generateRecentRechargeList() {
-    List<RecentRecharge> recentRecharges = new ArrayList<>();
-    for (int i = 0; i < 10; i++) {
-      RecentRecharge recentRecharge = new RecentRecharge();
-      recentRecharge
-          .setCompanyType(getString((i % 2 == 0) ? R.string.dummy_company_type : R.string.dish_tv));
-      recentRecharge.setCustomerId(getString(R.string.dummy_mob_no));
-      recentRecharge.setTransactionId(getString(R.string.dummy_trans_id));
-      recentRecharge.setAmount((i % 2 == 0) ? 200.00f : 300.00f);
-      recentRecharge.setStatus(i % 3);
-      recentRecharge.setDate(getString(R.string.transaction_dummy_date));
-
-      recentRecharges.add(recentRecharge);
+  private void recentRechargeApiSuccess(WorkInfo workInfo) {
+    if (workInfo != null) {
+      apiResponseHandler(workInfo);
     }
-    return recentRecharges;
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    getRecentRechargesFromServer();
   }
 
   @Override
