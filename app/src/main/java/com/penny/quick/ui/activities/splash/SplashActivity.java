@@ -2,12 +2,17 @@ package com.penny.quick.ui.activities.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.penny.database.CoreSharedHelper;
+import com.penny.database.entities.Operators;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
 import com.penny.quick.ui.activities.intro_screen.IntroScreen;
 import com.penny.quick.ui.activities.login.SignInActivity;
+import com.penny.quick.utils.CommonUtils;
+import java.util.List;
 import javax.inject.Inject;
 
 public class SplashActivity extends BaseActivity {
@@ -27,6 +32,11 @@ public class SplashActivity extends BaseActivity {
               sleep(1200);
               Intent intent;
               if (CoreSharedHelper.getInstance().isFirstInstall()) {
+                List<Operators> operatorsList = new Gson()
+                    .fromJson(CommonUtils.loadData("data.json", SplashActivity.this),
+                        new TypeToken<List<Operators>>() {
+                        }.getType());
+                splashActivityViewModel.saveOperators(operatorsList);
                 intent = new Intent(getApplicationContext(), IntroScreen.class);
               } else if (CoreSharedHelper.getInstance().isLogin() && CoreSharedHelper.getInstance()
                   .isRememberPassword()) {

@@ -31,4 +31,8 @@ public class ProjectConstants {
   public static final String SERVICE_DTH = "2";
   public static final String FAILURE = "Failure";
   public static final String PENDING = "Pending";
+
+  public static final String PREPAID_TYPE = "MOBILE";
+  public static final String POSTPAID_TYPE = "POSTPAID";
+
 }

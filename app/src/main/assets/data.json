@@ -1,0 +1,184 @@
+[
+
+  {
+    "company_name" : "VIDEOCON DTH TV",
+    "provider" : "VTV",
+    "service_name" : "DTH",
+    "display_name" : "VIDEOCON"
+  },
+  {
+    "company_name" : "Airtel Digital DTH TV",
+    "provider" : "ATV",
+    "service_name" : "DTH",
+    "display_name" : "Airtel"
+  },
+  {
+    "company_name" : "SUNDIRECT TV",
+    "provider" : "STV",
+    "service_name" : "DTH",
+    "display_name" : "Sundirect"
+  },
+  {
+    "company_name" : "BIG TV",
+    "provider" : "BTV",
+    "service_name" : "DTH",
+    "display_name" : "Big Tv"
+  },
+  {
+    "company_name" : "DISH TV",
+    "provider" : "DTV",
+    "service_name" : "DTH",
+    "display_name" : "Dish TV"
+  },
+  {
+    "company_name" : "TATASKY DTH TV",
+    "provider" : "TTV",
+    "service_name" : "DTH",
+    "display_name" : "Tatasky TV"
+  },
+  {
+    "company_name" : "VODAFONE",
+    "provider" : "V",
+    "service_name" : "MOBILE",
+    "display_name" : "Vodafone"
+  },
+  {
+    "company_name" : "BSNL-RECHARGE",
+    "provider" : "BR",
+    "service_name" : "MOBILE",
+    "display_name" : "BSNL"
+  },
+  {
+    "company_name" : "MTNL - Recharge",
+    "provider" : "MTS",
+    "service_name" : "MOBILE",
+    "display_name" : "MTNL"
+  },
+  {
+    "company_name" : "BSNL - STV",
+    "provider" : "BS",
+    "service_name" : "MOBILE",
+    "display_name" : "BSNL-STV"
+  },
+  {
+    "company_name" : "RELIANCE - CDMA",
+    "provider" : "RC",
+    "service_name" : "MOBILE",
+    "display_name" : "Reliance - CDMA"
+  },
+  {
+    "company_name" : "RECHARGE VIDEOCON",
+    "provider" : "VD",
+    "service_name" : "MOBILE",
+    "display_name" : "VIDEOCON"
+  },
+  {
+    "company_name" : "AIRTEL",
+    "provider" : "A",
+    "service_name" : "MOBILE",
+    "display_name" : "AIRTEL"
+  },
+  {
+    "company_name" : "Jio",
+    "provider" : "JO",
+    "service_name" : "MOBILE",
+    "display_name" : "Jio"
+  },
+  {
+    "company_name" : "TATA WALKY",
+    "provider" : "TW",
+    "service_name" : "MOBILE",
+    "display_name" : "TATA WALKY"
+  },
+  {
+    "company_name" : "BSNL - 3G",
+    "provider" : "B3",
+    "service_name" : "MOBILE",
+    "display_name" : "BSNL - 3G"
+  },
+  {
+    "company_name" : "RELIANCE - GSM",
+    "provider" : "RG",
+    "service_name" : "MOBILE",
+    "display_name" : "RELIANCE - GSM"
+  },
+  {
+    "company_name" : "BSNL - TOPUP",
+    "provider" : "BT",
+    "service_name" : "MOBILE",
+    "display_name" : "BSNL - TOPUP"
+  },
+  {
+    "company_name" : "MTNL – TOPUP",
+    "provider" : "MT",
+    "service_name" : "MOBILE",
+    "display_name" : "MTNL – TOPUP"
+  },
+  {
+    "company_name" : "DOCOME-SPECIAL",
+    "provider" : "DS",
+    "service_name" : "MOBILE",
+    "display_name" : "DOCOME-SPECIAL"
+  },
+  {
+    "company_name" : "IDEA",
+    "provider" : "I",
+    "service_name" : "MOBILE",
+    "display_name" : "IDEA"
+  },
+  {
+    "company_name" : "RECHARGE VIDEOCON - SPL",
+    "provider" : "VS",
+    "service_name" : "MOBILE",
+    "display_name" : "VIDEOCON - SPL"
+  },
+  {
+    "company_name" : "Tata Docomo PostPaid",
+    "provider" : "PTD",
+    "service_name" : "POSTPAID",
+    "display_name" : "Tata Docomo PostPaid"
+  },
+  {
+    "company_name" : "Reliance GSM PostPaid",
+    "provider" : "PRG",
+    "service_name" : "POSTPAID",
+    "display_name" : "Reliance GSM"
+  },
+  {
+    "company_name" : "AIRTEL POSTPAID",
+    "provider" : "PA",
+    "service_name" : "POSTPAID",
+    "display_name" : "AIRTEL"
+  },
+  {
+    "company_name" : "TATAINDICOM-POSTPAID",
+    "provider" : "PTI",
+    "service_name" : "POSTPAID",
+    "display_name" : "TATAINDICOM"
+  },
+  {
+    "company_name" : "VODAFONE POSTPAID",
+    "provider" : "PV",
+    "service_name" : "POSTPAID",
+    "display_name" : "VODAFONE"
+  },
+  {
+    "company_name" : "BSNL POSTPAID",
+    "provider" : "PBS",
+    "service_name" : "POSTPAID",
+    "display_name" : "BSNL"
+  },
+  {
+    "company_name" : "Reliance CDMA PostPaid",
+    "provider" : "PRC",
+    "service_name" : "POSTPAID",
+    "display_name" : "Reliance CDMA"
+  },
+  {
+    "company_name" : "IDEA POSTPAID",
+    "provider" : "PI",
+    "service_name" : "POSTPAID",
+    "display_name" : "IDEA"
+  }
+
+]

@@ -15,8 +15,8 @@ import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.penny.database.ProjectConstants;
 import com.penny.database.StringUtils;
+import com.penny.database.entities.Operators;
 import com.penny.quick.R;
-import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.models.PlanModel;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
@@ -25,6 +25,7 @@ import com.penny.quick.ui.adapters.BottomSheetAdapter;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
 import com.penny.quick.utils.OperatorBottomSheetDialog;
 import com.penny.quick.utils.StateBottomSheetDialog;
+import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 public class MobileRechargeActivity extends BaseActivity implements
@@ -48,28 +49,10 @@ public class MobileRechargeActivity extends BaseActivity implements
     setContentView(R.layout.activity_mobile_recharge);
     setUpToolBar();
     initUI();
+    setListeners();
   }
 
-  private void initUI() {
-    setTitle("Mobile Recharge");
-    rbPrepaid = findViewById(R.id.rb_prepaid);
-    rbPostpaid = findViewById(R.id.rb_postpaid);
-    llPrepaid = findViewById(R.id.ll_prepaid);
-    llPrepaid.setSelected(false);
-    llPostpaid = findViewById(R.id.ll_postpaid);
-    llPostpaid.setSelected(false);
-    llPlanDetails = findViewById(R.id.ll_plan_details);
-    tvOperator = findViewById(R.id.et_operator);
-    tvState = findViewById(R.id.et_state);
-    tvError = findViewById(R.id.tv_error);
-    etMobileNo = findViewById(R.id.et_mob_no);
-    etAmnt = findViewById(R.id.et_amnt);
-
-    tvTalktime = findViewById(R.id.tv_talkime);
-    tvData = findViewById(R.id.tv_data);
-    tvValidity = findViewById(R.id.tv_validity);
-    tvValidityDetails = findViewById(R.id.tv_talktime_details);
-
+  private void setListeners() {
     findViewById(R.id.bt_view_plans)
         .setOnClickListener(view -> startActivityForResult(new Intent(MobileRechargeActivity.this,
             ViewPlansActivity.class), VIEW_PLANS_REQ_CODE));
@@ -98,8 +81,15 @@ public class MobileRechargeActivity extends BaseActivity implements
 
     tvOperator.setOnClickListener(
         view -> {
-          operatorSheetDialog = new OperatorBottomSheetDialog();
-          operatorSheetDialog.show(getSupportFragmentManager(), BottomSheetAdapter.OPERATOR_TYPE);
+          String type = rbPostpaid.isChecked() ? ProjectConstants.POSTPAID_TYPE
+              : ProjectConstants.PREPAID_TYPE;
+          Executors.newSingleThreadExecutor()
+              .execute(() -> {
+                operatorSheetDialog = new OperatorBottomSheetDialog(
+                    mobileRechargeActivityViewModel.getOperatorsByType(type));
+                operatorSheetDialog
+                    .show(getSupportFragmentManager(), BottomSheetAdapter.OPERATOR_TYPE);
+              });
         });
 
     tvState.setOnClickListener(
@@ -107,6 +97,28 @@ public class MobileRechargeActivity extends BaseActivity implements
           stateBottomSheetDialog = new StateBottomSheetDialog();
           stateBottomSheetDialog.show(getSupportFragmentManager(), BottomSheetAdapter.STATE_TYPE);
         });
+  }
+
+  private void initUI() {
+    setTitle("Mobile Recharge");
+    rbPrepaid = findViewById(R.id.rb_prepaid);
+    rbPostpaid = findViewById(R.id.rb_postpaid);
+    llPrepaid = findViewById(R.id.ll_prepaid);
+    llPrepaid.setSelected(false);
+    llPostpaid = findViewById(R.id.ll_postpaid);
+    llPostpaid.setSelected(false);
+    llPlanDetails = findViewById(R.id.ll_plan_details);
+    tvOperator = findViewById(R.id.et_operator);
+    tvState = findViewById(R.id.et_state);
+    tvError = findViewById(R.id.tv_error);
+    etMobileNo = findViewById(R.id.et_mob_no);
+    etAmnt = findViewById(R.id.et_amnt);
+
+    tvTalktime = findViewById(R.id.tv_talkime);
+    tvData = findViewById(R.id.tv_data);
+    tvValidity = findViewById(R.id.tv_validity);
+    tvValidityDetails = findViewById(R.id.tv_talktime_details);
+
     etAmnt.addTextChangedListener(new TextWatcher() {
       @Override
       public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -197,7 +209,7 @@ public class MobileRechargeActivity extends BaseActivity implements
   }
 
   @Override
-  public void onBottomSheetListItemClick(BottomSheetListObject obj, String type) {
+  public void onBottomSheetListItemClick(Operators obj, String type) {
     if (operatorSheetDialog != null && operatorSheetDialog.isVisible()) {
       operatorSheetDialog.dismiss();
     }
@@ -205,9 +217,9 @@ public class MobileRechargeActivity extends BaseActivity implements
       stateBottomSheetDialog.dismiss();
     }
     if (type.equalsIgnoreCase(BottomSheetAdapter.OPERATOR_TYPE)) {
-      tvOperator.setText(obj.getName());
+      tvOperator.setText(obj.getDisplay_name());
     } else if (type.equalsIgnoreCase(BottomSheetAdapter.STATE_TYPE)) {
-      tvState.setText(obj.getName());
+      tvState.setText(obj.getDisplay_name());
     }
     Log.e("Operator Selected ", "Id" + obj.getId());
   }

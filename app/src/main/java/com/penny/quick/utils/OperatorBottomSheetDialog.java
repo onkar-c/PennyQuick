@@ -11,12 +11,20 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.penny.database.entities.Operators;
 import com.penny.quick.R;
-import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.adapters.BottomSheetAdapter;
+import java.util.List;
 
 public class OperatorBottomSheetDialog extends BottomSheetDialogFragment {
+
+  List<Operators> operators;
+  OnClickListener onCloseClick = view -> dismiss();
+
+  public OperatorBottomSheetDialog(List<Operators> operators) {
+    this.operators = operators;
+  }
 
   @Nullable
   @Override
@@ -29,11 +37,9 @@ public class OperatorBottomSheetDialog extends BottomSheetDialogFragment {
     RecyclerView bottomSheetRV = bottomSheetView.findViewById(R.id.rv_bottom_sheet_list);
     bottomSheetRV.setLayoutManager(new LinearLayoutManager(getContext()));
     BottomSheetAdapter bottomSheetAdapter = new BottomSheetAdapter(
-        BottomSheetListObject.getOperatorList(),
+        operators,
         (MobileRechargeActivity) getActivity(), getTag());
     bottomSheetRV.setAdapter(bottomSheetAdapter);
     return bottomSheetView;
   }
-
-  OnClickListener onCloseClick = view -> dismiss();
 }

@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.penny.quick.R;
-import com.penny.quick.models.BottomSheetListObject;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.adapters.BottomSheetAdapter;
+import java.util.ArrayList;
 
 public class StateBottomSheetDialog extends BottomSheetDialogFragment {
+
+  OnClickListener onCloseClick = view -> dismiss();
 
   @Nullable
   @Override
@@ -29,11 +31,9 @@ public class StateBottomSheetDialog extends BottomSheetDialogFragment {
     RecyclerView bottomSheetRV = bottomSheetView.findViewById(R.id.rv_bottom_sheet_list);
     bottomSheetRV.setLayoutManager(new LinearLayoutManager(getContext()));
     BottomSheetAdapter bottomSheetAdapter = new BottomSheetAdapter(
-        BottomSheetListObject.getStateList(),
-        (MobileRechargeActivity) getActivity(),getTag());
+        new ArrayList<>(),
+        (MobileRechargeActivity) getActivity(), getTag());
     bottomSheetRV.setAdapter(bottomSheetAdapter);
     return bottomSheetView;
   }
-
-  OnClickListener onCloseClick = view -> dismiss();
 }
