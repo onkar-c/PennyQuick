@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.work.WorkInfo;
 import com.penny.core.repositories.OperatorsRepository;
 import com.penny.core.repositories.RechargeRepository;
+import com.penny.core.repositories.StatesRepository;
 import com.penny.database.entities.Operators;
+import com.penny.database.entities.State;
 import java.util.List;
 
 public class MobileRechargeActivityViewModel extends ViewModel {
@@ -22,5 +24,9 @@ public class MobileRechargeActivityViewModel extends ViewModel {
 
   List<Operators> getOperatorsByType(String type) {
     return new OperatorsRepository().getOperatorsByType(type);
+  }
+
+  List<State> getStates() {
+    return new StatesRepository().getStates();
   }
 }

@@ -34,5 +34,6 @@ public class ProjectConstants {
 
   public static final String PREPAID_TYPE = "MOBILE";
   public static final String POSTPAID_TYPE = "POSTPAID";
+  public static final String STATE = "state";
 
 }

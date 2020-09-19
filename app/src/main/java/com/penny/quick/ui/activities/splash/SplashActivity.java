@@ -33,10 +33,15 @@ public class SplashActivity extends BaseActivity {
               Intent intent;
               if (CoreSharedHelper.getInstance().isFirstInstall()) {
                 List<Operators> operatorsList = new Gson()
-                    .fromJson(CommonUtils.loadData("data.json", SplashActivity.this),
+                    .fromJson(CommonUtils.loadData("operatorData.json", SplashActivity.this),
                         new TypeToken<List<Operators>>() {
                         }.getType());
                 splashActivityViewModel.saveOperators(operatorsList);
+                List<com.penny.database.entities.State> statesList = new Gson()
+                    .fromJson(CommonUtils.loadData("StatesData.json", SplashActivity.this),
+                        new TypeToken<List<com.penny.database.entities.State>>() {
+                        }.getType());
+                splashActivityViewModel.saveStates(statesList);
                 intent = new Intent(getApplicationContext(), IntroScreen.class);
               } else if (CoreSharedHelper.getInstance().isLogin() && CoreSharedHelper.getInstance()
                   .isRememberPassword()) {

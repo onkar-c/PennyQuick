@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,15 +20,15 @@ import com.penny.quick.models.PlanModel;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
 import com.penny.quick.ui.activities.view_plans.ViewPlansActivity;
-import com.penny.quick.ui.adapters.BottomSheetAdapter;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
+import com.penny.quick.ui.adapters.StatesBottomSheetAdapter.StateBottomSheetListItemClickListener;
 import com.penny.quick.utils.OperatorBottomSheetDialog;
 import com.penny.quick.utils.StateBottomSheetDialog;
 import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 public class MobileRechargeActivity extends BaseActivity implements
-    BottomSheetListItemClickListener {
+    BottomSheetListItemClickListener, StateBottomSheetListItemClickListener {
 
   private static int VIEW_PLANS_REQ_CODE = 1;
   @Inject
@@ -88,15 +87,18 @@ public class MobileRechargeActivity extends BaseActivity implements
                 operatorSheetDialog = new OperatorBottomSheetDialog(
                     mobileRechargeActivityViewModel.getOperatorsByType(type));
                 operatorSheetDialog
-                    .show(getSupportFragmentManager(), BottomSheetAdapter.OPERATOR_TYPE);
+                    .show(getSupportFragmentManager(), ProjectConstants.OPERATOR);
               });
         });
 
     tvState.setOnClickListener(
-        view -> {
-          stateBottomSheetDialog = new StateBottomSheetDialog();
-          stateBottomSheetDialog.show(getSupportFragmentManager(), BottomSheetAdapter.STATE_TYPE);
-        });
+        view -> Executors.newSingleThreadExecutor()
+            .execute(() -> {
+              stateBottomSheetDialog = new StateBottomSheetDialog(
+                  mobileRechargeActivityViewModel.getStates());
+              stateBottomSheetDialog
+                  .show(getSupportFragmentManager(), ProjectConstants.STATE);
+            }));
   }
 
   private void initUI() {
@@ -209,19 +211,11 @@ public class MobileRechargeActivity extends BaseActivity implements
   }
 
   @Override
-  public void onBottomSheetListItemClick(Operators obj, String type) {
+  public void onBottomSheetListItemClick(Operators obj) {
     if (operatorSheetDialog != null && operatorSheetDialog.isVisible()) {
       operatorSheetDialog.dismiss();
     }
-    if (stateBottomSheetDialog != null && stateBottomSheetDialog.isVisible()) {
-      stateBottomSheetDialog.dismiss();
-    }
-    if (type.equalsIgnoreCase(BottomSheetAdapter.OPERATOR_TYPE)) {
-      tvOperator.setText(obj.getDisplay_name());
-    } else if (type.equalsIgnoreCase(BottomSheetAdapter.STATE_TYPE)) {
-      tvState.setText(obj.getDisplay_name());
-    }
-    Log.e("Operator Selected ", "Id" + obj.getId());
+    tvOperator.setText(obj.getDisplay_name());
   }
 
   @Override
@@ -243,5 +237,13 @@ public class MobileRechargeActivity extends BaseActivity implements
         }
       }
     }
+  }
+
+  @Override
+  public void onBottomSheetListItemClick(com.penny.database.entities.State obj) {
+    if (stateBottomSheetDialog != null && stateBottomSheetDialog.isVisible()) {
+      stateBottomSheetDialog.dismiss();
+    }
+    tvState.setText(obj.getDisplayName());
   }
 }

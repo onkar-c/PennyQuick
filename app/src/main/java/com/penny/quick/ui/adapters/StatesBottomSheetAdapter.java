@@ -8,18 +8,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import com.penny.database.entities.Operators;
+import com.penny.database.entities.State;
 import com.penny.quick.R;
 import java.util.List;
 
-public class BottomSheetAdapter extends
-    RecyclerView.Adapter<BottomSheetAdapter.BottomSheetListItemVH> {
+public class StatesBottomSheetAdapter extends
+    RecyclerView.Adapter<StatesBottomSheetAdapter.BottomSheetListItemVH> {
 
-  private List<Operators> objectList;
-  private BottomSheetListItemClickListener clickListener;
+  private List<State> objectList;
+  private StateBottomSheetListItemClickListener clickListener;
 
-  public BottomSheetAdapter(List<Operators> objectList,
-      BottomSheetListItemClickListener clickListener) {
+  public StatesBottomSheetAdapter(List<State> objectList,
+      StateBottomSheetListItemClickListener clickListener) {
     this.objectList = objectList;
     this.clickListener = clickListener;
   }
@@ -34,9 +34,9 @@ public class BottomSheetAdapter extends
 
   @Override
   public void onBindViewHolder(@NonNull BottomSheetListItemVH holder, int position) {
-    Operators object = objectList.get(position);
-    holder.txtItemName.setText(object.getDisplay_name());
-//    holder.imgIcon.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.airtel));
+    State object = objectList.get(position);
+    holder.txtItemName.setText(object.getDisplayName());
+    holder.imgIcon.setVisibility(View.GONE);
     holder.setDetails(object, clickListener);
   }
 
@@ -46,9 +46,9 @@ public class BottomSheetAdapter extends
     return objectList.size();
   }
 
-  public interface BottomSheetListItemClickListener {
+  public interface StateBottomSheetListItemClickListener {
 
-    void onBottomSheetListItemClick(Operators obj);
+    void onBottomSheetListItemClick(State obj);
   }
 
   public static class BottomSheetListItemVH extends ViewHolder {
@@ -62,7 +62,7 @@ public class BottomSheetAdapter extends
       txtItemName = itemView.findViewById(R.id.tv_name);
     }
 
-    public void setDetails(Operators object, BottomSheetListItemClickListener clickListener) {
+    public void setDetails(State object, StateBottomSheetListItemClickListener clickListener) {
       itemView.setOnClickListener(view -> clickListener.onBottomSheetListItemClick(object));
     }
   }

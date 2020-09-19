@@ -38,7 +38,7 @@ public class OperatorBottomSheetDialog extends BottomSheetDialogFragment {
     bottomSheetRV.setLayoutManager(new LinearLayoutManager(getContext()));
     BottomSheetAdapter bottomSheetAdapter = new BottomSheetAdapter(
         operators,
-        (MobileRechargeActivity) getActivity(), getTag());
+        (MobileRechargeActivity) getActivity());
     bottomSheetRV.setAdapter(bottomSheetAdapter);
     return bottomSheetView;
   }
