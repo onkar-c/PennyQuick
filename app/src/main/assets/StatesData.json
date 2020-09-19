@@ -1,6 +1,182 @@
 [
   {
-    "state_code" : "1",
-    "display_name" : "Maharashtra"
+    "State Id": "10",
+    "Circle": "",
+    "State Name": "Andaman And Nicobar"
+  },
+  {
+    "State Id": "11",
+    "Circle": "13",
+    "State Name": "Andhra Pradesh"
+  },
+  {
+    "State Id": "12",
+    "Circle": "",
+    "State Name": "Arunachal Pradesh"
+  },
+  {
+    "State Id": "13",
+    "Circle": "24",
+    "State Name": "Assam"
+  },
+  {
+    "State Id": "14",
+    "Circle": "17",
+    "State Name": "Bihar"
+  },
+  {
+    "State Id": "15",
+    "Circle": "",
+    "State Name": "Chandigarh"
+  },
+  {
+    "State Id": "16",
+    "Circle": "27",
+    "State Name": "Chhattisgarh"
+  },
+  {
+    "State Id": "19",
+    "Circle": "",
+    "State Name": "Goa"
+  },
+  {
+    "State Id": "20",
+    "Circle": "6",
+    "State Name": "Gujarat"
+  },
+  {
+    "State Id": "21",
+    "Circle": "20",
+    "State Name": "Haryana"
+  },
+  {
+    "State Id": "22",
+    "Circle": "21",
+    "State Name": "Himachal Pradesh"
+  },
+  {
+    "State Id": "23",
+    "Circle": "25",
+    "State Name": "Jammu And Kashmir"
+  },
+  {
+    "State Id": "24",
+    "Circle": "22",
+    "State Name": "Jharkhand"
+  },
+  {
+    "State Id": "25",
+    "Circle": "9",
+    "State Name": "Karnataka"
+  },
+  {
+    "State Id": "26",
+    "Circle": "14",
+    "State Name": "Kerala"
+  },
+  {
+    "State Id": "27",
+    "Circle": "",
+    "State Name": "Lakshadweep"
+  },
+  {
+    "State Id": "28",
+    "Circle": "16",
+    "State Name": "Madhya Pradesh"
+  },
+  {
+    "State Id": "29",
+    "Circle": "4",
+    "State Name": "Maharashtra"
+  },
+  {
+    "State Id": "34",
+    "Circle": "",
+    "State Name": "New Delhi"
+  },
+  {
+    "State Id": "35",
+    "Circle": "23",
+    "State Name": "Orissa"
+  },
+  {
+    "State Id": "36",
+    "Circle": "",
+    "State Name": "Pondicherry"
+  },
+  {
+    "State Id": "37",
+    "Circle": "1",
+    "State Name": "Punjab"
+  },
+  {
+    "State Id": "38",
+    "Circle": "18",
+    "State Name": "Rajasthan"
+  },
+  {
+    "State Id": "40",
+    "Circle": "8",
+    "State Name": "Tamil Nadu"
+  },
+  {
+    "State Id": "42",
+    "Circle": "10",
+    "State Name": "Uttar Pradesh Eas"
+  },
+  {
+    "State Id": "43",
+    "Circle": "",
+    "State Name": "Uttaranchal"
+  },
+  {
+    "State Id": "44",
+    "Circle": "2",
+    "State Name": "West Bengal"
+  },
+  {
+    "State Id": "45",
+    "Circle": "11",
+    "State Name": "Uttar Pradesh Wes"
+  },
+  {
+    "State Id": "46",
+    "Circle": "3",
+    "State Name": "Mumbai"
+  },
+  {
+    "State Id": "47",
+    "Circle": "5",
+    "State Name": "Delhi"
+  },
+  {
+    "State Id": "48",
+    "Circle": "7",
+    "State Name": "CHENNAI"
+  },
+  {
+    "State Id": "49",
+    "Circle": "26",
+    "State Name": "NORTH EAST"
+  },
+  {
+    "State Id" : "50",
+    "Circle" : "12",
+    "State Name" : "Kolkata"
+  },
+  {
+    "State Id" : "51",
+    "Circle" : "0",
+    "State Name" : "Tripura"
+  },
+  {
+    "State Id" : "52",
+    "Circle" : "0",
+    "State Name" : "Telangana"
+  },
+  {
+    "State Id" : "53",
+    "Circle" : "MH",
+    "State Name" : "MH"
   }
 ]

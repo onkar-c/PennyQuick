@@ -2,8 +2,6 @@ package com.penny.quick.ui.activities.mobile_recharge;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -41,6 +39,9 @@ public class MobileRechargeActivity extends BaseActivity implements
   private EditText etMobileNo, etAmnt;
   private TextView tvTalktime, tvData, tvValidity, tvValidityDetails;
   private PlanModel selectedPlan;
+  private Operators selectedOperator = null;
+  private com.penny.database.entities.State selectedState = null;
+
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,23 +122,23 @@ public class MobileRechargeActivity extends BaseActivity implements
     tvValidity = findViewById(R.id.tv_validity);
     tvValidityDetails = findViewById(R.id.tv_talktime_details);
 
-    etAmnt.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-      }
-
-      @Override
-      public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        if (!String.valueOf(selectedPlan.getAmount())
-            .equalsIgnoreCase(String.valueOf(charSequence))) {
-          llPlanDetails.setVisibility(View.GONE);
-        }
-      }
-
-      @Override
-      public void afterTextChanged(Editable editable) {
-      }
-    });
+//    etAmnt.addTextChangedListener(new TextWatcher() {
+//      @Override
+//      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//      }
+//
+//      @Override
+//      public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//        if (!String.valueOf(selectedPlan.getAmount())
+//            .equalsIgnoreCase(String.valueOf(charSequence))) {
+//          llPlanDetails.setVisibility(View.GONE);
+//        }
+//      }
+//
+//      @Override
+//      public void afterTextChanged(Editable editable) {
+//      }
+//    });
   }
 
   private boolean validateFields() {
@@ -190,7 +191,8 @@ public class MobileRechargeActivity extends BaseActivity implements
   private void recharge() {
     mobileRechargeActivityViewModel
         .recharge(etMobileNo.getText().toString(), Float.parseFloat(etAmnt.getText().toString()),
-            "", "", rbPrepaid.isChecked() ? ProjectConstants.SERVICE_PREPAID_MOBILE
+            selectedOperator.getProvider(), selectedState.getStateCode(),
+            rbPrepaid.isChecked() ? ProjectConstants.SERVICE_PREPAID_MOBILE
                 : ProjectConstants.SERVICE_POSTPAID_MOBILE)
         .observe(this, this::mobileRechargeApiObserver);
   }
@@ -215,6 +217,7 @@ public class MobileRechargeActivity extends BaseActivity implements
     if (operatorSheetDialog != null && operatorSheetDialog.isVisible()) {
       operatorSheetDialog.dismiss();
     }
+    selectedOperator = obj;
     tvOperator.setText(obj.getDisplay_name());
   }
 
@@ -244,6 +247,7 @@ public class MobileRechargeActivity extends BaseActivity implements
     if (stateBottomSheetDialog != null && stateBottomSheetDialog.isVisible()) {
       stateBottomSheetDialog.dismiss();
     }
+    selectedState = obj;
     tvState.setText(obj.getDisplayName());
   }
 }

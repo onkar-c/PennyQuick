@@ -13,10 +13,14 @@ public class State implements Serializable {
   @ColumnInfo(name = "id")
   private Integer id;
 
-  @SerializedName("display_name")
+  @SerializedName("State Id")
+  @ColumnInfo(name = "stateId")
+  private String StateId;
+
+  @SerializedName("State Name")
   @ColumnInfo(name = "displayName")
   private String displayName;
-  @SerializedName("state_code")
+  @SerializedName("Circle")
   @ColumnInfo(name = "stateCode")
   private String stateCode;
 
@@ -42,5 +46,13 @@ public class State implements Serializable {
 
   public void setStateCode(String stateCode) {
     this.stateCode = stateCode;
+  }
+
+  public String getStateId() {
+    return StateId;
+  }
+
+  public void setStateId(String stateId) {
+    StateId = stateId;
   }
 }
