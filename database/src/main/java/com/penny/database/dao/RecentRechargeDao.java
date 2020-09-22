@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public abstract class RecentRechargeDao extends AbstractBaseDao<RecentRecharge> {
 
-  @Query("select * from RecentRecharge")
+  @Query("select * from RecentRecharge order by datetime desc")
   public abstract LiveData<List<RecentRecharge>> getRecentRecharges();
 
 }

@@ -5,6 +5,8 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
+import com.penny.core.util.DateDeserializer;
+import com.penny.database.ProjectConstants;
 
 public class GSONUtil {
 
@@ -12,6 +14,8 @@ public class GSONUtil {
     return new GsonBuilder()
         .addSerializationExclusionStrategy(serializationStrategy())
         .addDeserializationExclusionStrategy(deserializationStrategy())
+        .registerTypeAdapter(Long.class, new DateDeserializer())
+        .setDateFormat(ProjectConstants.SERVER_DATE_TIME_FORMAT)
         .create();
   }
 

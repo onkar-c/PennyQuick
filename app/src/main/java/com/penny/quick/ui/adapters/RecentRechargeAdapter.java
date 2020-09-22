@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.RecentRecharge;
+import com.penny.database.utils.DateUtils;
 import com.penny.quick.R;
 import java.util.List;
 
@@ -40,12 +41,13 @@ public class RecentRechargeAdapter extends
     holder.companyType.setText(recentRecharge.getCompanyType());
     holder.customerId.setText(recentRecharge.getCustomerId());
     holder.transactionId.setText(recentRecharge.getTransactionId());
-    holder.date.setText(recentRecharge.getDate());
+    holder.date.setText(DateUtils.getDateInRechargeDateFormat(recentRecharge.getDate()));
     holder.amount.setText(
         String.format("%s%s", context.getString(R.string.rupees_sign), recentRecharge.getAmount()));
     Drawable img = ContextCompat.getDrawable(context,
         (recentRecharge.getStatus().equals(ProjectConstants.FAILURE)) ? R.drawable.failed_small
-            : (recentRecharge.getStatus().equals(ProjectConstants.PENDING)) ? R.drawable.pending_small
+            : (recentRecharge.getStatus().equals(ProjectConstants.PENDING))
+                ? R.drawable.pending_small
                 : R.drawable.success_small);
     holder.amount.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img);
   }

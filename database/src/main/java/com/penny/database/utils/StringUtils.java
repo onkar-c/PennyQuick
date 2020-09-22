@@ -1,4 +1,4 @@
-package com.penny.database;
+package com.penny.database.utils;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -7,6 +7,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import com.penny.database.ProjectConstants;
 
 public class StringUtils {
 
@@ -28,7 +29,7 @@ public class StringUtils {
     if (isEmptyString(mobileNoStr)) {
       return false;
     } if (mobileNoStr.length() != 10 ){
-      return  false;
+      return false;
     }  else {
       return mobileNoStr.matches(ProjectConstants.MOBILE_REGEX);
     }

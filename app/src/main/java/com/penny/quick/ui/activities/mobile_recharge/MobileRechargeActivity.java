@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.penny.database.ProjectConstants;
-import com.penny.database.StringUtils;
+import com.penny.database.utils.StringUtils;
 import com.penny.database.entities.Operators;
 import com.penny.quick.R;
 import com.penny.quick.models.PlanModel;
