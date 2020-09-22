@@ -27,7 +27,7 @@ public class RecentRecharge implements Serializable {
 
   @SerializedName("datetime")
   @ColumnInfo(name = "datetime")
-  private String date;
+  private Long date;
 
   @SerializedName("status")
   @ColumnInfo(name = "status")
@@ -65,11 +65,11 @@ public class RecentRecharge implements Serializable {
     this.transactionId = transactionId;
   }
 
-  public String getDate() {
+  public Long getDate() {
     return date;
   }
 
-  public void setDate(String date) {
+  public void setDate(Long date) {
     this.date = date;
   }
 

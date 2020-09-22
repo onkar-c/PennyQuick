@@ -36,4 +36,8 @@ public class ProjectConstants {
   public static final String POSTPAID_TYPE = "POSTPAID";
   public static final String STATE = "state";
 
+  public static final String SERVER_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss aa";
+  public static final String TIME_FORMAT = "hh:mm aa";
+  public static final String DATE_FORMAT = "dd MMMM yyyy";
+
 }
