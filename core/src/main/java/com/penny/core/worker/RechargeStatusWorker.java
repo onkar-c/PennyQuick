@@ -3,10 +3,10 @@ package com.penny.core.worker;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.work.WorkerParameters;
+import com.google.gson.Gson;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
-import com.penny.core.models.RechargeStatusRequestModel;
 import com.penny.database.ProjectConstants;
 
 public class RechargeStatusWorker extends BaseWorker {
@@ -17,15 +17,13 @@ public class RechargeStatusWorker extends BaseWorker {
 
   @Override
   protected Result executeApi() {
-    RechargeStatusRequestModel rechargeStatusRequestModel = new RechargeStatusRequestModel();
-    rechargeStatusRequestModel
-        .setTransactionId(getInputData().getString(ProjectConstants.TRANSACTION_ID));
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .rechargeStatus(rechargeStatusRequestModel));
+        .rechargeStatus(getInputData().getString(ProjectConstants.TRANSACTION_ID)));
   }
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
+    mData.putString(ProjectConstants.TRANSACTION, new Gson().toJson(jsonResponse.getRecharge()));
     return sendSuccess();
   }
 }

@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.google.gson.Gson;
 import com.penny.core.models.TransactionResponse;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
@@ -45,6 +46,19 @@ public class TransactionStatusActivity extends BaseActivity {
     if (workInfo != null) {
       State state = workInfo.getState();
       if (state == State.SUCCEEDED) {
+        transactionResponse = new Gson()
+            .fromJson(workInfo.getOutputData().getString(ProjectConstants.TRANSACTION),
+                TransactionResponse.class);
+        if (transactionResponse.getStatus().equals(ProjectConstants.PENDING)) {
+          try {
+            Thread.sleep(4000);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+          getTransactionStatus();
+        } else {
+          setStatusWiseLayout(transactionResponse);
+        }
 
       }
     }
@@ -78,12 +92,16 @@ public class TransactionStatusActivity extends BaseActivity {
     ((TextView) findViewById(R.id.transaction_status_header_date))
         .setText(transactionResponse.getDatetime());
     ((TextView) findViewById(R.id.dateTime)).setText(transactionResponse.getDatetime());
-    ((TextView) findViewById(R.id.amount)).setText(transactionResponse.getAmount());
+    ((TextView) findViewById(R.id.amount)).setText(
+        String.format("%s %s", transactionResponse.getAmount(), getString(R.string.rupees_sign)));
     ((TextView) findViewById(R.id.transaction_id)).setText(transactionResponse.getTxnId());
     ((TextView) findViewById(R.id.customer_id)).setText(transactionResponse.getMobile());
+    ((TextView) findViewById(R.id.rechargeType)).setText(
+        String.format("%s %s", transactionResponse.getType(), getString(R.string.recharge)));
     Executors.newSingleThreadExecutor()
         .execute(() -> {
-          String type = transactionStatusActivityViewModel.getType(transactionResponse.getType());
+          String type = transactionStatusActivityViewModel
+              .getType(transactionResponse.getOperator());
           runOnUiThread(() -> ((TextView) findViewById(R.id.type)).setText(type));
         });
   }

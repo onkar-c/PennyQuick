@@ -5,13 +5,13 @@ import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
 import com.penny.core.models.rechargeRequestModel;
 import com.penny.core.models.RecentRechargesRequestModel;
-import com.penny.core.models.RechargeStatusRequestModel;
 import com.penny.core.models.RequestOTPModel;
 import com.penny.core.models.VerifyOTPRequestModel;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -37,8 +37,8 @@ public interface ApiInterface {
   @POST("recharge")
   Call<JsonResponse> recharge(@Body rechargeRequestModel rechargeRequestModel);
 
-  @POST("rechargeStatus")
-  Call<JsonResponse> rechargeStatus(@Body RechargeStatusRequestModel rechargeStatusRequestModel);
+  @GET("recharge/status")
+  Call<JsonResponse> rechargeStatus(@Query("txnId") String transactionId);
 
   @POST("recharge/transactions")
   Call<JsonResponse> recentRecharges(@Body RecentRechargesRequestModel recentRechargesRequestModel);
