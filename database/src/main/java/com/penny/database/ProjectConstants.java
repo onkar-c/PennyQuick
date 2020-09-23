@@ -22,6 +22,7 @@ public class ProjectConstants {
   public static final String CIRCLE = "circle";
   public static final String SERVICE = "service";
   public static final String TRANSACTION_ID = "transaction id";
+  public static final String TRANSACTION = "transaction";
   public static final String OTP = "otp";
   public static final String RECHARGE_AMOUNT = "recharge_amount";
   public static final String MOBILE_REGEX = "^[+]?[0-9]{10,13}$";
@@ -35,6 +36,7 @@ public class ProjectConstants {
   public static final String PREPAID_TYPE = "MOBILE";
   public static final String POSTPAID_TYPE = "POSTPAID";
   public static final String STATE = "state";
+  public static final String TYPE = "type";
 
   public static final String SERVER_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss aa";
   public static final String TIME_FORMAT = "hh:mm aa";

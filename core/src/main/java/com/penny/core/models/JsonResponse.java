@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JsonResponse implements Serializable {
 
-  @SerializedName("recharge")
+  @SerializedName("recentRecharges")
   List<RecentRecharge> recentRecharges;
   @SerializedName("message")
   private
@@ -18,6 +18,9 @@ public class JsonResponse implements Serializable {
   String status;
   @SerializedName("user")
   private User user;
+
+  @SerializedName("recharge")
+  private TransactionResponse recharge;
 
   public List<RecentRecharge> getRecentRecharges() {
     return recentRecharges;
@@ -53,5 +56,13 @@ public class JsonResponse implements Serializable {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  public TransactionResponse getRecharge() {
+    return recharge;
+  }
+
+  public void setRecharge(TransactionResponse recharge) {
+    this.recharge = recharge;
   }
 }

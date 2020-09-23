@@ -105,6 +105,7 @@
             android:textSize="@dimen/textSize_13"
             android:textColor="@android:color/black"/>
           <TextView
+            android:id="@+id/customer_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dummy_mob_no"
@@ -115,6 +116,7 @@
         </LinearLayout>
 
         <TextView
+          android:id="@+id/amount"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/dummy_amount"
@@ -137,6 +139,7 @@
         android:textSize="@dimen/textSize_20"
         android:textColor="@android:color/black"/>
       <TextView
+        android:id="@+id/transaction_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dummy_trans_id"
@@ -144,6 +147,7 @@
         android:textSize="@dimen/textSize_13"
         android:textColor="@android:color/black"/>
       <TextView
+        android:id="@+id/dateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/transaction_dummy_date"

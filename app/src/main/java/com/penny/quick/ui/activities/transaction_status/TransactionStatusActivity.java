@@ -2,16 +2,17 @@ package com.penny.quick.ui.activities.transaction_status;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.penny.core.models.TransactionResponse;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
+import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 public class TransactionStatusActivity extends BaseActivity {
@@ -21,47 +22,28 @@ public class TransactionStatusActivity extends BaseActivity {
 
   private LinearLayout statusLayout;
   private TextView statusMainHeader, tvStatus;
+  private TransactionResponse transactionResponse;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_transaction_status);
+    transactionResponse = (TransactionResponse) getIntent()
+        .getSerializableExtra(ProjectConstants.TRANSACTION);
     initUI();
+    setStatusWiseLayout(transactionResponse);
+    findViewById(R.id.close).setOnClickListener(view -> onBackPressed());
     getTransactionStatus();
-    setStatusWiseLayout(R.color.transaction_pending, getString(R.string.transaction_pending),
-        getString(R.string.pending));
-
-    Thread myThread =
-        new Thread() {
-          @Override
-          public void run() {
-            try {
-              Thread.sleep(2000);
-              setStatusWiseLayout(R.color.transaction_failed,
-                  getString(R.string.transaction_failed),
-                  getString(R.string.failed));
-              Thread.sleep(2000);
-              setStatusWiseLayout(R.color.transaction_success,
-                  getString(R.string.transaction_success),
-                  getString(R.string.success));
-            } catch (InterruptedException e) {
-              e.printStackTrace();
-            }
-          }
-        };
-    myThread.start();
-    ((ImageView) findViewById(R.id.close)).setOnClickListener(view -> onBackPressed());
   }
 
   private void getTransactionStatus() {
-    transactionStatusActivityViewModel.getStatus("").observe(this,
+    transactionStatusActivityViewModel.getStatus(transactionResponse.getTxnId()).observe(this,
         this::observeTransactionStatusApi);
   }
 
   private void observeTransactionStatusApi(WorkInfo workInfo) {
     if (workInfo != null) {
       State state = workInfo.getState();
-      apiResponseHandler(workInfo);
       if (state == State.SUCCEEDED) {
 
       }
@@ -74,19 +56,42 @@ public class TransactionStatusActivity extends BaseActivity {
     startActivity(intent);
   }
 
-  private void setStatusWiseLayout(int background, String status, String subStatus) {
-    runOnUiThread(() -> {
-      statusLayout.setBackground(ContextCompat.getDrawable(this, background));
-      statusMainHeader.setText(status);
-      tvStatus.setText(subStatus);
-    });
+  private void setStatusWiseLayout(TransactionResponse transactionResponse) {
 
+    switch (transactionResponse.getStatus()) {
+      case ProjectConstants.PENDING:
+        statusLayout.setBackground(ContextCompat.getDrawable(this, R.color.transaction_pending));
+        statusMainHeader.setText(getString(R.string.transaction_pending));
+        tvStatus.setText(getString(R.string.pending));
+        break;
+      case ProjectConstants.FAILURE:
+        statusLayout.setBackground(ContextCompat.getDrawable(this, R.color.transaction_failed));
+        statusMainHeader.setText(getString(R.string.transaction_failed));
+        tvStatus.setText(getString(R.string.failed));
+        break;
+      default:
+        statusLayout.setBackground(ContextCompat.getDrawable(this, R.color.transaction_success));
+        statusMainHeader.setText(getString(R.string.transaction_success));
+        tvStatus.setText(getString(R.string.success));
+        break;
+    }
+    ((TextView) findViewById(R.id.transaction_status_header_date))
+        .setText(transactionResponse.getDatetime());
+    ((TextView) findViewById(R.id.dateTime)).setText(transactionResponse.getDatetime());
+    ((TextView) findViewById(R.id.amount)).setText(transactionResponse.getAmount());
+    ((TextView) findViewById(R.id.transaction_id)).setText(transactionResponse.getTxnId());
+    ((TextView) findViewById(R.id.customer_id)).setText(transactionResponse.getMobile());
+    Executors.newSingleThreadExecutor()
+        .execute(() -> {
+          String type = transactionStatusActivityViewModel.getType(transactionResponse.getType());
+          runOnUiThread(() -> ((TextView) findViewById(R.id.type)).setText(type));
+        });
   }
 
   private void initUI() {
     statusLayout = findViewById(R.id.transaction_page);
     statusMainHeader = findViewById(R.id.transaction_status_header);
     tvStatus = findViewById(R.id.status);
-    ((TextView) findViewById(R.id.dispute)).setOnClickListener(view -> startDisputeActivity());
+    findViewById(R.id.dispute).setOnClickListener(view -> startDisputeActivity());
   }
 }

@@ -3,6 +3,7 @@ package com.penny.core.worker;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.work.WorkerParameters;
+import com.google.gson.Gson;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
@@ -31,6 +32,7 @@ public class MobileRechargeWorker extends BaseWorker {
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
+    mData.putString(ProjectConstants.TRANSACTION, new Gson().toJson(jsonResponse.getRecharge()));
     return sendSuccess();
   }
 }

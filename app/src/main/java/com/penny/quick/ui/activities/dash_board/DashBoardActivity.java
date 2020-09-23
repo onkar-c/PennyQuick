@@ -105,6 +105,7 @@ public class DashBoardActivity extends BaseActivity {
       intent.putExtra(ProjectConstants.IS_DTH, false);
     } else if (view.getId() == R.id.bt_prepaid || view.getId() == R.id.bt_postPaid) {
       intent = new Intent(DashBoardActivity.this, MobileRechargeActivity.class);
+      intent.putExtra(ProjectConstants.TYPE, view.getId() == R.id.bt_prepaid);
     }
     if (intent != null) {
       startActivity(intent);

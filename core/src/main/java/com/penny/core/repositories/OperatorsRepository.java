@@ -13,4 +13,8 @@ public class OperatorsRepository extends BaseRepository  {
   public List<Operators> getOperatorsByType(String type) {
     return AppDatabase.getInstance().getOperatorsDao().getOperatorsByType(type);
   }
+
+  public String getOperatorsNameByType(String type) {
+    return AppDatabase.getInstance().getOperatorsDao().getOperatorsNameByType(type);
+  }
 }

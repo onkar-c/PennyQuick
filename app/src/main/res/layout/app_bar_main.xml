@@ -345,7 +345,7 @@
       android:padding="@dimen/distance_10"
       android:gravity="center_vertical"
       android:drawablePadding="@dimen/distance_10"
-      app:drawableStartCompat="@drawable/report" />
+      app:drawableStartCompat="@drawable/recent_recharge_large" />
   </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

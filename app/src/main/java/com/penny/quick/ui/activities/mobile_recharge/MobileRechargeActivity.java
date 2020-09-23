@@ -10,9 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.google.gson.Gson;
+import com.penny.core.models.TransactionResponse;
 import com.penny.database.ProjectConstants;
-import com.penny.database.utils.StringUtils;
 import com.penny.database.entities.Operators;
+import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.models.PlanModel;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -122,6 +124,10 @@ public class MobileRechargeActivity extends BaseActivity implements
     tvValidity = findViewById(R.id.tv_validity);
     tvValidityDetails = findViewById(R.id.tv_talktime_details);
 
+    setPrepaidSelected(getIntent().getBooleanExtra(ProjectConstants.TYPE, false));
+    rbPrepaid.setChecked(getIntent().getBooleanExtra(ProjectConstants.TYPE, false));
+    setPostpaidSelected(!getIntent().getBooleanExtra(ProjectConstants.TYPE, false));
+    rbPostpaid.setChecked(!getIntent().getBooleanExtra(ProjectConstants.TYPE, false));
 //    etAmnt.addTextChangedListener(new TextWatcher() {
 //      @Override
 //      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -202,14 +208,17 @@ public class MobileRechargeActivity extends BaseActivity implements
       State state = workInfo.getState();
       apiResponseHandler(workInfo);
       if (state == State.SUCCEEDED) {
-        rechargeApiSuccess();
+        rechargeApiSuccess(workInfo.getOutputData().getString(ProjectConstants.TRANSACTION));
       }
     }
   }
 
-  private void rechargeApiSuccess() {
-    startActivity(new Intent(MobileRechargeActivity.this,
-        TransactionStatusActivity.class));
+  private void rechargeApiSuccess(String transaction) {
+    Intent intent = new Intent(MobileRechargeActivity.this,
+        TransactionStatusActivity.class);
+    intent.putExtra(ProjectConstants.TRANSACTION,
+        new Gson().fromJson(transaction, TransactionResponse.class));
+    startActivity(intent);
   }
 
   @Override

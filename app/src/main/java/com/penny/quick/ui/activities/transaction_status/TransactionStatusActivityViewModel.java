@@ -3,6 +3,7 @@ package com.penny.quick.ui.activities.transaction_status;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.work.WorkInfo;
+import com.penny.core.repositories.OperatorsRepository;
 import com.penny.core.repositories.RechargeRepository;
 
 public class TransactionStatusActivityViewModel extends ViewModel {
@@ -13,5 +14,9 @@ public class TransactionStatusActivityViewModel extends ViewModel {
 
   LiveData<WorkInfo> getStatus(String transactionId) {
     return new RechargeRepository().getRechargeStatusWorkManager(transactionId);
+  }
+
+  String getType(String type) {
+    return new OperatorsRepository().getOperatorsNameByType(type);
   }
 }

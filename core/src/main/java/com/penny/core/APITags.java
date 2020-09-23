@@ -32,7 +32,7 @@ public class APITags {
 
 
   public static final int API_MOBILE_RECHARGE = 6;
-  private static final String API_MOBILE_RECHARGE_TITTLE = "Create customer";
+  private static final String API_MOBILE_RECHARGE_TITTLE = "Transaction in progress";
   private static final String API_MOBILE_RECHARGE_MESSAGE = "Please wait";
 
 
