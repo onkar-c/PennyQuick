@@ -66,8 +66,11 @@ public class DashBoardActivity extends BaseActivity {
       walletBalance.setText(
           String.format("%s %s", getString(R.string.rupees_sign), user.getTotalBalance()));
       ImageView profileIV = findViewById(R.id.imageView);
+      ImageView drawerProfileIV = findViewById(R.id.iv_user_drawer);
       showProfileImage(user.getImageUrl(),profileIV);
+      showProfileImage(user.getImageUrl(),drawerProfileIV);
       ((TextView) findViewById(R.id.tv_user_name)).setText(user.getBusinessName());
+      ((TextView) findViewById(R.id.userName)).setText(user.getBusinessName());
     }
   }
 
