@@ -45,10 +45,10 @@ public class RecentRechargeAdapter extends
     holder.amount.setText(
         String.format("%s%s", context.getString(R.string.rupees_sign), recentRecharge.getAmount()));
     Drawable img = ContextCompat.getDrawable(context,
-        (recentRecharge.getStatus().equals(ProjectConstants.FAILURE)) ? R.drawable.failed_small
+        (recentRecharge.getStatus().equals(ProjectConstants.SUCCESS)) ? R.drawable.success_small
             : (recentRecharge.getStatus().equals(ProjectConstants.PENDING))
                 ? R.drawable.pending_small
-                : R.drawable.success_small);
+                : R.drawable.failed_small);
     holder.amount.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img);
   }
 

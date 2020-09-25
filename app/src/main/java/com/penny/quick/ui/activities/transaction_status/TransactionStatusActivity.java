@@ -68,6 +68,7 @@ public class TransactionStatusActivity extends BaseActivity {
     Intent intent = new Intent(TransactionStatusActivity.this, ContactUsDisputeActivity.class);
     intent.putExtra(ProjectConstants.IS_DISPUTE, true);
     startActivity(intent);
+    finish();
   }
 
   private void setStatusWiseLayout(TransactionResponse transactionResponse) {

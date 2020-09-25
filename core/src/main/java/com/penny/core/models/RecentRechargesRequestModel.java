@@ -8,7 +8,7 @@ public class RecentRechargesRequestModel {
   private List<String> statusType;
   private int start;
   private int limit;
-  private List<String> monthFilter;
+  private List<DateFormatModel> monthFilter;
 
   public List<String> getType() {
     return type;
@@ -42,11 +42,11 @@ public class RecentRechargesRequestModel {
     this.limit = limit;
   }
 
-  public List<String> getMonthFilter() {
+  public List<DateFormatModel> getMonthFilter() {
     return monthFilter;
   }
 
-  public void setMonthFilter(List<String> monthFilter) {
+  public void setMonthFilter(List<DateFormatModel> monthFilter) {
     this.monthFilter = monthFilter;
   }
 }

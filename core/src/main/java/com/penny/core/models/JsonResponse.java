@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JsonResponse implements Serializable {
 
-  @SerializedName("recharge")
+  @SerializedName("recentRecharges")
   List<RecentRecharge> recentRecharges;
   @SerializedName("message")
   private

@@ -32,6 +32,8 @@ public class ProjectConstants {
   public static final String SERVICE_DTH = "2";
   public static final String FAILURE = "Failure";
   public static final String PENDING = "Pending";
+  public static final String SUCCESS = "Success";
+
 
   public static final String PREPAID_TYPE = "MOBILE";
   public static final String POSTPAID_TYPE = "POSTPAID";
@@ -41,5 +43,8 @@ public class ProjectConstants {
   public static final String SERVER_DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss a";
   public static final String TIME_FORMAT = "hh:mm a";
   public static final String DATE_FORMAT = "dd MMMM yyyy";
+  public static final String DATE_FILTER = "date_filter";
+  public static final String CATEGORIES_FILTER = "categories_filter";
+  public static final String STATUS_FILTER = "status_filter";
 
 }

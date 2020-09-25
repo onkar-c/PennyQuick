@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +17,13 @@ public class RecentRechargeBottomSheetAdapter extends
     RecyclerView.Adapter<RecentRechargeBottomSheetAdapter.MyViewHolder> {
 
   private List<BottomSheetCheckBox> values;
-  private Context context;
 
-  public RecentRechargeBottomSheetAdapter(List<BottomSheetCheckBox> values, Context context) {
+  public RecentRechargeBottomSheetAdapter(List<BottomSheetCheckBox> values) {
     this.values = values;
-    this.context = context;
+  }
+
+  public List<BottomSheetCheckBox> getValues() {
+    return values;
   }
 
   @NonNull
@@ -34,6 +37,15 @@ public class RecentRechargeBottomSheetAdapter extends
   @Override
   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
     holder.text.setText(values.get(position).getTitle());
+    holder.checkBox.setChecked(values.get(position).isChecked());
+    holder.checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
+      values.get(position).setChecked(b);
+    });
+  }
+
+  public void setList(List<BottomSheetCheckBox> values) {
+    this.values = values;
+    notifyDataSetChanged();
   }
 
   @Override
@@ -43,7 +55,8 @@ public class RecentRechargeBottomSheetAdapter extends
 
   static class MyViewHolder extends ViewHolder {
 
-    private TextView text, checkBox;
+    private TextView text;
+    private CheckBox checkBox;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);

@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
+import com.penny.core.models.DateFormatModel;
 import com.penny.core.worker.MobileRechargeWorker;
 import com.penny.core.worker.RecentRechargesWorker;
 import com.penny.core.worker.RechargeStatusWorker;
@@ -44,8 +47,19 @@ public class RechargeRepository extends BaseRepository {
     return getOneTimeRequestLiveDate(mRequest);
   }
 
-  public LiveData<WorkInfo> getRecentRechargeWorkManager() {
+  public LiveData<WorkInfo> getRecentRechargeWorkManager(List<DateFormatModel> dateFormatModels,
+      List<String> extractedCategories, List<String> statusCategories) {
     Data.Builder data = getDataBuilderForApi(APITags.API_RECENT_RECHARGES);
+    Gson gson = new Gson();
+    data.putString(ProjectConstants.DATE_FILTER,
+        gson.toJson(dateFormatModels, new TypeToken<List<DateFormatModel>>() {
+        }.getType()));
+    data.putString(ProjectConstants.CATEGORIES_FILTER,
+        gson.toJson(extractedCategories, new TypeToken<List<String>>() {
+        }.getType()));
+    data.putString(ProjectConstants.STATUS_FILTER,
+        gson.toJson(statusCategories, new TypeToken<List<String>>() {
+        }.getType()));
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(RecentRechargesWorker.class)
         .setInputData(data.build())
         .setConstraints(getNetworkConstraint())

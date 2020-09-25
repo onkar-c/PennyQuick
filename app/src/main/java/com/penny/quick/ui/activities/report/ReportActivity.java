@@ -15,8 +15,11 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportActivity extends AppCompatActivity implements BottomSheetListener {
+public class ReportActivity extends AppCompatActivity {
 
+  private BottomSheetListener filterBottomSheet = bottomSheetCheckBoxes -> {
+
+  };
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +34,19 @@ public class ReportActivity extends AppCompatActivity implements BottomSheetList
 
     findViewById(R.id.month).setOnClickListener(view -> {
       RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(
-          generateMonthList(), getString(R.string.choose_month));
+          generateMonthList(), getString(R.string.choose_month), filterBottomSheet);
       recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
     });
 
     findViewById(R.id.category).setOnClickListener(view -> {
       RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(
-          getCategoriesFilter(), getString(R.string.categories));
+          getCategoriesFilter(), getString(R.string.categories), filterBottomSheet);
       recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
     });
 
     findViewById(R.id.filters).setOnClickListener(view -> {
       RecentRechargeBottomSheetDialog recentRechargeBottomSheetDialog = new RecentRechargeBottomSheetDialog(
-          getFilter(), getString(R.string.filter));
+          getFilter(), getString(R.string.filter), filterBottomSheet);
       recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
     });
   }
@@ -112,10 +115,5 @@ public class ReportActivity extends AppCompatActivity implements BottomSheetList
       reports.add(report);
     }
     return reports;
-  }
-
-  @Override
-  public void onButtonClick(String text) {
-
   }
 }
