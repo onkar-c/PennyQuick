@@ -12,12 +12,7 @@ public class DateUtils {
   public static Date convertToDate(String date, String dateFormat) {
     try {
       SimpleDateFormat lSimpleDateFormat = new SimpleDateFormat(dateFormat, Locale.getDefault());
-      if (TimeZone.getTimeZone("UTC").getDisplayName()
-          .equals(lSimpleDateFormat.getTimeZone().getDisplayName())) {
-        lSimpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-      }
       return lSimpleDateFormat.parse(date);
-
     } catch (ParseException e) {
       e.printStackTrace();
       return null;

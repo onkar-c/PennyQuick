@@ -23,6 +23,7 @@ public class RecentRechargesWorker extends BaseWorker {
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
+    AppDatabase.getInstance().getRecentRechargeEntityDao().deleteAll();
     AppDatabase.getInstance().getRecentRechargeEntityDao().insert(jsonResponse.getRecentRecharges());
     return sendSuccess();
   }

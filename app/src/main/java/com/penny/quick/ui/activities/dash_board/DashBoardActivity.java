@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
@@ -64,6 +65,9 @@ public class DashBoardActivity extends BaseActivity {
     if (user != null) {
       walletBalance.setText(
           String.format("%s %s", getString(R.string.rupees_sign), user.getTotalBalance()));
+      ImageView profileIV = findViewById(R.id.imageView);
+      showProfileImage(user.getImageUrl(),profileIV);
+      ((TextView) findViewById(R.id.tv_user_name)).setText(user.getBusinessName());
     }
   }
 

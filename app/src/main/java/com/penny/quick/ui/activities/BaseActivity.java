@@ -6,13 +6,16 @@ import static com.penny.core.APITags.ERROR_WHILE_CONNECTING_TO_SERVER;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.work.Data;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import androidx.work.WorkManager;
+import com.bumptech.glide.Glide;
 import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
 import com.penny.core.util.NetworkUtils;
@@ -158,6 +161,15 @@ public class BaseActivity extends DaggerAppCompatActivity {
     CoreSharedHelper.getInstance().setRememberPassword(false);
     startActivity(new Intent(this, SignInActivity.class));
     finish();
+  }
+
+  public void showProfileImage(String imgUrl, ImageView imageView) {
+    Glide.with(this)
+        .load(imgUrl)
+        .placeholder(R.drawable.ic_user_profile_dummy)
+        .into(imageView)
+        .onLoadFailed(
+            ContextCompat.getDrawable(BaseActivity.this, R.drawable.ic_user_profile_dummy));
   }
 
 }
