@@ -21,7 +21,7 @@ public class DisputeHistoryActivity extends AppCompatActivity {
     ToolBarUtils.setTitle(this, getString(R.string.dispute_report));
     RecyclerView reportList = findViewById(R.id.dispute_reports);
     reportList.setLayoutManager(new LinearLayoutManager(this));
-    DisputeReportsAdapter reportsAdapter = new DisputeReportsAdapter(generateReportList(), this);
+    DisputeReportsAdapter reportsAdapter = new DisputeReportsAdapter(generateReportList());
     reportList.setAdapter(reportsAdapter);
   }
 

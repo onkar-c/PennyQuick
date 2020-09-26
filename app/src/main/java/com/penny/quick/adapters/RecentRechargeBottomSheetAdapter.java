@@ -1,6 +1,5 @@
 package com.penny.quick.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +37,8 @@ public class RecentRechargeBottomSheetAdapter extends
   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
     holder.text.setText(values.get(position).getTitle());
     holder.checkBox.setChecked(values.get(position).isChecked());
-    holder.checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
-      values.get(position).setChecked(b);
-    });
+    holder.checkBox
+        .setOnCheckedChangeListener((compoundButton, b) -> values.get(position).setChecked(b));
   }
 
   public void setList(List<BottomSheetCheckBox> values) {

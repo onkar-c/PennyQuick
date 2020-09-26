@@ -3,7 +3,6 @@ package com.penny.quick.ui.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,12 +52,11 @@ public class BottomSheetAdapter extends
 
   public static class BottomSheetListItemVH extends ViewHolder {
 
-    private ImageView imgIcon;
     private TextView txtItemName;
 
     public BottomSheetListItemVH(@NonNull View itemView) {
       super(itemView);
-      imgIcon = itemView.findViewById(R.id.iv_icon);
+//      ImageView imgIcon = itemView.findViewById(R.id.iv_icon);
       txtItemName = itemView.findViewById(R.id.tv_name);
     }
 

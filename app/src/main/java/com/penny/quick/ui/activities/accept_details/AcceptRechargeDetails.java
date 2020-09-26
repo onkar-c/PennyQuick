@@ -16,7 +16,6 @@ import com.penny.quick.utils.ToolBarUtils;
 public class AcceptRechargeDetails extends AppCompatActivity {
 
   private Intent intent;
-  private EditText customerId;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class AcceptRechargeDetails extends AppCompatActivity {
   }
 
   private void intiUI() {
-    customerId = findViewById(R.id.customer_id);
+    EditText customerId = findViewById(R.id.customer_id);
     String providerName = intent.getStringExtra(ProjectConstants.PROVIDER);
     if (providerName != null) {
       ToolBarUtils.setTitle(this, providerName);

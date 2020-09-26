@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
   <include android:id="@+id/commonToolBar"
@@ -66,7 +67,8 @@
       android:textSize="@dimen/textSize_16"
       android:layout_weight="1"
       android:gravity="center"
-      android:maxLength="1"/>
+      android:maxLength="1"
+      tools:ignore="LabelFor" />
 
     <EditText
       android:id="@+id/et_otp2"
@@ -82,7 +84,8 @@
       android:textSize="@dimen/textSize_16"
       android:layout_weight="1"
       android:gravity="center"
-      android:maxLength="1"/>
+      android:maxLength="1"
+      tools:ignore="LabelFor" />
 
     <EditText
       android:id="@+id/et_otp3"
@@ -98,7 +101,8 @@
       android:textSize="@dimen/textSize_16"
       android:layout_weight="1"
       android:gravity="center"
-      android:maxLength="1"/>
+      android:maxLength="1"
+      tools:ignore="LabelFor" />
 
     <EditText
       android:id="@+id/et_otp4"
@@ -114,7 +118,8 @@
       android:textSize="@dimen/textSize_16"
       android:layout_weight="1"
       android:gravity="center"
-      android:maxLength="1"/>
+      android:maxLength="1"
+      tools:ignore="LabelFor" />
   </LinearLayout>
   <TextView
     android:id="@+id/tv_error"
@@ -132,7 +137,8 @@
     android:orientation="horizontal"
     android:layout_marginTop="@dimen/margin_15"
     android:layout_marginStart="@dimen/margin_15"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    tools:ignore="UseCompoundDrawables">
 
   <ImageView
     android:id="@+id/iv_resend"

@@ -47,11 +47,13 @@ public class User {
   @ColumnInfo(name = "email")
   private String email;
 
+  @NonNull
   public String getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+
+  public void setUserId(@NonNull String userId) {
     this.userId = userId;
   }
 

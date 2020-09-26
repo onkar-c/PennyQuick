@@ -24,6 +24,7 @@
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/distance_5"
       android:padding="@dimen/distance_10"
+      android:contentDescription="@string/clear"
       android:background="@drawable/ic_close_blue" />
 
     <TextView
@@ -32,7 +33,7 @@
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/distance_5"
       android:padding="@dimen/distance_10"
-      android:text="Operator"
+      android:text="@string/operators"
       android:textColor="@color/text_color_5"
       android:textSize="@dimen/textSize_18" />
   </LinearLayout>

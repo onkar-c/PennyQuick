@@ -7,7 +7,7 @@ import dagger.Provides;
 public class ProfileActivityModel {
 
   @Provides
-  ProfileActivityViewModel ProfileActivityModel() {
+  ProfileActivityViewModel getProfileActivityModel() {
     return new ProfileActivityViewModel();
   }
 }

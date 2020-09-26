@@ -1,6 +1,5 @@
 package com.penny.quick.ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,13 @@ import com.penny.database.entities.Report;
 import com.penny.quick.R;
 import java.util.List;
 
-public class DisputeReportsAdapter extends RecyclerView.Adapter<DisputeReportsAdapter.MyViewHolder> {
+public class DisputeReportsAdapter extends
+    RecyclerView.Adapter<DisputeReportsAdapter.MyViewHolder> {
 
   private List<Report> reports;
-  private Context context;
 
-  public DisputeReportsAdapter(List<Report> reports, Context context) {
+  public DisputeReportsAdapter(List<Report> reports) {
     this.reports = reports;
-    this.context = context;
   }
 
   @NonNull
@@ -46,13 +44,15 @@ public class DisputeReportsAdapter extends RecyclerView.Adapter<DisputeReportsAd
 
   static class MyViewHolder extends ViewHolder {
 
-    private TextView date, transactionId, message, status;
+    private TextView date;
+    private TextView transactionId;
+    private TextView message;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);
       transactionId = itemView.findViewById(R.id.transaction_id);
       message = itemView.findViewById(R.id.message);
-      status = itemView.findViewById(R.id.status);
+//      TextView status = itemView.findViewById(R.id.status);
       date = itemView.findViewById(R.id.date);
     }
   }

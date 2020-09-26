@@ -40,7 +40,6 @@ public class MobileRechargeActivity extends BaseActivity implements
   private StateBottomSheetDialog stateBottomSheetDialog;
   private EditText etMobileNo, etAmnt;
   private TextView tvTalktime, tvData, tvValidity, tvValidityDetails;
-  private PlanModel selectedPlan;
   private Operators selectedOperator = null;
   private com.penny.database.entities.State selectedState = null;
 
@@ -236,7 +235,7 @@ public class MobileRechargeActivity extends BaseActivity implements
     if (requestCode == VIEW_PLANS_REQ_CODE) {
       if (resultCode == RESULT_OK) {
         if (data != null) {
-          selectedPlan = data.getParcelableExtra(ProjectConstants.PLAN);
+          PlanModel selectedPlan = data.getParcelableExtra(ProjectConstants.PLAN);
           if (selectedPlan != null) {
             llPlanDetails.setVisibility(View.VISIBLE);
             etAmnt.setText(String.valueOf(selectedPlan.getAmount()));

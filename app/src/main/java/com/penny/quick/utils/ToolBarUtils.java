@@ -1,7 +1,5 @@
 package com.penny.quick.utils;
 
-import android.app.Activity;
-import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.penny.quick.R;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
-import androidx.cardview.widget.CardView;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -18,8 +17,8 @@ public class ProvidersListActivity extends BaseActivity {
     setContentView(R.layout.activity_providers_list);
     setUpToolBar();
     setTitle(getString(R.string.select_provider));
-    GridLayout dthGrid = (GridLayout) findViewById(R.id.dthGrid);
-    GridLayout landLineGrid = (GridLayout) findViewById(R.id.landLineGrid);
+    GridLayout dthGrid = findViewById(R.id.dthGrid);
+    GridLayout landLineGrid = findViewById(R.id.landLineGrid);
     boolean isDth = getIntent().getBooleanExtra(ProjectConstants.IS_DTH, true);
     if (isDth) {
       setGridListener(dthGrid);
@@ -32,7 +31,7 @@ public class ProvidersListActivity extends BaseActivity {
 
   private void setGridListener(GridLayout grid) {
     for (int i = 0; i < grid.getChildCount(); i++) {
-      ((CardView) grid.getChildAt(i)).setOnClickListener(this::handelRechargeGridClick);
+      (grid.getChildAt(i)).setOnClickListener(this::handelRechargeGridClick);
     }
   }
 

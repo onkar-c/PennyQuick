@@ -49,6 +49,7 @@
   <string name="enter_mob_no_info">Please Enter Your Registered Mobile no.</string>
   <string name="mob_reg_sub">We will send verification code to your registered Mobile Number</string>
   <string name="mobile_no">Mobile No.</string>
+  <string name="mobile">Mobile</string>
   <string name="enter_verification_code">Please Enter The Verification Code</string>
   <string name="verification_code_sub">We have sent a verification code to your registered Mobile Number</string>
   <string name="resend">Resend Again</string>
