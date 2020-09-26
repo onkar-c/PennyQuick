@@ -41,6 +41,10 @@ public class RecentRecharge implements Serializable {
   @ColumnInfo(name = "operator")
   private String operator;
 
+  @SerializedName("displayName")
+  @ColumnInfo(name = "displayName")
+  private String displayName;
+
   public String getCompanyType() {
     return companyType;
   }
@@ -103,5 +107,13 @@ public class RecentRecharge implements Serializable {
 
   public void setId(Integer id) {
     this.id = id;
+  }
+
+  public String getDisplayName() {
+    return displayName;
+  }
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
   }
 }

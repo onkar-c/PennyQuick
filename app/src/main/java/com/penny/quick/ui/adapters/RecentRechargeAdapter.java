@@ -38,7 +38,12 @@ public class RecentRechargeAdapter extends
   @Override
   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
     RecentRecharge recentRecharge = recentRecharges.get(position);
-    holder.companyType.setText(recentRecharge.getCompanyType());
+    if (recentRecharge.getCompanyType().equals(ProjectConstants.DTH)) {
+      holder.companyType.setText(
+          String.format("%s - %s", ProjectConstants.DTH, recentRecharge.getDisplayName()));
+    } else {
+      holder.companyType.setText(recentRecharge.getDisplayName());
+    }
     holder.customerId.setText(recentRecharge.getCustomerId());
     holder.transactionId.setText(recentRecharge.getTransactionId());
     holder.date.setText(DateUtils.getDateInRechargeDateFormat(recentRecharge.getDate()));

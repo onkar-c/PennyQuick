@@ -43,6 +43,10 @@ public class User {
   @ColumnInfo(name = "totalBalance")
   private String totalBalance;
 
+  @SerializedName("email")
+  @ColumnInfo(name = "email")
+  private String email;
+
   public String getUserId() {
     return userId;
   }
@@ -105,5 +109,13 @@ public class User {
 
   public void setTotalBalance(String totalBalance) {
     this.totalBalance = totalBalance;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 }

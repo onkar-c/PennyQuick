@@ -3,6 +3,7 @@ package com.penny.database;
 public class ProjectConstants {
 
   public static final String IS_DTH = "is_dth";
+  public static final String DTH = "DTH";
   public static final String IS_DISPUTE = "is_dispute";
   public static final String TITLE = "title";
   public static final String PROVIDER = "provider";
@@ -17,6 +18,7 @@ public class ProjectConstants {
   public static final String PASSWORD = "password";
   public static final String IS_FORGOT_PASSWORD = "is_forgot_password";
   public static final String MOBILE_NUMBER = "mobile_number";
+  public static final String MOBILE = "Mobile";
   public static final String NUMBER = "number";
   public static final String OPERATOR = "operator";
   public static final String CIRCLE = "circle";

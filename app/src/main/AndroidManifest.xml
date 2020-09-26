@@ -101,6 +101,7 @@
       android:theme="@style/AppTheme.NoActionBar" />
     <activity
       android:name=".ui.activities.profile.ProfileActivity"
+      android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
   </application>
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

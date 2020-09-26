@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
-import com.bumptech.glide.Glide;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.User;
 import com.penny.quick.R;
@@ -46,12 +44,12 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
   }
 
   private void setProfileData(User user) {
-    if(user !=null) {
+    if (user != null) {
       ImageView profileIV = findViewById(R.id.iv_profile);
-      showProfileImage(user.getImageUrl(),profileIV);
+      showProfileImage(user.getImageUrl(), profileIV);
       ((TextView) findViewById(R.id.tv_profile_name)).setText(user.getBusinessName());
       ((TextView) findViewById(R.id.tv_profile_mob_no)).setText(user.getMobileNumber());
-//    ((TextView) findViewById(R.id.tv_profile_email)).setText(user.getEmail());
+      ((TextView) findViewById(R.id.tv_profile_email)).setText(user.getEmail());
 //    ((TextView) findViewById(R.id.tv_profile_address)).setText(user.getAddress());
       ((TextView) findViewById(R.id.tv_profile_wallet_balance)).setText(user.getTotalBalance());
     }

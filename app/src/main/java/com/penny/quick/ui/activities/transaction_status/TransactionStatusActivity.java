@@ -2,6 +2,7 @@ package com.penny.quick.ui.activities.transaction_status;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
@@ -24,6 +25,7 @@ public class TransactionStatusActivity extends BaseActivity {
   private LinearLayout statusLayout;
   private TextView statusMainHeader, tvStatus;
   private TransactionResponse transactionResponse;
+  private ImageView statusIcon;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +78,19 @@ public class TransactionStatusActivity extends BaseActivity {
     switch (transactionResponse.getStatus()) {
       case ProjectConstants.PENDING:
         statusLayout.setBackground(ContextCompat.getDrawable(this, R.color.transaction_pending));
+        statusIcon.setImageResource(R.drawable.pending);
         statusMainHeader.setText(getString(R.string.transaction_pending));
         tvStatus.setText(getString(R.string.pending));
         break;
       case ProjectConstants.FAILURE:
         statusLayout.setBackground(ContextCompat.getDrawable(this, R.color.transaction_failed));
         statusMainHeader.setText(getString(R.string.transaction_failed));
+        statusIcon.setImageResource(R.drawable.failed);
         tvStatus.setText(getString(R.string.failed));
         break;
       default:
         statusLayout.setBackground(ContextCompat.getDrawable(this, R.color.transaction_success));
+        statusIcon.setImageResource(R.drawable.success);
         statusMainHeader.setText(getString(R.string.transaction_success));
         tvStatus.setText(getString(R.string.success));
         break;
@@ -98,7 +103,10 @@ public class TransactionStatusActivity extends BaseActivity {
     ((TextView) findViewById(R.id.transaction_id)).setText(transactionResponse.getTxnId());
     ((TextView) findViewById(R.id.customer_id)).setText(transactionResponse.getMobile());
     ((TextView) findViewById(R.id.rechargeType)).setText(
-        String.format("%s %s", transactionResponse.getType(), getString(R.string.recharge)));
+        String.format("%s %s",
+            !transactionResponse.getType().equals(ProjectConstants.DTH) ? ProjectConstants.MOBILE
+                : transactionResponse.getType().equals(ProjectConstants.DTH),
+            getString(R.string.recharge)));
     Executors.newSingleThreadExecutor()
         .execute(() -> {
           String type = transactionStatusActivityViewModel
@@ -111,6 +119,7 @@ public class TransactionStatusActivity extends BaseActivity {
     statusLayout = findViewById(R.id.transaction_page);
     statusMainHeader = findViewById(R.id.transaction_status_header);
     tvStatus = findViewById(R.id.status);
+    statusIcon = findViewById(R.id.status_icon);
     findViewById(R.id.dispute).setOnClickListener(view -> startDisputeActivity());
   }
 }
