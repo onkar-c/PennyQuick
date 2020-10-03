@@ -1,5 +1,6 @@
 package com.penny.quick.di;
 
+import com.penny.quick.ui.activities.accept_details.AcceptRechargeDetails;
 import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivityModel;
@@ -66,6 +67,9 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = MobileRechargeActivityModel.class)
   abstract MobileRechargeActivity getMobileRechargeActivity();
+
+  @ContributesAndroidInjector(modules = MobileRechargeActivityModel.class)
+  abstract AcceptRechargeDetails getAcceptRechargeDetails();
 
   @ContributesAndroidInjector(modules = ProfileActivityModel.class)
   abstract ProfileActivity getProfileActivity();

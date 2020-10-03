@@ -7,6 +7,7 @@ public class ProjectConstants {
   public static final String IS_DISPUTE = "is_dispute";
   public static final String TITLE = "title";
   public static final String PROVIDER = "provider";
+  public static final String PROVIDER_TYPE = "provider_type";
   public static final String PROVIDER_IMAGE = "provider_image";
   public static final String CUSTOMER_ID_HINT = "data_view_1_hint";
   public static final String CUSTOMER_ID_MESSAGE = "data_view_1_message";
@@ -35,6 +36,13 @@ public class ProjectConstants {
   public static final String FAILURE = "Failure";
   public static final String PENDING = "Pending";
   public static final String SUCCESS = "Success";
+  public static final String AIRTEL_DTH = "ATV";
+  public static final String VIDEOCON_DTH = "VTV";
+  public static final String SUNDIRECT_DTH = "STV";
+  public static final String BIG_DTH = "BTV";
+  public static final String DISH_DTH = "DTV";
+  public static final String TATASKY_DTH = "TTV";
+
 
 
   public static final String PREPAID_TYPE = "MOBILE";

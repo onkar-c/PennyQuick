@@ -31,7 +31,7 @@
         android:layout_marginStart="@dimen/distance_15" />
 
       <EditText
-        android:id="@+id/et_current_password"
+        android:id="@+id/et_customer_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_10"
@@ -40,9 +40,9 @@
         android:paddingStart="@dimen/padding_20"
         android:paddingEnd="@dimen/distance_10"
         android:hint="@string/enter_name"
-        android:autofillHints="@string/password"
+        android:autofillHints="@string/customer_name"
         android:background="@drawable/edit_text_background"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:textColor="@color/hint_color"
         android:textSize="@dimen/textSize_16" />
 
@@ -67,7 +67,7 @@
         android:layout_marginStart="@dimen/distance_15" />
 
       <EditText
-        android:id="@+id/et_new_password"
+        android:id="@+id/et_mobile_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_10"
@@ -75,12 +75,12 @@
         android:paddingBottom="@dimen/distance_13"
         android:paddingStart="@dimen/padding_20"
         android:paddingEnd="@dimen/distance_10"
-        android:autofillHints="@string/password"
         android:hint="@string/enter_mobile"
         android:background="@drawable/edit_text_background"
-        android:inputType="textPassword"
+        android:inputType="number"
         android:textColor="@color/hint_color"
-        android:textSize="@dimen/textSize_16" />
+        android:textSize="@dimen/textSize_16"
+        android:autofillHints="@string/mobile_number" />
 
 
     </LinearLayout>
@@ -105,7 +105,7 @@
         android:layout_marginStart="@dimen/distance_15" />
 
       <EditText
-        android:id="@+id/et_re_enter_password"
+        android:id="@+id/et_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_10"
@@ -113,9 +113,9 @@
         android:paddingBottom="@dimen/distance_13"
         android:paddingStart="@dimen/padding_20"
         android:paddingEnd="@dimen/distance_10"
-        android:autofillHints="@string/password"
+        android:autofillHints="@string/subject"
         android:background="@drawable/edit_text_background"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:textColor="@color/hint_color"
         android:hint="@string/enter_subject"
         android:textSize="@dimen/textSize_16" />

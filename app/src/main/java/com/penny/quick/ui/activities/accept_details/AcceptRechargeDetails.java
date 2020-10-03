@@ -6,16 +6,26 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.work.WorkInfo;
+import androidx.work.WorkInfo.State;
+import com.google.gson.Gson;
+import com.penny.core.models.TransactionResponse;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
+import com.penny.quick.ui.activities.BaseActivity;
+import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivityViewModel;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
 import com.penny.quick.utils.ToolBarUtils;
+import javax.inject.Inject;
 
-public class AcceptRechargeDetails extends AppCompatActivity {
+public class AcceptRechargeDetails extends BaseActivity {
 
+  @Inject
+  MobileRechargeActivityViewModel mobileRechargeActivityViewModel;
   private Intent intent;
+  private EditText customerId;
+  private EditText amount;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +35,12 @@ public class AcceptRechargeDetails extends AppCompatActivity {
     intent = getIntent();
     intiUI();
     findViewById(R.id.bt_recharge)
-        .setOnClickListener(view -> startActivity(new Intent(AcceptRechargeDetails.this,
-            TransactionStatusActivity.class)));
-
+        .setOnClickListener(view -> recharge());
   }
 
   private void intiUI() {
-    EditText customerId = findViewById(R.id.customer_id);
+    customerId = findViewById(R.id.customer_id);
+    amount = findViewById(R.id.recharge_amount);
     String providerName = intent.getStringExtra(ProjectConstants.PROVIDER);
     if (providerName != null) {
       ToolBarUtils.setTitle(this, providerName);
@@ -76,5 +85,31 @@ public class AcceptRechargeDetails extends AppCompatActivity {
     }
 
 
+  }
+
+  private void recharge() {
+    mobileRechargeActivityViewModel
+        .recharge(customerId.getText().toString(), Float.parseFloat(amount.getText().toString()),
+            intent.getStringExtra(ProjectConstants.PROVIDER_TYPE), null,
+            intent.getStringExtra(ProjectConstants.TYPE))
+        .observe(this, this::mobileRechargeApiObserver);
+  }
+
+  private void mobileRechargeApiObserver(WorkInfo workInfo) {
+    if (workInfo != null) {
+      State state = workInfo.getState();
+      apiResponseHandler(workInfo);
+      if (state == State.SUCCEEDED) {
+        rechargeApiSuccess(workInfo.getOutputData().getString(ProjectConstants.TRANSACTION));
+      }
+    }
+  }
+
+  private void rechargeApiSuccess(String transaction) {
+    Intent intent = new Intent(AcceptRechargeDetails.this,
+        TransactionStatusActivity.class);
+    intent.putExtra(ProjectConstants.TRANSACTION,
+        new Gson().fromJson(transaction, TransactionResponse.class));
+    startActivity(intent);
   }
 }

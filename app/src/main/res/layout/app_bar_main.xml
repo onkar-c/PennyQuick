@@ -91,8 +91,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/distance_20"
-    android:layout_marginStart="@dimen/distance_15"
-    android:layout_marginEnd="@dimen/distance_15"
+    android:layout_marginStart="@dimen/distance_6"
+    android:layout_marginEnd="@dimen/distance_6"
     android:layout_below="@+id/userInfoLayout"
     android:background="@drawable/bottom_bar_background">
 
