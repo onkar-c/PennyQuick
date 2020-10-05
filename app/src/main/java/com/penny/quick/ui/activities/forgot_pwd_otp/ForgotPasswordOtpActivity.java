@@ -38,6 +38,7 @@ public class ForgotPasswordOtpActivity extends BaseActivity implements TextWatch
     setContentView(R.layout.activity_forgot_pwd_otp);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.forgot_pwd));
+    registerNetworkReceiver();
     initUi();
   }
 

@@ -77,6 +77,7 @@ public class RecentRechargeActivity extends BaseActivity {
     setContentView(R.layout.activity_recent_recharge);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.recent_recharge));
+    registerNetworkReceiver();
     generateDates();
     getCategoriesFilter();
     getFilter();

@@ -184,5 +184,7 @@
   <string name="operator_error">Please select Operator</string>
   <string name="state_error">Please select State</string>
   <string name="amnt_error">Please select Plan or enter amount</string>
+  <string name="network_availbale">We are now online</string>
+  <string name="network_not_availbale">Could not connect to internet</string>
 
 </resources>

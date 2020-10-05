@@ -34,6 +34,7 @@ public class ChangePasswordActivity extends BaseActivity {
     setContentView(R.layout.activity_change_pasword);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.change_pwd));
+    registerNetworkReceiver();
     initUi();
   }
 
