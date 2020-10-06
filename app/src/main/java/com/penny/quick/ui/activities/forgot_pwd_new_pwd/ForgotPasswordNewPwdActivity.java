@@ -35,6 +35,7 @@ public class ForgotPasswordNewPwdActivity extends BaseActivity {
     setContentView(R.layout.activity_forgot_pwd_new);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.forgot_pwd));
+    registerNetworkReceiver();
     initUi();
   }
 
@@ -51,7 +52,8 @@ public class ForgotPasswordNewPwdActivity extends BaseActivity {
   private void changePassword() {
     forgotPasswordViewModel
         .changePassword(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER),
-            getIntent().getStringExtra(ProjectConstants.OTP),null,  password.getText().toString(), true)
+            getIntent().getStringExtra(ProjectConstants.OTP), null, password.getText().toString(),
+            true)
         .observe(this,
             this::observeChangePasswordApi);
   }

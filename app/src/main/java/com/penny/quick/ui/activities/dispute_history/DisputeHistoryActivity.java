@@ -1,5 +1,7 @@
 package com.penny.quick.ui.activities.dispute_history;
 
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,11 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.penny.database.entities.Report;
 import com.penny.quick.R;
 import com.penny.quick.ui.adapters.DisputeReportsAdapter;
+import com.penny.quick.utils.NetworkConnectivityReceiver;
 import com.penny.quick.utils.ToolBarUtils;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DisputeHistoryActivity extends AppCompatActivity {
+
+  private BroadcastReceiver mNetworkReceiver;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,7 @@ public class DisputeHistoryActivity extends AppCompatActivity {
     setContentView(R.layout.activity_dispute_history);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.dispute_report));
+    registerNetworkReceiver();
     RecyclerView reportList = findViewById(R.id.dispute_reports);
     reportList.setLayoutManager(new LinearLayoutManager(this));
     DisputeReportsAdapter reportsAdapter = new DisputeReportsAdapter(generateReportList());
@@ -36,5 +42,18 @@ public class DisputeHistoryActivity extends AppCompatActivity {
       reports.add(report);
     }
     return reports;
+  }
+
+  protected void registerNetworkReceiver() {
+    mNetworkReceiver = new NetworkConnectivityReceiver();
+    IntentFilter filter = new IntentFilter();
+    filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+    registerReceiver(mNetworkReceiver, filter);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    unregisterReceiver(mNetworkReceiver);
   }
 }

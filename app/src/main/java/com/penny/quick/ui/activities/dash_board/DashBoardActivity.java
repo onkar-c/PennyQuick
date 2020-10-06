@@ -9,6 +9,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.work.WorkInfo;
@@ -32,9 +33,9 @@ public class DashBoardActivity extends BaseActivity {
   @Inject
   DashBoardActivityViewModel dashBoardActivityViewModel;
   private DrawerLayout drawer;
-  private TextView walletBalance, userName, drawerUserName;
-  private ImageView profileIV;
-  private ImageView drawerProfileIV;
+  private TextView walletBalance, drawerUserNameTV;
+  private ImageView profileIV, drawerProfileIV;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class DashBoardActivity extends BaseActivity {
     setContentView(R.layout.activity_dash_board);
     setToolBarAndNavigationDrawer();
     initUi();
-
+    registerNetworkReceiver();
     GridLayout grid = findViewById(R.id.rechargeGridLayout);
     for (int i = 0; i < grid.getChildCount(); i++) {
       grid.getChildAt(i).setOnClickListener(this::handelRechargeGridClick);
@@ -58,8 +59,6 @@ public class DashBoardActivity extends BaseActivity {
   private void initUi() {
     walletBalance = findViewById(R.id.walletBalance);
     profileIV = findViewById(R.id.imageView);
-    userName = findViewById(R.id.tv_user_name);
-
   }
 
   private void setObservers() {
@@ -72,8 +71,8 @@ public class DashBoardActivity extends BaseActivity {
           String.format("%s %s", getString(R.string.rupees_sign), user.getTotalBalance()));
       showProfileImage(user.getImageUrl(), profileIV);
       showProfileImage(user.getImageUrl(), drawerProfileIV);
-      userName.setText(user.getBusinessName());
-      drawerUserName.setText(user.getBusinessName());
+      ((TextView) findViewById(R.id.tv_user_name)).setText(user.getBusinessName());
+      drawerUserNameTV.setText(user.getBusinessName());
     }
   }
 
@@ -94,9 +93,9 @@ public class DashBoardActivity extends BaseActivity {
     Toolbar toolbar = findViewById(R.id.dashBoardToolBar);
     drawer = findViewById(R.id.drawer_layout);
     NavigationView navigationView = findViewById(R.id.nav_view);
-    View header = navigationView.getHeaderView(0);
-    drawerProfileIV = header.findViewById(R.id.iv_user_drawer);
-    drawerUserName = header.findViewById(R.id.userName);
+    View navigationHeader = navigationView.getHeaderView(0);
+    drawerProfileIV = navigationHeader.findViewById(R.id.iv_user_drawer);
+    drawerUserNameTV = navigationHeader.findViewById(R.id.userName);
     navigationView.setNavigationItemSelectedListener(getNavigationItemClickListener());
     navigationView.bringToFront();
     setSupportActionBar(toolbar);
@@ -186,5 +185,10 @@ public class DashBoardActivity extends BaseActivity {
       drawer.close();
       return true;
     };
+  }
+
+  public static void manageNetworkErr(AppCompatActivity context, boolean isNetworkAvailable) {
+    TextView networkWarningTV = context.findViewById(R.id.tv_network_warning);
+    showWarningText(networkWarningTV, isNetworkAvailable);
   }
 }

@@ -26,6 +26,7 @@ public class ViewPlansActivity extends BaseActivity implements PlanClickListener
     setContentView(R.layout.activity_view_plans);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.plans));
+    registerNetworkReceiver();
     TabLayout tabLayout = findViewById(R.id.tl_plans);
     ViewPager2 viewPager = findViewById(R.id.vp_plans);
     List<TabModel> tabModels = getTabModels();
@@ -83,10 +84,10 @@ public class ViewPlansActivity extends BaseActivity implements PlanClickListener
 
   @Override
   public void onPlanClick(PlanModel plan) {
-    Log.e("Plan",plan.getMessage1());
+    Log.e("Plan", plan.getMessage1());
     Intent intent = new Intent();
-    intent.putExtra(ProjectConstants.PLAN,plan);
-    setResult(RESULT_OK,intent);
+    intent.putExtra(ProjectConstants.PLAN, plan);
+    setResult(RESULT_OK, intent);
     finish();
   }
 }
