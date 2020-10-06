@@ -1,6 +1,7 @@
 package com.penny.core;
 
 import com.penny.database.CoreSharedHelper;
+import com.penny.database.ProjectConstants;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
   private static Retrofit retrofit;
-  private static final String BASE_URL = "https://pennyquick.in/admin/mobile/";
+  private static final String BASE_URL = ProjectConstants.SERVER_URL + "mobile/";
 
   public static Retrofit getClient() {
     if (retrofit == null) {

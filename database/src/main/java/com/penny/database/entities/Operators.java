@@ -29,6 +29,10 @@ public class Operators implements Serializable {
   @ColumnInfo(name = "display_name")
   private String display_name;
 
+  @SerializedName("url")
+  @ColumnInfo(name = "url")
+  private String url;
+
   public Integer getId() {
     return id;
   }
@@ -67,5 +71,13 @@ public class Operators implements Serializable {
 
   public void setDisplay_name(String display_name) {
     this.display_name = display_name;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
   }
 }

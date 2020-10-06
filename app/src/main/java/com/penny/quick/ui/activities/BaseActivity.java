@@ -165,7 +165,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
 
   public void showProfileImage(String imgUrl, ImageView imageView) {
     Glide.with(this)
-        .load(imgUrl)
+        .load(imgUrl != null ? imgUrl : "")
         .placeholder(R.drawable.ic_user_profile_dummy)
         .into(imageView)
         .onLoadFailed(

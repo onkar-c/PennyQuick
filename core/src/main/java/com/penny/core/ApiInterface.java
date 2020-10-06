@@ -42,4 +42,7 @@ public interface ApiInterface {
 
   @POST("recharge/transactions")
   Call<JsonResponse> recentRecharges(@Body RecentRechargesRequestModel recentRechargesRequestModel);
+
+  @GET("recharge/provider")
+  Call<JsonResponse> getProviders();
 }

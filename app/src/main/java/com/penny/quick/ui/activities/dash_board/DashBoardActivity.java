@@ -32,7 +32,9 @@ public class DashBoardActivity extends BaseActivity {
   @Inject
   DashBoardActivityViewModel dashBoardActivityViewModel;
   private DrawerLayout drawer;
-  private TextView walletBalance;
+  private TextView walletBalance, userName, drawerUserName;
+  private ImageView profileIV;
+  private ImageView drawerProfileIV;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,9 @@ public class DashBoardActivity extends BaseActivity {
 
   private void initUi() {
     walletBalance = findViewById(R.id.walletBalance);
+    profileIV = findViewById(R.id.imageView);
+    userName = findViewById(R.id.tv_user_name);
+
   }
 
   private void setObservers() {
@@ -65,12 +70,10 @@ public class DashBoardActivity extends BaseActivity {
     if (user != null) {
       walletBalance.setText(
           String.format("%s %s", getString(R.string.rupees_sign), user.getTotalBalance()));
-      ImageView profileIV = findViewById(R.id.imageView);
-      ImageView drawerProfileIV = findViewById(R.id.iv_user_drawer);
-      showProfileImage(user.getImageUrl(),profileIV);
-      showProfileImage(user.getImageUrl(),drawerProfileIV);
-      ((TextView) findViewById(R.id.tv_user_name)).setText(user.getBusinessName());
-      ((TextView) findViewById(R.id.userName)).setText(user.getBusinessName());
+      showProfileImage(user.getImageUrl(), profileIV);
+      showProfileImage(user.getImageUrl(), drawerProfileIV);
+      userName.setText(user.getBusinessName());
+      drawerUserName.setText(user.getBusinessName());
     }
   }
 
@@ -91,6 +94,9 @@ public class DashBoardActivity extends BaseActivity {
     Toolbar toolbar = findViewById(R.id.dashBoardToolBar);
     drawer = findViewById(R.id.drawer_layout);
     NavigationView navigationView = findViewById(R.id.nav_view);
+    View header = navigationView.getHeaderView(0);
+    drawerProfileIV = header.findViewById(R.id.iv_user_drawer);
+    drawerUserName = header.findViewById(R.id.userName);
     navigationView.setNavigationItemSelectedListener(getNavigationItemClickListener());
     navigationView.bringToFront();
     setSupportActionBar(toolbar);
