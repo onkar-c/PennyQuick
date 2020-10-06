@@ -3,12 +3,19 @@ package com.penny.quick.ui.activities;
 import static com.penny.core.APITags.DEVICE_IS_OFFLINE;
 import static com.penny.core.APITags.ERROR_WHILE_CONNECTING_TO_SERVER;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.work.Data;
@@ -20,8 +27,10 @@ import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.CoreSharedHelper;
+import com.penny.quick.AppDB;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.login.SignInActivity;
+import com.penny.quick.utils.NetworkConnectivityReceiver;
 import com.penny.quick.utils.ProgressUtil;
 import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
@@ -32,11 +41,19 @@ public class BaseActivity extends DaggerAppCompatActivity {
 
   protected ProgressUtil mApiLoadingDialog;
   protected Toolbar toolbar;
+  private BroadcastReceiver mNetworkReceiver;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
+  }
+
+  protected void registerNetworkReceiver() {
+    mNetworkReceiver = new NetworkConnectivityReceiver();
+    IntentFilter filter = new IntentFilter();
+    filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+    registerReceiver(mNetworkReceiver, filter);
   }
 
   public void setUpToolBar() {
@@ -47,6 +64,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
       getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
     toolbar.setNavigationOnClickListener(view -> onBackPressed());
+    registerNetworkReceiver();
   }
 
   public void setTitle(String title) {
@@ -170,6 +188,66 @@ public class BaseActivity extends DaggerAppCompatActivity {
         .into(imageView)
         .onLoadFailed(
             ContextCompat.getDrawable(BaseActivity.this, R.drawable.ic_user_profile_dummy));
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    try {
+      unregisterReceiver(mNetworkReceiver);
+    } catch (IllegalArgumentException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void showWarningText(TextView networkErrTV, boolean isNetworkAvailable) {
+    if (isNetworkAvailable) {
+      networkErrTV.setText(AppDB.getContext().getString(R.string.network_availbale));
+      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_success));
+      animateOut(networkErrTV);
+    } else {
+      animateIn(networkErrTV);
+      networkErrTV.setText(AppDB.getContext().getString(R.string.network_not_availbale));
+      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_failed));
+    }
+  }
+
+  static void animateIn(TextView warningTV) {
+    warningTV.animate()
+        .alpha(1.0f)
+        .setListener(new AnimatorListenerAdapter() {
+          @Override
+          public void onAnimationStart(Animator animation) {
+            super.onAnimationStart(animation);
+            warningTV.setVisibility(View.VISIBLE);
+            warningTV.setAlpha(0.0f);
+          }
+
+          @Override
+          public void onAnimationEnd(Animator animation) {
+            super.onAnimationEnd(animation);
+            warningTV.animate().setListener(null);
+          }
+        });
+  }
+
+  static void animateOut(TextView warningTV) {
+    warningTV.animate()
+        .translationY(0).alpha(0.0f)
+        .setDuration(1000)
+        .setListener(new AnimatorListenerAdapter() {
+          @Override
+          public void onAnimationEnd(Animator animation) {
+            super.onAnimationEnd(animation);
+            warningTV.setVisibility(View.GONE);
+            warningTV.animate().setListener(null);
+          }
+        });
+  }
+
+  public static void manageBaseNetworkErr(AppCompatActivity context, boolean isNetworkAvailable) {
+    TextView networkWarningTV = context.findViewById(R.id.tv_network_warning);
+    showWarningText(networkWarningTV, isNetworkAvailable);
   }
 
 }

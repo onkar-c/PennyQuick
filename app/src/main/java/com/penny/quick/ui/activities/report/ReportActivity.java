@@ -1,21 +1,26 @@
 package com.penny.quick.ui.activities.report;
 
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.penny.database.entities.Report;
 import com.penny.quick.R;
-import com.penny.quick.ui.adapters.ReportsAdapter;
 import com.penny.quick.models.BottomSheetCheckBox;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog.BottomSheetListener;
+import com.penny.quick.ui.adapters.ReportsAdapter;
+import com.penny.quick.utils.NetworkConnectivityReceiver;
 import com.penny.quick.utils.ToolBarUtils;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReportActivity extends AppCompatActivity {
+
+  private BroadcastReceiver mNetworkReceiver;
 
   private BottomSheetListener filterBottomSheet = bottomSheetCheckBoxes -> {
 
@@ -27,6 +32,7 @@ public class ReportActivity extends AppCompatActivity {
     setContentView(R.layout.activity_report);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.reports));
+    registerNetworkReceiver();
     RecyclerView reportList = findViewById(R.id.reports_list);
     reportList.setLayoutManager(new LinearLayoutManager(this));
     ReportsAdapter reportsAdapter = new ReportsAdapter(generateReportList(), this);
@@ -115,5 +121,18 @@ public class ReportActivity extends AppCompatActivity {
       reports.add(report);
     }
     return reports;
+  }
+
+  protected void registerNetworkReceiver() {
+    mNetworkReceiver = new NetworkConnectivityReceiver();
+    IntentFilter filter = new IntentFilter();
+    filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+    registerReceiver(mNetworkReceiver, filter);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    unregisterReceiver(mNetworkReceiver);
   }
 }

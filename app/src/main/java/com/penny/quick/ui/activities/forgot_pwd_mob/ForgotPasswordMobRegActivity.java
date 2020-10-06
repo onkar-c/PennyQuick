@@ -36,6 +36,7 @@ public class ForgotPasswordMobRegActivity extends BaseActivity {
     setContentView(R.layout.activity_forgot_pwd_mob_no);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.forgot_pwd));
+    registerNetworkReceiver();
     initUi();
 
   }

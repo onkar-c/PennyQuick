@@ -32,6 +32,7 @@ public class AcceptRechargeDetails extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_accept_recharge_details);
     ToolBarUtils.setUpToolBar(this);
+    registerNetworkReceiver();
     intent = getIntent();
     intiUI();
     findViewById(R.id.bt_recharge)
