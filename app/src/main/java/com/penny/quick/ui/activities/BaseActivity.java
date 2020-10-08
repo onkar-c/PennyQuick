@@ -249,5 +249,4 @@ public class BaseActivity extends DaggerAppCompatActivity {
     TextView networkWarningTV = context.findViewById(R.id.tv_network_warning);
     showWarningText(networkWarningTV, isNetworkAvailable);
   }
-
 }

@@ -1,11 +1,14 @@
 package com.penny.quick.ui.activities.dispute_history;
 
+import static com.penny.quick.ui.activities.BaseActivity.manageBaseNetworkErr;
+
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.entities.Report;
 import com.penny.quick.R;
 import com.penny.quick.ui.adapters.DisputeReportsAdapter;
@@ -55,5 +58,13 @@ public class DisputeHistoryActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     unregisterReceiver(mNetworkReceiver);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }

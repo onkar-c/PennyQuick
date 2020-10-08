@@ -11,6 +11,7 @@ import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.google.gson.Gson;
 import com.penny.core.models.TransactionResponse;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -89,11 +90,13 @@ public class AcceptRechargeDetails extends BaseActivity {
   }
 
   private void recharge() {
-    mobileRechargeActivityViewModel
-        .recharge(customerId.getText().toString(), Float.parseFloat(amount.getText().toString()),
-            intent.getStringExtra(ProjectConstants.PROVIDER_TYPE), null,
-            intent.getStringExtra(ProjectConstants.TYPE))
-        .observe(this, this::mobileRechargeApiObserver);
+    if(NetworkUtils.isConnected(this)) {
+      mobileRechargeActivityViewModel
+          .recharge(customerId.getText().toString(), Float.parseFloat(amount.getText().toString()),
+              intent.getStringExtra(ProjectConstants.PROVIDER_TYPE), null,
+              intent.getStringExtra(ProjectConstants.TYPE))
+          .observe(this, this::mobileRechargeApiObserver);
+    }
   }
 
   private void mobileRechargeApiObserver(WorkInfo workInfo) {
@@ -112,5 +115,13 @@ public class AcceptRechargeDetails extends BaseActivity {
     intent.putExtra(ProjectConstants.TRANSACTION,
         new Gson().fromJson(transaction, TransactionResponse.class));
     startActivity(intent);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }

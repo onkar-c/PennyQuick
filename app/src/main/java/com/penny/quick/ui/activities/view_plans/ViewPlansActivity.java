@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.adapters.TabLayoutViewPager;
@@ -89,5 +90,13 @@ public class ViewPlansActivity extends BaseActivity implements PlanClickListener
     intent.putExtra(ProjectConstants.PLAN, plan);
     setResult(RESULT_OK, intent);
     finish();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }
