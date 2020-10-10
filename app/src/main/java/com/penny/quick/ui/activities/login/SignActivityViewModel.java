@@ -3,6 +3,7 @@ package com.penny.quick.ui.activities.login;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.work.WorkInfo;
+import com.penny.core.repositories.OperatorsRepository;
 import com.penny.core.repositories.UserRepository;
 
 public class SignActivityViewModel extends ViewModel {
@@ -11,5 +12,9 @@ public class SignActivityViewModel extends ViewModel {
 
   LiveData<WorkInfo> performLogin(String pUserName, String pPassword) {
     return new UserRepository().getLoginWorkManager(pUserName, pPassword);
+  }
+
+  LiveData<WorkInfo> fetchProviders() {
+    return new OperatorsRepository().getProvidersWorkManager();
   }
 }

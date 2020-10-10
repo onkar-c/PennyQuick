@@ -3,12 +3,15 @@ package com.penny.quick.ui.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+import com.penny.database.ProjectConstants;
 import com.penny.database.entities.Operators;
 import com.penny.quick.R;
+import com.penny.quick.utils.CommonUtils;
 import java.util.List;
 
 public class BottomSheetAdapter extends
@@ -35,7 +38,8 @@ public class BottomSheetAdapter extends
   public void onBindViewHolder(@NonNull BottomSheetListItemVH holder, int position) {
     Operators object = objectList.get(position);
     holder.txtItemName.setText(object.getDisplay_name());
-//    holder.imgIcon.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.airtel));
+    CommonUtils.getImage(holder.itemView.getContext(), ProjectConstants.IMAGE_URL + object.getUrl(),
+        holder.imgIcon, R.drawable.hamburger_icon);
     holder.setDetails(object, clickListener);
   }
 
@@ -53,10 +57,11 @@ public class BottomSheetAdapter extends
   public static class BottomSheetListItemVH extends ViewHolder {
 
     private TextView txtItemName;
+    private ImageView imgIcon;
 
     public BottomSheetListItemVH(@NonNull View itemView) {
       super(itemView);
-//      ImageView imgIcon = itemView.findViewById(R.id.iv_icon);
+      imgIcon = itemView.findViewById(R.id.iv_icon);
       txtItemName = itemView.findViewById(R.id.tv_name);
     }
 

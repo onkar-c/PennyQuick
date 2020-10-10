@@ -11,12 +11,12 @@ import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.penny.core.APITags;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.CoreSharedHelper;
 import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordMobRegActivity;
-import com.penny.core.util.NetworkUtils;
 import com.penny.quick.utils.UiUtils;
 import javax.inject.Inject;
 
@@ -28,21 +28,36 @@ public class SignInActivity extends BaseActivity {
       new Intent(SignInActivity.this, ForgotPasswordMobRegActivity.class));
   private EditText userId, password;
   private TextView tv_error;
-  private AppCompatCheckBox compatCheckBox;
   OnClickListener onSignClick = view -> {
     if (validateFields()) {
-      if(NetworkUtils.isConnected(this)) {
+      if (NetworkUtils.isConnected(this)) {
         login();
-//        loginSuccess();
       } else {
         showError(APITags.DEVICE_IS_OFFLINE);
       }
     }
   };
+  private AppCompatCheckBox compatCheckBox;
 
   private void login() {
-    signActivityViewModel.performLogin(userId.getText().toString(), password.getText().toString()).observe(this,
-        this::observeLoginApi);
+    signActivityViewModel.performLogin(userId.getText().toString(), password.getText().toString())
+        .observe(this,
+            this::observeLoginApi);
+  }
+
+  private void fetchProviders() {
+    signActivityViewModel.fetchProviders().observe(this,
+        this::observeProvidersApi);
+  }
+
+  private void observeProvidersApi(WorkInfo workInfo) {
+    if (workInfo != null) {
+      State state = workInfo.getState();
+      apiResponseHandler(workInfo);
+      if (state == State.SUCCEEDED) {
+        loginSuccess();
+      }
+    }
   }
 
   private void observeLoginApi(WorkInfo workInfo) {
@@ -50,7 +65,7 @@ public class SignInActivity extends BaseActivity {
       State state = workInfo.getState();
       apiResponseHandler(workInfo);
       if (state == State.SUCCEEDED) {
-        loginSuccess();
+        fetchProviders();
       }
     }
   }

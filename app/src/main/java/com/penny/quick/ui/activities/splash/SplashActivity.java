@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.penny.database.CoreSharedHelper;
-import com.penny.database.entities.Operators;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
@@ -32,11 +31,11 @@ public class SplashActivity extends BaseActivity {
               sleep(1200);
               Intent intent;
               if (CoreSharedHelper.getInstance().isFirstInstall()) {
-                List<Operators> operatorsList = new Gson()
+               /* List<Operators> operatorsList = new Gson()
                     .fromJson(CommonUtils.loadData("operatorData.json", SplashActivity.this),
                         new TypeToken<List<Operators>>() {
                         }.getType());
-                splashActivityViewModel.saveOperators(operatorsList);
+                splashActivityViewModel.saveOperators(operatorsList);*/
                 List<com.penny.database.entities.State> statesList = new Gson()
                     .fromJson(CommonUtils.loadData("StatesData.json", SplashActivity.this),
                         new TypeToken<List<com.penny.database.entities.State>>() {

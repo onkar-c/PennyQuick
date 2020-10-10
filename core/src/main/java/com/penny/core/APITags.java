@@ -45,6 +45,10 @@ public class APITags {
   private static final String API_RECENT_RECHARGES_TITTLE = "Fetching details";
   private static final String API_RECENT_RECHARGES_MESSAGE = "Please wait.";
 
+  public static final int API_PROVIDERS_LIST = 9;
+  private static final String API_PROVIDERS_LIST_TITTLE = "Fetching Providers";
+  private static final String API_PROVIDERS_LIST_MESSAGE = "Fetching Providers details";
+
   public static final String DATA_FAIL_RESPONSE = "fail_response";
   public static final String TIME_OUT_ERROR = "Request Time Out";
   public static final String ERROR_WHILE_CONNECTING_TO_SERVER = "Error while connecting to server";
@@ -62,7 +66,9 @@ public class APITags {
     API_MOBILE_RECHARGE(API_MOBILE_RECHARGE_TITTLE, API_MOBILE_RECHARGE_MESSAGE),
     API_RECHARGE_STATUS(API_RECHARGE_STATUS_TITTLE, API_RECHARGE_STATUS_MESSAGE),
     API_RECENT_RECHARGES(API_RECENT_RECHARGES_TITTLE, API_RECENT_RECHARGES_MESSAGE),
+    API_PROVIDERS_LIST(API_PROVIDERS_LIST_TITTLE, API_PROVIDERS_LIST_MESSAGE),
     API_DEFAULT(API_PLEASE_WAIT_MESSAGE, API_LOADING_MESSAGE);
+
 
     private String title, message;
 

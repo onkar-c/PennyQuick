@@ -2,6 +2,7 @@ package com.penny.database;
 
 public class ProjectConstants {
 
+  public static final String SERVER_URL = "https://pennyquick.in/admin/";
   public static final String IS_DTH = "is_dth";
   public static final String DTH = "DTH";
   public static final String IS_DISPUTE = "is_dispute";
@@ -56,5 +57,6 @@ public class ProjectConstants {
   public static final String DATE_FILTER = "date_filter";
   public static final String CATEGORIES_FILTER = "categories_filter";
   public static final String STATUS_FILTER = "status_filter";
+  public static final String IMAGE_URL = SERVER_URL + "images/Logo/";
 
 }
