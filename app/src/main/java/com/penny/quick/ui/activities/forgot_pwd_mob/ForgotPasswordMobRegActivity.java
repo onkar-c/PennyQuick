@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.penny.core.APITags;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
@@ -49,8 +51,12 @@ public class ForgotPasswordMobRegActivity extends BaseActivity {
   }
 
   private void requestOTP() {
-    forgotPasswordViewModel.requestOTP(mobileNumber.getText().toString()).observe(this,
-        this::observeRequestOtpApi);
+    if (NetworkUtils.isConnected(ForgotPasswordMobRegActivity.this)) {
+      forgotPasswordViewModel.requestOTP(mobileNumber.getText().toString()).observe(this,
+          this::observeRequestOtpApi);
+    }else {
+      showError(APITags.DEVICE_IS_OFFLINE);
+    }
   }
 
   private void observeRequestOtpApi(WorkInfo workInfo) {

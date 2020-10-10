@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.User;
 import com.penny.quick.R;
@@ -89,6 +90,14 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     }
     if (intent != null) {
       startActivity(intent);
+    }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
     }
   }
 }

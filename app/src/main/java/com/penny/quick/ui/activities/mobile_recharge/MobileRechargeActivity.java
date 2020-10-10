@@ -12,6 +12,7 @@ import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.google.gson.Gson;
 import com.penny.core.models.TransactionResponse;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.Operators;
 import com.penny.database.utils.StringUtils;
@@ -194,12 +195,14 @@ public class MobileRechargeActivity extends BaseActivity implements
   }
 
   private void recharge() {
-    mobileRechargeActivityViewModel
-        .recharge(etMobileNo.getText().toString(), Float.parseFloat(etAmnt.getText().toString()),
-            selectedOperator.getProvider(), selectedState.getStateCode(),
-            rbPrepaid.isChecked() ? ProjectConstants.SERVICE_PREPAID_MOBILE
-                : ProjectConstants.SERVICE_POSTPAID_MOBILE)
-        .observe(this, this::mobileRechargeApiObserver);
+    if(NetworkUtils.isConnected(this)) {
+      mobileRechargeActivityViewModel
+          .recharge(etMobileNo.getText().toString(), Float.parseFloat(etAmnt.getText().toString()),
+              selectedOperator.getProvider(), selectedState.getStateCode(),
+              rbPrepaid.isChecked() ? ProjectConstants.SERVICE_PREPAID_MOBILE
+                  : ProjectConstants.SERVICE_POSTPAID_MOBILE)
+          .observe(this, this::mobileRechargeApiObserver);
+    }
   }
 
   private void mobileRechargeApiObserver(WorkInfo workInfo) {
@@ -257,5 +260,13 @@ public class MobileRechargeActivity extends BaseActivity implements
     }
     selectedState = obj;
     tvState.setText(obj.getDisplayName());
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -158,4 +159,11 @@ public class ProvidersListActivity extends BaseActivity {
     startActivity(intent);
   }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
+  }
 }

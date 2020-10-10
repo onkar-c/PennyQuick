@@ -1,11 +1,14 @@
 package com.penny.quick.ui.activities.contact_us_dispute;
 
+import static com.penny.quick.ui.activities.BaseActivity.manageBaseNetworkErr;
+
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.dispute_history.DisputeHistoryActivity;
@@ -41,5 +44,13 @@ public class ContactUsDisputeActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     unregisterReceiver(mNetworkReceiver);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }

@@ -1,5 +1,7 @@
 package com.penny.quick.ui.activities.web_view;
 
+import static com.penny.quick.ui.activities.BaseActivity.manageBaseNetworkErr;
+
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
@@ -8,6 +10,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.utils.NetworkConnectivityReceiver;
@@ -45,5 +48,13 @@ public class WebViewActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     unregisterReceiver(mNetworkReceiver);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.penny.core.APITags;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
@@ -50,12 +52,16 @@ public class ForgotPasswordNewPwdActivity extends BaseActivity {
   }
 
   private void changePassword() {
-    forgotPasswordViewModel
-        .changePassword(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER),
-            getIntent().getStringExtra(ProjectConstants.OTP), null, password.getText().toString(),
-            true)
-        .observe(this,
-            this::observeChangePasswordApi);
+    if(NetworkUtils.isConnected(this)) {
+      forgotPasswordViewModel
+          .changePassword(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER),
+              getIntent().getStringExtra(ProjectConstants.OTP), null, password.getText().toString(),
+              true)
+          .observe(this,
+              this::observeChangePasswordApi);
+    }else {
+      showError(APITags.DEVICE_IS_OFFLINE);
+    }
   }
 
   private void observeChangePasswordApi(WorkInfo workInfo) {
