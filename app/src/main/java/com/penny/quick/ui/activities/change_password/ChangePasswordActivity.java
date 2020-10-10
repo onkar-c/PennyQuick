@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -73,9 +74,11 @@ public class ChangePasswordActivity extends BaseActivity {
   }
 
   private void changePassword(String oldPassword, String newPassword) {
-    forgotPasswordViewModel.changePassword(null, null, oldPassword, newPassword, false)
-        .observe(this,
-            this::observeChangePassword);
+    if(NetworkUtils.isConnected(this)) {
+      forgotPasswordViewModel.changePassword(null, null, oldPassword, newPassword, false)
+          .observe(this,
+              this::observeChangePassword);
+    }
   }
 
   private void observeChangePassword(WorkInfo workInfo) {
@@ -90,5 +93,13 @@ public class ChangePasswordActivity extends BaseActivity {
 
   private void changePasswordSuccess() {
 
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }

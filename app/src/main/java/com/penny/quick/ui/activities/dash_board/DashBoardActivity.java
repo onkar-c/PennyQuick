@@ -9,12 +9,12 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.work.WorkInfo;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.User;
 import com.penny.quick.R;
@@ -26,16 +26,17 @@ import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
 import com.penny.quick.ui.activities.report.ReportActivity;
 import com.penny.quick.ui.activities.web_view.WebViewActivity;
+import com.penny.quick.utils.NetworkConnectivityReceiver.NetworkConnectivityChangeListener;
 import javax.inject.Inject;
 
-public class DashBoardActivity extends BaseActivity {
+public class DashBoardActivity extends BaseActivity implements NetworkConnectivityChangeListener {
 
   @Inject
   DashBoardActivityViewModel dashBoardActivityViewModel;
   private DrawerLayout drawer;
   private TextView walletBalance, drawerUserNameTV;
   private ImageView profileIV, drawerProfileIV;
-
+  private TextView networkWarningTV;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class DashBoardActivity extends BaseActivity {
   private void initUi() {
     walletBalance = findViewById(R.id.walletBalance);
     profileIV = findViewById(R.id.imageView);
+    networkWarningTV = findViewById(R.id.tv_network_err);
   }
 
   private void setObservers() {
@@ -79,7 +81,10 @@ public class DashBoardActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    dashBoardActivityViewModel.getUserInfo().observe(this, this::userInfoObserver);
+    if (NetworkUtils.isConnected(this)) {
+      manageNetworkErr(NetworkUtils.isConnected(this));
+      dashBoardActivityViewModel.getUserInfo().observe(this, this::userInfoObserver);
+    }
   }
 
   private void userInfoObserver(WorkInfo workInfo) {
@@ -187,8 +192,12 @@ public class DashBoardActivity extends BaseActivity {
     };
   }
 
-  public static void manageNetworkErr(AppCompatActivity context, boolean isNetworkAvailable) {
-    TextView networkWarningTV = context.findViewById(R.id.tv_network_warning);
-    showWarningText(networkWarningTV, isNetworkAvailable);
+  public void manageNetworkErr(boolean isNetworkAvailable) {
+   showWarningText(networkWarningTV, isNetworkAvailable);
+  }
+
+  @Override
+  public void networkStatusChange(boolean status) {
+    manageNetworkErr(status);
   }
 }

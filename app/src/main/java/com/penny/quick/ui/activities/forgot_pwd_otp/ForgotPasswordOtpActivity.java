@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.penny.core.APITags;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
@@ -27,7 +29,7 @@ public class ForgotPasswordOtpActivity extends BaseActivity implements TextWatch
   private TextView tv_error;
   OnClickListener resendOTP = view -> {
     tv_error.setVisibility(View.GONE);
-    requestOTP();
+      requestOTP();
   };
   private EditText otp1TV, otp2TV, otp3TV, otp4TV;
   OnClickListener onDoneClick = view -> verifyOtp();
@@ -58,19 +60,27 @@ public class ForgotPasswordOtpActivity extends BaseActivity implements TextWatch
   }
 
   private void requestOTP() {
-    forgotPasswordViewModel.requestOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER))
-        .observe(this,
-            this::observeRequestOtpApi);
+    if (NetworkUtils.isConnected(this)) {
+      forgotPasswordViewModel.requestOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER))
+          .observe(this,
+              this::observeRequestOtpApi);
+    }else{
+      showError(APITags.DEVICE_IS_OFFLINE);
+    }
   }
 
   private void verifyOtp() {
-    String otp =
-        otp1TV.getText().toString().trim() + otp2TV.getText().toString().trim() + otp3TV.getText()
-            .toString().trim()
-            + otp4TV.getText().toString().trim();
-    forgotPasswordViewModel
-        .verifyOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER), otp).observe(this,
-        this::observeVerifyOtpApi);
+    if (NetworkUtils.isConnected(this)) {
+      String otp =
+          otp1TV.getText().toString().trim() + otp2TV.getText().toString().trim() + otp3TV.getText()
+              .toString().trim()
+              + otp4TV.getText().toString().trim();
+      forgotPasswordViewModel
+          .verifyOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER), otp).observe(this,
+          this::observeVerifyOtpApi);
+    }else {
+      showError(APITags.DEVICE_IS_OFFLINE);
+    }
   }
 
   private void observeVerifyOtpApi(WorkInfo workInfo) {

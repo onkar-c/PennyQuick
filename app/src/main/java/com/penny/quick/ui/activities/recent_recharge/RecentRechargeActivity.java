@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.WorkInfo;
 import com.penny.core.models.DateFormatModel;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetCheckBox;
@@ -194,10 +195,12 @@ public class RecentRechargeActivity extends BaseActivity {
   }
 
   private void getRecentRechargesFromServer() {
-    recentRechargesActivityViewModel
-        .getRecentRechargesFromServer(dateFormatModels, bottomSheetCategoriesCheckBoxes,
-            statusCheckBoxes).observe(this,
-        this::recentRechargeApiSuccess);
+    if(NetworkUtils.isConnected(this)) {
+      recentRechargesActivityViewModel
+          .getRecentRechargesFromServer(dateFormatModels, bottomSheetCategoriesCheckBoxes,
+              statusCheckBoxes).observe(this,
+          this::recentRechargeApiSuccess);
+    }
   }
 
   private void recentRechargeApiSuccess(WorkInfo workInfo) {
@@ -210,5 +213,8 @@ public class RecentRechargeActivity extends BaseActivity {
   protected void onResume() {
     super.onResume();
     getRecentRechargesFromServer();
+    if(!NetworkUtils.isConnected(this)) {
+      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    }
   }
 }

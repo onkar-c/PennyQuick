@@ -10,6 +10,7 @@ import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.google.gson.Gson;
 import com.penny.core.models.TransactionResponse;
+import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
@@ -40,8 +41,10 @@ public class TransactionStatusActivity extends BaseActivity {
   }
 
   private void getTransactionStatus() {
-    transactionStatusActivityViewModel.getStatus(transactionResponse.getTxnId()).observe(this,
-        this::observeTransactionStatusApi);
+    if(NetworkUtils.isConnected(this)) {
+      transactionStatusActivityViewModel.getStatus(transactionResponse.getTxnId()).observe(this,
+          this::observeTransactionStatusApi);
+    }
   }
 
   private void observeTransactionStatusApi(WorkInfo workInfo) {
