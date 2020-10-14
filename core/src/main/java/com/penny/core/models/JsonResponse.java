@@ -23,7 +23,7 @@ public class JsonResponse implements Serializable {
   @SerializedName("recharge")
   private TransactionResponse recharge;
 
-  @SerializedName("proiderList")
+  @SerializedName("providerList")
   private List<Operators> providerList;
 
   public List<RecentRecharge> getRecentRecharges() {

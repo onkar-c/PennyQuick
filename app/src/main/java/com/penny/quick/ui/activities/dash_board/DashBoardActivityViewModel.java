@@ -8,13 +8,15 @@ import com.penny.database.entities.User;
 
 public class DashBoardActivityViewModel extends ViewModel {
 
-  DashBoardActivityViewModel(){super();}
+  DashBoardActivityViewModel() {
+    super();
+  }
 
   public LiveData<User> getUser() {
     return new UserRepository().getUser();
   }
 
-  public LiveData<WorkInfo> getUserInfo() {
-    return new UserRepository().getUserInfoWorkManager();
+  public LiveData<WorkInfo> getUserInfo(boolean isBalanceRequest) {
+    return new UserRepository().getUserInfoWorkManager(isBalanceRequest);
   }
 }

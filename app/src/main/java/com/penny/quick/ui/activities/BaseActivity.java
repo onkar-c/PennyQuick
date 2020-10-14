@@ -43,6 +43,62 @@ public class BaseActivity extends DaggerAppCompatActivity {
   protected Toolbar toolbar;
   private BroadcastReceiver mNetworkReceiver;
 
+  public static void showWarningText(TextView networkErrTV, boolean isNetworkAvailable) {
+    if (isNetworkAvailable) {
+      networkErrTV.setText(AppDB.getContext().getString(R.string.network_availbale));
+      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_success));
+      animateOut(networkErrTV);
+    } else {
+      animateIn(networkErrTV);
+      networkErrTV.setText(AppDB.getContext().getString(R.string.network_not_availbale));
+      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_failed));
+    }
+  }
+
+  static void animateIn(TextView warningTV) {
+    warningTV.animate()
+        .alpha(1.0f)
+        .setListener(new AnimatorListenerAdapter() {
+          @Override
+          public void onAnimationStart(Animator animation) {
+            super.onAnimationStart(animation);
+            warningTV.setVisibility(View.VISIBLE);
+            warningTV.setAlpha(0.0f);
+          }
+
+          @Override
+          public void onAnimationEnd(Animator animation) {
+            super.onAnimationEnd(animation);
+            warningTV.animate().setListener(null);
+          }
+        });
+  }
+
+  static void animateOut(TextView warningTV) {
+    warningTV.animate()
+        .translationY(0).alpha(0.0f)
+        .setDuration(1000)
+        .setListener(new AnimatorListenerAdapter() {
+          @Override
+          public void onAnimationEnd(Animator animation) {
+            super.onAnimationEnd(animation);
+            warningTV.setVisibility(View.GONE);
+            warningTV.animate().setListener(null);
+          }
+        });
+  }
+
+  public static void manageBaseNetworkErr(AppCompatActivity context, boolean isNetworkAvailable) {
+    TextView networkWarningTV = context.findViewById(R.id.tv_network_warning);
+    showWarningText(networkWarningTV, isNetworkAvailable);
+  }
+
+//  protected void hideSoftKeyboard(View view) {
+//    InputMethodManager imm =
+//        (InputMethodManager) this.getApplication().getSystemService(Context.INPUT_METHOD_SERVICE);
+//    imm.hideSoftInputFromWindow(view.getRootView().getWindowToken(), 0);
+//  }
+
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     AndroidInjection.inject(this);
@@ -73,13 +129,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
     }
   }
 
-//  protected void hideSoftKeyboard(View view) {
-//    InputMethodManager imm =
-//        (InputMethodManager) this.getApplication().getSystemService(Context.INPUT_METHOD_SERVICE);
-//    imm.hideSoftInputFromWindow(view.getRootView().getWindowToken(), 0);
-//  }
-
-  protected void toast(String s) {
+  public void toast(String s) {
     Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
   }
 
@@ -184,10 +234,10 @@ public class BaseActivity extends DaggerAppCompatActivity {
   public void showProfileImage(String imgUrl, ImageView imageView) {
     Glide.with(this)
         .load(imgUrl != null ? imgUrl : "")
-        .placeholder(R.drawable.ic_user_profile_dummy)
+        .placeholder(R.drawable.ic_person_24)
         .into(imageView)
         .onLoadFailed(
-            ContextCompat.getDrawable(BaseActivity.this, R.drawable.ic_user_profile_dummy));
+            ContextCompat.getDrawable(BaseActivity.this, R.drawable.ic_person_24));
   }
 
   @Override
@@ -198,55 +248,5 @@ public class BaseActivity extends DaggerAppCompatActivity {
     } catch (IllegalArgumentException e) {
       e.printStackTrace();
     }
-  }
-
-  public static void showWarningText(TextView networkErrTV, boolean isNetworkAvailable) {
-    if (isNetworkAvailable) {
-      networkErrTV.setText(AppDB.getContext().getString(R.string.network_availbale));
-      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_success));
-      animateOut(networkErrTV);
-    } else {
-      animateIn(networkErrTV);
-      networkErrTV.setText(AppDB.getContext().getString(R.string.network_not_availbale));
-      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_failed));
-    }
-  }
-
-  static void animateIn(TextView warningTV) {
-    warningTV.animate()
-        .alpha(1.0f)
-        .setListener(new AnimatorListenerAdapter() {
-          @Override
-          public void onAnimationStart(Animator animation) {
-            super.onAnimationStart(animation);
-            warningTV.setVisibility(View.VISIBLE);
-            warningTV.setAlpha(0.0f);
-          }
-
-          @Override
-          public void onAnimationEnd(Animator animation) {
-            super.onAnimationEnd(animation);
-            warningTV.animate().setListener(null);
-          }
-        });
-  }
-
-  static void animateOut(TextView warningTV) {
-    warningTV.animate()
-        .translationY(0).alpha(0.0f)
-        .setDuration(1000)
-        .setListener(new AnimatorListenerAdapter() {
-          @Override
-          public void onAnimationEnd(Animator animation) {
-            super.onAnimationEnd(animation);
-            warningTV.setVisibility(View.GONE);
-            warningTV.animate().setListener(null);
-          }
-        });
-  }
-
-  public static void manageBaseNetworkErr(AppCompatActivity context, boolean isNetworkAvailable) {
-    TextView networkWarningTV = context.findViewById(R.id.tv_network_warning);
-    showWarningText(networkWarningTV, isNetworkAvailable);
   }
 }

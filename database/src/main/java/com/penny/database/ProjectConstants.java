@@ -14,8 +14,10 @@ public class ProjectConstants {
   public static final String CUSTOMER_ID_MESSAGE = "data_view_1_message";
   public static final String ACCEPT_ACCOUNT_ID = "accept_account_id";
   public static final String ACCOUNT_MESSAGE = "data_view_2_message";
+  public static final String MESSAGE = "message";
   public static final String AMOUNT_MESSAGE = "data_view_3_message";
   public static final String USER_NAME = "user name";
+  public static final String SUBJECT = "subject";
   public static final String OLD_PASSWORD = "old_password";
   public static final String PASSWORD = "password";
   public static final String IS_FORGOT_PASSWORD = "is_forgot_password";

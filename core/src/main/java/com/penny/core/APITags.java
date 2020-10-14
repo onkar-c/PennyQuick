@@ -49,6 +49,14 @@ public class APITags {
   private static final String API_PROVIDERS_LIST_TITTLE = "Fetching Providers";
   private static final String API_PROVIDERS_LIST_MESSAGE = "Fetching Providers details";
 
+  public static final int API_USER_BALANCE = 10;
+  private static final String API_USER_BALANCE_TITTLE = "User";
+  private static final String API_USER_BALANCE_MESSAGE = "Fetching User balance..";
+
+  public static final int API_CONTACT_US = 11;
+  private static final String API_CONTACT_US_TITTLE = "Sending Data";
+  private static final String API_CONTACT_US_MESSAGE = "Please Wait..";
+
   public static final String DATA_FAIL_RESPONSE = "fail_response";
   public static final String TIME_OUT_ERROR = "Request Time Out";
   public static final String ERROR_WHILE_CONNECTING_TO_SERVER = "Error while connecting to server";
@@ -63,10 +71,12 @@ public class APITags {
     API_VERIFY_OTP(API_VERIFY_OTP_TITTLE, API_VERIFY_OTP_MESSAGE),
     API_CHANGE_PASSWORD(API_CHANGE_PASSWORD_TITTLE, API_CHANGE_PASSWORD_MESSAGE),
     API_USER_INFO(API_USER_INFO_TITTLE, API_USER_INFO_MESSAGE),
+    API_USER_BALANCE(API_USER_BALANCE_TITTLE, API_USER_BALANCE_MESSAGE),
     API_MOBILE_RECHARGE(API_MOBILE_RECHARGE_TITTLE, API_MOBILE_RECHARGE_MESSAGE),
     API_RECHARGE_STATUS(API_RECHARGE_STATUS_TITTLE, API_RECHARGE_STATUS_MESSAGE),
     API_RECENT_RECHARGES(API_RECENT_RECHARGES_TITTLE, API_RECENT_RECHARGES_MESSAGE),
     API_PROVIDERS_LIST(API_PROVIDERS_LIST_TITTLE, API_PROVIDERS_LIST_MESSAGE),
+    API_CONTACT_US(API_CONTACT_US_TITTLE, API_CONTACT_US_MESSAGE),
     API_DEFAULT(API_PLEASE_WAIT_MESSAGE, API_LOADING_MESSAGE);
 
 

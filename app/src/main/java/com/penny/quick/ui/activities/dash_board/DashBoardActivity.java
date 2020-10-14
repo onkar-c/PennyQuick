@@ -12,8 +12,10 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.work.WorkInfo;
+import androidx.work.WorkInfo.State;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
+import com.penny.core.APITags;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.User;
@@ -61,6 +63,7 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
     walletBalance = findViewById(R.id.walletBalance);
     profileIV = findViewById(R.id.imageView);
     networkWarningTV = findViewById(R.id.tv_network_err);
+    findViewById(R.id.iv_sync).setOnClickListener(view -> getUserDetails(true));
   }
 
   private void setObservers() {
@@ -83,12 +86,21 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
     super.onResume();
     if (NetworkUtils.isConnected(this)) {
       manageNetworkErr(NetworkUtils.isConnected(this));
-      dashBoardActivityViewModel.getUserInfo().observe(this, this::userInfoObserver);
+      getUserDetails(false);
     }
   }
 
-  private void userInfoObserver(WorkInfo workInfo) {
-    if (workInfo != null) {
+  private void getUserDetails(boolean isBalanceRequest) {
+    if (NetworkUtils.isConnected(this)) {
+      dashBoardActivityViewModel.getUserInfo(isBalanceRequest)
+          .observe(this, workInfo -> userInfoObserver(workInfo, isBalanceRequest));
+    } else if (isBalanceRequest) {
+      toast(APITags.DEVICE_IS_OFFLINE);
+    }
+  }
+
+  private void userInfoObserver(WorkInfo workInfo, boolean isBalanceRequest) {
+    if (workInfo != null && (isBalanceRequest || workInfo.getState() == State.FAILED)) {
       apiResponseHandler(workInfo);
     }
   }
@@ -193,7 +205,7 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
   }
 
   public void manageNetworkErr(boolean isNetworkAvailable) {
-   showWarningText(networkWarningTV, isNetworkAvailable);
+    showWarningText(networkWarningTV, isNetworkAvailable);
   }
 
   @Override

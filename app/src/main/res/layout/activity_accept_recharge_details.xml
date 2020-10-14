@@ -144,7 +144,6 @@
         android:paddingEnd="@dimen/distance_10"
         android:textStyle="bold"
         android:background="@drawable/edit_text_background"
-        android:focusableInTouchMode="false"
         android:importantForAutofill="no" />
 
       <TextView

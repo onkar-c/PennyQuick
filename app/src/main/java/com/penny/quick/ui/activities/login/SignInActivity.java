@@ -65,7 +65,11 @@ public class SignInActivity extends BaseActivity {
       State state = workInfo.getState();
       apiResponseHandler(workInfo);
       if (state == State.SUCCEEDED) {
-        fetchProviders();
+        if (NetworkUtils.isConnected(this)) {
+          fetchProviders();
+        } else {
+          showError(APITags.DEVICE_IS_OFFLINE);
+        }
       }
     }
   }

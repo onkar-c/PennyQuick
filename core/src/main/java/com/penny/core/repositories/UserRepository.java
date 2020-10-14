@@ -7,6 +7,7 @@ import androidx.work.WorkInfo;
 import com.penny.core.APITags;
 import com.penny.core.APITags.APIEnums;
 import com.penny.core.worker.ChangePasswordWorker;
+import com.penny.core.worker.ContactUsDisputeWorker;
 import com.penny.core.worker.LoginWorker;
 import com.penny.core.worker.RequestOTPWorker;
 import com.penny.core.worker.UserInfoWorker;
@@ -23,7 +24,7 @@ public class UserRepository extends BaseRepository {
     data.putString(ProjectConstants.PASSWORD, pPassword);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(LoginWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
+//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_LOGIN.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
@@ -34,7 +35,7 @@ public class UserRepository extends BaseRepository {
     data.putString(ProjectConstants.MOBILE_NUMBER, mobileNumber);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(RequestOTPWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
+//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_REQUEST_OTP.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
@@ -46,7 +47,7 @@ public class UserRepository extends BaseRepository {
     data.putString(ProjectConstants.OTP, otp);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(VerifyOTPWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
+//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_VERIFY_OTP.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
@@ -62,18 +63,33 @@ public class UserRepository extends BaseRepository {
     data.putBoolean(ProjectConstants.IS_FORGOT_PASSWORD, isForgotPassword);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(ChangePasswordWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
+//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_CHANGE_PASSWORD.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
   }
 
-  public LiveData<WorkInfo> getUserInfoWorkManager() {
-    Data.Builder data = getDataBuilderForApi(APITags.API_USER_INFO);
+  public LiveData<WorkInfo> getUserInfoWorkManager(boolean isBalanceRequest) {
+    Data.Builder data = getDataBuilderForApi(
+        isBalanceRequest ? APITags.API_USER_BALANCE : APITags.API_USER_INFO);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(UserInfoWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
-        .addTag(APIEnums.API_USER_INFO.name())
+//        .setConstraints(getNetworkConstraint())
+        .addTag(isBalanceRequest ? APIEnums.API_USER_BALANCE.name() : APIEnums.API_USER_INFO.name())
+        .build();
+    return getOneTimeRequestLiveDate(mRequest);
+  }
+
+  public LiveData<WorkInfo> getContactUsDisputeWorkManager(String name, String mobileNumber, String subject, String message) {
+    Data.Builder data = getDataBuilderForApi(APITags.API_CONTACT_US);
+    data.putString(ProjectConstants.USER_NAME, name);
+    data.putString(ProjectConstants.MOBILE_NUMBER, mobileNumber);
+    data.putString(ProjectConstants.SUBJECT, subject);
+    data.putString(ProjectConstants.MESSAGE, message);
+    OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(ContactUsDisputeWorker.class)
+        .setInputData(data.build())
+//        .setConstraints(getNetworkConstraint())
+        .addTag(APIEnums.API_CONTACT_US.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
   }

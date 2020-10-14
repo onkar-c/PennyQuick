@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.google.gson.Gson;
+import com.penny.core.APITags;
 import com.penny.core.models.TransactionResponse;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
@@ -62,7 +63,11 @@ public class MobileRechargeActivity extends BaseActivity implements
     findViewById(R.id.bt_recharge)
         .setOnClickListener(view -> {
           if (validateFields()) {
-            recharge();
+            if (NetworkUtils.isConnected(this)) {
+              recharge();
+            } else {
+              toast(APITags.DEVICE_IS_OFFLINE);
+            }
           }
         });
 
@@ -195,7 +200,7 @@ public class MobileRechargeActivity extends BaseActivity implements
   }
 
   private void recharge() {
-    if(NetworkUtils.isConnected(this)) {
+    if (NetworkUtils.isConnected(this)) {
       mobileRechargeActivityViewModel
           .recharge(etMobileNo.getText().toString(), Float.parseFloat(etAmnt.getText().toString()),
               selectedOperator.getProvider(), selectedState.getStateCode(),
@@ -265,7 +270,7 @@ public class MobileRechargeActivity extends BaseActivity implements
   @Override
   protected void onResume() {
     super.onResume();
-    if(!NetworkUtils.isConnected(this)) {
+    if (!NetworkUtils.isConnected(this)) {
       manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
     }
   }

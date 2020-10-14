@@ -29,7 +29,7 @@ public class RechargeRepository extends BaseRepository {
     data.putString(ProjectConstants.SERVICE, service);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(MobileRechargeWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
+//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_MOBILE_RECHARGE.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
@@ -41,7 +41,7 @@ public class RechargeRepository extends BaseRepository {
     data.putString(ProjectConstants.TRANSACTION_ID, transactionId);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(RechargeStatusWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
+//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_RECHARGE_STATUS.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
@@ -62,7 +62,7 @@ public class RechargeRepository extends BaseRepository {
         }.getType()));
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(RecentRechargesWorker.class)
         .setInputData(data.build())
-        .setConstraints(getNetworkConstraint())
+//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_RECENT_RECHARGES.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);

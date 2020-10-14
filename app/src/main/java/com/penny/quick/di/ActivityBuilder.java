@@ -2,6 +2,8 @@ package com.penny.quick.di;
 
 import com.penny.quick.ui.activities.accept_details.AcceptRechargeDetails;
 import com.penny.quick.ui.activities.change_password.ChangePasswordActivity;
+import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
+import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivityModel;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivityModel;
 import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordActivityModel;
@@ -76,4 +78,7 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = ViewPlanActivityModel.class)
   abstract ViewPlansActivity getViewPlansActivity();
+
+  @ContributesAndroidInjector(modules = ContactUsDisputeActivityModel.class)
+  abstract ContactUsDisputeActivity getContactUsDisputeActivity();
 }

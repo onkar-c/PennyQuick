@@ -1,6 +1,7 @@
 package com.penny.core;
 
 import com.penny.core.models.ChangePasswordRequestModel;
+import com.penny.core.models.ContactUsDisputeModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
 import com.penny.core.models.rechargeRequestModel;
@@ -45,4 +46,7 @@ public interface ApiInterface {
 
   @GET("recharge/provider")
   Call<JsonResponse> getProviders();
+
+  @POST("forgot_password/contactUs")
+  Call<JsonResponse> contactUs(@Body ContactUsDisputeModel contactUsDisputeModel);
 }
