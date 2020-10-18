@@ -45,6 +45,11 @@ public class RecentRecharge implements Serializable {
   @ColumnInfo(name = "displayName")
   private String displayName;
 
+  @SerializedName("url")
+  @ColumnInfo(name = "url")
+  private String url;
+
+
   public String getCompanyType() {
     return companyType;
   }
@@ -115,5 +120,13 @@ public class RecentRecharge implements Serializable {
 
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
   }
 }

@@ -26,7 +26,9 @@ public class ContactUsDisputeActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_contact_us);
     ToolBarUtils.setUpToolBar(this);
-    ToolBarUtils.setTitle(this, getString(R.string.contact_us));
+    ToolBarUtils.setTitle(this, getString(
+        getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false) ? R.string.dispute_form
+            : R.string.contact_us));
     initUi();
     registerNetworkReceiver();
   }

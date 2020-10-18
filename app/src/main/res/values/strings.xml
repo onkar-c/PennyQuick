@@ -39,6 +39,8 @@
   <string name="add_money">Add Money</string>
   <string name="recent_transaction">Recent Transaction</string>
   <string name="contact_us">Contact Us</string>
+  <string name="dispute_history">Dispute History</string>
+  <string name="dispute_form">Dispute Form</string>
   <string name="faq">FAQs</string>
   <string name="terms_and_conditions">Terms &amp; Conditions</string>
   <string name="dummy_transaction_message">This transaction is pending</string>
@@ -122,6 +124,7 @@
   <string name="filter">Filters</string>
   <string name="ledger_report">Ledger Report</string>
   <string name="dispute_report">Dispute Report</string>
+  <string name="dispute">Dispute</string>
   <string name="debit">DEBIT</string>
   <string name="credit">Credit</string>
   <string name="description">Description : </string>
@@ -133,6 +136,7 @@
   <string name="dummy_message_1">Data : 3GB/day + 6GB</string>
   <string name="dummy_message_2">Voice : Unlimited Calls(Jio to non-jio FUP)</string>
   <string name="dummy_message_3">Disney + Hotstar Annual Subscription</string>
+  <string name="web_view_error">Website Not found.</string>
 
 
 
@@ -186,5 +190,7 @@
   <string name="amnt_error">Please select Plan or enter amount</string>
   <string name="network_availbale">We are now online</string>
   <string name="network_not_availbale">Could not connect to internet</string>
+  <string name="add_money_error">Dear User for Add Money in penny account. \nPlease Contact Your Service Provider 7264895939 OR Visit our website www.pennyquick.in</string>
+  <string name="money_transfer_error">Registered Device Not Found.</string>
 
 </resources>

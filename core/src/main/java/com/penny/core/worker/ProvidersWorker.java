@@ -23,6 +23,7 @@ public class ProvidersWorker extends BaseWorker {
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
     if (jsonResponse.getProviderList() != null && jsonResponse.getProviderList().size() > 0) {
+      AppDatabase.getInstance().getOperatorsDao().deleteAll();
       AppDatabase.getInstance().getOperatorsDao().insert(jsonResponse.getProviderList());
     }
     return sendSuccess();

@@ -213,7 +213,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
   protected void showMessageDialog(String title, String message) {
     android.app.AlertDialog.Builder messageDialog =
         new android.app.AlertDialog.Builder(this).setTitle(title).setMessage(message);
-    messageDialog.setNeutralButton("OK", (dialog, which) -> {
+    messageDialog.setPositiveButton("OK", (dialog, which) -> {
     });
     messageDialog.setCancelable(false);
     messageDialog.show();

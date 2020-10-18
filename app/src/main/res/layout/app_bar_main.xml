@@ -271,7 +271,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/land_line"
+        android:text="@string/dispute"
         android:textSize="@dimen/textSize_14"
         android:paddingTop="@dimen/distance_20"
         android:paddingEnd="@dimen/distance_10"
@@ -283,6 +283,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+      android:id="@+id/addMoney"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/distance_6"
@@ -307,6 +308,7 @@
 
 
     <androidx.cardview.widget.CardView
+      android:id="@+id/moneyTransfer"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/distance_6"

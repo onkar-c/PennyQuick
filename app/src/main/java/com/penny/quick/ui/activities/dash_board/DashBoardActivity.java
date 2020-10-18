@@ -22,12 +22,12 @@ import com.penny.database.entities.User;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
+import com.penny.quick.ui.activities.dispute_history.DisputeHistoryActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
 import com.penny.quick.ui.activities.report.ReportActivity;
-import com.penny.quick.ui.activities.web_view.WebViewActivity;
 import com.penny.quick.utils.NetworkConnectivityReceiver.NetworkConnectivityChangeListener;
 import javax.inject.Inject;
 
@@ -130,11 +130,19 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       intent = new Intent(DashBoardActivity.this, ProvidersListActivity.class);
       intent.putExtra(ProjectConstants.IS_DTH, true);
     } else if (view.getId() == R.id.bt_landLine) {
-      intent = new Intent(DashBoardActivity.this, ProvidersListActivity.class);
-      intent.putExtra(ProjectConstants.IS_DTH, false);
+      intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
+      intent.putExtra(ProjectConstants.IS_DISPUTE, true);
+//      intent = new Intent(DashBoardActivity.this, ProvidersListActivity.class);
+//      intent.putExtra(ProjectConstants.IS_DTH, false);
     } else if (view.getId() == R.id.bt_prepaid || view.getId() == R.id.bt_postPaid) {
       intent = new Intent(DashBoardActivity.this, MobileRechargeActivity.class);
       intent.putExtra(ProjectConstants.TYPE, view.getId() == R.id.bt_prepaid);
+    } else if (view.getId() == R.id.addMoney) {
+      showMessageDialog(null, getString(R.string.add_money_error));
+      return;
+    } else if (view.getId() == R.id.moneyTransfer) {
+      showMessageDialog(null, getString(R.string.money_transfer_error));
+      return;
     }
     if (intent != null) {
       startActivity(intent);
@@ -145,19 +153,15 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
 
   private void handelCommonGridClick(View view) {
     Intent intent = null;
-    switch (view.getId()) {
-      case R.id.reports:
-        intent = new Intent(DashBoardActivity.this, ReportActivity.class);
-        break;
-      case R.id.contact_support:
-        intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
-        break;
-      case R.id.recent_recharge:
-        intent = new Intent(DashBoardActivity.this, RecentRechargeActivity.class);
-        break;
-      case R.id.user_profile:
-        intent = new Intent(DashBoardActivity.this, ProfileActivity.class);
-        break;
+    int id = view.getId();
+    if (id == R.id.reports) {
+      intent = new Intent(DashBoardActivity.this, ReportActivity.class);
+    } else if (id == R.id.contact_support) {
+      intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
+    } else if (id == R.id.recent_recharge) {
+      intent = new Intent(DashBoardActivity.this, RecentRechargeActivity.class);
+    } else if (id == R.id.user_profile) {
+      intent = new Intent(DashBoardActivity.this, ProfileActivity.class);
     }
     if (intent != null) {
       startActivity(intent);
@@ -169,31 +173,30 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
   private OnNavigationItemSelectedListener getNavigationItemClickListener() {
     return item -> {
       Intent intent = null;
-      switch (item.getItemId()) {
-        case R.id.home:
-          intent = null;
-          break;
-        case R.id.contactUs:
-          intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
-          break;
-        case R.id.profile:
-          intent = new Intent(DashBoardActivity.this, ProfileActivity.class);
-          break;
-        case R.id.faq:
-        case R.id.termsCondition:
-        case R.id.privacyPolicy:
-          intent = new Intent(DashBoardActivity.this, WebViewActivity.class);
-          intent.putExtra(ProjectConstants.TITLE, item.getTitle());
-          break;
-        case R.id.recentTransaction:
-          intent = new Intent(DashBoardActivity.this, RecentRechargeActivity.class);
-          break;
-        case R.id.logout:
-          performLogout();
-          break;
-        default:
-          Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
-          break;
+      int itemId = item.getItemId();
+      if (itemId == R.id.home) {
+        intent = null;
+      } else if (itemId == R.id.contactUs) {
+        intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
+      } else if (itemId == R.id.profile) {
+        intent = new Intent(DashBoardActivity.this, ProfileActivity.class);
+      } else if (itemId == R.id.faq || itemId == R.id.termsCondition
+          || itemId == R.id.privacyPolicy) {
+        Toast.makeText(DashBoardActivity.this, getString(R.string.web_view_error),
+            Toast.LENGTH_SHORT).show();
+//        intent = new Intent(DashBoardActivity.this, WebViewActivity.class);
+//        intent.putExtra(ProjectConstants.TITLE, item.getTitle());
+      } else if (itemId == R.id.recentTransaction) {
+        intent = new Intent(DashBoardActivity.this, RecentRechargeActivity.class);
+      } else if (itemId == R.id.logout) {
+        performLogout();
+      } else if (itemId == R.id.disputeHistory) {
+        intent = new Intent(DashBoardActivity.this, DisputeHistoryActivity.class);
+      } else if (itemId == R.id.add_money) {
+        showMessageDialog(null, getString(R.string.add_money_error));
+        return true;
+      } else {
+        Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
       }
       if (intent != null) {
         startActivity(intent);

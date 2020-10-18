@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -14,6 +15,7 @@ import com.penny.database.ProjectConstants;
 import com.penny.database.entities.RecentRecharge;
 import com.penny.database.utils.DateUtils;
 import com.penny.quick.R;
+import com.penny.quick.utils.CommonUtils;
 import java.util.List;
 
 public class RecentRechargeAdapter extends
@@ -37,7 +39,10 @@ public class RecentRechargeAdapter extends
 
   @Override
   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    holder.setIsRecyclable(false);
     RecentRecharge recentRecharge = recentRecharges.get(position);
+    CommonUtils.getImage(holder.itemView.getContext(), ProjectConstants.IMAGE_URL + recentRecharge.getUrl(),
+        holder.company_icon, R.drawable.hamburger_icon);
     if (recentRecharge.getCompanyType().equals(ProjectConstants.DTH)) {
       holder.companyType.setText(
           String.format("%s - %s", ProjectConstants.DTH, recentRecharge.getDisplayName()));
@@ -71,9 +76,11 @@ public class RecentRechargeAdapter extends
   static class MyViewHolder extends ViewHolder {
 
     private TextView companyType, customerId, transactionId, date, amount;
+    private ImageView company_icon;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);
+      company_icon = itemView.findViewById(R.id.company_icon);
       companyType = itemView.findViewById(R.id.company_type);
       customerId = itemView.findViewById(R.id.customer_id);
       transactionId = itemView.findViewById(R.id.transaction_id);
