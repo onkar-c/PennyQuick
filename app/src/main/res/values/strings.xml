@@ -54,6 +54,7 @@
   <string name="mobile">Mobile</string>
   <string name="enter_verification_code">Please Enter The Verification Code</string>
   <string name="verification_code_sub">We have sent a verification code to your registered Mobile Number</string>
+  <string name="verification_code">We have sent a verification code to your Mobile Number</string>
   <string name="resend">Resend Again</string>
   <string name="enter_new_pwd">Please Enter A New Password</string>
   <string name="enter_pwd">Please Enter A Password</string>
@@ -62,6 +63,7 @@
   <string name="enter_subject">Please Enter A Subject</string>
   <string name="enter_message_hint">Please Enter A Message</string>
   <string name="send">Send</string>
+  <string name="verify_account">Verify Account</string>
 
   <string name="change_pwd">Change Password</string>
   <string name="current_pwd">Current Password</string>
@@ -76,6 +78,7 @@
   <string name="dth">DTH Recharge</string>
   <string name="land_line">Land Line</string>
   <string name="money_transfer">Money Transfer</string>
+  <string name="add_recepient">Add Recepient</string>
   <string name="recent_recharge">Recent Recharges</string>
   <string name="reports">Reports</string>
   <string name="user_profile">User Profile</string>
@@ -97,6 +100,10 @@
   <string name="d2h">D2H</string>
 
   <string name="enter_mob_no">Enter Mobile Number</string>
+  <string name="select_bank">Select Bank</string>
+  <string name="enter_name_title">Enter Name</string>
+  <string name="bank_account_number">Bank account number</string>
+  <string name="ifsc">IFSC</string>
   <string name="select_operator">Select Operator</string>
   <string name="select_provider">Select Provider</string>
   <string name="select_state">Select State</string>
@@ -137,7 +144,6 @@
   <string name="dummy_message_2">Voice : Unlimited Calls(Jio to non-jio FUP)</string>
   <string name="dummy_message_3">Disney + Hotstar Annual Subscription</string>
   <string name="web_view_error">Website Not found.</string>
-
 
 
   <string name="operators">Operators</string>

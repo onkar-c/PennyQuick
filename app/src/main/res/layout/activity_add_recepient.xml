@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <include android:id="@+id/commonToolBar"
+    layout="@layout/common_tool_bar"/>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/distance_20"
+    android:layout_below="@+id/commonToolBar">
+    <LinearLayout
+      android:id="@+id/currentPasswordLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_bank"
+        android:layout_gravity="start"
+        android:textSize="@dimen/textSize_18"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="@dimen/distance_15" />
+
+      <TextView
+        android:id="@+id/et_operator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_20"
+        android:layout_marginTop="@dimen/distance_10"
+        android:gravity="center_vertical"
+        android:background="@drawable/edit_text_background"
+        android:drawablePadding="@dimen/distance_5"
+        android:hint="@string/select_operator"
+        android:inputType="none"
+        android:textColor="@color/hint_color"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/textSize_16"
+        android:importantForAutofill="no"
+        app:drawableEndCompat="@drawable/ic_down_arrow" />
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/newPasswordLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bank_account_number"
+        android:layout_gravity="start"
+        android:textSize="@dimen/textSize_18"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="@dimen/distance_15" />
+
+      <EditText
+        android:id="@+id/et_mobile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_10"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_10"
+        android:background="@drawable/edit_text_background"
+        android:inputType="number"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/textSize_16"
+        android:autofillHints="@string/mobile_number"
+        tools:ignore="LabelFor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ifsc"
+        android:layout_gravity="start"
+        android:textSize="@dimen/textSize_18"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="@dimen/distance_15" />
+
+      <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_10"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_10"
+        android:background="@drawable/edit_text_background"
+        android:inputType="number"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/textSize_16"
+        android:autofillHints="@string/mobile_number"
+        tools:ignore="LabelFor" />
+
+      <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_20"
+        android:layout_marginBottom="@dimen/distance_20"
+        android:layout_gravity="center_horizontal"
+        android:paddingStart="@dimen/distance_20"
+        android:paddingEnd="@dimen/distance_20"
+        android:paddingBottom="@dimen/distance_10"
+        android:paddingTop="@dimen/distance_10"
+        android:background="@drawable/button_background"
+        android:text="@string/verify_account"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_17" />
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/enter_mob_no"
+          android:layout_gravity="start"
+          android:textSize="@dimen/textSize_18"
+          android:textColor="@android:color/black"
+          android:layout_marginStart="@dimen/distance_15" />
+
+        <EditText
+          android:id="@+id/et_customer_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/distance_10"
+          android:paddingTop="@dimen/distance_13"
+          android:paddingBottom="@dimen/distance_13"
+          android:paddingStart="@dimen/padding_20"
+          android:paddingEnd="@dimen/distance_10"
+          android:autofillHints="@string/customer_name"
+          android:background="@drawable/edit_text_background"
+          android:inputType="text"
+          android:textColor="@color/hint_color"
+          android:textSize="@dimen/textSize_16"
+          tools:ignore="LabelFor" />
+
+      </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/distance_30"
+      android:layout_marginStart="@dimen/distance_30"
+      android:layout_marginEnd="@dimen/distance_30"
+      android:text="@string/otp_error"
+      android:textColor="@color/design_default_color_error"
+      android:textSize="@dimen/textSize_14"
+      android:gravity="center"
+      android:layout_gravity="center_horizontal"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/save"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginBottom="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_30"
+      android:layout_marginEnd="@dimen/distance_30"
+      android:padding="@dimen/distance_10"
+      android:background="@drawable/button_background"
+      android:text="@string/send"
+      android:textAllCaps="false"
+      android:textColor="@android:color/white"
+      android:textSize="@dimen/textSize_17" />
+
+  </LinearLayout>
+
+</RelativeLayout>

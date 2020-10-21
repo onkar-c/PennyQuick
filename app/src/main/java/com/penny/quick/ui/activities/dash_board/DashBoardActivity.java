@@ -24,6 +24,7 @@ import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.dispute_history.DisputeHistoryActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
+import com.penny.quick.ui.activities.money_transfer.MoneyTransferNumberActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
@@ -141,8 +142,9 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       showMessageDialog(null, getString(R.string.add_money_error));
       return;
     } else if (view.getId() == R.id.moneyTransfer) {
-      showMessageDialog(null, getString(R.string.money_transfer_error));
-      return;
+      intent = new Intent(DashBoardActivity.this, MoneyTransferNumberActivity.class);
+//      showMessageDialog(null, getString(R.string.money_transfer_error));
+//      return;
     }
     if (intent != null) {
       startActivity(intent);

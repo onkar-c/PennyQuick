@@ -16,6 +16,9 @@ import com.penny.quick.ui.activities.main.MainActivity;
 import com.penny.quick.ui.activities.main.MainActivityModel;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivityModel;
+import com.penny.quick.ui.activities.money_transfer.AddRecepientActivity;
+import com.penny.quick.ui.activities.money_transfer.MoneyTransferActivityModel;
+import com.penny.quick.ui.activities.money_transfer.MoneyTransferNumberActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivityModel;
 import com.penny.quick.ui.activities.providersList.ProviderListActivityModel;
@@ -78,6 +81,12 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = ViewPlanActivityModel.class)
   abstract ViewPlansActivity getViewPlansActivity();
+
+  @ContributesAndroidInjector(modules = MoneyTransferActivityModel.class)
+  abstract MoneyTransferNumberActivity getMoneyTransferNumberActivity();
+
+  @ContributesAndroidInjector(modules = MoneyTransferActivityModel.class)
+  abstract AddRecepientActivity getAddRecepientActivity();
 
   @ContributesAndroidInjector(modules = ContactUsDisputeActivityModel.class)
   abstract ContactUsDisputeActivity getContactUsDisputeActivity();

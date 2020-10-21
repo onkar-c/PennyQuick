@@ -14,9 +14,17 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     android:usesCleartextTraffic="true">
-    <activity android:name=".ui.activities.dispute_history.DisputeHistoryActivity"
+    <activity android:name=".ui.activities.money_transfer.AddRecepientActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+      android:name=".ui.activities.money_transfer.MoneyTransferNumberActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+      android:name=".ui.activities.dispute_history.DisputeHistoryActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar" />
     <activity
       android:name=".ui.activities.recent_recharge.RecentRechargeActivity"
       android:screenOrientation="portrait"
@@ -29,7 +37,6 @@
       android:name=".ui.activities.web_view.WebViewActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
-
     <activity
       android:name=".ui.activities.view_plans.ViewPlansActivity"
       android:screenOrientation="portrait"
@@ -104,10 +111,10 @@
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
   </application>
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
-
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
 </manifest>
