@@ -198,5 +198,6 @@
   <string name="network_not_availbale">Could not connect to internet</string>
   <string name="add_money_error">Dear User for Add Money in penny account. \nPlease Contact Your Service Provider 7264895939 OR Visit our website www.pennyquick.in</string>
   <string name="money_transfer_error">Registered Device Not Found.</string>
+  <string name="version_no">1.0</string>
 
 </resources>

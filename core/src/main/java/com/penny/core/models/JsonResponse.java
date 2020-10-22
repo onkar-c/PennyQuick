@@ -3,6 +3,7 @@ package com.penny.core.models;
 import com.google.gson.annotations.SerializedName;
 import com.penny.database.entities.Operators;
 import com.penny.database.entities.RecentRecharge;
+import com.penny.database.entities.Report;
 import com.penny.database.entities.User;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +26,9 @@ public class JsonResponse implements Serializable {
 
   @SerializedName("providerList")
   private List<Operators> providerList;
+
+  @SerializedName("reports")
+  private List<Report> reports;
 
   public List<RecentRecharge> getRecentRecharges() {
     return recentRecharges;
@@ -76,5 +80,13 @@ public class JsonResponse implements Serializable {
 
   public void setProviderList(List<Operators> providerList) {
     this.providerList = providerList;
+  }
+
+  public List<Report> getReports() {
+    return reports;
+  }
+
+  public void setReports(List<Report> reports) {
+    this.reports = reports;
   }
 }

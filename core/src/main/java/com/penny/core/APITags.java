@@ -57,6 +57,10 @@ public class APITags {
   private static final String API_CONTACT_US_TITTLE = "Sending Data";
   private static final String API_CONTACT_US_MESSAGE = "Please Wait..";
 
+  public static final int API_DISPUTE_HISTORY = 12;
+  private static final String API_DISPUTE_HISTORY_TITTLE = "Dispute History";
+  private static final String API_DISPUTE_HISTORY_MESSAGE = "Fetching data..";
+
   public static final String DATA_FAIL_RESPONSE = "fail_response";
   public static final String TIME_OUT_ERROR = "Request Time Out";
   public static final String ERROR_WHILE_CONNECTING_TO_SERVER = "Error while connecting to server";
@@ -77,6 +81,7 @@ public class APITags {
     API_RECENT_RECHARGES(API_RECENT_RECHARGES_TITTLE, API_RECENT_RECHARGES_MESSAGE),
     API_PROVIDERS_LIST(API_PROVIDERS_LIST_TITTLE, API_PROVIDERS_LIST_MESSAGE),
     API_CONTACT_US(API_CONTACT_US_TITTLE, API_CONTACT_US_MESSAGE),
+    API_DISPUTE_HISTORY(API_DISPUTE_HISTORY_TITTLE, API_DISPUTE_HISTORY_MESSAGE),
     API_DEFAULT(API_PLEASE_WAIT_MESSAGE, API_LOADING_MESSAGE);
 
 

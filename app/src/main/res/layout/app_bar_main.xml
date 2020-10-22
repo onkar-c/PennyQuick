@@ -278,8 +278,8 @@
         android:paddingStart="@dimen/distance_10"
         android:paddingBottom="@dimen/distance_10"
         android:textAlignment="center"
-        app:drawableTopCompat="@drawable/landline"
-        android:drawablePadding="@dimen/distance_10"/>
+        app:drawableTopCompat="@drawable/dispute_dash"
+        android:drawablePadding="@dimen/distance_17"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

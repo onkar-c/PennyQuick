@@ -71,22 +71,20 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
   @Override
   public void onClick(View view) {
     Intent intent = null;
-    switch (view.getId()) {
-      case R.id.tv_change_pwd:
-        intent = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
-        break;
-      case R.id.tv_recent_recharges:
-        intent = new Intent(ProfileActivity.this, RecentRechargeActivity.class);
-        break;
-      case R.id.tv_reports:
-        intent = new Intent(ProfileActivity.this, ReportActivity.class);
-        break;
-      case R.id.tv_privacy_policy:
-        intent = new Intent(ProfileActivity.this, WebViewActivity.class);
-        intent.putExtra(ProjectConstants.TITLE, getString(R.string.privacy_policy));
-        break;
-      case R.id.tv_logout:
-        break;
+    int id = view.getId();
+    if (id == R.id.tv_change_pwd) {
+      intent = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
+    } else if (id == R.id.tv_recent_recharges) {
+      intent = new Intent(ProfileActivity.this, RecentRechargeActivity.class);
+    } else if (id == R.id.tv_reports) {
+      intent = new Intent(ProfileActivity.this, ReportActivity.class);
+    } else if (id == R.id.tv_privacy_policy) {
+      intent = new Intent(ProfileActivity.this, WebViewActivity.class);
+      intent.putExtra(ProjectConstants.URL, ProjectConstants.PRIVACY_POLICY_URL);
+      intent.putExtra(ProjectConstants.TITLE, getString(R.string.privacy_policy));
+    } else if (id == R.id.tv_logout) {
+      performLogout();
+      return;
     }
     if (intent != null) {
       startActivity(intent);
@@ -96,7 +94,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
   @Override
   protected void onResume() {
     super.onResume();
-    if(!NetworkUtils.isConnected(this)) {
+    if (!NetworkUtils.isConnected(this)) {
       manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
     }
   }

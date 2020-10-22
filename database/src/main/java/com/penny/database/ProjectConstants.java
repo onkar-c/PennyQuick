@@ -3,10 +3,14 @@ package com.penny.database;
 public class ProjectConstants {
 
   public static final String SERVER_URL = "https://pennyquick.in/admin/";
+  public static final String PRIVACY_POLICY_URL = "http://www.pennyquick.in/privacy-policy_mobile.html";
+  public static final String TERMS_AND_CONDITION_URL = "http://www.pennyquick.in/terms-conditions_mobile.html";
+  public static final String FAQ_URL = "http://www.pennyquick.in/faqs_mobile.html";
   public static final String IS_DTH = "is_dth";
   public static final String DTH = "DTH";
   public static final String IS_DISPUTE = "is_dispute";
   public static final String TITLE = "title";
+  public static final String URL = "url";
   public static final String PROVIDER = "provider";
   public static final String PROVIDER_TYPE = "provider_type";
   public static final String PROVIDER_IMAGE = "provider_image";

@@ -1,13 +1,36 @@
 package com.penny.database.entities;
 
-public class Report {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import java.io.Serializable;
 
+@Entity(tableName = "Report")
+public class Report implements Serializable {
+
+  @PrimaryKey(autoGenerate = true)
+  @ColumnInfo(name = "id")
+  private Integer id;
+
+  @ColumnInfo(name = "reportType")
   private String reportType;
+
+  @ColumnInfo(name = "transactionType")
   private String transactionType;
+
+  @ColumnInfo(name = "transaction_id")
   private String transaction_id;
+
+  @ColumnInfo(name = "transactionAmount")
   private float transactionAmount;
+
+  @ColumnInfo(name = "date")
   private String date;
+
+  @ColumnInfo(name = "description")
   private String description;
+
+  @ColumnInfo(name = "balance")
   private float balance;
 
   public String getReportType() {
@@ -64,5 +87,13 @@ public class Report {
 
   public void setTransaction_id(String transaction_id) {
     this.transaction_id = transaction_id;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
 }

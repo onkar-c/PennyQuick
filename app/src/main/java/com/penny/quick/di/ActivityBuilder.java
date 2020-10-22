@@ -6,6 +6,7 @@ import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivityModel;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivity;
 import com.penny.quick.ui.activities.dash_board.DashBoardActivityModel;
+import com.penny.quick.ui.activities.dispute_history.DisputeHistoryActivity;
 import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordActivityModel;
 import com.penny.quick.ui.activities.forgot_pwd_mob.ForgotPasswordMobRegActivity;
 import com.penny.quick.ui.activities.forgot_pwd_new_pwd.ForgotPasswordNewPwdActivity;
@@ -90,4 +91,7 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = ContactUsDisputeActivityModel.class)
   abstract ContactUsDisputeActivity getContactUsDisputeActivity();
+
+  @ContributesAndroidInjector(modules = ContactUsDisputeActivityModel.class)
+  abstract DisputeHistoryActivity getDisputeHistoryActivity();
 }

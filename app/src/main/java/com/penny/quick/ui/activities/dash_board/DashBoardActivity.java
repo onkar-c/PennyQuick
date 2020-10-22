@@ -29,6 +29,7 @@ import com.penny.quick.ui.activities.profile.ProfileActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
 import com.penny.quick.ui.activities.report.ReportActivity;
+import com.penny.quick.ui.activities.web_view.WebViewActivity;
 import com.penny.quick.utils.NetworkConnectivityReceiver.NetworkConnectivityChangeListener;
 import javax.inject.Inject;
 
@@ -114,6 +115,7 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
     View navigationHeader = navigationView.getHeaderView(0);
     drawerProfileIV = navigationHeader.findViewById(R.id.iv_user_drawer);
     drawerUserNameTV = navigationHeader.findViewById(R.id.userName);
+
     navigationView.setNavigationItemSelectedListener(getNavigationItemClickListener());
     navigationView.bringToFront();
     setSupportActionBar(toolbar);
@@ -184,10 +186,11 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
         intent = new Intent(DashBoardActivity.this, ProfileActivity.class);
       } else if (itemId == R.id.faq || itemId == R.id.termsCondition
           || itemId == R.id.privacyPolicy) {
-        Toast.makeText(DashBoardActivity.this, getString(R.string.web_view_error),
-            Toast.LENGTH_SHORT).show();
-//        intent = new Intent(DashBoardActivity.this, WebViewActivity.class);
-//        intent.putExtra(ProjectConstants.TITLE, item.getTitle());
+        intent = new Intent(DashBoardActivity.this, WebViewActivity.class);
+        intent.putExtra(ProjectConstants.URL, itemId == R.id.faq ? ProjectConstants.FAQ_URL
+            : itemId == R.id.termsCondition ? ProjectConstants.TERMS_AND_CONDITION_URL
+                : ProjectConstants.PRIVACY_POLICY_URL);
+        intent.putExtra(ProjectConstants.TITLE, item.getTitle());
       } else if (itemId == R.id.recentTransaction) {
         intent = new Intent(DashBoardActivity.this, RecentRechargeActivity.class);
       } else if (itemId == R.id.logout) {

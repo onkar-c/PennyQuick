@@ -1,25 +1,26 @@
 package com.penny.quick.ui.activities.dispute_history;
 
-import static com.penny.quick.ui.activities.BaseActivity.manageBaseNetworkErr;
-
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.WorkInfo;
+import com.penny.core.APITags;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.entities.Report;
 import com.penny.quick.R;
+import com.penny.quick.ui.activities.BaseActivity;
+import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeViewModel;
 import com.penny.quick.ui.adapters.DisputeReportsAdapter;
-import com.penny.quick.utils.NetworkConnectivityReceiver;
 import com.penny.quick.utils.ToolBarUtils;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 
-public class DisputeHistoryActivity extends AppCompatActivity {
+public class DisputeHistoryActivity extends BaseActivity {
 
-  private BroadcastReceiver mNetworkReceiver;
+  @Inject
+  ContactUsDisputeViewModel contactUsDisputeViewModel;
+  private RecyclerView reportList;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +29,17 @@ public class DisputeHistoryActivity extends AppCompatActivity {
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.dispute_report));
     registerNetworkReceiver();
-    RecyclerView reportList = findViewById(R.id.dispute_reports);
-    reportList.setLayoutManager(new LinearLayoutManager(this));
-    DisputeReportsAdapter reportsAdapter = new DisputeReportsAdapter(generateReportList());
-    reportList.setAdapter(reportsAdapter);
+    setDisputeHistoryObserver();
+    reportList = findViewById(R.id.dispute_reports);
+
+  }
+
+  private void setDisputeHistoryObserver() {
+    contactUsDisputeViewModel.getDisputeHistoryObserver().observe(this, reports -> {
+      reportList.setLayoutManager(new LinearLayoutManager(this));
+      DisputeReportsAdapter reportsAdapter = new DisputeReportsAdapter(generateReportList());
+      reportList.setAdapter(reportsAdapter);
+    });
   }
 
   private List<Report> generateReportList() {
@@ -47,24 +55,26 @@ public class DisputeHistoryActivity extends AppCompatActivity {
     return reports;
   }
 
-  protected void registerNetworkReceiver() {
-    mNetworkReceiver = new NetworkConnectivityReceiver();
-    IntentFilter filter = new IntentFilter();
-    filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-    registerReceiver(mNetworkReceiver, filter);
-  }
-
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-    unregisterReceiver(mNetworkReceiver);
-  }
-
   @Override
   protected void onResume() {
     super.onResume();
-    if(!NetworkUtils.isConnected(this)) {
-      manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
+    getDisputeHistory();
+  }
+
+  private void getDisputeHistory() {
+    if (NetworkUtils.isConnected(this)) {
+      contactUsDisputeViewModel
+          .getDisputeHistory().observe(this,
+          this::observeSendDataApi);
+    } else {
+      toast(APITags.DEVICE_IS_OFFLINE);
     }
   }
+
+  private void observeSendDataApi(WorkInfo workInfo) {
+    if (workInfo != null) {
+      apiResponseHandler(workInfo);
+    }
+  }
+
 }

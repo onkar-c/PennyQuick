@@ -47,6 +47,9 @@ public interface ApiInterface {
   @GET("recharge/provider")
   Call<JsonResponse> getProviders();
 
+  @GET("disputeHistory")
+  Call<JsonResponse> getDisputeHistory();
+
   @POST("forgot_password/contactUs")
   Call<JsonResponse> contactUs(@Body ContactUsDisputeModel contactUsDisputeModel);
 }
