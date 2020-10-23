@@ -130,7 +130,7 @@
         android:paddingEnd="@dimen/distance_20"
         android:paddingBottom="@dimen/distance_10"
         android:paddingTop="@dimen/distance_10"
-        android:background="@drawable/button_background"
+        android:background="@drawable/radio_button_background_1"
         android:text="@string/verify_account"
         android:textAllCaps="false"
         android:textColor="@android:color/white"

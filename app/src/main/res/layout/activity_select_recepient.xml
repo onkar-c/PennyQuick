@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <include android:id="@+id/commonToolBar"
+    layout="@layout/common_tool_bar"/>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/distance_20"
+    android:layout_below="@+id/commonToolBar">
+    <LinearLayout
+      android:id="@+id/currentPasswordLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/existing_recipient"
+        android:layout_gravity="start"
+        android:textSize="@dimen/textSize_18"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="@dimen/distance_15" />
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+      <TextView
+        android:id="@+id/et_operator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_20"
+        android:layout_marginTop="@dimen/distance_10"
+        android:gravity="center_vertical"
+        android:background="@drawable/edit_text_background"
+        android:drawablePadding="@dimen/distance_5"
+        android:hint="@string/select_operator"
+        android:inputType="none"
+        android:textColor="@color/hint_color"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/textSize_16"
+        android:importantForAutofill="no"
+        android:layout_weight="0.5"
+        app:drawableEndCompat="@drawable/ic_down_arrow" />
+        <View
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          android:layout_weight="0.05"/>
+        <TextView
+          android:id="@+id/et_add_recepient"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:paddingTop="@dimen/distance_13"
+          android:paddingBottom="@dimen/distance_13"
+          android:paddingStart="@dimen/padding_20"
+          android:paddingEnd="@dimen/distance_10"
+          android:layout_marginTop="@dimen/distance_10"
+          android:gravity="center_vertical"
+          android:background="@drawable/radio_button_background_1"
+          android:drawablePadding="@dimen/distance_5"
+          android:hint="@string/add_recepient"
+          android:inputType="none"
+          android:textColor="@android:color/white"
+          android:textColorHint="@android:color/white"
+          android:textSize="@dimen/textSize_16"
+          android:importantForAutofill="no"
+          android:layout_weight="0.45"
+          app:drawableStartCompat="@drawable/ic_add" />
+
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+
+
+      <EditText
+        android:id="@+id/et_mobile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/distance_20"
+        android:layout_marginStart="@dimen/distance_20"
+        android:layout_marginEnd="@dimen/distance_20"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_10"
+        android:background="@drawable/edit_text_background"
+        android:inputType="number"
+        android:hint="@string/bank_account_number"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/textSize_16"
+        android:autofillHints="@string/mobile_number"
+        tools:ignore="LabelFor" />
+
+    <EditText
+      android:id="@+id/amount"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20"
+      android:paddingTop="@dimen/distance_13"
+      android:paddingBottom="@dimen/distance_13"
+      android:paddingStart="@dimen/padding_20"
+      android:paddingEnd="@dimen/distance_10"
+      android:background="@drawable/edit_text_background"
+      android:inputType="number"
+      android:hint="@string/enter_amount"
+      android:textColor="@color/hint_color"
+      android:textSize="@dimen/textSize_16"
+      android:autofillHints="@string/mobile_number"
+      tools:ignore="LabelFor" />
+
+    <TextView
+      android:id="@+id/document_id"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20"
+      android:paddingTop="@dimen/distance_13"
+      android:paddingBottom="@dimen/distance_13"
+      android:paddingStart="@dimen/padding_20"
+      android:paddingEnd="@dimen/distance_10"
+      android:gravity="center_vertical"
+      android:background="@drawable/edit_text_background"
+      android:drawablePadding="@dimen/distance_5"
+      android:hint="@string/document_id"
+      android:inputType="none"
+      android:textColor="@color/hint_color"
+      android:textColorHint="@color/hint_color"
+      android:textSize="@dimen/textSize_16"
+      android:importantForAutofill="no"
+      app:drawableEndCompat="@drawable/ic_down_arrow" />
+
+    <EditText
+      android:id="@+id/id_value"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20"
+      android:paddingTop="@dimen/distance_13"
+      android:paddingBottom="@dimen/distance_13"
+      android:paddingStart="@dimen/padding_20"
+      android:paddingEnd="@dimen/distance_10"
+      android:background="@drawable/edit_text_background"
+      android:inputType="number"
+      android:hint="@string/document_id_value"
+      android:textColor="@color/hint_color"
+      android:textSize="@dimen/textSize_16"
+      android:autofillHints="@string/mobile_number"
+      tools:ignore="LabelFor" />
+
+    <EditText
+      android:id="@+id/pincode"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20"
+      android:paddingTop="@dimen/distance_13"
+      android:paddingBottom="@dimen/distance_13"
+      android:paddingStart="@dimen/padding_20"
+      android:paddingEnd="@dimen/distance_10"
+      android:background="@drawable/edit_text_background"
+      android:inputType="number"
+      android:hint="@string/pin_code"
+      android:textColor="@color/hint_color"
+      android:textSize="@dimen/textSize_16"
+      android:autofillHints="@string/mobile_number"
+      tools:ignore="LabelFor" />
+
+    <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/submit"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/distance_20"
+      android:layout_marginStart="@dimen/distance_20"
+      android:layout_marginEnd="@dimen/distance_20"
+      android:layout_gravity="center_horizontal"
+      android:paddingStart="@dimen/distance_20"
+      android:paddingEnd="@dimen/distance_20"
+      android:paddingBottom="@dimen/distance_10"
+      android:paddingTop="@dimen/distance_10"
+      android:background="@drawable/button_background"
+      android:text="@string/submit"
+      android:textAllCaps="false"
+      android:textColor="@android:color/white"
+      android:textSize="@dimen/textSize_17" />
+
+  </LinearLayout>
+
+</RelativeLayout>

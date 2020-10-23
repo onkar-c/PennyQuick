@@ -64,6 +64,7 @@
   <string name="enter_message_hint">Please Enter A Message</string>
   <string name="send">Send</string>
   <string name="verify_account">Verify Account</string>
+  <string name="add_recipient">Add Recipient</string>
 
   <string name="change_pwd">Change Password</string>
   <string name="current_pwd">Current Password</string>
@@ -101,10 +102,14 @@
 
   <string name="enter_mob_no">Enter Mobile Number</string>
   <string name="select_bank">Select Bank</string>
+  <string name="existing_recipient">Existing Recipient List</string>
   <string name="enter_name_title">Enter Name</string>
   <string name="bank_account_number">Bank account number</string>
   <string name="ifsc">IFSC</string>
   <string name="select_operator">Select Operator</string>
+  <string name="document_id">Document Id Type</string>
+  <string name="document_id_value">Document Id Value</string>
+  <string name="pin_code">Enter Pin Code</string>
   <string name="select_provider">Select Provider</string>
   <string name="select_state">Select State</string>
   <string name="enter_amount">Enter Amount</string>
@@ -121,6 +126,7 @@
   <string name="account_number">Account Number</string>
   <string name="mobile_number">Mobile Number</string>
   <string name="subject">Subject</string>
+  <string name="submit">Submit</string>
   <string name="enter_message">Enter Message</string>
   <string name="message">Message</string>
   <string name="message_display">Message :</string>

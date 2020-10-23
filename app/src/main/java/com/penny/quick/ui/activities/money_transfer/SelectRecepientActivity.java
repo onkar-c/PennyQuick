@@ -7,7 +7,7 @@ import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.utils.ToolBarUtils;
 import javax.inject.Inject;
 
-public class MoneyTransferNumberActivity extends BaseActivity {
+public class SelectRecepientActivity extends BaseActivity {
 
   @Inject
   MoneyTransferActivityViewModel moneyTransferActivityViewModel;
@@ -15,10 +15,10 @@ public class MoneyTransferNumberActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_money_transfer_number);
+    setContentView(R.layout.activity_select_recepient);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.money_transfer));
-    findViewById(R.id.save)
-        .setOnClickListener(view -> startActivity(new Intent(this, SelectRecepientActivity.class)));
+    findViewById(R.id.et_add_recepient)
+        .setOnClickListener(view -> startActivity(new Intent(this, AddRecepientActivity.class)));
   }
 }
