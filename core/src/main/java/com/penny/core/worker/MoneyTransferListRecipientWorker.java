@@ -9,9 +9,10 @@ import com.penny.core.models.JsonResponse;
 import com.penny.core.models.RequestMobileNumerModel;
 import com.penny.database.ProjectConstants;
 
-public class RequestOTPWorker extends BaseWorker {
+public class MoneyTransferListRecipientWorker extends BaseWorker {
 
-  public RequestOTPWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+  public MoneyTransferListRecipientWorker(@NonNull Context context,
+      @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
   }
 
@@ -20,7 +21,7 @@ public class RequestOTPWorker extends BaseWorker {
     RequestMobileNumerModel requestMobileNumerModel = new RequestMobileNumerModel();
     requestMobileNumerModel.setMobile(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .requestOtp(requestMobileNumerModel));
+        .moneyTransferGetRecipient(requestMobileNumerModel));
   }
 
   @Override

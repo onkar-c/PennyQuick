@@ -40,7 +40,7 @@
         android:paddingEnd="@dimen/distance_10"
         android:autofillHints="@string/customer_name"
         android:background="@drawable/edit_text_background"
-        android:inputType="text"
+        android:inputType="number"
         android:textColor="@color/hint_color"
         android:textSize="@dimen/textSize_16"
         tools:ignore="LabelFor" />
@@ -48,13 +48,14 @@
     </LinearLayout>
 
     <LinearLayout
-      android:id="@+id/newPasswordLayout"
+      android:id="@+id/nameLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
       android:layout_marginTop="@dimen/distance_20"
       android:layout_marginStart="@dimen/distance_20"
-      android:layout_marginEnd="@dimen/distance_20">
+      android:layout_marginEnd="@dimen/distance_20"
+      android:visibility="gone">
 
       <TextView
         android:layout_width="wrap_content"
@@ -84,6 +85,7 @@
     </LinearLayout>
 
     <TextView
+      android:id="@+id/otp_sent_view"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/distance_30"
@@ -92,16 +94,19 @@
       android:text="@string/verification_code"
       android:textColor="@color/hint_color"
       android:textSize="@dimen/textSize_14"
-      android:gravity="center" />
+      android:gravity="center"
+      android:visibility="gone"/>
 
     <LinearLayout
+      android:id="@+id/otp_accept"
       android:layout_width="match_parent"
       android:layout_height="@dimen/distance_80"
       android:orientation="horizontal"
       android:weightSum="3"
       android:layout_marginTop="@dimen/distance_20"
       android:layout_marginStart="@dimen/distance_50"
-      android:layout_marginEnd="@dimen/distance_50">
+      android:layout_marginEnd="@dimen/distance_50"
+      android:visibility="gone">
 
       <EditText
         android:id="@+id/et_otp1"
@@ -158,13 +163,15 @@
     </LinearLayout>
 
     <LinearLayout
+      android:id="@+id/resend_view"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:layout_marginTop="@dimen/margin_15"
       android:layout_marginStart="@dimen/distance_60"
       android:gravity="center_vertical"
-      tools:ignore="UseCompoundDrawables">
+      tools:ignore="UseCompoundDrawables"
+      android:visibility="gone">
 
       <ImageView
         android:id="@+id/iv_resend"
@@ -187,6 +194,7 @@
     </LinearLayout>
 
     <TextView
+      android:id="@+id/errorText"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/distance_30"
@@ -196,10 +204,11 @@
       android:textColor="@color/design_default_color_error"
       android:textSize="@dimen/textSize_14"
       android:gravity="center"
-      android:layout_gravity="center_horizontal"/>
+      android:layout_gravity="center_horizontal"
+      android:visibility="gone"/>
 
     <androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/save"
+      android:id="@+id/verify"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/distance_20"
@@ -208,7 +217,7 @@
       android:layout_marginEnd="@dimen/distance_30"
       android:padding="@dimen/distance_10"
       android:background="@drawable/button_background"
-      android:text="@string/send"
+      android:text="@string/verify"
       android:textAllCaps="false"
       android:textColor="@android:color/white"
       android:textSize="@dimen/textSize_17" />

@@ -6,21 +6,20 @@ import androidx.work.WorkerParameters;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
-import com.penny.core.models.RequestMobileNumerModel;
-import com.penny.database.ProjectConstants;
+import com.penny.core.models.RequestRecipient;
 
-public class RequestOTPWorker extends BaseWorker {
+public class MoneyTransferAddRecipientWorker extends BaseWorker {
 
-  public RequestOTPWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+  public MoneyTransferAddRecipientWorker(@NonNull Context context,
+      @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
   }
 
   @Override
   protected Result executeApi() {
-    RequestMobileNumerModel requestMobileNumerModel = new RequestMobileNumerModel();
-    requestMobileNumerModel.setMobile(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
+    RequestRecipient requestRecipient = new RequestRecipient();
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .requestOtp(requestMobileNumerModel));
+        .moneyTransferAddRecipient(requestRecipient));
   }
 
   @Override

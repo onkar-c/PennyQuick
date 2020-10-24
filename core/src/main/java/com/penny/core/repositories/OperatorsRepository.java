@@ -29,7 +29,6 @@ public class OperatorsRepository extends BaseRepository {
     Data.Builder data = getDataBuilderForApi(APITags.API_PROVIDERS_LIST);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(ProvidersWorker.class)
         .setInputData(data.build())
-//        .setConstraints(getNetworkConstraint())
         .addTag(APIEnums.API_PROVIDERS_LIST.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);

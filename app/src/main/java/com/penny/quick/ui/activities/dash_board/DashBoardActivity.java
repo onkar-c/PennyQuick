@@ -1,6 +1,7 @@
 package com.penny.quick.ui.activities.dash_board;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,6 +10,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.work.WorkInfo;
@@ -31,12 +33,14 @@ import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
 import com.penny.quick.ui.activities.report.ReportActivity;
 import com.penny.quick.ui.activities.web_view.WebViewActivity;
 import com.penny.quick.utils.NetworkConnectivityReceiver.NetworkConnectivityChangeListener;
+import in.co.eko.ekopay.EkoPayActivity;
 import javax.inject.Inject;
 
 public class DashBoardActivity extends BaseActivity implements NetworkConnectivityChangeListener {
 
   @Inject
   DashBoardActivityViewModel dashBoardActivityViewModel;
+  private final int AEPS_REQUEST_CODE = 10923;
   private DrawerLayout drawer;
   private TextView walletBalance, drawerUserNameTV;
   private ImageView profileIV, drawerProfileIV;
@@ -141,7 +145,8 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       intent = new Intent(DashBoardActivity.this, MobileRechargeActivity.class);
       intent.putExtra(ProjectConstants.TYPE, view.getId() == R.id.bt_prepaid);
     } else if (view.getId() == R.id.addMoney) {
-      showMessageDialog(null, getString(R.string.add_money_error));
+      addMoney();
+//      showMessageDialog(null, getString(R.string.add_money_error));
       return;
     } else if (view.getId() == R.id.moneyTransfer) {
       intent = new Intent(DashBoardActivity.this, MoneyTransferNumberActivity.class);
@@ -179,7 +184,8 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       Intent intent = null;
       int itemId = item.getItemId();
       if (itemId == R.id.home) {
-        intent = null;
+        drawer.close();
+        return true;
       } else if (itemId == R.id.contactUs) {
         intent = new Intent(DashBoardActivity.this, ContactUsDisputeActivity.class);
       } else if (itemId == R.id.profile) {
@@ -198,8 +204,8 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       } else if (itemId == R.id.disputeHistory) {
         intent = new Intent(DashBoardActivity.this, DisputeHistoryActivity.class);
       } else if (itemId == R.id.add_money) {
-        showMessageDialog(null, getString(R.string.add_money_error));
-        return true;
+        addMoney();
+//        showMessageDialog(null, getString(R.string.add_money_error));
       } else {
         Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
       }
@@ -212,6 +218,8 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
     };
   }
 
+
+
   public void manageNetworkErr(boolean isNetworkAvailable) {
     showWarningText(networkWarningTV, isNetworkAvailable);
   }
@@ -219,5 +227,50 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
   @Override
   public void networkStatusChange(boolean status) {
     manageNetworkErr(status);
+  }
+
+  private void addMoney(){
+    Intent intent = new Intent(this, EkoPayActivity.class);
+    Bundle bundle = new Bundle();
+
+//Initialize all unknown variables and replace all dummy values
+    bundle.putString("environment", "uat");
+    bundle.putString("product","aeps");
+    bundle.putString("secret_key_timestamp", "secret_key_timestamp");
+    bundle.putString("secret_key", "secret_key");
+    bundle.putString("developer_key", "becbbce45f79c6f5109f848acd540567");
+    bundle.putString("initiator_id", "9962981729");
+    bundle.putString("callback_url", "callback_url");
+    bundle.putString("user_code", "20810200");
+    bundle.putString("initiator_logo_url", "initiator_logo_url");
+    bundle.putString("partner_name" , "PARTNER Name INC");
+    bundle.putString("language" , "en");
+
+    intent.putExtras(bundle);
+    startActivityForResult(intent, AEPS_REQUEST_CODE);
+  }
+
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == AEPS_REQUEST_CODE) {
+      if (resultCode == Activity.RESULT_OK) { //user taps CLOSE button after transaction -- case 1
+        String response = data.getStringExtra("result");
+        //--------- response is transaction data
+      } else if(resultCode == Activity.RESULT_CANCELED) { // user presses back button
+        if (data == null) {
+          //------ If user pressed back without transaction -- case 2
+        } else {
+          String response = data.getStringExtra("result");
+          if (response!=null && !response.equalsIgnoreCase("")) {
+            //------ If there is some error in partner parameters, response is that error
+            //------ when user performs the transaction, response is transaction data -- case 1
+          } else {
+
+          }
+        }
+      }
+    }
   }
 }

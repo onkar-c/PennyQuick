@@ -2,7 +2,7 @@ package com.penny.core.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RequestOTPModel {
+public class RequestMobileNumerModel {
 
   @SerializedName("mobile")
   private String mobile;

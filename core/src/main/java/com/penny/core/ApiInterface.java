@@ -4,9 +4,10 @@ import com.penny.core.models.ChangePasswordRequestModel;
 import com.penny.core.models.ContactUsDisputeModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
+import com.penny.core.models.RequestRecipient;
 import com.penny.core.models.rechargeRequestModel;
 import com.penny.core.models.RecentRechargesRequestModel;
-import com.penny.core.models.RequestOTPModel;
+import com.penny.core.models.RequestMobileNumerModel;
 import com.penny.core.models.VerifyOTPRequestModel;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,7 +21,7 @@ public interface ApiInterface {
   Call<JsonResponse> login(@Body LoginRequestModel loginRequestModel);
 
   @POST("forgot_password/request_otp")
-  Call<JsonResponse> requestOtp(@Body RequestOTPModel requestOTPModel);
+  Call<JsonResponse> requestOtp(@Body RequestMobileNumerModel requestMobileNumerModel);
 
   @POST("forgot_password/verify_otp")
   Call<JsonResponse> verifyOtp(@Body VerifyOTPRequestModel verifyOTPRequestModel);
@@ -52,4 +53,22 @@ public interface ApiInterface {
 
   @POST("forgot_password/contactUs")
   Call<JsonResponse> contactUs(@Body ContactUsDisputeModel contactUsDisputeModel);
+
+  @POST("recharge/verifymobile")
+  Call<JsonResponse> verifyMobileNumber(@Body RequestMobileNumerModel requestMobileNumerModel);
+
+  @POST("recharge/reSendOtp")
+  Call<JsonResponse> moneyTransferOTP(@Body RequestMobileNumerModel requestMobileNumerModel);
+
+  @POST("recharge/verifyotp")
+  Call<JsonResponse> moneyTransferVerifyOtp(@Body VerifyOTPRequestModel verifyOTPRequestModel);
+
+  @POST("recharge/listRecipient")
+  Call<JsonResponse> moneyTransferGetRecipient(@Body RequestMobileNumerModel requestMobileNumerModel);
+
+  @POST("recharge/addRecipient")
+  Call<JsonResponse> moneyTransferAddRecipient(@Body RequestRecipient requestRecipient);
+
+  @GET("recharge/getBankDetail")
+  Call<JsonResponse> getBankDetails();
 }

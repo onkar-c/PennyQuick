@@ -18,7 +18,7 @@ public class MoneyTransferNumberActivity extends BaseActivity {
     setContentView(R.layout.activity_money_transfer_number);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.money_transfer));
-    findViewById(R.id.save)
+    findViewById(R.id.verify)
         .setOnClickListener(view -> startActivity(new Intent(this, SelectRecepientActivity.class)));
   }
 }
