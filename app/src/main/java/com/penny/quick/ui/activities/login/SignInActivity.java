@@ -24,7 +24,7 @@ public class SignInActivity extends BaseActivity {
 
   @Inject
   SignActivityViewModel signActivityViewModel;
-  private OnClickListener onForgotClick = view -> startActivity(
+  private final OnClickListener onForgotClick = view -> startActivity(
       new Intent(SignInActivity.this, ForgotPasswordMobRegActivity.class));
   private EditText userId, password;
   private TextView tv_error;
@@ -50,12 +50,27 @@ public class SignInActivity extends BaseActivity {
         this::observeProvidersApi);
   }
 
-  private void observeProvidersApi(WorkInfo workInfo) {
+  private void fetchBankDetails() {
+    signActivityViewModel.fetchBankDetails().observe(this,
+        this::observeBankDetailsApi);
+  }
+
+  private void observeBankDetailsApi(WorkInfo workInfo) {
     if (workInfo != null) {
       State state = workInfo.getState();
       apiResponseHandler(workInfo);
       if (state == State.SUCCEEDED) {
         loginSuccess();
+      }
+    }
+  }
+
+  private void observeProvidersApi(WorkInfo workInfo) {
+    if (workInfo != null) {
+      State state = workInfo.getState();
+      apiResponseHandler(workInfo);
+      if (state == State.SUCCEEDED) {
+        fetchBankDetails();
       }
     }
   }

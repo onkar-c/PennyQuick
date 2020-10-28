@@ -17,10 +17,10 @@ import com.penny.quick.ui.activities.main.MainActivity;
 import com.penny.quick.ui.activities.main.MainActivityModel;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivityModel;
-import com.penny.quick.ui.activities.money_transfer.AddRecepientActivity;
+import com.penny.quick.ui.activities.money_transfer.AddRecipientActivity;
 import com.penny.quick.ui.activities.money_transfer.MoneyTransferActivityModel;
 import com.penny.quick.ui.activities.money_transfer.MoneyTransferNumberActivity;
-import com.penny.quick.ui.activities.money_transfer.SelectRecepientActivity;
+import com.penny.quick.ui.activities.money_transfer.SelectRecipientActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivityModel;
 import com.penny.quick.ui.activities.providersList.ProviderListActivityModel;
@@ -88,10 +88,10 @@ abstract class ActivityBuilder {
   abstract MoneyTransferNumberActivity getMoneyTransferNumberActivity();
 
   @ContributesAndroidInjector(modules = MoneyTransferActivityModel.class)
-  abstract AddRecepientActivity getAddRecepientActivity();
+  abstract AddRecipientActivity getAddRecepientActivity();
 
   @ContributesAndroidInjector(modules = MoneyTransferActivityModel.class)
-  abstract SelectRecepientActivity getSelectRecepientActivity();
+  abstract SelectRecipientActivity getSelectRecepientActivity();
 
   @ContributesAndroidInjector(modules = ContactUsDisputeActivityModel.class)
   abstract ContactUsDisputeActivity getContactUsDisputeActivity();

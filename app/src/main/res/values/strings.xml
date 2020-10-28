@@ -24,6 +24,9 @@
   <string name="user_id_blank_error">User id cannot be blank</string>
   <string name="mobile_number_blank_error">Mobile Number cannot be blank</string>
   <string name="mobile_number_incorrect">Incorrect Mobile Number</string>
+  <string name="account_number_error">Account Number Cannot Be Empty</string>
+  <string name="bank_error_text">Please Select A Bank</string>
+  <string name="ifsc_number_error">IFSC Cannot Be Empty</string>
   <string name="password_blank_error">Password cannot be blank</string>
   <string name="new_password_blank_error">New password cannot be blank</string>
   <string name="re_enter_password_blank_error">Please re-enter same password</string>
@@ -80,6 +83,8 @@
   <string name="dth">DTH Recharge</string>
   <string name="land_line">Land Line</string>
   <string name="money_transfer">Money Transfer</string>
+  <string name="recipient_error">No recipient available</string>
+  <string name="bank_error">No banks available</string>
   <string name="add_recepient">Add Recepient</string>
   <string name="recent_recharge">Recent Recharges</string>
   <string name="reports">Reports</string>
@@ -119,6 +124,7 @@
   <string name="recharge">Recharge</string>
   <string name="apply">Apply</string>
   <string name="customer_name">Customer Name</string>
+  <string name="name">Name</string>
   <string name="customer_id">Customer ID</string>
   <string name="telephone_number">Telephone Number</string>
   <string name="dish_hint">Registered Mobile No/Viewing Card No</string>
@@ -154,6 +160,8 @@
 
 
   <string name="operators">Operators</string>
+  <string name="recipient">Recipient</string>
+  <string name="bank">Banks</string>
   <string name="state">State</string>
   <string name="recent_recharges">Recent Recharges</string>
   <string name="mobile_recharge">Mobile Recharge</string>
@@ -192,6 +200,7 @@
   <string name="disclaimer">Disclaimer:We support most types of recharges, but please check with your operator before you proceed.</string>
   <string name="sync">sync</string>
   <string name="otp_error">Invalid OTP</string>
+  <string name="otp_error_msg">Please Enter Valid OTP</string>
   <string name="cnt_pwd_error">Please enter correct Current Password</string>
   <string name="new_pwd_error">Please enter correct New Password</string>
   <string name="re_pwd_error">Please enter correct Re-enter Password</string>
@@ -200,6 +209,8 @@
   <string name="recharge_type_error">Please select recharge type</string>
   <string name="operator_error">Please select Operator</string>
   <string name="state_error">Please select State</string>
+  <string name="name_error">Please Enter The Name</string>
+  <string name="name_error_text">Name cannot be empty</string>
   <string name="amnt_error">Please select Plan or enter amount</string>
   <string name="network_availbale">We are now online</string>
   <string name="network_not_availbale">Could not connect to internet</string>

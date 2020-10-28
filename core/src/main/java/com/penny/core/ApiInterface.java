@@ -54,21 +54,24 @@ public interface ApiInterface {
   @POST("forgot_password/contactUs")
   Call<JsonResponse> contactUs(@Body ContactUsDisputeModel contactUsDisputeModel);
 
-  @POST("recharge/verifymobile")
+  @POST("transfer/verifymobile")
   Call<JsonResponse> verifyMobileNumber(@Body RequestMobileNumerModel requestMobileNumerModel);
 
-  @POST("recharge/reSendOtp")
+  @POST("transfer/provider")
+  Call<JsonResponse> enrollMobileNumber(@Body RequestMobileNumerModel requestMobileNumerModel);
+
+  @POST("transfer/reSendOtp")
   Call<JsonResponse> moneyTransferOTP(@Body RequestMobileNumerModel requestMobileNumerModel);
 
   @POST("recharge/verifyotp")
   Call<JsonResponse> moneyTransferVerifyOtp(@Body VerifyOTPRequestModel verifyOTPRequestModel);
 
-  @POST("recharge/listRecipient")
+  @POST("transfer/listRecipient")
   Call<JsonResponse> moneyTransferGetRecipient(@Body RequestMobileNumerModel requestMobileNumerModel);
 
-  @POST("recharge/addRecipient")
+  @POST("transfer/addRecipient")
   Call<JsonResponse> moneyTransferAddRecipient(@Body RequestRecipient requestRecipient);
 
-  @GET("recharge/getBankDetail")
+  @GET("transfer/getBankDetail")
   Call<JsonResponse> getBankDetails();
 }

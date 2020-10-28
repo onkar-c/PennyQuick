@@ -15,11 +15,11 @@
     android:theme="@style/AppTheme"
     android:usesCleartextTraffic="true">
     <activity
-      android:name=".ui.activities.money_transfer.SelectRecepientActivity"
+      android:name=".ui.activities.money_transfer.SelectRecipientActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
     <activity
-      android:name=".ui.activities.money_transfer.AddRecepientActivity"
+      android:name=".ui.activities.money_transfer.AddRecipientActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
     <activity

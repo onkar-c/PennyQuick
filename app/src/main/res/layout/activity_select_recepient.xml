@@ -36,7 +36,7 @@
         android:orientation="horizontal"
         android:weightSum="1">
       <TextView
-        android:id="@+id/et_operator"
+        android:id="@+id/et_recipient"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/distance_13"

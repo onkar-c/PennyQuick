@@ -75,6 +75,10 @@ public class ForgotPasswordOtpActivity extends BaseActivity implements TextWatch
           otp1TV.getText().toString().trim() + otp2TV.getText().toString().trim() + otp3TV.getText()
               .toString().trim()
               + otp4TV.getText().toString().trim();
+      if(otp.length() != 4) {
+        showError(getString(R.string.otp_error_msg));
+        return;
+      }
       forgotPasswordViewModel
           .verifyOTP(getIntent().getStringExtra(ProjectConstants.MOBILE_NUMBER), otp).observe(this,
           this::observeVerifyOtpApi);

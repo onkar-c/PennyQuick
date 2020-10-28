@@ -7,12 +7,11 @@ import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.RequestMobileNumerModel;
-import com.penny.database.AppDatabase;
 import com.penny.database.ProjectConstants;
 
-public class MoneyTransferListRecipientWorker extends BaseWorker {
+public class MoneyTransferEnrollMobileNumberWorker extends BaseWorker {
 
-  public MoneyTransferListRecipientWorker(@NonNull Context context,
+  public MoneyTransferEnrollMobileNumberWorker(@NonNull Context context,
       @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
   }
@@ -21,18 +20,13 @@ public class MoneyTransferListRecipientWorker extends BaseWorker {
   protected Result executeApi() {
     RequestMobileNumerModel requestMobileNumerModel = new RequestMobileNumerModel();
     requestMobileNumerModel.setMobile(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
+    requestMobileNumerModel.setName(getInputData().getString(ProjectConstants.USER_NAME));
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .moneyTransferGetRecipient(requestMobileNumerModel));
+        .enrollMobileNumber(requestMobileNumerModel));
   }
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
-    mData.putBoolean(ProjectConstants.RECIPIENT_AVAILABLE, false);
-    if (jsonResponse.getRecipientList() != null && jsonResponse.getRecipientList().size() > 0) {
-      AppDatabase.getInstance().getRecipientDao().deleteAll();
-      AppDatabase.getInstance().getRecipientDao().insert(jsonResponse.getRecipientList());
-      mData.putBoolean(ProjectConstants.RECIPIENT_AVAILABLE, true);
-    }
     return sendSuccess();
   }
 }

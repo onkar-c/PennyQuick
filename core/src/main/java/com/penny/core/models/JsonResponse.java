@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.penny.database.entities.BankDetails;
 import com.penny.database.entities.Operators;
 import com.penny.database.entities.RecentRecharge;
+import com.penny.database.entities.Recipient;
 import com.penny.database.entities.Report;
 import com.penny.database.entities.User;
 import java.io.Serializable;
@@ -33,6 +34,12 @@ public class JsonResponse implements Serializable {
 
   @SerializedName("list")
   private List<BankDetails> bankDetailsList;
+
+  @SerializedName("trans_type")
+  private int trans_type;
+
+  @SerializedName("recipient_list")
+  private List<Recipient> recipientList;
 
   public List<RecentRecharge> getRecentRecharges() {
     return recentRecharges;
@@ -100,5 +107,21 @@ public class JsonResponse implements Serializable {
 
   public void setBankDetailsList(List<BankDetails> bankDetailsList) {
     this.bankDetailsList = bankDetailsList;
+  }
+
+  public int getTrans_type() {
+    return trans_type;
+  }
+
+  public void setTrans_type(int trans_type) {
+    this.trans_type = trans_type;
+  }
+
+  public List<Recipient> getRecipientList() {
+    return recipientList;
+  }
+
+  public void setRecipientList(List<Recipient> recipientList) {
+    this.recipientList = recipientList;
   }
 }

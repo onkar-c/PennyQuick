@@ -244,7 +244,9 @@ public class BaseActivity extends DaggerAppCompatActivity {
   public void onDestroy() {
     super.onDestroy();
     try {
-      unregisterReceiver(mNetworkReceiver);
+      if (mNetworkReceiver != null) {
+        unregisterReceiver(mNetworkReceiver);
+      }
     } catch (IllegalArgumentException e) {
       e.printStackTrace();
     }

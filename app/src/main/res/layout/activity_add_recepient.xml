@@ -31,7 +31,7 @@
         android:layout_marginStart="@dimen/distance_15" />
 
       <TextView
-        android:id="@+id/et_operator"
+        android:id="@+id/tv_bank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/distance_13"
@@ -71,7 +71,7 @@
         android:layout_marginStart="@dimen/distance_15" />
 
       <EditText
-        android:id="@+id/et_mobile_number"
+        android:id="@+id/et_account_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_10"
@@ -86,6 +86,7 @@
         android:autofillHints="@string/mobile_number"
         tools:ignore="LabelFor" />
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -99,13 +100,14 @@
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ifsc"
+        android:text="@string/name"
         android:layout_gravity="start"
         android:textSize="@dimen/textSize_18"
         android:textColor="@android:color/black"
         android:layout_marginStart="@dimen/distance_15" />
 
       <EditText
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_10"
@@ -114,7 +116,32 @@
         android:paddingStart="@dimen/padding_20"
         android:paddingEnd="@dimen/distance_10"
         android:background="@drawable/edit_text_background"
-        android:inputType="number"
+        android:inputType="text"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/textSize_16"
+        android:autofillHints="@string/mobile_number"
+        tools:ignore="LabelFor" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ifsc"
+        android:layout_gravity="start"
+        android:textSize="@dimen/textSize_18"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="@dimen/distance_15" />
+
+      <EditText
+        android:id="@+id/ifsc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_10"
+        android:paddingTop="@dimen/distance_13"
+        android:paddingBottom="@dimen/distance_13"
+        android:paddingStart="@dimen/padding_20"
+        android:paddingEnd="@dimen/distance_10"
+        android:background="@drawable/edit_text_background"
+        android:inputType="text"
         android:textColor="@color/hint_color"
         android:textSize="@dimen/textSize_16"
         android:autofillHints="@string/mobile_number"
@@ -151,7 +178,7 @@
           android:layout_marginStart="@dimen/distance_15" />
 
         <EditText
-          android:id="@+id/et_customer_name"
+          android:id="@+id/et_mobile_number"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/distance_10"
@@ -161,7 +188,8 @@
           android:paddingEnd="@dimen/distance_10"
           android:autofillHints="@string/customer_name"
           android:background="@drawable/edit_text_background"
-          android:inputType="text"
+          android:inputType="number"
+          android:maxLength="10"
           android:textColor="@color/hint_color"
           android:textSize="@dimen/textSize_16"
           tools:ignore="LabelFor" />
@@ -171,20 +199,8 @@
 
     </LinearLayout>
 
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/distance_30"
-      android:layout_marginStart="@dimen/distance_30"
-      android:layout_marginEnd="@dimen/distance_30"
-      android:text="@string/otp_error"
-      android:textColor="@color/design_default_color_error"
-      android:textSize="@dimen/textSize_14"
-      android:gravity="center"
-      android:layout_gravity="center_horizontal"/>
-
     <androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/save"
+      android:id="@+id/submit"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/distance_20"
@@ -193,7 +209,7 @@
       android:layout_marginEnd="@dimen/distance_30"
       android:padding="@dimen/distance_10"
       android:background="@drawable/button_background"
-      android:text="@string/send"
+      android:text="@string/submit"
       android:textAllCaps="false"
       android:textColor="@android:color/white"
       android:textSize="@dimen/textSize_17" />

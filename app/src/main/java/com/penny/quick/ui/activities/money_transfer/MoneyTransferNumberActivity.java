@@ -2,23 +2,211 @@ package com.penny.quick.ui.activities.money_transfer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.work.WorkInfo;
+import androidx.work.WorkInfo.State;
+import com.penny.core.APITags;
+import com.penny.core.util.NetworkUtils;
+import com.penny.database.ProjectConstants;
+import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
-import com.penny.quick.utils.ToolBarUtils;
 import javax.inject.Inject;
 
-public class MoneyTransferNumberActivity extends BaseActivity {
+public class MoneyTransferNumberActivity extends BaseActivity implements TextWatcher {
 
   @Inject
   MoneyTransferActivityViewModel moneyTransferActivityViewModel;
+  private AppCompatButton submitButton;
+  private EditText mobileNumber, editTextName, otp1TV, otp2TV, otp3TV;
+  private LinearLayout nameLayout, otpLayout;
+  private String enteredMobileNumber = "";
+  private TextView tvError;
+  private int state = 0;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_money_transfer_number);
-    ToolBarUtils.setUpToolBar(this);
-    ToolBarUtils.setTitle(this, getString(R.string.money_transfer));
-    findViewById(R.id.verify)
-        .setOnClickListener(view -> startActivity(new Intent(this, SelectRecepientActivity.class)));
+    setUpToolBar();
+    setTitle(getString(R.string.money_transfer));
+    initUi();
+    setListeners();
+  }
+
+  private void setListeners() {
+    submitButton.setOnClickListener(view -> {
+      tvError.setVisibility(View.GONE);
+      if (!NetworkUtils.isConnected(this)) {
+        toast(APITags.DEVICE_IS_OFFLINE);
+        return;
+      }
+      if (state == 0) {
+        verifyNumber();
+      } else if (state == 1) {
+        enrollNumber();
+      } else if (state == 2) {
+        verifyOtp();
+      } else if (state == 3) {
+        fetchRecipient();
+      }
+    });
+    findViewById(R.id.resend_view).setOnClickListener(view -> resendOtp());
+  }
+
+  private void resendOtp() {
+    if (!NetworkUtils.isConnected(this)) {
+      toast(APITags.DEVICE_IS_OFFLINE);
+      return;
+    }
+    moneyTransferActivityViewModel.resendOtp(enteredMobileNumber).observe(this, workInfo -> {
+      if (workInfo != null) {
+        apiResponseHandler(workInfo);
+      }
+    });
+  }
+
+  private void verifyOtp() {
+    String otp =
+        otp1TV.getText().toString().trim() + otp2TV.getText().toString().trim() + otp3TV.getText()
+            .toString().trim();
+    if (otp.length() != 3) {
+      showError(getString(R.string.otp_error_msg));
+      return;
+    }
+    moneyTransferActivityViewModel.verifyOtp(enteredMobileNumber, "")
+        .observe(this, this::verifyOtpObserver);
+  }
+
+  private void verifyOtpObserver(WorkInfo workInfo) {
+    if (workInfo != null) {
+      apiResponseHandler(workInfo);
+      if (workInfo.getState() == State.SUCCEEDED) {
+        if (!NetworkUtils.isConnected(MoneyTransferNumberActivity.this)) {
+          toast(APITags.DEVICE_IS_OFFLINE);
+          return;
+        }
+        fetchRecipient();
+      }
+    }
+  }
+
+  private void fetchRecipient() {
+    moneyTransferActivityViewModel.fetchRecipient(enteredMobileNumber).observe(this, workInfo -> {
+      if (workInfo != null) {
+        apiResponseHandler(workInfo);
+        if (workInfo.getState() == State.SUCCEEDED) {
+          Intent intent;
+          if (workInfo.getOutputData().getBoolean(ProjectConstants.RECIPIENT_AVAILABLE, false)) {
+            intent = new Intent(this, SelectRecipientActivity.class);
+          } else {
+            intent = new Intent(this, AddRecipientActivity.class);
+          }
+          intent.putExtra(ProjectConstants.MOBILE_NUMBER, enteredMobileNumber);
+          startActivity(intent);
+          finish();
+        }
+      }
+    });
+  }
+
+  private void verifyNumber() {
+    String mobileNumberText = mobileNumber.getText().toString().trim();
+    if (!StringUtils.isMobileNoValid(mobileNumberText)) {
+      showError(getString(R.string.mobile_number_incorrect));
+      return;
+    }
+    moneyTransferActivityViewModel.verifyMobileNumber(mobileNumberText)
+        .observe(this, this::verifyNumberApiObserver);
+  }
+
+  private void showError(String error) {
+    tvError.invalidate();
+    tvError.setVisibility(View.VISIBLE);
+    tvError.setText(error);
+  }
+
+  private void enrollNumber() {
+    String name = editTextName.getText().toString();
+    if (StringUtils.isEmptyString(name)) {
+      showError(getString(R.string.name_error));
+      return;
+    }
+    moneyTransferActivityViewModel.enrollMobileNumber(enteredMobileNumber, name).observe(this,
+        this::enrollApiObserver);
+  }
+
+  private void enrollApiObserver(WorkInfo workInfo) {
+    if (workInfo != null) {
+      apiResponseHandler(workInfo);
+      if (workInfo.getState() == State.SUCCEEDED) {
+        otpLayout.setVisibility(View.VISIBLE);
+        state = 2;
+      }
+    }
+  }
+
+  private void verifyNumberApiObserver(WorkInfo workInfo) {
+    if (workInfo != null) {
+      apiResponseHandler(workInfo);
+      if (workInfo.getState() == State.SUCCEEDED) {
+      mobileNumber.setEnabled(false);
+      mobileNumber.setClickable(false);
+      nameLayout.setVisibility(View.VISIBLE);
+      submitButton.setText(getString(R.string.submit));
+      enteredMobileNumber = mobileNumber.getText().toString().trim();
+      state = 1;
+      }
+    }
+  }
+
+  private void initUi() {
+    submitButton = findViewById(R.id.verify);
+    mobileNumber = findViewById(R.id.et_mobile_number);
+    nameLayout = findViewById(R.id.nameLayout);
+    editTextName = findViewById(R.id.et_customer_name);
+    otpLayout = findViewById(R.id.otp_layout);
+    otp1TV = findViewById(R.id.et_otp1);
+    otp1TV.addTextChangedListener(this);
+    otp2TV = findViewById(R.id.et_otp2);
+    otp2TV.addTextChangedListener(this);
+    otp3TV = findViewById(R.id.et_otp3);
+    otp3TV.addTextChangedListener(this);
+    tvError = findViewById(R.id.errorText);
+  }
+
+  @Override
+  public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+  }
+
+  @Override
+  public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+  }
+
+  @Override
+  public void afterTextChanged(Editable editable) {
+    if (editable.length() == 1) {
+      if (otp1TV.length() == 1) {
+        otp2TV.requestFocus();
+      }
+      if (otp2TV.length() == 1) {
+        otp3TV.requestFocus();
+      }
+    } else if (editable.length() == 0) {
+      if (otp3TV.length() == 0) {
+        otp2TV.requestFocus();
+      }
+      if (otp2TV.length() == 0) {
+        otp1TV.requestFocus();
+      }
+    }
   }
 }
