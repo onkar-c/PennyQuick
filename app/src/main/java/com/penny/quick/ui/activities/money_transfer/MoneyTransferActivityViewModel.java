@@ -24,6 +24,11 @@ public class MoneyTransferActivityViewModel extends ViewModel {
         .getEnrollMobileNumberWorkManager(mobile, name);
   }
 
+  public LiveData<WorkInfo> transferMoney() {
+    return new MoneyTransferRepository()
+        .getTransferMoneyWorkManager();
+  }
+
   public LiveData<WorkInfo> verifyOtp(String mobile, String otp) {
     return new MoneyTransferRepository()
         .getVerifyOTPWorkManager(mobile, otp);

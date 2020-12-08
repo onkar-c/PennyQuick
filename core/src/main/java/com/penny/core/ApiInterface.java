@@ -40,7 +40,7 @@ public interface ApiInterface {
   Call<JsonResponse> recharge(@Body rechargeRequestModel rechargeRequestModel);
 
   @GET("recharge/status")
-  Call<JsonResponse> rechargeStatus(@Query("txnId") String transactionId);
+  Call<JsonResponse> rechargeStatus(@Query("txnId") String transactionId, @Query("transfer") Boolean transfer);
 
   @POST("recharge/transactions")
   Call<JsonResponse> recentRecharges(@Body RecentRechargesRequestModel recentRechargesRequestModel);
@@ -74,4 +74,7 @@ public interface ApiInterface {
 
   @GET("transfer/getBankDetail")
   Call<JsonResponse> getBankDetails();
+
+  @POST("transfer/trans")
+  Call<JsonResponse> moneyTrans();
 }

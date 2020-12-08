@@ -107,8 +107,9 @@ public class MoneyTransferNumberActivity extends BaseActivity implements TextWat
             intent = new Intent(this, SelectRecipientActivity.class);
           } else {
             intent = new Intent(this, AddRecipientActivity.class);
+            intent.putExtra(ProjectConstants.IS_NUMBER_VERIFIED, false);
           }
-          intent.putExtra(ProjectConstants.MOBILE_NUMBER, enteredMobileNumber);
+          intent.putExtra(ProjectConstants.CUSTOMER_ID, enteredMobileNumber);
           startActivity(intent);
           finish();
         }

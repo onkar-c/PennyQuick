@@ -29,6 +29,7 @@ public class ProjectConstants {
   public static final String MOBILE_NUMBER = "mobile_number";
   public static final String MOBILE = "Mobile";
   public static final String CUSTOMER_ID = "customer_id";
+  public static final String IS_NUMBER_VERIFIED = "is_number_verified";
   public static final String IFSC = "ifsc";
   public static final String NUMBER = "number";
   public static final String OPERATOR = "operator";

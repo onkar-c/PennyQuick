@@ -26,7 +26,6 @@ import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
 import com.penny.quick.ui.activities.dispute_history.DisputeHistoryActivity;
 import com.penny.quick.ui.activities.mobile_recharge.MobileRechargeActivity;
-import com.penny.quick.ui.activities.money_transfer.AddRecipientActivity;
 import com.penny.quick.ui.activities.money_transfer.MoneyTransferNumberActivity;
 import com.penny.quick.ui.activities.profile.ProfileActivity;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
@@ -39,9 +38,9 @@ import javax.inject.Inject;
 
 public class DashBoardActivity extends BaseActivity implements NetworkConnectivityChangeListener {
 
+  private final int AEPS_REQUEST_CODE = 10923;
   @Inject
   DashBoardActivityViewModel dashBoardActivityViewModel;
-  private final int AEPS_REQUEST_CODE = 10923;
   private DrawerLayout drawer;
   private TextView walletBalance, drawerUserNameTV;
   private ImageView profileIV, drawerProfileIV;
@@ -150,8 +149,7 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
 //      showMessageDialog(null, getString(R.string.add_money_error));
       return;
     } else if (view.getId() == R.id.moneyTransfer) {
-//      intent = new Intent(DashBoardActivity.this, MoneyTransferNumberActivity.class);
-      intent = new Intent(DashBoardActivity.this, AddRecipientActivity.class);
+      intent = new Intent(DashBoardActivity.this, MoneyTransferNumberActivity.class);
 //      showMessageDialog(null, getString(R.string.money_transfer_error));
 //      return;
     }
@@ -221,7 +219,6 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
   }
 
 
-
   public void manageNetworkErr(boolean isNetworkAvailable) {
     showWarningText(networkWarningTV, isNetworkAvailable);
   }
@@ -231,22 +228,22 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
     manageNetworkErr(status);
   }
 
-  private void addMoney(){
+  private void addMoney() {
     Intent intent = new Intent(this, EkoPayActivity.class);
     Bundle bundle = new Bundle();
 
 //Initialize all unknown variables and replace all dummy values
     bundle.putString("environment", "uat");
-    bundle.putString("product","aeps");
+    bundle.putString("product", "aeps");
     bundle.putString("secret_key_timestamp", "secret_key_timestamp");
-    bundle.putString("secret_key", "secret_key");
+    bundle.putString("secret_key", "7e757b13-a705-4ffe-8390-a65b231c5163");
     bundle.putString("developer_key", "becbbce45f79c6f5109f848acd540567");
-    bundle.putString("initiator_id", "9962981729");
+    bundle.putString("initiator_id", "9910028267");
     bundle.putString("callback_url", "callback_url");
     bundle.putString("user_code", "20810200");
     bundle.putString("initiator_logo_url", "initiator_logo_url");
-    bundle.putString("partner_name" , "PARTNER Name INC");
-    bundle.putString("language" , "en");
+    bundle.putString("partner_name", "PARTNER Name INC");
+    bundle.putString("language", "en");
 
     intent.putExtras(bundle);
     startActivityForResult(intent, AEPS_REQUEST_CODE);
@@ -260,12 +257,12 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       if (resultCode == Activity.RESULT_OK) { //user taps CLOSE button after transaction -- case 1
         String response = data.getStringExtra("result");
         //--------- response is transaction data
-      } else if(resultCode == Activity.RESULT_CANCELED) { // user presses back button
+      } else if (resultCode == Activity.RESULT_CANCELED) { // user presses back button
         if (data == null) {
           //------ If user pressed back without transaction -- case 2
         } else {
           String response = data.getStringExtra("result");
-          if (response!=null && !response.equalsIgnoreCase("")) {
+          if (response != null && !response.equalsIgnoreCase("")) {
             //------ If there is some error in partner parameters, response is that error
             //------ when user performs the transaction, response is transaction data -- case 1
           } else {

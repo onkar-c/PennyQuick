@@ -7,18 +7,21 @@ import com.google.gson.Gson;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
+import com.penny.core.models.RequestMobileNumerModel;
 import com.penny.database.ProjectConstants;
 
-public class RechargeStatusWorker extends BaseWorker {
+public class MoneyTransferWorker extends BaseWorker {
 
-  public RechargeStatusWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+  public MoneyTransferWorker(@NonNull Context context,
+      @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
   }
 
   @Override
   protected Result executeApi() {
+    RequestMobileNumerModel requestMobileNumerModel = new RequestMobileNumerModel();
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .rechargeStatus(getInputData().getString(ProjectConstants.TRANSACTION_ID), false));
+        .enrollMobileNumber(requestMobileNumerModel));
   }
 
   @Override

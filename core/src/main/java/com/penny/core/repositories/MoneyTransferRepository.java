@@ -11,8 +11,10 @@ import com.penny.core.worker.MoneyTransferAddRecipientWorker;
 import com.penny.core.worker.MoneyTransferEnrollMobileNumberWorker;
 import com.penny.core.worker.MoneyTransferListRecipientWorker;
 import com.penny.core.worker.MoneyTransferRequestOTPWorker;
+import com.penny.core.worker.MoneyTransferTransWorker;
 import com.penny.core.worker.MoneyTransferVerifyMobileNumberWorker;
 import com.penny.core.worker.MoneyTransferVerifyOTPWorker;
+import com.penny.core.worker.MoneyTransferWorker;
 import com.penny.database.AppDatabase;
 import com.penny.database.ProjectConstants;
 import com.penny.database.entities.BankDetails;
@@ -40,6 +42,16 @@ public class MoneyTransferRepository extends BaseRepository {
         MoneyTransferEnrollMobileNumberWorker.class)
         .setInputData(data.build())
         .addTag(APIEnums.API_ENROLL_MOBILE_NUMBER.name())
+        .build();
+    return getOneTimeRequestLiveDate(mRequest);
+  }
+
+  public LiveData<WorkInfo> getTransferMoneyWorkManager() {
+    Data.Builder data = getDataBuilderForApi(APITags.API_TRANSFER_MONEY);
+    OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(
+        MoneyTransferWorker.class)
+        .setInputData(data.build())
+        .addTag(APIEnums.API_TRANSFER_MONEY.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
   }
@@ -90,6 +102,16 @@ public class MoneyTransferRepository extends BaseRepository {
         MoneyTransferAddRecipientWorker.class)
         .setInputData(data.build())
         .addTag(APIEnums.API_MONEY_TRANSFER_ADD_RECIPIENT.name())
+        .build();
+    return getOneTimeRequestLiveDate(mRequest);
+  }
+
+  public LiveData<WorkInfo> transWorkManager() {
+    Data.Builder data = getDataBuilderForApi(APITags.API_MONEY_TRANSFER_TRANS_RECIPIENT);
+    OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(
+        MoneyTransferTransWorker.class)
+        .setInputData(data.build())
+        .addTag(APIEnums.API_MONEY_TRANSFER_TRANS_RECIPIENT.name())
         .build();
     return getOneTimeRequestLiveDate(mRequest);
   }

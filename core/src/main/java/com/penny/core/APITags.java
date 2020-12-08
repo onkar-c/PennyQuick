@@ -89,6 +89,14 @@ public class APITags {
   private static final String API_ENROLL_MOBILE_NUMBER_TITTLE = "Enrolling Mobile Number";
   private static final String API_ENROLL_MOBILE_NUMBER_MESSAGE = "Please wait...";
 
+  public static final int API_TRANSFER_MONEY = 20;
+  private static final String API_TRANSFER_MONEY_TITTLE = "Transferring Money";
+  private static final String API_TRANSFER_MONEY_MESSAGE = "Please wait...";
+
+  public static final int API_MONEY_TRANSFER_TRANS_RECIPIENT = 21;
+  private static final String API_MONEY_TRANSFER_TRANS_RECIPIENT_TITTLE = "Recipient";
+  private static final String API_MONEY_TRANSFER_TRANS_RECIPIENT_MESSAGE = "Adding Recipient..";
+
   public static final String DATA_FAIL_RESPONSE = "fail_response";
   public static final String TIME_OUT_ERROR = "Request Time Out";
   public static final String ERROR_WHILE_CONNECTING_TO_SERVER = "Error while connecting to server";
@@ -117,10 +125,13 @@ public class APITags {
     API_MONEY_TRANSFER_ADD_RECIPIENT(API_MONEY_TRANSFER_ADD_RECIPIENT_TITTLE, API_MONEY_TRANSFER_ADD_RECIPIENT_MESSAGE),
     API_BANK_DETAILS_LIST(API_BANK_DETAILS_LIST_TITTLE, API_BANK_DETAILS_LIST_MESSAGE),
     API_ENROLL_MOBILE_NUMBER(API_ENROLL_MOBILE_NUMBER_TITTLE, API_ENROLL_MOBILE_NUMBER_MESSAGE),
+    API_TRANSFER_MONEY(API_TRANSFER_MONEY_TITTLE, API_TRANSFER_MONEY_MESSAGE),
+    API_MONEY_TRANSFER_TRANS_RECIPIENT(API_MONEY_TRANSFER_TRANS_RECIPIENT_TITTLE, API_MONEY_TRANSFER_TRANS_RECIPIENT_MESSAGE),
     API_DEFAULT(API_PLEASE_WAIT_MESSAGE, API_LOADING_MESSAGE);
 
 
-    private String title, message;
+    private final String title;
+    private final String message;
 
     APIEnums(String title, String message) {
       this.title = title;

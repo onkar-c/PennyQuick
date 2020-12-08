@@ -88,7 +88,7 @@
 
 
       <EditText
-        android:id="@+id/et_mobile_number"
+        android:id="@+id/et_account_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

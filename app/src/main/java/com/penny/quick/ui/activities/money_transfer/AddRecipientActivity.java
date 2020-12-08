@@ -1,5 +1,6 @@
 package com.penny.quick.ui.activities.money_transfer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class AddRecipientActivity extends BaseActivity implements
   private BankDetails selectedBank = null;
   private TextView bankTv;
   private String customerId;
+  private boolean isFromMoneyTransfer = false;
   private EditText accountNumber, ifsc, mobileNumber, name;
 
   @Override
@@ -36,6 +38,7 @@ public class AddRecipientActivity extends BaseActivity implements
     setUpToolBar();
     setTitle(getString(R.string.add_recepient));
     customerId = getIntent().getStringExtra(ProjectConstants.CUSTOMER_ID);
+    isFromMoneyTransfer = getIntent().getBooleanExtra(ProjectConstants.IS_NUMBER_VERIFIED, false);
     initUi();
     initListeners();
   }
@@ -96,9 +99,30 @@ public class AddRecipientActivity extends BaseActivity implements
     if (workInfo != null) {
       apiResponseHandler(workInfo);
       if (workInfo.getState() == State.SUCCEEDED) {
-
+        if (isFromMoneyTransfer) {
+          fetchRecipient();
+        } else {
+          finish();
+        }
       }
     }
+  }
+
+  private void fetchRecipient() {
+    moneyTransferActivityViewModel.fetchRecipient(customerId).observe(this, workInfo -> {
+      if (workInfo != null) {
+        apiResponseHandler(workInfo);
+        if (workInfo.getState() == State.SUCCEEDED) {
+          Intent intent;
+          if (workInfo.getOutputData().getBoolean(ProjectConstants.RECIPIENT_AVAILABLE, false)) {
+            intent = new Intent(this, SelectRecipientActivity.class);
+            intent.putExtra(ProjectConstants.CUSTOMER_ID, customerId);
+            startActivity(intent);
+            finish();
+          }
+        }
+      }
+    });
   }
 
   private void initUi() {
