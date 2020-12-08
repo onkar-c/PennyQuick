@@ -12,9 +12,9 @@ import java.util.List;
 
 public class IntroScreenAdapter extends PagerAdapter {
 
-  private List<Integer> screens;
-  private Context mContext;
-  private IntroScreenListeners introScreenListeners;
+  private final List<Integer> screens;
+  private final Context mContext;
+  private final IntroScreenListeners introScreenListeners;
 
   public IntroScreenAdapter(
       List<Integer> screens, Context mContext, IntroScreenListeners introScreenListeners) {

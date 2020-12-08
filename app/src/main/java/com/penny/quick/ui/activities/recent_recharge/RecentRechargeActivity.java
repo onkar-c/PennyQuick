@@ -28,8 +28,8 @@ public class RecentRechargeActivity extends BaseActivity {
   List<BottomSheetCheckBox> bottomSheetCategoriesCheckBoxes = new ArrayList<>();
   List<BottomSheetCheckBox> statusCheckBoxes = new ArrayList<>();
   private RecentRechargeAdapter recentRechargeAdapter;
-  private List<DateFormatModel> dateFormatModels = new ArrayList<>();
-  private BottomSheetListener dateBottomSheet = bottomSheetCheckBoxes -> {
+  private final List<DateFormatModel> dateFormatModels = new ArrayList<>();
+  private final BottomSheetListener dateBottomSheet = bottomSheetCheckBoxes -> {
     for (DateFormatModel dateFormatModel : dateFormatModels) {
       dateFormatModel.setChecked(false);
       if (bottomSheetCheckBoxes != null && bottomSheetCheckBoxes.size() > 0) {
@@ -43,7 +43,7 @@ public class RecentRechargeActivity extends BaseActivity {
     }
     getRecentRechargesFromServer();
   };
-  private BottomSheetListener categoryBottomSheet = bottomSheetCheckBoxes -> {
+  private final BottomSheetListener categoryBottomSheet = bottomSheetCheckBoxes -> {
     for (BottomSheetCheckBox categoryFormatModel : bottomSheetCategoriesCheckBoxes) {
       categoryFormatModel.setChecked(false);
       if (bottomSheetCheckBoxes != null && bottomSheetCheckBoxes.size() > 0) {
@@ -57,7 +57,7 @@ public class RecentRechargeActivity extends BaseActivity {
     }
     getRecentRechargesFromServer();
   };
-  private BottomSheetListener filterBottomSheet = bottomSheetCheckBoxes -> {
+  private final BottomSheetListener filterBottomSheet = bottomSheetCheckBoxes -> {
     for (BottomSheetCheckBox categoryFormatModel : statusCheckBoxes) {
       categoryFormatModel.setChecked(false);
       if (bottomSheetCheckBoxes != null && bottomSheetCheckBoxes.size() > 0) {

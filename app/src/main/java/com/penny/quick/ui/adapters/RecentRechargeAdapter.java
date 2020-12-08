@@ -21,8 +21,8 @@ import java.util.List;
 public class RecentRechargeAdapter extends
     RecyclerView.Adapter<RecentRechargeAdapter.MyViewHolder> {
 
-  private List<RecentRecharge> recentRecharges;
-  private Context context;
+  private final List<RecentRecharge> recentRecharges;
+  private final Context context;
 
   public RecentRechargeAdapter(List<RecentRecharge> recentRecharges, Context context) {
     this.recentRecharges = recentRecharges;
@@ -75,8 +75,8 @@ public class RecentRechargeAdapter extends
 
   static class MyViewHolder extends ViewHolder {
 
-    private TextView companyType, customerId, transactionId, date, amount;
-    private ImageView company_icon;
+    private final TextView companyType, customerId, transactionId, date, amount;
+    private final ImageView company_icon;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);

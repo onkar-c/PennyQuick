@@ -19,9 +19,9 @@ import java.util.List;
 
 public class RecentRechargeBottomSheetDialog extends BottomSheetDialogFragment {
 
-  private List<BottomSheetCheckBox> bottomSheetCheckBoxes;
-  private BottomSheetListener bottomSheetListener;
-  private String Header;
+  private final List<BottomSheetCheckBox> bottomSheetCheckBoxes;
+  private final BottomSheetListener bottomSheetListener;
+  private final String Header;
 
   public RecentRechargeBottomSheetDialog(
       List<BottomSheetCheckBox> bottomSheetCheckBoxes, String header,

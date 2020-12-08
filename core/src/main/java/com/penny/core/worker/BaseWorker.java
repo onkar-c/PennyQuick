@@ -26,6 +26,7 @@ import retrofit2.Response;
 abstract class BaseWorker extends Worker {
 
   Data.Builder mData;
+  @SuppressWarnings("FieldMayBeFinal")
   private Converter<ResponseBody, ErrorJsonResponse> errorConverter;
 
   BaseWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {

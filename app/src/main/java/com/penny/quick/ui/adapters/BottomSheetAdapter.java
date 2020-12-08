@@ -17,8 +17,8 @@ import java.util.List;
 public class BottomSheetAdapter extends
     RecyclerView.Adapter<BottomSheetAdapter.BottomSheetListItemVH> {
 
-  private List<Operators> objectList;
-  private BottomSheetListItemClickListener clickListener;
+  private final List<Operators> objectList;
+  private final BottomSheetListItemClickListener clickListener;
 
   public BottomSheetAdapter(List<Operators> objectList,
       BottomSheetListItemClickListener clickListener) {
@@ -56,8 +56,8 @@ public class BottomSheetAdapter extends
 
   public static class BottomSheetListItemVH extends ViewHolder {
 
-    private TextView txtItemName;
-    private ImageView imgIcon;
+    private final TextView txtItemName;
+    private final ImageView imgIcon;
 
     public BottomSheetListItemVH(@NonNull View itemView) {
       super(itemView);

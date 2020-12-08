@@ -14,7 +14,6 @@
   <color name="edit_text_border_color">#A5E8F0</color>
   <color name="hint_color">#323232</color>
   <color name="radio_btn_bg_color">#4FE0FE</color>
-  <color name="text_color_3">#323232B3</color>
   <color name="text_color_4">#212121</color>
   <color name="text_color_5">#070707</color>
   <color name="transaction_success">#5EAA46</color>
@@ -26,8 +25,6 @@
   <color name="profile_end_color">#03CFFD</color>03CFFD
   <color name="profile_start_color">#564EE3</color>
   <color name="red_text_color">#E12D3B</color>
-  <color name="bottom_txt_bg">#BDBDBD</color>
-  <color name="text_color_7">#646464</color>
   <color name="checkbox_uncheck">#707070</color>
   <color name="view_plans_bg">#F8F7FB</color>
 </resources>

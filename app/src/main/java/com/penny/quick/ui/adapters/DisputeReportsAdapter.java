@@ -14,7 +14,7 @@ import java.util.List;
 public class DisputeReportsAdapter extends
     RecyclerView.Adapter<DisputeReportsAdapter.MyViewHolder> {
 
-  private List<Report> reports;
+  private final List<Report> reports;
 
   public DisputeReportsAdapter(List<Report> reports) {
     this.reports = reports;
@@ -44,9 +44,9 @@ public class DisputeReportsAdapter extends
 
   static class MyViewHolder extends ViewHolder {
 
-    private TextView date;
-    private TextView transactionId;
-    private TextView message;
+    private final TextView date;
+    private final TextView transactionId;
+    private final TextView message;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);

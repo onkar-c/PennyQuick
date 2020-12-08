@@ -82,7 +82,7 @@ public class AddRecipientActivity extends BaseActivity implements
       return;
     }
     String mobileNumberText = mobileNumber.getText().toString().trim();
-    if (!StringUtils.isMobileNoValid(mobileNumberText)) {
+    if (StringUtils.isMobileNoValid(mobileNumberText)) {
       toast(getString(R.string.mobile_number_incorrect));
       return;
     }

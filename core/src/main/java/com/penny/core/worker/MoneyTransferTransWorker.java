@@ -6,8 +6,6 @@ import androidx.work.WorkerParameters;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
-import com.penny.core.models.RequestRecipient;
-import com.penny.database.ProjectConstants;
 
 public class MoneyTransferTransWorker extends BaseWorker {
 

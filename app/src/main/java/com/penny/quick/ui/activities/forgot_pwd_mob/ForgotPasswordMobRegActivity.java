@@ -26,7 +26,7 @@ public class ForgotPasswordMobRegActivity extends BaseActivity {
   private TextView tv_error;
 
   private EditText mobileNumber;
-  private OnClickListener onNextClick = view -> {
+  private final OnClickListener onNextClick = view -> {
     if (validateFields()) {
       requestOTP();
     }
@@ -82,7 +82,7 @@ public class ForgotPasswordMobRegActivity extends BaseActivity {
   }
 
   private boolean validateFields() {
-    if (!StringUtils.isMobileNoValid(mobileNumber.getText().toString())) {
+    if (StringUtils.isMobileNoValid(mobileNumber.getText().toString())) {
       showError(getString(R.string.mobile_number_incorrect));
       return false;
     }

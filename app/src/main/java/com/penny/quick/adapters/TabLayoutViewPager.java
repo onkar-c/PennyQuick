@@ -15,8 +15,8 @@ import java.util.List;
 
 public class TabLayoutViewPager extends RecyclerView.Adapter<TabViewHolder> {
 
-  private List<TabModel> tabModels;
-  private Context context;
+  private final List<TabModel> tabModels;
+  private final Context context;
 
   public TabLayoutViewPager(List<TabModel> tabModels, Context context) {
     this.tabModels = tabModels;

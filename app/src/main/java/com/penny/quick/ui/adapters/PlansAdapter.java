@@ -15,9 +15,9 @@ import java.util.List;
 
 public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder> {
 
-  private List<PlanModel> planModels;
-  private Context context;
-  private PlanClickListener planClickListener;
+  private final List<PlanModel> planModels;
+  private final Context context;
+  private final PlanClickListener planClickListener;
 
   public PlansAdapter(List<PlanModel> planModels, Context context) {
     this.planModels = planModels;
@@ -37,7 +37,7 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
     PlanModel plan = planModels.get(position);
     holder.bindClickListener(plan,planClickListener);
-    holder.talktime.setText(String
+    holder.talkTime.setText(String
         .format("%s%s", context.getString(R.string.rupees_sign), plan.getTalktime()));
     holder.data.setText(plan.getData());
     holder.validity.setText(plan.getValidity());
@@ -55,11 +55,11 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
 
   static class MyViewHolder extends ViewHolder {
 
-    private TextView talktime, data, validity, amount, message1, message2, message3;
+    private final TextView talkTime, data, validity, amount, message1, message2, message3;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);
-      talktime = itemView.findViewById(R.id.tv_talk_time);
+      talkTime = itemView.findViewById(R.id.tv_talk_time);
       data = itemView.findViewById(R.id.tv_data);
       validity = itemView.findViewById(R.id.tv_validity);
       amount = itemView.findViewById(R.id.tv_amount);

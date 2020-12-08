@@ -25,7 +25,7 @@ public class ReportActivity extends AppCompatActivity {
 
   private BroadcastReceiver mNetworkReceiver;
 
-  private BottomSheetListener filterBottomSheet = bottomSheetCheckBoxes -> {
+  private final BottomSheetListener filterBottomSheet = bottomSheetCheckBoxes -> {
 
   };
 

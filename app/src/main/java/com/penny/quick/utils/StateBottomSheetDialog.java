@@ -20,7 +20,7 @@ import java.util.List;
 public class StateBottomSheetDialog extends BottomSheetDialogFragment {
 
   OnClickListener onCloseClick = view -> dismiss();
-  private List<State> states;
+  private final List<State> states;
 
   public StateBottomSheetDialog(List<State> states) {
     this.states = states;

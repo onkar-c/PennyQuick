@@ -119,16 +119,8 @@ public class ForgotPasswordOtpActivity extends BaseActivity implements TextWatch
 
   private void observeRequestOtpApi(WorkInfo workInfo) {
     if (workInfo != null) {
-      State state = workInfo.getState();
       apiResponseHandler(workInfo);
-      if (state == State.SUCCEEDED) {
-        requestOtpSuccess();
-      }
     }
-  }
-
-  private void requestOtpSuccess() {
-
   }
 
   @Override

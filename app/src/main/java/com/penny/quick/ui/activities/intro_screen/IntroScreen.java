@@ -15,8 +15,8 @@ import java.util.List;
 public class IntroScreen extends AppCompatActivity implements IntroScreenListeners {
 
   private ViewPager vp;
-  private List<Integer> screens = new ArrayList<>();
-  private ViewPager.OnPageChangeListener viewPagerPageChangeListener =
+  private final List<Integer> screens = new ArrayList<>();
+  private final ViewPager.OnPageChangeListener viewPagerPageChangeListener =
       new ViewPager.OnPageChangeListener() {
 
         @Override

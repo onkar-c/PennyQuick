@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.MyViewHolder> {
 
-  private List<Report> reports;
-  private Context context;
+  private final List<Report> reports;
+  private final Context context;
 
   public ReportsAdapter(List<Report> reports, Context context) {
     this.reports = reports;
@@ -51,7 +51,7 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.MyViewHo
 
   static class MyViewHolder extends ViewHolder {
 
-    private TextView reportType, transactionType, transactionAmount, date, description, balance;
+    private final TextView reportType, transactionType, transactionAmount, date, description, balance;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);

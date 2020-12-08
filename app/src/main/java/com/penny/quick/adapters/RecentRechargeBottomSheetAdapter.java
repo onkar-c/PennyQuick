@@ -53,8 +53,8 @@ public class RecentRechargeBottomSheetAdapter extends
 
   static class MyViewHolder extends ViewHolder {
 
-    private TextView text;
-    private CheckBox checkBox;
+    private final TextView text;
+    private final CheckBox checkBox;
 
     public MyViewHolder(@NonNull View itemView) {
       super(itemView);

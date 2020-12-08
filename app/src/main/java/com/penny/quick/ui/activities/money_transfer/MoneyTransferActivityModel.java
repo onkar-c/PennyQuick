@@ -7,7 +7,7 @@ import dagger.Provides;
 public class MoneyTransferActivityModel {
 
   @Provides
-  MoneyTransferActivityViewModel MoneyTransferActivityModel() {
+  MoneyTransferActivityViewModel getMoneyTransferActivityModel() {
     return new MoneyTransferActivityViewModel();
   }
 }

@@ -6,7 +6,6 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.work.WorkInfo;
-import androidx.work.WorkInfo.State;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
@@ -23,7 +22,7 @@ public class ChangePasswordActivity extends BaseActivity {
 
   private EditText cntPwdET, newPwdET, rePwdET;
   private TextView errorTV;
-  private OnClickListener onChangePwdClick = view -> {
+  private final OnClickListener onChangePwdClick = view -> {
     if (validatePasswords()) {
       changePassword(cntPwdET.getText().toString(), newPwdET.getText().toString());
     }
@@ -51,13 +50,13 @@ public class ChangePasswordActivity extends BaseActivity {
   }
 
   private boolean validatePasswords() {
-    if (!StringUtils.isPasswordValid(cntPwdET.getText().toString())) {
+    if (StringUtils.isPasswordValid(cntPwdET.getText().toString())) {
       showError(getString(R.string.cnt_pwd_error));
       return false;
-    } else if (!StringUtils.isPasswordValid(newPwdET.getText().toString())) {
+    } else if (StringUtils.isPasswordValid(newPwdET.getText().toString())) {
       showError(getString(R.string.new_pwd_error));
       return false;
-    } else if (!StringUtils.isPasswordValid(rePwdET.getText().toString())) {
+    } else if (StringUtils.isPasswordValid(rePwdET.getText().toString())) {
       showError(getString(R.string.re_pwd_error));
       return false;
     } else if (!newPwdET.getText().toString().equals(rePwdET.getText().toString())) {
@@ -74,7 +73,7 @@ public class ChangePasswordActivity extends BaseActivity {
   }
 
   private void changePassword(String oldPassword, String newPassword) {
-    if(NetworkUtils.isConnected(this)) {
+    if (NetworkUtils.isConnected(this)) {
       forgotPasswordViewModel.changePassword(null, null, oldPassword, newPassword, false)
           .observe(this,
               this::observeChangePassword);
@@ -83,22 +82,15 @@ public class ChangePasswordActivity extends BaseActivity {
 
   private void observeChangePassword(WorkInfo workInfo) {
     if (workInfo != null) {
-      State state = workInfo.getState();
       apiResponseHandler(workInfo);
-      if (state == State.SUCCEEDED) {
-        changePasswordSuccess();
-      }
     }
   }
 
-  private void changePasswordSuccess() {
-
-  }
 
   @Override
   protected void onResume() {
     super.onResume();
-    if(!NetworkUtils.isConnected(this)) {
+    if (!NetworkUtils.isConnected(this)) {
       manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
     }
   }

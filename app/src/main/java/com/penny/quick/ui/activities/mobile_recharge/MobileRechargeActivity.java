@@ -32,7 +32,7 @@ import javax.inject.Inject;
 public class MobileRechargeActivity extends BaseActivity implements
     BottomSheetListItemClickListener, StateBottomSheetListItemClickListener {
 
-  private static int VIEW_PLANS_REQ_CODE = 1;
+  private static final int VIEW_PLANS_REQ_CODE = 1;
   @Inject
   MobileRechargeActivityViewModel mobileRechargeActivityViewModel;
   private TextView tvOperator, tvState, tvError;
@@ -156,7 +156,7 @@ public class MobileRechargeActivity extends BaseActivity implements
     if (!rbPostpaid.isChecked() && !rbPrepaid.isChecked()) {
       showError(getString(R.string.recharge_type_error));
       return false;
-    } else if (!StringUtils.isMobileNoValid(etMobileNo.getText().toString())) {
+    } else if (StringUtils.isMobileNoValid(etMobileNo.getText().toString())) {
       showError(getString(R.string.mobile_number_incorrect));
       return false;
     } else if (StringUtils.isEmptyString(tvOperator.getText().toString())) {

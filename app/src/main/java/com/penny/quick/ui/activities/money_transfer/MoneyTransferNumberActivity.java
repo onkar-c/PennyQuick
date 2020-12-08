@@ -119,7 +119,7 @@ public class MoneyTransferNumberActivity extends BaseActivity implements TextWat
 
   private void verifyNumber() {
     String mobileNumberText = mobileNumber.getText().toString().trim();
-    if (!StringUtils.isMobileNoValid(mobileNumberText)) {
+    if (StringUtils.isMobileNoValid(mobileNumberText)) {
       showError(getString(R.string.mobile_number_incorrect));
       return;
     }

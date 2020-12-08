@@ -15,8 +15,8 @@ import java.util.List;
 public class StatesBottomSheetAdapter extends
     RecyclerView.Adapter<StatesBottomSheetAdapter.BottomSheetListItemVH> {
 
-  private List<State> objectList;
-  private StateBottomSheetListItemClickListener clickListener;
+  private final List<State> objectList;
+  private final StateBottomSheetListItemClickListener clickListener;
 
   public StatesBottomSheetAdapter(List<State> objectList,
       StateBottomSheetListItemClickListener clickListener) {
@@ -53,8 +53,8 @@ public class StatesBottomSheetAdapter extends
 
   public static class BottomSheetListItemVH extends ViewHolder {
 
-    private ImageView imgIcon;
-    private TextView txtItemName;
+    private final ImageView imgIcon;
+    private final TextView txtItemName;
 
     public BottomSheetListItemVH(@NonNull View itemView) {
       super(itemView);
