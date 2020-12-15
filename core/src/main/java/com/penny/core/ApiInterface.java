@@ -5,6 +5,7 @@ import com.penny.core.models.ContactUsDisputeModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
 import com.penny.core.models.RequestRecipient;
+import com.penny.core.models.TransferRequestModel;
 import com.penny.core.models.rechargeRequestModel;
 import com.penny.core.models.RecentRechargesRequestModel;
 import com.penny.core.models.RequestMobileNumerModel;
@@ -57,13 +58,13 @@ public interface ApiInterface {
   @POST("transfer/verifymobile")
   Call<JsonResponse> verifyMobileNumber(@Body RequestMobileNumerModel requestMobileNumerModel);
 
-  @POST("transfer/provider")
+  @POST("transfer/enroll")
   Call<JsonResponse> enrollMobileNumber(@Body RequestMobileNumerModel requestMobileNumerModel);
 
   @POST("transfer/reSendOtp")
   Call<JsonResponse> moneyTransferOTP(@Body RequestMobileNumerModel requestMobileNumerModel);
 
-  @POST("recharge/verifyotp")
+  @POST("transfer/verifyotp")
   Call<JsonResponse> moneyTransferVerifyOtp(@Body VerifyOTPRequestModel verifyOTPRequestModel);
 
   @POST("transfer/listRecipient")
@@ -76,5 +77,5 @@ public interface ApiInterface {
   Call<JsonResponse> getBankDetails();
 
   @POST("transfer/trans")
-  Call<JsonResponse> moneyTrans();
+  Call<JsonResponse> moneyTrans(@Body TransferRequestModel transferRequestModel);
 }

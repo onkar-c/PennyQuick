@@ -27,6 +27,7 @@ public class MoneyTransferEnrollMobileNumberWorker extends BaseWorker {
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
+    mData.putInt(ProjectConstants.TRANSACTION, jsonResponse.getTrans_type());
     return sendSuccess();
   }
 }

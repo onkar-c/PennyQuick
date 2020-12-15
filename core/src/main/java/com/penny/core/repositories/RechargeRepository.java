@@ -36,9 +36,10 @@ public class RechargeRepository extends BaseRepository {
   }
 
 
-  public LiveData<WorkInfo> getRechargeStatusWorkManager(String transactionId) {
+  public LiveData<WorkInfo> getRechargeStatusWorkManager(String transactionId, boolean isMoneyTransfer) {
     Data.Builder data = getDataBuilderForApi(APITags.API_RECHARGE_STATUS);
     data.putString(ProjectConstants.TRANSACTION_ID, transactionId);
+    data.putBoolean(ProjectConstants.MONEY_TRANSFER, isMoneyTransfer);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(RechargeStatusWorker.class)
         .setInputData(data.build())
 //        .setConstraints(getNetworkConstraint())

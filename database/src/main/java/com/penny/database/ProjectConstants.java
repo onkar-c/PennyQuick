@@ -2,12 +2,14 @@ package com.penny.database;
 
 public class ProjectConstants {
 
-  public static final String SERVER_URL = "https://pennyquick.in/admin/";
+//  public static final String SERVER_URL = "https://pennyquick.in/admin/";
+  public static final String SERVER_URL = " https://erupaiya.com/priyanka/admin/";
   public static final String PRIVACY_POLICY_URL = "http://www.pennyquick.in/privacy-policy_mobile.html";
   public static final String TERMS_AND_CONDITION_URL = "http://www.pennyquick.in/terms-conditions_mobile.html";
   public static final String FAQ_URL = "http://www.pennyquick.in/faqs_mobile.html";
   public static final String IS_DTH = "is_dth";
   public static final String DTH = "DTH";
+  public static final String MONEY_TRANSFER = "Money Transfer";
   public static final String IS_DISPUTE = "is_dispute";
   public static final String TITLE = "title";
   public static final String URL = "url";
@@ -22,6 +24,7 @@ public class ProjectConstants {
   public static final String MESSAGE = "message";
   public static final String AMOUNT_MESSAGE = "data_view_3_message";
   public static final String USER_NAME = "user name";
+  public static final String USER_TRANSFER_MODEL = "user transfer model";
   public static final String SUBJECT = "subject";
   public static final String OLD_PASSWORD = "old_password";
   public static final String PASSWORD = "password";
@@ -29,11 +32,12 @@ public class ProjectConstants {
   public static final String MOBILE_NUMBER = "mobile_number";
   public static final String MOBILE = "Mobile";
   public static final String CUSTOMER_ID = "customer_id";
-  public static final String IS_NUMBER_VERIFIED = "is_number_verified";
+  public static final String IS_FROM_SELECT_RECIPIENT = "is_from_select_recipient";
   public static final String IFSC = "ifsc";
   public static final String NUMBER = "number";
   public static final String OPERATOR = "operator";
   public static final String RECIPIENT = "recipient";
+  public static final String RECIPIENT_ID = "recipient_id";
   public static final String BANK = "bank";
   public static final String BANK_CODE = "bank_code";
   public static final String CIRCLE = "circle";
@@ -43,6 +47,10 @@ public class ProjectConstants {
   public static final String RECIPIENT_AVAILABLE = "is_recipient_available";
   public static final String OTP = "otp";
   public static final String RECHARGE_AMOUNT = "recharge_amount";
+  public static final String AMOUNT = "amount";
+  public static final String DOC_ID_TYPE = "doc_id_type";
+  public static final String DOC_ID = "doc_id";
+  public static final String PIN_CODE = "pin_code";
   public static final String MOBILE_REGEX = "^[+]?[0-9]{10,13}$";
   public static final String PLAN = "plan";
   public static final String SERVICE_PREPAID_MOBILE = "1";

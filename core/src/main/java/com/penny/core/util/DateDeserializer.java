@@ -15,10 +15,12 @@ public class DateDeserializer implements JsonDeserializer<Long> {
   public Long deserialize(JsonElement date, Type typeOfT, JsonDeserializationContext context)
       throws JsonParseException {
     String dateStr = date.getAsString();
-    Date convertedDate = DateUtils.convertToDate(dateStr, ProjectConstants.SERVER_DATE_TIME_FORMAT);
-    if (convertedDate != null) {
-      return convertedDate.getTime();
-    }
-    return null;
+      Date convertedDate = DateUtils.convertToDate(dateStr, ProjectConstants.SERVER_DATE_TIME_FORMAT);
+      if (convertedDate != null) {
+        return convertedDate.getTime();
+      } else {
+        return Long.parseLong(dateStr);
+      }
+
   }
 }

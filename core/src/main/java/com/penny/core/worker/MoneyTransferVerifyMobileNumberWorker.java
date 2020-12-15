@@ -3,6 +3,7 @@ package com.penny.core.worker;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.work.WorkerParameters;
+import com.google.gson.Gson;
 import com.penny.core.ApiClient;
 import com.penny.core.ApiInterface;
 import com.penny.core.models.JsonResponse;
@@ -26,6 +27,8 @@ public class MoneyTransferVerifyMobileNumberWorker extends BaseWorker {
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
+    mData.putInt(ProjectConstants.TRANSACTION, jsonResponse.getTrans_type());
+    mData.putString(ProjectConstants.USER_TRANSFER_MODEL, new Gson().toJson(jsonResponse.getUserTransferModel()));
     return sendSuccess();
   }
 }

@@ -28,7 +28,7 @@ public class AddRecipientActivity extends BaseActivity implements
   private BankDetails selectedBank = null;
   private TextView bankTv;
   private String customerId;
-  private boolean isFromMoneyTransfer = false;
+  private boolean isFromSelectRecipient = false;
   private EditText accountNumber, ifsc, mobileNumber, name;
 
   @Override
@@ -38,7 +38,8 @@ public class AddRecipientActivity extends BaseActivity implements
     setUpToolBar();
     setTitle(getString(R.string.add_recepient));
     customerId = getIntent().getStringExtra(ProjectConstants.CUSTOMER_ID);
-    isFromMoneyTransfer = getIntent().getBooleanExtra(ProjectConstants.IS_NUMBER_VERIFIED, false);
+    isFromSelectRecipient = getIntent()
+        .getBooleanExtra(ProjectConstants.IS_FROM_SELECT_RECIPIENT, false);
     initUi();
     initListeners();
   }
@@ -81,29 +82,25 @@ public class AddRecipientActivity extends BaseActivity implements
       toast(getString(R.string.ifsc_number_error));
       return;
     }
-    String mobileNumberText = mobileNumber.getText().toString().trim();
+    /*String mobileNumberText = mobileNumber.getText().toString().trim();
     if (StringUtils.isMobileNoValid(mobileNumberText)) {
       toast(getString(R.string.mobile_number_incorrect));
       return;
-    }
+    }*/
     if (!NetworkUtils.isConnected(this)) {
       toast(APITags.DEVICE_IS_OFFLINE);
       return;
     }
     moneyTransferActivityViewModel
-        .addRecipient(selectedBank.getBankCode(), accountNumberText, customerId, ifscText, nameText,
-            mobileNumberText).observe(this, this::observeAddRecipientApi);
+        .addRecipient(selectedBank.getBankId(), accountNumberText, customerId, ifscText, nameText,
+            customerId).observe(this, this::observeAddRecipientApi);
   }
 
   private void observeAddRecipientApi(WorkInfo workInfo) {
     if (workInfo != null) {
       apiResponseHandler(workInfo);
       if (workInfo.getState() == State.SUCCEEDED) {
-        if (isFromMoneyTransfer) {
-          fetchRecipient();
-        } else {
-          finish();
-        }
+        fetchRecipient();
       }
     }
   }
@@ -114,7 +111,10 @@ public class AddRecipientActivity extends BaseActivity implements
         apiResponseHandler(workInfo);
         if (workInfo.getState() == State.SUCCEEDED) {
           Intent intent;
-          if (workInfo.getOutputData().getBoolean(ProjectConstants.RECIPIENT_AVAILABLE, false)) {
+          if (isFromSelectRecipient) {
+            finish();
+          } else if (workInfo.getOutputData()
+              .getBoolean(ProjectConstants.RECIPIENT_AVAILABLE, false)) {
             intent = new Intent(this, SelectRecipientActivity.class);
             intent.putExtra(ProjectConstants.CUSTOMER_ID, customerId);
             startActivity(intent);
@@ -129,7 +129,7 @@ public class AddRecipientActivity extends BaseActivity implements
     bankTv = findViewById(R.id.tv_bank);
     accountNumber = findViewById(R.id.et_account_number);
     ifsc = findViewById(R.id.ifsc);
-    mobileNumber = findViewById(R.id.et_mobile_number);
+//    mobileNumber = findViewById(R.id.et_mobile_number);
     name = findViewById(R.id.name);
   }
 

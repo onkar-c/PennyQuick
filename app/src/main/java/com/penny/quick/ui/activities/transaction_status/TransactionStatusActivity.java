@@ -41,8 +41,9 @@ public class TransactionStatusActivity extends BaseActivity {
   }
 
   private void getTransactionStatus() {
-    if(NetworkUtils.isConnected(this)) {
-      transactionStatusActivityViewModel.getStatus(transactionResponse.getTxnId()).observe(this,
+    if (NetworkUtils.isConnected(this)) {
+      transactionStatusActivityViewModel.getStatus(transactionResponse.getTxnId(),
+          transactionResponse.getType().equals(ProjectConstants.MONEY_TRANSFER)).observe(this,
           this::observeTransactionStatusApi);
     }
   }
@@ -105,17 +106,24 @@ public class TransactionStatusActivity extends BaseActivity {
         String.format("%s %s", transactionResponse.getAmount(), getString(R.string.rupees_sign)));
     ((TextView) findViewById(R.id.transaction_id)).setText(transactionResponse.getTxnId());
     ((TextView) findViewById(R.id.customer_id)).setText(transactionResponse.getMobile());
-    ((TextView) findViewById(R.id.rechargeType)).setText(
-        String.format("%s %s",
-            !transactionResponse.getType().equals(ProjectConstants.DTH) ? ProjectConstants.MOBILE
-                : transactionResponse.getType().equals(ProjectConstants.DTH),
-            getString(R.string.recharge)));
-    Executors.newSingleThreadExecutor()
-        .execute(() -> {
-          String type = transactionStatusActivityViewModel
-              .getType(transactionResponse.getOperator());
-          runOnUiThread(() -> ((TextView) findViewById(R.id.type)).setText(type));
-        });
+    if (transactionResponse.getType().equals(ProjectConstants.MONEY_TRANSFER)) {
+      ((TextView) findViewById(R.id.rechargeType)).setText(ProjectConstants.MONEY_TRANSFER);
+    } else {
+      ((TextView) findViewById(R.id.rechargeType)).setText(
+          String.format("%s %s",
+              !transactionResponse.getType().equals(ProjectConstants.DTH) ? ProjectConstants.MOBILE
+                  : transactionResponse.getType().equals(ProjectConstants.DTH),
+              getString(R.string.recharge)));
+    }
+    if (transactionResponse.getOperator() != null
+        && transactionResponse.getOperator().length() > 0) {
+      Executors.newSingleThreadExecutor()
+          .execute(() -> {
+            String type = transactionStatusActivityViewModel
+                .getType(transactionResponse.getOperator());
+            runOnUiThread(() -> ((TextView) findViewById(R.id.type)).setText(type));
+          });
+    }
   }
 
   private void initUI() {

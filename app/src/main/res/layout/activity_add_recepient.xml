@@ -148,7 +148,7 @@
         android:autofillHints="@string/mobile_number"
         tools:ignore="LabelFor" />
 
-      <androidx.appcompat.widget.AppCompatButton
+      <!--<androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_20"
@@ -163,8 +163,8 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="@dimen/textSize_17" />
-
-      <LinearLayout
+-->
+      <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -195,7 +195,7 @@
           android:textSize="@dimen/textSize_16"
           tools:ignore="LabelFor" />
 
-      </LinearLayout>
+      </LinearLayout>-->
 
 
     </LinearLayout>

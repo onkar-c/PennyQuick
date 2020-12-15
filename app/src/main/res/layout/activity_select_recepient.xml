@@ -34,16 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginTop="@dimen/distance_5"
+        android:padding="@dimen/padding_5">
       <TextView
         android:id="@+id/et_recipient"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/distance_13"
         android:paddingBottom="@dimen/distance_13"
-        android:paddingStart="@dimen/padding_20"
+        android:paddingStart="@dimen/padding_15"
         android:paddingEnd="@dimen/distance_20"
-        android:layout_marginTop="@dimen/distance_10"
+        android:layout_marginBottom="@dimen/distance_5"
         android:gravity="center_vertical"
         android:background="@drawable/edit_text_background"
         android:drawablePadding="@dimen/distance_5"
@@ -51,9 +53,12 @@
         android:inputType="none"
         android:textColor="@color/hint_color"
         android:textColorHint="@color/hint_color"
-        android:textSize="@dimen/textSize_16"
+        android:textSize="@dimen/textSize_14"
         android:importantForAutofill="no"
         android:layout_weight="0.5"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="1"
         app:drawableEndCompat="@drawable/ic_down_arrow" />
         <View
           android:layout_width="0dp"
@@ -67,7 +72,7 @@
           android:paddingBottom="@dimen/distance_13"
           android:paddingStart="@dimen/padding_20"
           android:paddingEnd="@dimen/distance_10"
-          android:layout_marginTop="@dimen/distance_10"
+          android:layout_marginBottom="@dimen/distance_5"
           android:gravity="center_vertical"
           android:background="@drawable/radio_button_background_1"
           android:drawablePadding="@dimen/distance_5"
@@ -128,7 +133,7 @@
       tools:ignore="LabelFor" />
 
     <TextView
-      android:id="@+id/document_id"
+      android:id="@+id/document_id_type"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
@@ -163,7 +168,7 @@
       android:paddingStart="@dimen/padding_20"
       android:paddingEnd="@dimen/distance_10"
       android:background="@drawable/edit_text_background"
-      android:inputType="number"
+      android:inputType="text"
       android:hint="@string/document_id_value"
       android:textColor="@color/hint_color"
       android:textSize="@dimen/textSize_16"

@@ -23,8 +23,14 @@ public class JsonResponse implements Serializable {
   @SerializedName("user")
   private User user;
 
+  @SerializedName("userinfo")
+  private UserTransferModel userTransferModel;
+
   @SerializedName("recharge")
   private TransactionResponse recharge;
+
+  @SerializedName("transfer")
+  private TransactionResponse transfer;
 
   @SerializedName("providerList")
   private List<Operators> providerList;
@@ -123,5 +129,21 @@ public class JsonResponse implements Serializable {
 
   public void setRecipientList(List<Recipient> recipientList) {
     this.recipientList = recipientList;
+  }
+
+  public UserTransferModel getUserTransferModel() {
+    return userTransferModel;
+  }
+
+  public void setUserTransferModel(UserTransferModel userTransferModel) {
+    this.userTransferModel = userTransferModel;
+  }
+
+  public TransactionResponse getTransfer() {
+    return transfer;
+  }
+
+  public void setTransfer(TransactionResponse transfer) {
+    this.transfer = transfer;
   }
 }

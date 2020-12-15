@@ -11,7 +11,6 @@ import com.penny.core.worker.MoneyTransferAddRecipientWorker;
 import com.penny.core.worker.MoneyTransferEnrollMobileNumberWorker;
 import com.penny.core.worker.MoneyTransferListRecipientWorker;
 import com.penny.core.worker.MoneyTransferRequestOTPWorker;
-import com.penny.core.worker.MoneyTransferTransWorker;
 import com.penny.core.worker.MoneyTransferVerifyMobileNumberWorker;
 import com.penny.core.worker.MoneyTransferVerifyOTPWorker;
 import com.penny.core.worker.MoneyTransferWorker;
@@ -46,8 +45,21 @@ public class MoneyTransferRepository extends BaseRepository {
     return getOneTimeRequestLiveDate(mRequest);
   }
 
-  public LiveData<WorkInfo> getTransferMoneyWorkManager() {
+  public LiveData<WorkInfo> getTransferMoneyWorkManager(String name, String number,
+      String recipeientID, String ifsc, String account, String customerID, String ammount,
+      String doc_id_type, String doc_id, String pincode, String transactionType) {
     Data.Builder data = getDataBuilderForApi(APITags.API_TRANSFER_MONEY);
+    data.putString(ProjectConstants.USER_NAME, name);
+    data.putString(ProjectConstants.MOBILE_NUMBER, number);
+    data.putString(ProjectConstants.RECIPIENT_ID, recipeientID);
+    data.putString(ProjectConstants.IFSC, ifsc);
+    data.putString(ProjectConstants.ACCOUNT, account);
+    data.putString(ProjectConstants.CUSTOMER_ID, customerID);
+    data.putString(ProjectConstants.AMOUNT, ammount);
+    data.putString(ProjectConstants.DOC_ID_TYPE, doc_id_type);
+    data.putString(ProjectConstants.DOC_ID, doc_id);
+    data.putString(ProjectConstants.PIN_CODE, pincode);
+    data.putString(ProjectConstants.TRANSACTION, transactionType);
     OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(
         MoneyTransferWorker.class)
         .setInputData(data.build())
@@ -106,15 +118,6 @@ public class MoneyTransferRepository extends BaseRepository {
     return getOneTimeRequestLiveDate(mRequest);
   }
 
-  public LiveData<WorkInfo> transWorkManager() {
-    Data.Builder data = getDataBuilderForApi(APITags.API_MONEY_TRANSFER_TRANS_RECIPIENT);
-    OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(
-        MoneyTransferTransWorker.class)
-        .setInputData(data.build())
-        .addTag(APIEnums.API_MONEY_TRANSFER_TRANS_RECIPIENT.name())
-        .build();
-    return getOneTimeRequestLiveDate(mRequest);
-  }
 
   public LiveData<WorkInfo> getBankDetailsWorkManager() {
     Data.Builder data = getDataBuilderForApi(APITags.API_BANK_DETAILS_LIST);

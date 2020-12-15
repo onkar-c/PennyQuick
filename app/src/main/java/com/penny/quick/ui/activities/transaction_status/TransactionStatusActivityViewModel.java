@@ -12,8 +12,8 @@ public class TransactionStatusActivityViewModel extends ViewModel {
     super();
   }
 
-  LiveData<WorkInfo> getStatus(String transactionId) {
-    return new RechargeRepository().getRechargeStatusWorkManager(transactionId);
+  LiveData<WorkInfo> getStatus(String transactionId, boolean isMoneyTransfer) {
+    return new RechargeRepository().getRechargeStatusWorkManager(transactionId, isMoneyTransfer);
   }
 
   String getType(String type) {

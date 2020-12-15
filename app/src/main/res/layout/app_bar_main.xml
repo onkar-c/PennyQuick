@@ -298,7 +298,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/add_money"
+        android:text="@string/aeps"
         android:textSize="@dimen/textSize_14"
         android:padding="@dimen/distance_10"
         android:textAlignment="center"

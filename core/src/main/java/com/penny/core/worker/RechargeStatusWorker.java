@@ -18,7 +18,7 @@ public class RechargeStatusWorker extends BaseWorker {
   @Override
   protected Result executeApi() {
     return execute(ApiClient.getClient().create(ApiInterface.class)
-        .rechargeStatus(getInputData().getString(ProjectConstants.TRANSACTION_ID), false));
+        .rechargeStatus(getInputData().getString(ProjectConstants.TRANSACTION_ID), getInputData().getBoolean(ProjectConstants.MONEY_TRANSFER, false)));
   }
 
   @Override

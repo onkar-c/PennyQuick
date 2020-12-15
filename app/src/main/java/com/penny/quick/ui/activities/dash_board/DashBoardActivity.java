@@ -146,7 +146,7 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       intent.putExtra(ProjectConstants.TYPE, view.getId() == R.id.bt_prepaid);
     } else if (view.getId() == R.id.addMoney) {
       addMoney();
-//      showMessageDialog(null, getString(R.string.add_money_error));
+//      progressDialog(getString(R.string.add_money_error));
       return;
     } else if (view.getId() == R.id.moneyTransfer) {
       intent = new Intent(DashBoardActivity.this, MoneyTransferNumberActivity.class);
@@ -159,6 +159,13 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show();
     }
   }
+
+  /*private void progressDialog(String message) {
+    ProgressDialog pd = new ProgressDialog(this);
+    pd.setMessage(message);
+//    pd.setButton("Cancel", (dialog, which) -> pd.dismiss());
+    pd.show();
+  }*/
 
   private void handelCommonGridClick(View view) {
     Intent intent = null;
@@ -205,7 +212,7 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
         intent = new Intent(DashBoardActivity.this, DisputeHistoryActivity.class);
       } else if (itemId == R.id.add_money) {
         addMoney();
-//        showMessageDialog(null, getString(R.string.add_money_error));
+//        progressDialog(getString(R.string.add_money_error));
       } else {
         Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
       }

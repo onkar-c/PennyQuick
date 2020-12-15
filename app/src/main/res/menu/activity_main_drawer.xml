@@ -18,7 +18,7 @@
     <item
       android:id="@+id/add_money"
       android:icon="@drawable/ic_add"
-      android:title="@string/add_money"/>
+      android:title="@string/aeps"/>
 
     <item
       android:id="@+id/recentTransaction"

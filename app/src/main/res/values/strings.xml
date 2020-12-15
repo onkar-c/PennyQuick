@@ -28,6 +28,7 @@
   <string name="account_number_error">Account Number Cannot Be Empty</string>
   <string name="bank_error_text">Please Select A Bank</string>
   <string name="recipient_error_text">Please Select A Recipient</string>
+  <string name="doc_type_error_text">Please Select A Doc Type</string>
   <string name="ifsc_number_error">IFSC Cannot Be Empty</string>
   <string name="account_id__number_error">Document Id Cannot Be Empty</string>
   <string name="password_blank_error">Password cannot be blank</string>
@@ -43,6 +44,7 @@
   <string name="menu_home">Home</string>
   <string name="my_profile">My Profile</string>
   <string name="add_money">Add Money</string>
+  <string name="aeps">Aeps</string>
   <string name="recent_transaction">Recent Transaction</string>
   <string name="contact_us">Contact Us</string>
   <string name="dispute_history">Dispute History</string>
@@ -218,8 +220,8 @@
   <string name="amnt_error">Please select Plan or enter amount</string>
   <string name="network_availbale">We are now online</string>
   <string name="network_not_availbale">Could not connect to internet</string>
-  <string name="add_money_error">Dear User for Add Money in penny account. \nPlease Contact Your Service Provider 7264895939 OR Visit our website www.pennyquick.in</string>
-  <string name="money_transfer_error">Registered Device Not Found.</string>
+  <string name="add_money_error">Searching For Device !</string>
+  <string name="money_transfer_error">Authorization under process</string>
   <string name="version_no">1.0</string>
 
 </resources>

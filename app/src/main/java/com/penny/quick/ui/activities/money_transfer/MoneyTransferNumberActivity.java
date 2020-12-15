@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
+import com.google.gson.Gson;
 import com.penny.core.APITags;
+import com.penny.core.models.UserTransferModel;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.database.utils.StringUtils;
@@ -80,7 +82,7 @@ public class MoneyTransferNumberActivity extends BaseActivity implements TextWat
       showError(getString(R.string.otp_error_msg));
       return;
     }
-    moneyTransferActivityViewModel.verifyOtp(enteredMobileNumber, "")
+    moneyTransferActivityViewModel.verifyOtp(enteredMobileNumber, otp)
         .observe(this, this::verifyOtpObserver);
   }
 
@@ -107,7 +109,7 @@ public class MoneyTransferNumberActivity extends BaseActivity implements TextWat
             intent = new Intent(this, SelectRecipientActivity.class);
           } else {
             intent = new Intent(this, AddRecipientActivity.class);
-            intent.putExtra(ProjectConstants.IS_NUMBER_VERIFIED, false);
+            intent.putExtra(ProjectConstants.IS_FROM_SELECT_RECIPIENT, false);
           }
           intent.putExtra(ProjectConstants.CUSTOMER_ID, enteredMobileNumber);
           startActivity(intent);
@@ -147,8 +149,15 @@ public class MoneyTransferNumberActivity extends BaseActivity implements TextWat
     if (workInfo != null) {
       apiResponseHandler(workInfo);
       if (workInfo.getState() == State.SUCCEEDED) {
-        otpLayout.setVisibility(View.VISIBLE);
-        state = 2;
+        int transType = workInfo.getOutputData().getInt(ProjectConstants.TRANSACTION, 0);
+        if (transType == 33) {
+          editTextName.setEnabled(false);
+          editTextName.setClickable(false);
+          otpLayout.setVisibility(View.VISIBLE);
+          state = 2;
+        } else if (transType == 17) {
+          fetchRecipient();
+        }
       }
     }
   }
@@ -157,12 +166,24 @@ public class MoneyTransferNumberActivity extends BaseActivity implements TextWat
     if (workInfo != null) {
       apiResponseHandler(workInfo);
       if (workInfo.getState() == State.SUCCEEDED) {
-      mobileNumber.setEnabled(false);
-      mobileNumber.setClickable(false);
-      nameLayout.setVisibility(View.VISIBLE);
-      submitButton.setText(getString(R.string.submit));
-      enteredMobileNumber = mobileNumber.getText().toString().trim();
-      state = 1;
+        int transType = workInfo.getOutputData().getInt(ProjectConstants.TRANSACTION, 0);
+        String userTransfer = workInfo.getOutputData()
+            .getString(ProjectConstants.USER_TRANSFER_MODEL);
+        UserTransferModel userTransferModel = new Gson()
+            .fromJson(userTransfer, UserTransferModel.class);
+        enteredMobileNumber = mobileNumber.getText().toString().trim();
+        if (transType == 323 || transType == 37) {
+          mobileNumber.setEnabled(false);
+          mobileNumber.setClickable(false);
+          nameLayout.setVisibility(View.VISIBLE);
+          if (userTransferModel.getName() != null && userTransferModel.getName().length() > 0) {
+            editTextName.setText(userTransferModel.getName());
+          }
+          submitButton.setText(getString(R.string.submit));
+          state = 1;
+        } else if (transType == 33) {
+          fetchRecipient();
+        }
       }
     }
   }
