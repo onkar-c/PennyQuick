@@ -2,6 +2,7 @@ package com.penny.core.models;
 
 import com.google.gson.annotations.SerializedName;
 import com.penny.database.entities.BankDetails;
+import com.penny.database.entities.Dispute;
 import com.penny.database.entities.Operators;
 import com.penny.database.entities.RecentRecharge;
 import com.penny.database.entities.Recipient;
@@ -35,11 +36,14 @@ public class JsonResponse implements Serializable {
   @SerializedName("providerList")
   private List<Operators> providerList;
 
-  @SerializedName("reports")
+  @SerializedName("reportTransactions")
   private List<Report> reports;
 
   @SerializedName("list")
   private List<BankDetails> bankDetailsList;
+
+  @SerializedName("disputeList")
+  private List<Dispute> disputeList;
 
   @SerializedName("trans_type")
   private int trans_type;
@@ -145,5 +149,9 @@ public class JsonResponse implements Serializable {
 
   public void setTransfer(TransactionResponse transfer) {
     this.transfer = transfer;
+  }
+
+  public List<Dispute> getDisputeList() {
+    return disputeList;
   }
 }

@@ -4,6 +4,7 @@ import com.penny.core.models.ChangePasswordRequestModel;
 import com.penny.core.models.ContactUsDisputeModel;
 import com.penny.core.models.JsonResponse;
 import com.penny.core.models.LoginRequestModel;
+import com.penny.core.models.ReportsRequest;
 import com.penny.core.models.RequestRecipient;
 import com.penny.core.models.TransferRequestModel;
 import com.penny.core.models.rechargeRequestModel;
@@ -49,11 +50,14 @@ public interface ApiInterface {
   @GET("recharge/provider")
   Call<JsonResponse> getProviders();
 
-  @GET("disputeHistory")
+  @POST("dispute/dlist")
   Call<JsonResponse> getDisputeHistory();
 
   @POST("forgot_password/contactUs")
   Call<JsonResponse> contactUs(@Body ContactUsDisputeModel contactUsDisputeModel);
+
+  @POST("dispute")
+  Call<JsonResponse> dispute(@Body ContactUsDisputeModel contactUsDisputeModel);
 
   @POST("transfer/verifymobile")
   Call<JsonResponse> verifyMobileNumber(@Body RequestMobileNumerModel requestMobileNumerModel);
@@ -78,4 +82,7 @@ public interface ApiInterface {
 
   @POST("transfer/trans")
   Call<JsonResponse> moneyTrans(@Body TransferRequestModel transferRequestModel);
+
+  @POST("recharge/ledgerreport")
+  Call<JsonResponse> getReports(@Body ReportsRequest transferRequestModel);
 }

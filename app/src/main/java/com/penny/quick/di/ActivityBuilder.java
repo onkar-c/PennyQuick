@@ -27,6 +27,7 @@ import com.penny.quick.ui.activities.providersList.ProviderListActivityModel;
 import com.penny.quick.ui.activities.providersList.ProvidersListActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeActivityModel;
+import com.penny.quick.ui.activities.report.ReportActivity;
 import com.penny.quick.ui.activities.splash.SplashActivity;
 import com.penny.quick.ui.activities.splash.SplashActivityModel;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
@@ -65,6 +66,9 @@ abstract class ActivityBuilder {
 
   @ContributesAndroidInjector(modules = RecentRechargeActivityModel.class)
   abstract RecentRechargeActivity getRecentRechargeActivity();
+
+  @ContributesAndroidInjector(modules = RecentRechargeActivityModel.class)
+  abstract ReportActivity getReportActivity();
 
   @ContributesAndroidInjector(modules = DashBoardActivityModel.class)
   abstract DashBoardActivity getDashBoardActivity();

@@ -6,14 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.WorkInfo;
 import com.penny.core.APITags;
 import com.penny.core.util.NetworkUtils;
-import com.penny.database.entities.Report;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeViewModel;
 import com.penny.quick.ui.adapters.DisputeReportsAdapter;
 import com.penny.quick.utils.ToolBarUtils;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 
 public class DisputeHistoryActivity extends BaseActivity {
@@ -35,24 +32,11 @@ public class DisputeHistoryActivity extends BaseActivity {
   }
 
   private void setDisputeHistoryObserver() {
-    contactUsDisputeViewModel.getDisputeHistoryObserver().observe(this, reports -> {
+    contactUsDisputeViewModel.getDisputeHistoryObserver().observe(this, disputes -> {
       reportList.setLayoutManager(new LinearLayoutManager(this));
-      DisputeReportsAdapter reportsAdapter = new DisputeReportsAdapter(generateReportList());
+      DisputeReportsAdapter reportsAdapter = new DisputeReportsAdapter(disputes);
       reportList.setAdapter(reportsAdapter);
     });
-  }
-
-  private List<Report> generateReportList() {
-    List<Report> reports = new ArrayList<>();
-    for (int i = 0; i < 10; i++) {
-      Report report = new Report();
-      report.setTransaction_id(getString(R.string.dummy_trans_id));
-      report.setDate(getString(R.string.transaction_dummy_date));
-      report
-          .setDescription(getString((i % 2 == 0) ? R.string.dummy_company_type : R.string.dish_tv));
-      reports.add(report);
-    }
-    return reports;
   }
 
   @Override

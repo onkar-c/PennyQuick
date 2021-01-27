@@ -19,11 +19,17 @@ public class ContactUsDisputeWorker extends BaseWorker {
   protected Result executeApi() {
     ContactUsDisputeModel contactUsDisputeModel = new ContactUsDisputeModel();
     contactUsDisputeModel.setName(getInputData().getString(ProjectConstants.USER_NAME));
-    contactUsDisputeModel.setMobileNumber(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
-    contactUsDisputeModel.setSubject(getInputData().getString(ProjectConstants.SUBJECT));
+    contactUsDisputeModel.setMobile(getInputData().getString(ProjectConstants.MOBILE_NUMBER));
     contactUsDisputeModel.setMessage(getInputData().getString(ProjectConstants.MESSAGE));
-    return execute(ApiClient.getClient().create(ApiInterface.class)
-        .contactUs(contactUsDisputeModel));
+    if (getInputData().getBoolean(ProjectConstants.IS_DISPUTE, false)) {
+      contactUsDisputeModel.setTransactionId(getInputData().getString(ProjectConstants.SUBJECT));
+      return execute(ApiClient.getClient().create(ApiInterface.class)
+          .dispute(contactUsDisputeModel));
+    } else {
+      contactUsDisputeModel.setSubject(getInputData().getString(ProjectConstants.SUBJECT));
+      return execute(ApiClient.getClient().create(ApiInterface.class)
+          .contactUs(contactUsDisputeModel));
+    }
   }
 
   @Override

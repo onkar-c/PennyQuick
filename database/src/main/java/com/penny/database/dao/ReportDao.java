@@ -10,7 +10,6 @@ import java.util.List;
 @Dao
 public abstract class ReportDao extends AbstractBaseDao<Report> {
 
-  @Query("select * from Report")
-  public abstract LiveData<List<Report>> getDisputeHistory();
-
+  @Query("select * from Report order by datetime desc")
+  public abstract LiveData<List<Report>> getReports();
 }

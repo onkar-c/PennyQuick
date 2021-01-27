@@ -7,16 +7,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+import com.penny.database.entities.Dispute;
 import com.penny.database.entities.Report;
+import com.penny.database.utils.DateUtils;
 import com.penny.quick.R;
 import java.util.List;
 
 public class DisputeReportsAdapter extends
     RecyclerView.Adapter<DisputeReportsAdapter.MyViewHolder> {
 
-  private final List<Report> reports;
+  private final List<Dispute> reports;
 
-  public DisputeReportsAdapter(List<Report> reports) {
+  public DisputeReportsAdapter(List<Dispute> reports) {
     this.reports = reports;
   }
 
@@ -30,11 +32,10 @@ public class DisputeReportsAdapter extends
 
   @Override
   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-    Report report = reports.get(position);
-    holder.date.setText(report.getDate());
-    holder.transactionId.setText(report.getTransaction_id());
-    holder.message.setText(report.getDescription());
-    holder.date.setText(report.getDate());
+    Dispute report = reports.get(position);
+    holder.date.setText(DateUtils.getDateInRechargeDateFormat(report.getDate()));
+    holder.transactionId.setText(report.getTransactionId());
+    holder.message.setText(report.getMessage());
   }
 
   @Override

@@ -97,6 +97,10 @@ public class APITags {
   private static final String API_MONEY_TRANSFER_TRANS_RECIPIENT_TITTLE = "Recipient";
   private static final String API_MONEY_TRANSFER_TRANS_RECIPIENT_MESSAGE = "Adding Recipient..";
 
+  public static final int API_REPORTS = 22;
+  private static final String API_REPORTS_TITTLE = "Fetching Reports";
+  private static final String API_REPORTS_MESSAGE = "Please wait...";
+
   public static final String DATA_FAIL_RESPONSE = "fail_response";
   public static final String TIME_OUT_ERROR = "Request Time Out";
   public static final String ERROR_WHILE_CONNECTING_TO_SERVER = "Error while connecting to server";
@@ -127,6 +131,7 @@ public class APITags {
     API_ENROLL_MOBILE_NUMBER(API_ENROLL_MOBILE_NUMBER_TITTLE, API_ENROLL_MOBILE_NUMBER_MESSAGE),
     API_TRANSFER_MONEY(API_TRANSFER_MONEY_TITTLE, API_TRANSFER_MONEY_MESSAGE),
     API_MONEY_TRANSFER_TRANS_RECIPIENT(API_MONEY_TRANSFER_TRANS_RECIPIENT_TITTLE, API_MONEY_TRANSFER_TRANS_RECIPIENT_MESSAGE),
+    API_REPORTS(API_REPORTS_TITTLE, API_REPORTS_MESSAGE),
     API_DEFAULT(API_PLEASE_WAIT_MESSAGE, API_LOADING_MESSAGE);
 
 

@@ -1,6 +1,5 @@
 package com.penny.quick.ui.activities.contact_us_dispute;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,7 +10,6 @@ import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
-import com.penny.quick.ui.activities.dispute_history.DisputeHistoryActivity;
 import com.penny.quick.utils.ToolBarUtils;
 import javax.inject.Inject;
 
@@ -40,6 +38,7 @@ public class ContactUsDisputeActivity extends BaseActivity {
     message = findViewById(R.id.et_re_enter_message);
     if (getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false)) {
       ((TextView) findViewById(R.id.subject)).setText(R.string.transaction_id);
+      subject.setHint(getString(R.string.enter_transaction_id));
     }
     findViewById(R.id.save).setOnClickListener(view -> saveData());
   }
@@ -48,7 +47,8 @@ public class ContactUsDisputeActivity extends BaseActivity {
     if (NetworkUtils.isConnected(this)) {
       contactUsDisputeViewModel
           .sendData(customerName.getText().toString(), mobileNumber.getText().toString(),
-              subject.getText().toString(), message.getText().toString()).observe(this,
+              subject.getText().toString(), message.getText().toString(),
+              getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false)).observe(this,
           this::observeSendDataApi);
     } else {
       toast(APITags.DEVICE_IS_OFFLINE);
@@ -61,8 +61,10 @@ public class ContactUsDisputeActivity extends BaseActivity {
       State state = workInfo.getState();
       apiResponseHandler(workInfo);
       if (state == State.SUCCEEDED) {
-        startActivity(
-            new Intent(ContactUsDisputeActivity.this, DisputeHistoryActivity.class));
+        showMessageDialog("", getString(R.string.dispute_success), (dialog, which) -> {
+          dialog.dismiss();
+          ContactUsDisputeActivity.this.finish();
+        });
       }
     }
 

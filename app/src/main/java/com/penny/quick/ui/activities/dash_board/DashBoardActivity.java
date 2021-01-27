@@ -34,6 +34,7 @@ import com.penny.quick.ui.activities.report.ReportActivity;
 import com.penny.quick.ui.activities.web_view.WebViewActivity;
 import com.penny.quick.utils.NetworkConnectivityReceiver.NetworkConnectivityChangeListener;
 import in.co.eko.ekopay.EkoPayActivity;
+import java.util.Date;
 import javax.inject.Inject;
 
 public class DashBoardActivity extends BaseActivity implements NetworkConnectivityChangeListener {
@@ -241,16 +242,17 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
 
 //Initialize all unknown variables and replace all dummy values
     bundle.putString("environment", "uat");
-    bundle.putString("product", "aeps");
-    bundle.putString("secret_key_timestamp", "secret_key_timestamp");
+    bundle.putString("product","aeps");
+    bundle.putString("secret_key_timestamp", String.valueOf(new Date().getTime()));
     bundle.putString("secret_key", "7e757b13-a705-4ffe-8390-a65b231c5163");
-    bundle.putString("developer_key", "becbbce45f79c6f5109f848acd540567");
-    bundle.putString("initiator_id", "9910028267");
-    bundle.putString("callback_url", "callback_url");
-    bundle.putString("user_code", "20810200");
-    bundle.putString("initiator_logo_url", "initiator_logo_url");
-    bundle.putString("partner_name", "PARTNER Name INC");
-    bundle.putString("language", "en");
+    bundle.putString("developer_key", "a4bb5e407aa9d1254b2daec12e31a72f");
+    bundle.putString("initiator_id", "8605641662");
+    bundle.putString("user_code", "51810001");
+    bundle.putString("initiator_logo_url", "http://pennyquick.in/assets/images/logo.png");
+    bundle.putString("partner_name" , "erupaiya");
+    bundle.putString("language" , "en");
+    bundle.putString("callback_url", "https://api.eko.in:25002/ekoicici/v1/user/service/activate");
+
 
     intent.putExtras(bundle);
     startActivityForResult(intent, AEPS_REQUEST_CODE);

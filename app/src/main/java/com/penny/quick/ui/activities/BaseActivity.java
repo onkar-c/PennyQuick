@@ -7,6 +7,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -46,12 +47,12 @@ public class BaseActivity extends DaggerAppCompatActivity {
   public static void showWarningText(TextView networkErrTV, boolean isNetworkAvailable) {
     if (isNetworkAvailable) {
       networkErrTV.setText(AppDB.getContext().getString(R.string.network_availbale));
-      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_success));
+      networkErrTV.setBackgroundColor(AppDB.getContext().getResources().getColor(R.color.transaction_success));
       animateOut(networkErrTV);
     } else {
       animateIn(networkErrTV);
       networkErrTV.setText(AppDB.getContext().getString(R.string.network_not_availbale));
-      networkErrTV.setBackgroundColor(AppDB.getContext().getColor(R.color.transaction_failed));
+      networkErrTV.setBackgroundColor(AppDB.getContext().getResources().getColor(R.color.transaction_failed));
     }
   }
 
@@ -210,11 +211,10 @@ public class BaseActivity extends DaggerAppCompatActivity {
     }
   }
 
-  protected void showMessageDialog(String title, String message) {
+  protected void showMessageDialog(String title, String message, OnClickListener okOnClickListener) {
     android.app.AlertDialog.Builder messageDialog =
         new android.app.AlertDialog.Builder(this).setTitle(title).setMessage(message);
-    messageDialog.setPositiveButton("OK", (dialog, which) -> {
-    });
+    messageDialog.setPositiveButton("OK",okOnClickListener);
     messageDialog.setCancelable(false);
     messageDialog.show();
   }

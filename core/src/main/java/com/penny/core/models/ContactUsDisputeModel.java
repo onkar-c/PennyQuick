@@ -1,13 +1,20 @@
 package com.penny.core.models;
 
+import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class ContactUsDisputeModel implements Serializable {
 
+  @SerializedName("name")
   private String name;
-  private String mobileNumber;
-  private String subject;
+  @SerializedName("mobile")
+  private String mobile;
+  @SerializedName("transactionId")
+  private String transactionId;
+  @SerializedName("message")
   private String message;
+  @SerializedName("subject")
+  private String subject;
 
   public String getName() {
     return name;
@@ -17,20 +24,20 @@ public class ContactUsDisputeModel implements Serializable {
     this.name = name;
   }
 
-  public String getMobileNumber() {
-    return mobileNumber;
+  public String getMobile() {
+    return mobile;
   }
 
-  public void setMobileNumber(String mobileNumber) {
-    this.mobileNumber = mobileNumber;
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
   }
 
-  public String getSubject() {
-    return subject;
+  public String getTransactionId() {
+    return transactionId;
   }
 
-  public void setSubject(String subject) {
-    this.subject = subject;
+  public void setTransactionId(String transactionId) {
+    this.transactionId = transactionId;
   }
 
   public String getMessage() {
@@ -39,5 +46,13 @@ public class ContactUsDisputeModel implements Serializable {
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  public String getSubject() {
+    return subject;
+  }
+
+  public void setSubject(String subject) {
+    this.subject = subject;
   }
 }

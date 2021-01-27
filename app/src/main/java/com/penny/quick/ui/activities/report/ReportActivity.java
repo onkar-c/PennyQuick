@@ -1,33 +1,47 @@
 package com.penny.quick.ui.activities.report;
 
-import static com.penny.quick.ui.activities.BaseActivity.manageBaseNetworkErr;
-
 import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.WorkInfo;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.entities.Report;
 import com.penny.quick.R;
 import com.penny.quick.models.BottomSheetCheckBox;
+import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog.BottomSheetListener;
+import com.penny.quick.ui.activities.recent_recharge.RecentRechargesActivityViewModel;
 import com.penny.quick.ui.adapters.ReportsAdapter;
-import com.penny.quick.utils.NetworkConnectivityReceiver;
 import com.penny.quick.utils.ToolBarUtils;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 
-public class ReportActivity extends AppCompatActivity {
-
-  private BroadcastReceiver mNetworkReceiver;
+public class ReportActivity extends BaseActivity {
 
   private final BottomSheetListener filterBottomSheet = bottomSheetCheckBoxes -> {
 
   };
+
+  @Inject
+  RecentRechargesActivityViewModel recentRechargesActivityViewModel;
+  private BroadcastReceiver mNetworkReceiver;
+
+  private void getReports() {
+    if(NetworkUtils.isConnected(this)) {
+      recentRechargesActivityViewModel.getReportsFromServer(null, null).observe(this,
+          this::observeReports);
+    }
+  }
+
+  private void observeReports(WorkInfo workInfo) {
+    if (workInfo != null) {
+      apiResponseHandler(workInfo);
+    }
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +49,9 @@ public class ReportActivity extends AppCompatActivity {
     setContentView(R.layout.activity_report);
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.reports));
-    registerNetworkReceiver();
     RecyclerView reportList = findViewById(R.id.reports_list);
     reportList.setLayoutManager(new LinearLayoutManager(this));
-    ReportsAdapter reportsAdapter = new ReportsAdapter(generateReportList(), this);
+    ReportsAdapter reportsAdapter = new ReportsAdapter(new ArrayList<>(), this);
     reportList.setAdapter(reportsAdapter);
 
     findViewById(R.id.month).setOnClickListener(view -> {
@@ -58,6 +71,8 @@ public class ReportActivity extends AppCompatActivity {
           getFilter(), getString(R.string.filter), filterBottomSheet);
       recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
     });
+
+    recentRechargesActivityViewModel.getReports().observe(this, reportsAdapter::setList);
   }
 
   private List<BottomSheetCheckBox> generateMonthList() {
@@ -126,24 +141,13 @@ public class ReportActivity extends AppCompatActivity {
     return reports;
   }
 
-  protected void registerNetworkReceiver() {
-    mNetworkReceiver = new NetworkConnectivityReceiver();
-    IntentFilter filter = new IntentFilter();
-    filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-    registerReceiver(mNetworkReceiver, filter);
-  }
-
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-    unregisterReceiver(mNetworkReceiver);
-  }
 
   @Override
   protected void onResume() {
     super.onResume();
-    if(!NetworkUtils.isConnected(this)) {
+    if (!NetworkUtils.isConnected(this)) {
       manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
     }
+    getReports();
   }
 }

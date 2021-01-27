@@ -22,8 +22,8 @@ public class DisputeHistoryWorker extends BaseWorker {
 
   @Override
   protected Result onSuccessResponse(JsonResponse jsonResponse) {
-    AppDatabase.getInstance().getReportDao().deleteAll();
-    AppDatabase.getInstance().getReportDao().insert(jsonResponse.getReports());
+    AppDatabase.getInstance().getDisputeDao().deleteAll();
+    AppDatabase.getInstance().getDisputeDao().insert(jsonResponse.getDisputeList());
     return sendSuccess();
   }
 }

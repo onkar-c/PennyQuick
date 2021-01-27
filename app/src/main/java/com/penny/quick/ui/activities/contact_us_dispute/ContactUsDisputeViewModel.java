@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.work.WorkInfo;
 import com.penny.core.repositories.UserRepository;
-import com.penny.database.entities.Report;
+import com.penny.database.entities.Dispute;
 import java.util.List;
 
 public class ContactUsDisputeViewModel extends ViewModel {
@@ -14,9 +14,9 @@ public class ContactUsDisputeViewModel extends ViewModel {
   }
 
   public LiveData<WorkInfo> sendData(String name, String mobileNumber, String subject,
-      String message) {
+      String message, boolean isDispute) {
     return new UserRepository()
-        .getContactUsDisputeWorkManager(name, mobileNumber, subject, message);
+        .getContactUsDisputeWorkManager(name, mobileNumber, subject, message, isDispute);
   }
 
   public LiveData<WorkInfo> getDisputeHistory() {
@@ -24,7 +24,7 @@ public class ContactUsDisputeViewModel extends ViewModel {
         .getDisputeHistoryWorkManager();
   }
 
-  public LiveData<List<Report>> getDisputeHistoryObserver() {
+  public LiveData<List<Dispute>> getDisputeHistoryObserver() {
     return new UserRepository()
         .getDisputeHistory();
   }

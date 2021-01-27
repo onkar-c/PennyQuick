@@ -37,7 +37,7 @@
   <string name="password_mismatch_error">Both passwords do not match</string>
 
   <string name="dummy_user_name">Sanket Rangire</string>
-  <string name="dummy_number">\u20B9 1,79,4000.00</string>
+  <string name="dummy_number">\u20B9 0.00</string>
   <string name="nav_header_desc">User Photo</string>
   <string name="action_settings">Settings</string>
 
@@ -179,6 +179,8 @@
   <string name="status">Status</string>
   <string name="transaction_status">Status:</string>
   <string name="transaction_id">Transaction ID</string>
+  <string name="dispute_success">Dispute Genrated Successfully</string>
+  <string name="enter_transaction_id">Please Enter Transaction ID</string>
   <string name="txn_id">TXN ID:</string>
   <string name="dummy_trans_id">2565412345246542</string>
   <string name="dummy_company_type">Airtel Prepaid</string>

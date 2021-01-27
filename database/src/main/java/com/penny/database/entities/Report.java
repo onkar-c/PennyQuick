@@ -3,6 +3,7 @@ package com.penny.database.entities;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 @Entity(tableName = "Report")
@@ -12,26 +13,33 @@ public class Report implements Serializable {
   @ColumnInfo(name = "id")
   private Integer id;
 
-  @ColumnInfo(name = "reportType")
-  private String reportType;
-
-  @ColumnInfo(name = "transactionType")
-  private String transactionType;
-
-  @ColumnInfo(name = "transaction_id")
+  @SerializedName("txnId")
+  @ColumnInfo(name = "txnId")
   private String transaction_id;
 
-  @ColumnInfo(name = "transactionAmount")
-  private float transactionAmount;
-
-  @ColumnInfo(name = "date")
-  private String date;
-
+  @SerializedName("description")
   @ColumnInfo(name = "description")
   private String description;
 
+  @SerializedName("balance")
   @ColumnInfo(name = "balance")
   private float balance;
+
+  @SerializedName("type")
+  @ColumnInfo(name = "type")
+  private String reportType;
+
+  @SerializedName("transType")
+  @ColumnInfo(name = "transType")
+  private String transactionType;
+
+  @SerializedName("amount")
+  @ColumnInfo(name = "amount")
+  private float transactionAmount;
+
+  @SerializedName("datetime")
+  @ColumnInfo(name = "datetime")
+  private String date;
 
   public String getReportType() {
     return reportType;

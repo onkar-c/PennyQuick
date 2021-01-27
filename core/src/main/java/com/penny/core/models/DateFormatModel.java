@@ -9,6 +9,8 @@ public class DateFormatModel {
   private String month;
   private String year;
   @Expose(deserialize = false, serialize = false)
+  private int monthInt;
+  @Expose(deserialize = false, serialize = false)
   private String monthDisplay;
   @Expose(deserialize = false, serialize = false)
   private boolean isChecked = false;
@@ -51,5 +53,13 @@ public class DateFormatModel {
 
   public void setChecked(boolean checked) {
     isChecked = checked;
+  }
+
+  public int getMonthInt() {
+    return monthInt;
+  }
+
+  public void setMonthInt(int monthInt) {
+    this.monthInt = monthInt;
   }
 }

@@ -44,6 +44,12 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.MyViewHo
         String.format("%s%s", context.getString(R.string.rupees_sign), report.getBalance()));
   }
 
+  public void setList(List<Report> reports) {
+    this.reports.clear();
+    this.reports.addAll(reports);
+    notifyDataSetChanged();
+  }
+
   @Override
   public int getItemCount() {
     return reports.size();
