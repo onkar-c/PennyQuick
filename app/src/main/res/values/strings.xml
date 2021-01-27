@@ -54,6 +54,8 @@
   <string name="dummy_transaction_message">This transaction is pending</string>
   <string name="privacy_policy">Privacy policy</string>
   <string name="help">Help</string>
+  <string name="help_message">Get Direct Help from Super Admin\nMail: info@pennyquick.in\nPhone: (+91) 7264895939\nAddress: Shivaji Chowk, Bori Arab Dist- Yawatmal Bori Arab, Maharashtra 445201</string>
+  <string name="help_number">+917264895939</string>
   <string name="version">Version</string>
   <string name="logout">Logout</string>
   <string name="enter_mob_no_info">Please Enter Your Registered Mobile no.</string>
@@ -180,6 +182,7 @@
   <string name="transaction_status">Status:</string>
   <string name="transaction_id">Transaction ID</string>
   <string name="dispute_success">Dispute Genrated Successfully</string>
+  <string name="contact_us_success">Thank you, We will connect with you soon.</string>
   <string name="enter_transaction_id">Please Enter Transaction ID</string>
   <string name="txn_id">TXN ID:</string>
   <string name="dummy_trans_id">2565412345246542</string>

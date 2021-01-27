@@ -27,4 +27,5 @@ public class DateUtils {
     return getDateString(ProjectConstants.TIME_FORMAT, date) + " on " + getDateString(
         ProjectConstants.DATE_FORMAT, date);
   }
+
 }

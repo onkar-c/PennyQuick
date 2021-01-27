@@ -68,7 +68,7 @@ public class RecentRechargesActivityViewModel extends ViewModel {
       for (DateFormatModel dateFormatModel : dateFormatModels) {
         if (dateFormatModel.isChecked()) {
           MonthRequest monthRequest = new MonthRequest();
-          monthRequest.setMonth(dateFormatModel.getMonthInt());
+          monthRequest.setMonth(Integer.parseInt(dateFormatModel.getMonth()));
           monthRequest.setYear(Long.parseLong(dateFormatModel.getYear()));
           extractedDateFormatModels.add(monthRequest);
         }

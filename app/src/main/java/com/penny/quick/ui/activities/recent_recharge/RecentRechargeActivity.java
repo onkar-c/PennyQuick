@@ -1,7 +1,6 @@
 package com.penny.quick.ui.activities.recent_recharge;
 
 import android.os.Bundle;
-import android.util.Log;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.WorkInfo;
@@ -14,21 +13,19 @@ import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.recent_recharge.RecentRechargeBottomSheetDialog.BottomSheetListener;
 import com.penny.quick.ui.adapters.RecentRechargeAdapter;
 import com.penny.quick.utils.ToolBarUtils;
+import com.penny.quick.utils.UiUtils;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 import javax.inject.Inject;
 
 public class RecentRechargeActivity extends BaseActivity {
 
+  private final List<DateFormatModel> dateFormatModels = new ArrayList<>();
   @Inject
   RecentRechargesActivityViewModel recentRechargesActivityViewModel;
   List<BottomSheetCheckBox> bottomSheetCategoriesCheckBoxes = new ArrayList<>();
   List<BottomSheetCheckBox> statusCheckBoxes = new ArrayList<>();
-  private RecentRechargeAdapter recentRechargeAdapter;
-  private final List<DateFormatModel> dateFormatModels = new ArrayList<>();
   private final BottomSheetListener dateBottomSheet = bottomSheetCheckBoxes -> {
     for (DateFormatModel dateFormatModel : dateFormatModels) {
       dateFormatModel.setChecked(false);
@@ -71,6 +68,7 @@ public class RecentRechargeActivity extends BaseActivity {
     }
     getRecentRechargesFromServer();
   };
+  private RecentRechargeAdapter recentRechargeAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +77,7 @@ public class RecentRechargeActivity extends BaseActivity {
     ToolBarUtils.setUpToolBar(this);
     ToolBarUtils.setTitle(this, getString(R.string.recent_recharge));
     registerNetworkReceiver();
-    generateDates();
+    dateFormatModels.addAll(UiUtils.generateDates());
     getCategoriesFilter();
     getFilter();
     initUi();
@@ -119,25 +117,6 @@ public class RecentRechargeActivity extends BaseActivity {
           statusCheckBoxes, getString(R.string.filter), filterBottomSheet);
       recentRechargeBottomSheetDialog.show(getSupportFragmentManager(), "Month");
     });
-  }
-
-  private void generateDates() {
-    Calendar cal = Calendar.getInstance();
-    for (int j = 0; j < 2; j++) {
-      for (int i = j == 0 ? cal.get(Calendar.MONTH) : 12; i > 0; i--) {
-        cal.set(Calendar.MONTH, i);
-        DateFormatModel dateFormatModel = new DateFormatModel();
-        dateFormatModel.setId(UUID.randomUUID().toString());
-        dateFormatModel
-            .setMonthDisplay(
-                cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()));
-        dateFormatModel.setMonth("" + (cal.get(Calendar.MONTH) + 1));
-        dateFormatModel.setYear(String.valueOf(cal.get(Calendar.YEAR)));
-        Log.d("date", dateFormatModel.getMonth() + " " + dateFormatModel.getYear() + " " + j);
-        dateFormatModels.add(dateFormatModel);
-      }
-      cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) - (j + 2));
-    }
   }
 
   private List<BottomSheetCheckBox> generateMonthList() {
@@ -195,7 +174,7 @@ public class RecentRechargeActivity extends BaseActivity {
   }
 
   private void getRecentRechargesFromServer() {
-    if(NetworkUtils.isConnected(this)) {
+    if (NetworkUtils.isConnected(this)) {
       recentRechargesActivityViewModel
           .getRecentRechargesFromServer(dateFormatModels, bottomSheetCategoriesCheckBoxes,
               statusCheckBoxes).observe(this,
@@ -213,7 +192,7 @@ public class RecentRechargeActivity extends BaseActivity {
   protected void onResume() {
     super.onResume();
     getRecentRechargesFromServer();
-    if(!NetworkUtils.isConnected(this)) {
+    if (!NetworkUtils.isConnected(this)) {
       manageBaseNetworkErr(this, NetworkUtils.isConnected(this));
     }
   }

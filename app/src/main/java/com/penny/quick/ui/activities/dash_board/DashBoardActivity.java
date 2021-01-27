@@ -3,6 +3,7 @@ package com.penny.quick.ui.activities.dash_board;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -80,7 +81,7 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
   private void setUserDetails(User user) {
     if (user != null) {
       walletBalance.setText(
-          String.format("%s %s", getString(R.string.rupees_sign), user.getTotalBalance()));
+          String.format("\u20B9 %s", user.getTotalBalance()));
       showProfileImage(user.getImageUrl(), profileIV);
       showProfileImage(user.getImageUrl(), drawerProfileIV);
       ((TextView) findViewById(R.id.tv_user_name)).setText(user.getBusinessName());
@@ -214,6 +215,8 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       } else if (itemId == R.id.add_money) {
         addMoney();
 //        progressDialog(getString(R.string.add_money_error));
+      } else if (itemId == R.id.help) {
+        showPhoneNumberDialog();
       } else {
         Toast.makeText(DashBoardActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
       }
@@ -224,6 +227,20 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
       drawer.close();
       return true;
     };
+  }
+
+  private void showPhoneNumberDialog() {
+    android.app.AlertDialog.Builder messageDialog =
+        new android.app.AlertDialog.Builder(this).setTitle(getString(R.string.help))
+            .setMessage(getString(R.string.help_message));
+    messageDialog.setPositiveButton("call", (dialogInterface, i) -> {
+      dialogInterface.dismiss();
+      startActivity(new Intent(Intent.ACTION_DIAL,
+          Uri.fromParts("tel", getString(R.string.help_number), null)));
+    });
+    messageDialog.setNegativeButton("Cancle", (dialogInterface, i) -> dialogInterface.dismiss());
+    messageDialog.setCancelable(false);
+    messageDialog.show();
   }
 
 
@@ -242,17 +259,16 @@ public class DashBoardActivity extends BaseActivity implements NetworkConnectivi
 
 //Initialize all unknown variables and replace all dummy values
     bundle.putString("environment", "uat");
-    bundle.putString("product","aeps");
+    bundle.putString("product", "aeps");
     bundle.putString("secret_key_timestamp", String.valueOf(new Date().getTime()));
     bundle.putString("secret_key", "7e757b13-a705-4ffe-8390-a65b231c5163");
     bundle.putString("developer_key", "a4bb5e407aa9d1254b2daec12e31a72f");
     bundle.putString("initiator_id", "8605641662");
     bundle.putString("user_code", "51810001");
     bundle.putString("initiator_logo_url", "http://pennyquick.in/assets/images/logo.png");
-    bundle.putString("partner_name" , "erupaiya");
-    bundle.putString("language" , "en");
+    bundle.putString("partner_name", "erupaiya");
+    bundle.putString("language", "en");
     bundle.putString("callback_url", "https://api.eko.in:25002/ekoicici/v1/user/service/activate");
-
 
     intent.putExtras(bundle);
     startActivityForResult(intent, AEPS_REQUEST_CODE);

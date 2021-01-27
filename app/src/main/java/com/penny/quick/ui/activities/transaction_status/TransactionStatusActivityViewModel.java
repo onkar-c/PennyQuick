@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.work.WorkInfo;
 import com.penny.core.repositories.OperatorsRepository;
 import com.penny.core.repositories.RechargeRepository;
+import com.penny.database.entities.Operators;
+import java.util.List;
 
 public class TransactionStatusActivityViewModel extends ViewModel {
 
@@ -18,5 +20,9 @@ public class TransactionStatusActivityViewModel extends ViewModel {
 
   String getType(String type) {
     return new OperatorsRepository().getOperatorsNameByType(type);
+  }
+
+  List<Operators> getOperator(String provider) {
+    return new OperatorsRepository().getOperatorsByProvider(provider);
   }
 }

@@ -2,6 +2,7 @@ package com.penny.quick.ui.activities.transaction_status;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,9 +13,12 @@ import com.google.gson.Gson;
 import com.penny.core.models.TransactionResponse;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
+import com.penny.database.entities.Operators;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.contact_us_dispute.ContactUsDisputeActivity;
+import com.penny.quick.utils.CommonUtils;
+import java.util.List;
 import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
@@ -26,7 +30,7 @@ public class TransactionStatusActivity extends BaseActivity {
   private LinearLayout statusLayout;
   private TextView statusMainHeader, tvStatus;
   private TransactionResponse transactionResponse;
-  private ImageView statusIcon;
+  private ImageView statusIcon, operatorIcon;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,25 @@ public class TransactionStatusActivity extends BaseActivity {
         .getSerializableExtra(ProjectConstants.TRANSACTION);
     initUI();
     setStatusWiseLayout(transactionResponse);
+    if (transactionResponse.getOperator() != null
+        && transactionResponse.getOperator().length() > 0) {
+      Executors.newSingleThreadExecutor()
+          .execute(() -> {
+            List<Operators> operators = transactionStatusActivityViewModel
+                .getOperator(transactionResponse.getOperator());
+            runOnUiThread(() -> {
+              if (operators != null && operators.size() > 0) {
+                CommonUtils.getImage(this, operators.get(0).getUrl(),
+                    operatorIcon, R.drawable.hamburger_icon);
+              } else {
+                operatorIcon.setVisibility(View.GONE);
+              }
+            });
+          });
+    } else {
+      operatorIcon.setVisibility(View.GONE);
+    }
+
     findViewById(R.id.close).setOnClickListener(view -> onBackPressed());
     getTransactionStatus();
   }
@@ -131,6 +154,7 @@ public class TransactionStatusActivity extends BaseActivity {
     statusMainHeader = findViewById(R.id.transaction_status_header);
     tvStatus = findViewById(R.id.status);
     statusIcon = findViewById(R.id.status_icon);
+    operatorIcon = findViewById(R.id.company_icon);
     findViewById(R.id.dispute).setOnClickListener(view -> startDisputeActivity());
   }
 }

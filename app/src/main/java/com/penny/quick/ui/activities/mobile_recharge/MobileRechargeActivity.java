@@ -21,7 +21,7 @@ import com.penny.quick.R;
 import com.penny.quick.models.PlanModel;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.ui.activities.transaction_status.TransactionStatusActivity;
-import com.penny.quick.ui.activities.view_plans.ViewPlansActivity;
+import com.penny.quick.ui.activities.web_view.WebViewActivity;
 import com.penny.quick.ui.adapters.BottomSheetAdapter.BottomSheetListItemClickListener;
 import com.penny.quick.ui.adapters.StatesBottomSheetAdapter.StateBottomSheetListItemClickListener;
 import com.penny.quick.utils.OperatorBottomSheetDialog;
@@ -56,9 +56,17 @@ public class MobileRechargeActivity extends BaseActivity implements
   }
 
   private void setListeners() {
-    findViewById(R.id.bt_view_plans)
+   /* findViewById(R.id.bt_view_plans)
         .setOnClickListener(view -> startActivityForResult(new Intent(MobileRechargeActivity.this,
-            ViewPlansActivity.class), VIEW_PLANS_REQ_CODE));
+            ViewPlansActivity.class), VIEW_PLANS_REQ_CODE));*/
+
+    findViewById(R.id.bt_view_plans)
+        .setOnClickListener(view -> {
+          Intent intent = new Intent(this, WebViewActivity.class);
+          intent.putExtra(ProjectConstants.URL, ProjectConstants.VIEW_PLAN_URL);
+          intent.putExtra(ProjectConstants.TITLE, getString(R.string.view_plans));
+          startActivity(intent);
+        });
 
     findViewById(R.id.bt_recharge)
         .setOnClickListener(view -> {
@@ -226,6 +234,7 @@ public class MobileRechargeActivity extends BaseActivity implements
     intent.putExtra(ProjectConstants.TRANSACTION,
         new Gson().fromJson(transaction, TransactionResponse.class));
     startActivity(intent);
+    finish();
   }
 
   @Override

@@ -53,7 +53,7 @@ public interface ApiInterface {
   @POST("dispute/dlist")
   Call<JsonResponse> getDisputeHistory();
 
-  @POST("forgot_password/contactUs")
+  @POST("contactus")
   Call<JsonResponse> contactUs(@Body ContactUsDisputeModel contactUsDisputeModel);
 
   @POST("dispute")

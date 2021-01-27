@@ -14,4 +14,7 @@ public abstract class OperatorsDao extends AbstractBaseDao<Operators> {
 
   @Query("select company_name from operators where provider =:type")
   public abstract String getOperatorsNameByType(String type);
+
+  @Query("select * from operators where provider =:type")
+  public abstract List<Operators> getOperatorsByProvider(String type);
 }

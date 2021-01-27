@@ -115,6 +115,7 @@ public class AcceptRechargeDetails extends BaseActivity {
     intent.putExtra(ProjectConstants.TRANSACTION,
         new Gson().fromJson(transaction, TransactionResponse.class));
     startActivity(intent);
+    finish();
   }
 
   @Override

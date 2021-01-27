@@ -22,8 +22,8 @@ public class APITags {
   private static final String API_VERIFY_OTP_MESSAGE = "Verifying OTP..";
 
   public static final int API_CHANGE_PASSWORD = 4;
-  private static final String API_CHANGE_PASSWORD_TITTLE = "OTP";
-  private static final String API_CHANGE_PASSWORD_MESSAGE = "Verifying OTP..";
+  private static final String API_CHANGE_PASSWORD_TITTLE = "Password";
+  private static final String API_CHANGE_PASSWORD_MESSAGE = "Chainging pasword..";
 
   public static final int API_USER_INFO = 5;
   private static final String API_USER_INFO_TITTLE = "User info";

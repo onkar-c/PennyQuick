@@ -29,7 +29,7 @@ public class CommonUtils {
   public static void getImage(Context context, String imgUrl, ImageView imageView,
       int drawableId) {
     Glide.with(context)
-        .load(imgUrl != null ? imgUrl : "")
+        .load(imgUrl != null ? imgUrl.trim() : "")
         .placeholder(drawableId == 0 ? R.drawable.hamburger_icon : drawableId)
         .into(imageView)
         .onLoadFailed(

@@ -8,6 +8,7 @@ import androidx.work.WorkInfo.State;
 import com.penny.core.APITags;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.ProjectConstants;
+import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
 import com.penny.quick.ui.activities.BaseActivity;
 import com.penny.quick.utils.ToolBarUtils;
@@ -43,15 +44,38 @@ public class ContactUsDisputeActivity extends BaseActivity {
     findViewById(R.id.save).setOnClickListener(view -> saveData());
   }
 
+  private boolean allFieldsFilled() {
+    if (StringUtils.isEmptyString(customerName.getText())) {
+      toast(getString(R.string.enter_name));
+      return false;
+    }
+    if (StringUtils.isEmptyString(mobileNumber.getText())) {
+      toast(getString(R.string.enter_mobile));
+      return false;
+    }
+    if (StringUtils.isEmptyString(subject.getText())) {
+      toast(getString(getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false)
+          ? R.string.enter_transaction_id : R.string.enter_subject));
+      return false;
+    }
+    if (StringUtils.isEmptyString(message.getText())) {
+      toast(getString(R.string.enter_message_hint));
+      return false;
+    }
+    return true;
+  }
+
   private void saveData() {
-    if (NetworkUtils.isConnected(this)) {
-      contactUsDisputeViewModel
-          .sendData(customerName.getText().toString(), mobileNumber.getText().toString(),
-              subject.getText().toString(), message.getText().toString(),
-              getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false)).observe(this,
-          this::observeSendDataApi);
-    } else {
-      toast(APITags.DEVICE_IS_OFFLINE);
+    if (allFieldsFilled()) {
+      if (NetworkUtils.isConnected(this)) {
+        contactUsDisputeViewModel
+            .sendData(customerName.getText().toString(), mobileNumber.getText().toString(),
+                subject.getText().toString(), message.getText().toString(),
+                getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false)).observe(this,
+            this::observeSendDataApi);
+      } else {
+        toast(APITags.DEVICE_IS_OFFLINE);
+      }
     }
 
   }
@@ -61,10 +85,13 @@ public class ContactUsDisputeActivity extends BaseActivity {
       State state = workInfo.getState();
       apiResponseHandler(workInfo);
       if (state == State.SUCCEEDED) {
-        showMessageDialog("", getString(R.string.dispute_success), (dialog, which) -> {
-          dialog.dismiss();
-          ContactUsDisputeActivity.this.finish();
-        });
+        showMessageDialog("",
+            getString(getIntent().getBooleanExtra(ProjectConstants.IS_DISPUTE, false) ?
+                R.string.dispute_success : R.string.contact_us_success),
+            (dialog, which) -> {
+              dialog.dismiss();
+              ContactUsDisputeActivity.this.finish();
+            });
       }
     }
 
