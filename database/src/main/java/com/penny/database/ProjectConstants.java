@@ -3,7 +3,7 @@ package com.penny.database;
 public class ProjectConstants {
 
 //  public static final String SERVER_URL = "https://pennyquick.in/admin/";
-  public static final String SERVER_URL = " https://erupaiya.com/priyanka/admin/";
+  public static final String SERVER_URL = "https://erupaiya.com/priyanka/admin/";
   public static final String PRIVACY_POLICY_URL = "http://www.pennyquick.in/privacy-policy_mobile.html";
   public static final String TERMS_AND_CONDITION_URL = "http://www.pennyquick.in/terms-conditions_mobile.html";
   public static final String VIEW_PLAN_URL = "https://www.gadgetsnow.com/recharge-plans/";

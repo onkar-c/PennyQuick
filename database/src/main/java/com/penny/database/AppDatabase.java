@@ -19,6 +19,7 @@ import com.penny.database.entities.Recipient;
 import com.penny.database.entities.Report;
 import com.penny.database.entities.State;
 import com.penny.database.entities.User;
+import net.sqlcipher.database.SupportFactory;
 
 @Database(
     entities = {
@@ -32,10 +33,13 @@ public abstract class AppDatabase extends RoomDatabase {
   private static AppDatabase INSTANCE;
 
   public static AppDatabase getInstance() {
+    String pass = "passProtected";
+    final SupportFactory factory = new SupportFactory(pass.getBytes());
     if (INSTANCE == null) {
       INSTANCE =
           Room.databaseBuilder(APP.getContext(), AppDatabase.class, "PennyQuick.db")
               .fallbackToDestructiveMigration()
+              .openHelperFactory(factory)
               .build();
     }
     return INSTANCE;

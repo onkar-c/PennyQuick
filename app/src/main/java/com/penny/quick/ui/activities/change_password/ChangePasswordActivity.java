@@ -6,6 +6,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.work.WorkInfo;
+import androidx.work.WorkInfo.State;
 import com.penny.core.util.NetworkUtils;
 import com.penny.database.utils.StringUtils;
 import com.penny.quick.R;
@@ -83,6 +84,13 @@ public class ChangePasswordActivity extends BaseActivity {
   private void observeChangePassword(WorkInfo workInfo) {
     if (workInfo != null) {
       apiResponseHandler(workInfo);
+      if(workInfo.getState() == State.SUCCEEDED) {
+        showMessageDialog("Alert", "Password Changed Succesfully.", (dialogInterface, i) -> {
+          dialogInterface.dismiss();
+          finish();
+        });
+      }
+
     }
   }
 

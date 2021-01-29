@@ -75,7 +75,10 @@ public class ForgotPasswordNewPwdActivity extends BaseActivity {
   }
 
   private void changePasswordSuccess() {
-    onBackPressed();
+    showMessageDialog("Alert", "Password Changed Succesfully.", (dialogInterface, i) -> {
+      dialogInterface.dismiss();
+      finish();
+    });
   }
 
   @Override
